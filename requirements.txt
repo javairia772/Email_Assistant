@@ -1,0 +1,12 @@
+# MCP server
+fastmcp==0.4.5       # MCP framework
+
+# Gmail API
+google-api-python-client==2.93.0
+google-auth==2.23.0
+google-auth-oauthlib==1.0.0
+google-auth-httplib2==0.1.0
+
+# Outlook API
+msal==1.25.0         # Microsoft Authentication Library
+requests==2.32.0
