@@ -1,6 +1,5 @@
 from fastmcp import FastMCP
 from connectors.gmail_connector import list_threads, get_message as get_gmail_message
-from connectors.outlook_connector import list_messages, get_message as get_outlook_message
 import asyncio
 
 mcp = FastMCP(name="email_mcp_server")
