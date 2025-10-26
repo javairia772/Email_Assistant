@@ -1,7 +1,10 @@
 from fastmcp import FastMCP
+from Agents.contact_aggregator_agent import ContactAggregatorAgent
 from connectors.gmail_connector import list_threads, get_message as get_gmail_message
 import asyncio
+import json
 
+# Initialize MCP server
 mcp = FastMCP(name="email_mcp_server")
 
 # ----------------------------
@@ -20,7 +23,42 @@ async def gmail_get_thread(thread_id: str):
     return await loop.run_in_executor(None, get_gmail_message, thread_id)
 
 # ----------------------------
+# Contact Aggregator Tool
+# ----------------------------
+def process_contacts_sync(max_threads: int = 5):
+    contact_agent = ContactAggregatorAgent()
+    threads = list_threads(max_results=max_threads)  # sync call
+
+    for t in threads:
+        thread_id = t.get("id")
+        if thread_id:
+            thread_obj = get_gmail_message(thread_id)  # sync call
+            contact_agent.process_email(thread_obj)
+
+    contacts = contact_agent.get_contacts()
+    
+    # Save JSON
+    with open("contacts.json", "w") as f:
+        json.dump(
+            {
+                k: {
+                    "name": v["name"],
+                    "emails": v["emails"],
+                    "last_contacted": str(v["last_contacted"])
+                } 
+                for k, v in contacts.items()
+            },
+            f,
+            indent=4
+        )
+    return contacts
+@mcp.tool()
+async def extract_unique_contacts(max_threads: int = 5):
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, process_contacts_sync, max_threads)
+
+# ----------------------------
 # Run MCP
 # ----------------------------
 if __name__ == "__main__":
-    mcp.run()  # STDIO or HTTP transport depending on Claude Desktop
+    mcp.run()
