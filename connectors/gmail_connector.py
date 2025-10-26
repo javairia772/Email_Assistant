@@ -9,3 +9,7 @@ def get_message(thread_id):
     service = gmail_login()
     thread = service.users().threads().get(userId="me", id=thread_id).execute()
     return thread
+    
+def get_gmail_service():
+    """Return an authenticated Gmail API service."""
+    return gmail_login()
