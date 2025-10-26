@@ -56,6 +56,50 @@ def process_contacts_sync(max_threads: int = 5):
 async def extract_unique_contacts(max_threads: int = 5):
     loop = asyncio.get_event_loop()
     return await loop.run_in_executor(None, process_contacts_sync, max_threads)
+@mcp.tool()
+async def gmail_fetch_unread_emails(max_results: int = 5):
+    """
+    Fetch latest unread Gmail emails (sender, subject, snippet).
+    """
+    from connectors.gmail_connector import get_gmail_service  # ensure service helper exists
+    import base64
+    from email import message_from_bytes
+
+    def fetch_emails():
+        service = get_gmail_service()
+        results = service.users().messages().list(userId="me", labelIds=["INBOX", "UNREAD"], maxResults=max_results).execute()
+        messages = results.get("messages", [])
+        emails = []
+
+        for msg in messages:
+            msg_detail = service.users().messages().get(userId="me", id=msg["id"]).execute()
+            payload = msg_detail.get("payload", {})
+            headers = payload.get("headers", [])
+            subject = next((h["value"] for h in headers if h["name"] == "Subject"), "(No Subject)")
+            sender = next((h["value"] for h in headers if h["name"] == "From"), "(Unknown Sender)")
+            snippet = msg_detail.get("snippet", "")
+
+            # Extract body (optional)
+            body = ""
+            parts = payload.get("parts", [])
+            if parts:
+                data = parts[0].get("body", {}).get("data")
+                if data:
+                    body = base64.urlsafe_b64decode(data).decode("utf-8", errors="ignore")
+
+            emails.append({
+                "id": msg["id"],
+                "from": sender,
+                "subject": subject,
+                "snippet": snippet,
+                "body": body[:300] + "..." if body else snippet
+            })
+
+        return emails
+
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, fetch_emails)
+
 
 # ----------------------------
 # Run MCP
