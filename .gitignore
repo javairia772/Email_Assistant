@@ -9,3 +9,6 @@ credentials.json
 
 # VS Code
 .vscode/
+
+# gmail token 
+token_gmail.pkl
