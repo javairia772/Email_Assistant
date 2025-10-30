@@ -1,4 +1,5 @@
 # outlook_connector.py
+import os
 import requests
 from Outlook.outlook_auth import OutlookAuth
 
@@ -6,11 +7,13 @@ from Outlook.outlook_auth import OutlookAuth
 class OutlookConnector:
     def __init__(self):
         self.auth = OutlookAuth()
-        self.token = None
+        self.token = self.auth.token  # Use cached token if available
 
     def ensure_authenticated(self):
         if not self.token:
             self.token = self.auth.authenticate()
+        # If token exists but API call fails with 401, re-authenticate
+        # (This will be handled by the auth layer if needed)
 
     def _headers(self):
         if not self.token:
@@ -23,6 +26,13 @@ class OutlookConnector:
 
         url = f"https://graph.microsoft.com/v1.0/me/messages?$top={top}"
         response = requests.get(url, headers=self._headers())
+
+        # If token expired (401), re-authenticate and retry
+        if response.status_code == 401:
+            self.token = None  # Clear expired token
+            os.remove("token_outlook.pkl") if os.path.exists("token_outlook.pkl") else None
+            self.ensure_authenticated()
+            response = requests.get(url, headers=self._headers())
 
         print("\n--- GRAPH DEBUG INFO ---")
         print("Status:", response.status_code)

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Assistant Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script>
+    async function syncFromMcp() {
+      const btn = document.getElementById('syncBtn');
+      btn.disabled = true;
+      btn.textContent = 'Syncing...';
+      try {
+        const res = await fetch('/sync-from-mcp', { method: 'POST' });
+        const data = await res.json();
+        if (data.ok) {
+          alert(`✅ Synced ${data.count} contacts from MCP to Google Sheets. Refresh page to see updates.`);
+          setTimeout(() => window.location.reload(), 1000);
+        } else {
+          alert(`❌ Sync failed: ${data.error}`);
+        }
+      } catch (e) {
+        alert('Sync failed: ' + e.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Sync from MCP';
+      }
+    }
+  </script>
+  </head>
+  <body>
+    <h1>Email Assistant Dashboard</h1>
+    <div class="toolbar">
+      <button id="syncBtn" class="btn" onclick="syncFromMcp()">Sync from MCP</button>
+      <small style="color: #6b7280; margin-left: 12px;">Dashboard loads from Google Sheets (database). Click sync to refresh from MCP.</small>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Summary</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for it in items %}
+        <tr>
+          <td>{{ it.email }}</td>
+          <td><span class="tag {{ it.role_class }}">{{ it.role }}</span></td>
+          <td class="summary">{{ it.summary }}</td>
+          <td>{{ it.date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+  </html>
+
+
