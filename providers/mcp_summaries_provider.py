@@ -1,13 +1,8 @@
 from typing import List, Dict
 from datetime import datetime, timezone
 
-# Import MCP tool functions. These are defined and registered in main_mcp.py
-# Importing them here lets us reuse the same implementations the MCP server exposes.
-from main_mcp import (
-    gmail_list_threads_raw,
-    gmail_get_message_raw,
-    outlook_list_messages_raw,
-)
+# Import raw helpers, not the MCP-decorated FunctionTool objects
+from main_mcp import gmail_list_threads_raw, gmail_get_message_raw, outlook_list_messages_raw
 
 
 def _infer_role_from_email(email_addr: str) -> str:
@@ -51,6 +46,7 @@ class McpSummariesProvider:
             c = contacts_by_email.get(email_lower)
             if not c:
                 contacts_by_email[email_lower] = {
+                    "id": msg_id or f"{email_only}|{date_str}",
                     "email": email_only,
                     "role": role,
                     "_message_ids": [msg_id] if msg_id else [],
@@ -111,6 +107,7 @@ class McpSummariesProvider:
             c = contacts_by_email.get(email_lower)
             if not c:
                 contacts_by_email[email_lower] = {
+                    "id": tid or f"{email_only}|{date_str}",
                     "email": email_only,
                     "role": role,
                     "_thread_ids": [tid],
@@ -141,6 +138,7 @@ class McpSummariesProvider:
         merged: Dict[str, Dict] = {}
         for item in data:
             email = item.get("email", "").lower()
+            id = item.get("id")
             if email not in merged:
                 merged[email] = item
             else:
@@ -153,6 +151,9 @@ class McpSummariesProvider:
                 # newer date wins
                 if _parse_iso(item.get("date", "")) > _parse_iso(existing.get("date", "")):
                     existing["date"] = item.get("date", "")
+                # Always prefer a real id if one exists
+                if id:
+                    existing["id"] = id
 
         result = list(merged.values())
         for r in result:

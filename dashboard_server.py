@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import asyncio
 
+import os
 from providers.mcp_summaries_provider import McpSummariesProvider
 from integrations.google_sheets import upsert_summaries, read_all_summaries
 
@@ -37,54 +38,73 @@ async def fetch_summaries_with_timeout(provider, limit: int, timeout_s: int = 30
         raise TimeoutError("Summarization provider timed out") from e
 
 
+def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries", limit=50):
+    """
+    Fetch from MCP, dedupe, upsert only new summaries to Sheets.
+    """
+    # Read already existing IDs from the sheet
+    db = read_all_summaries(sheet_name)
+    db_ids = set(row.get("id") for row in db)
+    provider = McpSummariesProvider()
+    mcp_rows = provider.get_summaries(limit)
+    new_rows = [row for row in mcp_rows if row.get("id") not in db_ids]
+    if new_rows:
+        upsert_summaries(sheet_name, new_rows)
+
+
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request, limit: int = 20):
-    """Dashboard loads from Google Sheets (our database)."""
-    try:
-        items = read_all_summaries()[:limit]
-        # Attach role class
-        for it in items:
-            it["role_class"] = ROLE_TO_CLASS.get(it.get("role"), "tag-default")
-    except Exception as e:
-        print(f"Error reading from Sheets: {e}")
-        items = []
-
+    # Always try to merge new data before loading view
+    fetch_and_merge_new_data_from_mcp(limit=limit)
+    import collections
+    from datetime import datetime
+    rows = read_all_summaries()
+    # Only valid rows
+    valid = [
+        it for it in rows
+        if it.get("id") and it.get("email") and it.get("summary") and it.get("date")
+    ]
+    # Group by email
+    by_email = collections.defaultdict(list)
+    for row in valid:
+        by_email[row["email"]].append(row)
+    items = []
+    for email, lst in by_email.items():
+        # Concatenate all summaries, most recent date, most common or first role
+        summaries = "\n".join(x["summary"] for x in lst if x.get("summary"))
+        dates = [x["date"] for x in lst if x.get("date")]
+        # Get the most recent date in ISO format
+        try:
+            date = max(dates, key=lambda d: datetime.fromisoformat(d.replace('Z','+00:00')))
+        except:
+            date = dates[0] if dates else ""
+        roles = [x.get("role") for x in lst if x.get("role")]
+        # Most common role or first
+        role = collections.Counter(roles).most_common(1)[0][0] if roles else ""
+        items.append({
+            "email": email,
+            "role": role,
+            "summary": summaries,
+            "date": date,
+        })
+    print(f"[Dashboard] Rendering {len(items)} contacts (unique emails). Sample:")
+    import pprint
+    pprint.pprint(items[:5])
+    for it in items:
+        it["role_class"] = ROLE_TO_CLASS.get(it.get("role"), "tag-default")
+    summary_count = sum(len(lst) for lst in by_email.values())
+    unique_contacts = len(items)
     template = env.get_template("dashboard.html")
-    html = template.render(items=items)
+    html = template.render(items=items, summary_count=summary_count, unique_contacts=unique_contacts)
     return HTMLResponse(content=html)
 
 
-@app.post("/sync-from-mcp")
-async def sync_from_mcp(limit: int = 50, sheet_name: str = "EmailAssistantSummaries"):
-    """Sync fresh data from MCP to Google Sheets (our database)."""
-    provider = McpSummariesProvider()
-    try:
-        items = await fetch_summaries_with_timeout(provider, limit=limit, timeout_s=30)
-    except TimeoutError:
-        return JSONResponse({"ok": False, "error": "timeout"}, status_code=504)
-    except Exception as e:
-        return JSONResponse({"ok": False, "error": str(e)}, status_code=500)
-
-    upsert_summaries(items, sheet_name=sheet_name)
-    return {"ok": True, "count": len(items), "message": f"Synced {len(items)} contacts to Sheets"}
-
-
 @app.get("/api/summaries")
-async def api_summaries(limit: int = 20, source: str = "sheets"):
-    """
-    Get summaries. source='sheets' reads from database, source='mcp' fetches fresh from MCP.
-    """
-    if source == "mcp":
-        provider = McpSummariesProvider()
-        try:
-            items = await fetch_summaries_with_timeout(provider, limit=limit, timeout_s=30)
-        except TimeoutError:
-            return JSONResponse({"ok": False, "error": "timeout"}, status_code=504)
-    else:
-        items = read_all_summaries()[:limit]
-    
+async def api_summaries(limit: int = 20):
+    fetch_and_merge_new_data_from_mcp(limit=limit)
+    items = read_all_summaries()[:limit]
     for it in items:
         it["role_class"] = ROLE_TO_CLASS.get(it.get("role"), "tag-default")
-    return {"ok": True, "count": len(items), "items": items, "source": source}
+    return {"ok": True, "count": len(items), "items": items}
 
 

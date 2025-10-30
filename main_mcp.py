@@ -18,43 +18,35 @@ gmail = GmailConnector()
 # ----------------------------
 
 def gmail_list_threads_raw(max_results: int = 5):
-    """Plain helper: List recent Gmail threads (not wrapped)."""
     return gmail.list_threads(max_results)
 
-@mcp.tool("gmail_list_threads")
-def gmail_list_threads(max_results: int = 5):
-    """List recent Gmail threads."""
-    return gmail_list_threads_raw(max_results)
-
 def gmail_get_message_raw(thread_id: str):
-    """Plain helper: Get a specific Gmail message thread (not wrapped)."""
     return gmail.get_message(thread_id)
-
-@mcp.tool("gmail_get_message")
-def gmail_get_message(thread_id: str):
-    """Get a specific Gmail message thread."""
-    return gmail_get_message_raw(thread_id)
 
 # ----------------------------
 # Outlook tools
 # ----------------------------
 
 def outlook_list_messages_raw(top: int = 5) -> list[dict]:
-    """Plain helper: List latest Outlook messages (not wrapped)."""
     return outlook.list_messages(top)
+
+def outlook_get_message_raw(message_id: str) -> dict:
+    return outlook.get_message(message_id)
+
+@mcp.tool("gmail_list_threads")
+def gmail_list_threads(max_results: int = 5):
+    return gmail_list_threads_raw(max_results)
+
+@mcp.tool("gmail_get_message")
+def gmail_get_message(thread_id: str):
+    return gmail_get_message_raw(thread_id)
 
 @mcp.tool(name="outlook_list_messages")
 def outlook_list_messages(top: int = 5) -> list[dict]:
-    """List latest Outlook messages."""
     return outlook_list_messages_raw(top)
-
-def outlook_get_message_raw(message_id: str) -> dict:
-    """Plain helper: Fetch a specific Outlook message by ID (not wrapped)."""
-    return outlook.get_message(message_id)
 
 @mcp.tool(name="outlook_get_message")
 def outlook_get_message(message_id: str) -> dict:
-    """Fetch a specific Outlook message by ID."""
     return outlook_get_message_raw(message_id)
 
 # ----------------------------
