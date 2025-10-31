@@ -41,6 +41,7 @@ async def fetch_summaries_with_timeout(provider, limit: int, timeout_s: int = 30
 def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries", limit=50):
     """
     Fetch from MCP, dedupe, upsert only new summaries to Sheets.
+    Runs synchronously; call it in a background task from routes.
     """
     # Read already existing IDs from the sheet
     db = read_all_summaries(sheet_name)
@@ -52,44 +53,53 @@ def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries", limi
         upsert_summaries(sheet_name, new_rows)
 
 
+def format_pkt(date_str: str) -> str:
+    """Convert ISO date to 'DD Mon YYYY, hh:mm AM/PM (PKT)' on server."""
+    from datetime import datetime, timezone, timedelta
+    if not date_str:
+        return ""
+    try:
+        asISO = date_str if (date_str.endswith('Z') or ('+' in date_str)) else date_str + 'Z'
+        d = datetime.fromisoformat(asISO.replace('Z', '+00:00'))
+        pkt = (d.astimezone(timezone.utc) + timedelta(hours=5))
+        mo = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][pkt.month-1]
+        day = f"{pkt.day:02d}"
+        h24 = pkt.hour
+        ampm = 'PM' if h24 >= 12 else 'AM'
+        h12 = h24 % 12 or 12
+        return f"{day} {mo} {pkt.year}, {h12:02d}:{pkt.minute:02d} {ampm} (PKT)"
+    except Exception:
+        return date_str
+
+
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request, limit: int = 20):
-    # Always try to merge new data before loading view
-    fetch_and_merge_new_data_from_mcp(limit=limit)
-    import collections
-    from datetime import datetime
-    rows = read_all_summaries()
+    # Kick off background sync; don't block first paint
+    asyncio.create_task(asyncio.to_thread(fetch_and_merge_new_data_from_mcp, limit=limit))
+    rows = read_all_summaries()  # Always display from sheets as the DB
     # Only valid rows
     valid = [
         it for it in rows
         if it.get("id") and it.get("email") and it.get("summary") and it.get("date")
     ]
-    # Group by email
-    by_email = collections.defaultdict(list)
+    # Group by email and aggregate (already contact-level in sheets, but keep safe)
+    from collections import defaultdict, Counter
+    by_email = defaultdict(list)
     for row in valid:
         by_email[row["email"]].append(row)
     items = []
     for email, lst in by_email.items():
-        # Concatenate all summaries, most recent date, most common or first role
         summaries = "\n".join(x["summary"] for x in lst if x.get("summary"))
         dates = [x["date"] for x in lst if x.get("date")]
-        # Get the most recent date in ISO format
-        try:
-            date = max(dates, key=lambda d: datetime.fromisoformat(d.replace('Z','+00:00')))
-        except:
-            date = dates[0] if dates else ""
+        date = max(dates) if dates else ""
         roles = [x.get("role") for x in lst if x.get("role")]
-        # Most common role or first
-        role = collections.Counter(roles).most_common(1)[0][0] if roles else ""
+        role = Counter(roles).most_common(1)[0][0] if roles else ""
         items.append({
             "email": email,
             "role": role,
             "summary": summaries,
-            "date": date,
+            "date": format_pkt(date),
         })
-    print(f"[Dashboard] Rendering {len(items)} contacts (unique emails). Sample:")
-    import pprint
-    pprint.pprint(items[:5])
     for it in items:
         it["role_class"] = ROLE_TO_CLASS.get(it.get("role"), "tag-default")
     summary_count = sum(len(lst) for lst in by_email.values())
@@ -101,10 +111,20 @@ async def dashboard(request: Request, limit: int = 20):
 
 @app.get("/api/summaries")
 async def api_summaries(limit: int = 20):
-    fetch_and_merge_new_data_from_mcp(limit=limit)
-    items = read_all_summaries()[:limit]
-    for it in items:
-        it["role_class"] = ROLE_TO_CLASS.get(it.get("role"), "tag-default")
+    # Trigger background sync, return cached sheet data immediately
+    asyncio.create_task(asyncio.to_thread(fetch_and_merge_new_data_from_mcp, limit=limit))
+    rows = read_all_summaries()
+    items = [
+        {
+            "email": it.get("email"),
+            "role": it.get("role"),
+            "summary": it.get("summary"),
+            "date": format_pkt(it.get("date")),
+            "role_class": ROLE_TO_CLASS.get(it.get("role"), "tag-default"),
+        }
+        for it in rows
+        if it.get("id") and it.get("email") and it.get("summary") and it.get("date")
+    ]
     return {"ok": True, "count": len(items), "items": items}
 
 

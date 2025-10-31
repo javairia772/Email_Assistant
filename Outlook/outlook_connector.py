@@ -7,13 +7,11 @@ from Outlook.outlook_auth import OutlookAuth
 class OutlookConnector:
     def __init__(self):
         self.auth = OutlookAuth()
-        self.token = self.auth.token  # Use cached token if available
+        self.token = None
 
     def ensure_authenticated(self):
         if not self.token:
-            self.token = self.auth.authenticate()
-        # If token exists but API call fails with 401, re-authenticate
-        # (This will be handled by the auth layer if needed)
+            self.token = self.auth.get_access_token()
 
     def _headers(self):
         if not self.token:
@@ -27,11 +25,9 @@ class OutlookConnector:
         url = f"https://graph.microsoft.com/v1.0/me/messages?$top={top}"
         response = requests.get(url, headers=self._headers())
 
-        # If token expired (401), re-authenticate and retry
+        # If token expired (401), re-authenticate and retry silently
         if response.status_code == 401:
-            self.token = None  # Clear expired token
-            os.remove("token_outlook.pkl") if os.path.exists("token_outlook.pkl") else None
-            self.ensure_authenticated()
+            self.token = self.auth.get_access_token(force_refresh=True)
             response = requests.get(url, headers=self._headers())
 
         print("\n--- GRAPH DEBUG INFO ---")
@@ -47,7 +43,7 @@ class OutlookConnector:
                     "id": e["id"],
                     "from": e["from"]["emailAddress"]["address"],
                     "subject": e["subject"],
-                    "receivedDateTime": e["receivedDateTime"]
+                    "receivedDateTime": e["receivedDateTime"],
                 }
                 for e in emails
             ]
@@ -61,6 +57,10 @@ class OutlookConnector:
         url = f"https://graph.microsoft.com/v1.0/me/messages/{message_id}"
         response = requests.get(url, headers=self._headers())
 
+        if response.status_code == 401:
+            self.token = self.auth.get_access_token(force_refresh=True)
+            response = requests.get(url, headers=self._headers())
+
         if response.status_code == 200:
             data = response.json()
             return {
@@ -69,7 +69,7 @@ class OutlookConnector:
                 "from": data["from"]["emailAddress"]["address"],
                 "body_preview": data.get("bodyPreview"),
                 "body_content": data.get("body", {}).get("content"),
-                "receivedDateTime": data["receivedDateTime"]
+                "receivedDateTime": data["receivedDateTime"],
             }
         else:
             raise Exception(f"Error fetching message: {response.text}")
