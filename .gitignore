@@ -13,3 +13,4 @@ token_*.pkl
 # VS Code
 .vscode/
 
+msal_outlook_cache.bin

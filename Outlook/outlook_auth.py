@@ -1,11 +1,19 @@
-# outlook_auth.py
+# Outlook/outlook_auth.py
 import os
-import pickle
 from msal import PublicClientApplication, SerializableTokenCache
 from dotenv import load_dotenv
 import jwt
 
+
 class OutlookAuth:
+    """
+    Handles authentication and token management for Microsoft Graph API using MSAL.
+    Supports:
+      - Silent login (no repeated browser popups)
+      - Token caching and automatic refresh
+      - Secure environment variable configuration
+    """
+
     def __init__(self, token_cache_file="msal_outlook_cache.bin"):
         load_dotenv()
 
@@ -15,20 +23,18 @@ class OutlookAuth:
         self.token_cache_file = token_cache_file
 
         self.authority = f"https://login.microsoftonline.com/{self.tenant_id}"
-        # MS Graph scopes for delegated access
         self.scope = [
             "https://graph.microsoft.com/User.Read",
             "https://graph.microsoft.com/Mail.Read",
         ]
 
-        # Initialize MSAL token cache
+        # Initialize token cache (persistent)
         self.cache = SerializableTokenCache()
         if os.path.exists(self.token_cache_file):
             try:
                 self.cache.deserialize(open(self.token_cache_file, "r").read())
             except Exception:
-                # Corrupt cache – start fresh
-                self.cache = SerializableTokenCache()
+                self.cache = SerializableTokenCache()  # Reset if corrupt
 
         self.app = PublicClientApplication(
             client_id=self.client_id,
@@ -36,37 +42,40 @@ class OutlookAuth:
             token_cache=self.cache,
         )
 
-        self.token = None  # access token string (latest)
+        self.token = None  # access token string
 
     def _save_cache(self):
+        """Persist the MSAL cache to disk."""
         if self.cache.has_state_changed:
             with open(self.token_cache_file, "w") as f:
                 f.write(self.cache.serialize())
 
-    def get_access_token(self, force_interactive: bool = False, force_refresh: bool = False) -> str:
-        """Return a valid access token, using cached account if available.
-        - force_interactive: skip silent and open browser
-        - force_refresh: re-acquire even if cache has token
+    def get_access_token(self, force_interactive=False, force_refresh=False) -> str:
         """
-        # Try silent first (unless forced interactive)
+        Return a valid access token for Microsoft Graph API.
+        Automatically handles silent refresh and fallback to interactive login.
+        """
+        # Try silent login first (if not forced interactive)
         if not force_interactive:
             accounts = self.app.get_accounts()
             if accounts:
                 result = self.app.acquire_token_silent(
-                    scopes=self.scope, account=accounts[0], force_refresh=force_refresh
+                    scopes=self.scope,
+                    account=accounts[0],
+                    force_refresh=force_refresh,
                 )
                 if result and "access_token" in result:
                     self.token = result["access_token"]
                     self._save_cache()
                     return self.token
 
-        # Fallback to interactive (let MSAL determine redirect uri)
+        # Fallback to interactive browser-based login
         result = self.app.acquire_token_interactive(scopes=self.scope)
         if "access_token" in result:
             self.token = result["access_token"]
             self._save_cache()
 
-            # Optional: debug claims
+            # Optional debug info
             try:
                 claims = jwt.decode(self.token, options={"verify_signature": False})
                 print("🔍 Token audience (aud):", claims.get("aud"))
@@ -75,5 +84,5 @@ class OutlookAuth:
                 print("Could not decode token:", e)
 
             return self.token
-        else:
-            raise Exception(f"Authentication failed: {result.get('error_description', 'Unknown error')}")
+
+        raise Exception(f"Authentication failed: {result.get('error_description', 'Unknown error')}")

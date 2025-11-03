@@ -4,8 +4,12 @@ import traceback
 from fastmcp import FastMCP
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
+from Agents.contact_aggregator_agent import ContactAggregatorAgent
 from Summarizer.groq_summarizer import GroqSummarizer
 from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
+from integrations.google_sheets import upsert_summaries
+from datetime import datetime
+
 
 # Initialize MCP and connectors
 mcp = FastMCP(name="email_mcp_server")
@@ -54,6 +58,7 @@ def m_outlook_fetch_threads(contact_email: str, top: int = 50):
 @mcp.tool("outlook_get_thread_text")
 def m_outlook_get_thread_text(message_id: str):
     return safe_run(outlook.get_thread_text, message_id)
+
 
 
 # --------------------
@@ -212,16 +217,23 @@ def m_outlook_get_thread_text(message_id: str):
 
 @mcp.tool("summarize_contact")
 def m_summarize_contact(source: str, contact_email: str, top: int = 50, force_refresh: bool = False):
-    """
-    Summarizes all threads for a contact.
-    - force_refresh=True clears the contact cache before summarizing
-    """
     if source.lower() == "outlook":
         fetch_fn = outlook.fetch_threads
     else:
         fetch_fn = gmail.fetch_threads
 
     full_result = summarize_contact_logic(source, contact_email, fetch_fn, top, force_refresh)
+
+    # 🟢 Save result to Google Sheets
+    if full_result and full_result.get("contact_summary"):
+        row = [{
+            "id": contact_email,
+            "email": contact_email,
+            "role": "Unknown",
+            "summary": full_result["contact_summary"],
+            "date": datetime.utcnow().isoformat()
+        }]
+        upsert_summaries("EmailAssistantSummaries", row)
 
     return {
         "contact_email": full_result.get("contact_email"),
@@ -254,6 +266,98 @@ def m_clear_cache(force: bool = False):
     summarizer._save_cache()
     return {"ok": True, "remaining_keys": list(summarizer.cache.keys())}
 
+
+# ----------------------------
+# Agentic tool: aggregate contacts across sources
+# ----------------------------
+
+@mcp.tool(name="agent_aggregate_contacts")
+def agent_aggregate_contacts(max_threads: int = 50, include_outlook: bool = True, unread_only: bool = False):
+    """
+    Aggregate contacts using ContactAggregatorAgent from latest Gmail threads
+    (and optionally Outlook messages). If unread_only is True, only consider
+    unread Gmail messages.
+    """
+    import base64
+    from datetime import datetime, timezone
+
+    contact_agent = ContactAggregatorAgent()
+
+    # --- Gmail: latest threads or unread ---
+    try:
+        if unread_only:
+            # Use raw Gmail service to list unread for precision
+            service = gmail.auth.authenticate()
+            results = service.users().messages().list(
+                userId="me",
+                labelIds=["INBOX", "UNREAD"],
+                maxResults=max_threads,
+            ).execute()
+            messages = results.get("messages", [])
+            for m in messages:
+                tid = m.get("id")
+                if not tid:
+                    continue
+                # get full thread structure via connector for agent compatibility
+                thread = gmail.get_message(tid)
+                contact_agent.process_email(thread)
+        else:
+            gmail_threads = gmail.list_threads(max_results=max_threads)
+            for t in gmail_threads:
+                tid = t.get("id")
+                if not tid:
+                    continue
+                thread = gmail.get_message(tid)
+                contact_agent.process_email(thread)
+    except Exception as e:
+        print(f"[AgentAggregate] Gmail error: {e}")
+
+    # --- Outlook (optional): adapt message to Gmail-like thread for agent ---
+    if include_outlook:
+        try:
+            msgs = outlook.list_messages(top=max_threads)
+            for msg in msgs:
+                # Build fake Gmail-like thread object
+                # Convert ISO 8601 to RFC 2822-like without TZ suffix for agent parser
+                try:
+                    iso = msg.get("receivedDateTime", "")
+                    if iso:
+                        dt = datetime.fromisoformat(iso.replace('Z', '+00:00'))
+                        rfc = dt.astimezone(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S")
+                    else:
+                        rfc = ""
+                except Exception:
+                    rfc = ""
+                headers = [
+                    {"name": "From", "value": msg.get("from", "")},
+                    {"name": "To", "value": ""},
+                    {"name": "Cc", "value": ""},
+                    {"name": "Date", "value": rfc},
+                ]
+                thread_like = {
+                    "id": msg.get("id"),
+                    "messages": [
+                        {
+                            "payload": {
+                                "headers": headers
+                            }
+                        }
+                    ]
+                }
+                contact_agent.process_email(thread_like)
+        except Exception as e:
+            print(f"[AgentAggregate] Outlook error: {e}")
+
+    # Emit per-contact summary
+    return [
+        {
+            "name": info.get("name"),
+            "email": email,
+            "threads": info.get("emails"),
+            "last_contacted": str(info.get("last_contacted"))
+        }
+        for email, info in contact_agent.get_contacts().items()
+    ]
 
 
 # --------------------

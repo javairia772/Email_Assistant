@@ -16,3 +16,14 @@ google-api-python-client>=2.151.0
 pickle5>=0.0.12 ; python_version < '3.8'
 
 groq
+openai
+requests
+
+
+gspread
+fastapi
+jinja2
+
+fastapi[standard]
+
+bs4

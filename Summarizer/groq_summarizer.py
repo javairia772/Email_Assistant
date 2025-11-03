@@ -1,43 +1,79 @@
 import os
 import json
-from groq import Groq
 from dotenv import load_dotenv
 import sys
 import io
 import time  # for TTL handling
+# Conditional imports for supported providers
+try:
+    from groq import Groq
+except ImportError:
+    Groq = None
+
+import requests  # for Ollama
+
 
 
 load_dotenv()
-if sys.stdout.encoding.lower() != "utf-8":
+if not sys.stdout.encoding or sys.stdout.encoding.lower() != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="ignore")
 
 
 
 class GroqSummarizer:
-    def __init__(self, cache_path="summaries_cache.json", ttl_hours=24):
+    def __init__(self, cache_path=None, ttl_hours=24):
         """
-        Initialize GroqSummarizer.
-        :param cache_path: JSON file to store cached summaries
-        :param ttl_hours: How long each cache entry is valid (in hours)
+        Universal Summarizer supporting Groq, OpenAI, or Ollama.
+        Set PROVIDER in .env: groq / openai / ollama
         """
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-        self.model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+        cache_path = cache_path or os.path.join(os.path.dirname(__file__), "Summaries/summaries_cache.json")
+        self.provider = os.getenv("PROVIDER", "groq").lower().strip()
         self.cache_path = cache_path
         self.ttl_seconds = ttl_hours * 3600  # Convert hours to seconds
-        self.cache = self._load_cache()
-        self._cleanup_expired_cache()  # Remove expired entries on startup
+
+        # ✅ Load cache safely and ensure it's a dict
+        if os.path.exists(self.cache_path):
+            try:
+                with open(self.cache_path, "r", encoding="utf-8") as f:
+                    self.cache = json.load(f)
+                if not isinstance(self.cache, dict):
+                    print("[WARN] summaries_cache.json was not a dict, resetting...")
+                    self.cache = {}
+            except Exception as e:
+                print("[WARN] Failed to load cache:", e)
+                self.cache = {}
+        else:
+            self.cache = {}
+
+        # ✅ Clean up expired cache entries
+        self._cleanup_expired_cache()
+
+        # ---- Initialize provider client ----
+        if self.provider == "groq":
+            if not Groq:
+                raise ImportError("groq package not installed. Run: pip install groq")
+            self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+            self.model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+
+        else:
+            raise ValueError(f"Unsupported PROVIDER: {self.provider}")
+
+        print(f"[INFO] Summarizer initialized with provider='{self.provider}' and model='{self.model}'")
+
 
     # --------------------
     # Cache helpers with TTL
     # --------------------
     def _load_cache(self):
-        if os.path.exists(self.cache_path):
-            with open(self.cache_path, "r", encoding="utf-8", errors="ignore") as f:
-                try:
+        try:
+            if os.path.exists(self.cache_path):
+                with open(self.cache_path, "r", encoding="utf-8") as f:
                     return json.load(f)
-                except json.JSONDecodeError:
-                    return {}
+        except Exception as e:
+            print(f"[WARN] Cache load failed: {e}. Resetting.")
+            return {}
         return {}
+
 
     def _save_cache(self):
         with open(self.cache_path, "w", encoding="utf-8", errors="ignore") as f:
@@ -92,16 +128,25 @@ class GroqSummarizer:
             self._save_cache()
 
 
+    # --------------------------------------------------------------------
+    # 🧩 Universal Model Runner
+    # --------------------------------------------------------------------
     def _run_groq_model(self, prompt):
+        """
+        Unified model handler — works with Groq, OpenAI.
+        """
         try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            return response.choices[0].message.content.strip()
+            if self.provider == "groq":
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[{"role": "user", "content": prompt}],
+                )
+                return response.choices[0].message.content.strip()
+
         except Exception as e:
-            print(f"❌ Groq summarization failed: {e}")
+            print(f"❌ Summarization failed ({self.provider}): {e}")
             return "Summary unavailable due to model error."
+
 
     # ------------------------------------------------------
     # CORE: Universal summarizer

@@ -4,7 +4,11 @@ import traceback
 summarizer = GroqSummarizer()
 
 
-def summarize_thread_logic(source: str, contact_email: str, thread_id: str, thread_obj=None, force=False):
+def summarize_thread_logic(source: str, contact_email: str, thread_id: str, text=None, thread_obj=None, force=False):
+    """
+    Summarize a single thread.
+    If `text` is provided, it takes priority over thread_obj for summarization.
+    """
     try:
         if force:
             summarizer._clear_contact_cache(source, contact_email)
@@ -14,15 +18,24 @@ def summarize_thread_logic(source: str, contact_email: str, thread_id: str, thre
             print(f"⚡ Using cached summary for {contact_email}:{thread_id}")
             return {"thread_id": thread_id, "summary": cached_summary, "used_cache": True}
 
-        if isinstance(thread_obj, str):
-            thread_obj = [{"sender": "Unknown", "subject": "No Subject", "body": thread_obj}]
-        elif not isinstance(thread_obj, list):
-            thread_obj = [thread_obj]
+        # ✅ Prefer direct text if given
+        if text and len(text.strip()) > 20:
+            combined = text.strip()
+        else:
+            # fallback: reconstruct text from thread_obj
+            if isinstance(thread_obj, str):
+                thread_obj = [{"sender": "Unknown", "subject": "No Subject", "body": thread_obj}]
+            elif not isinstance(thread_obj, list):
+                thread_obj = [thread_obj]
 
-        combined = "\n\n---\n\n".join(
-            f"From: {m.get('sender','Unknown')}\nSubject: {m.get('subject','No Subject')}\n\n{m.get('body','')}"
-            for m in thread_obj
-        )
+            combined = "\n\n---\n\n".join(
+                f"From: {m.get('sender','Unknown')}\nSubject: {m.get('subject','No Subject')}\n\n{m.get('body','')}"
+                for m in thread_obj
+            )
+
+        # ✅ Only summarize meaningful text
+        if not combined or len(combined.strip()) < 20:
+            return {"thread_id": thread_id, "summary": "No meaningful content to summarize."}
 
         summary = summarizer.summarize_text(combined)
         summarizer._set_cache(source, contact_email, thread_id, summary)
@@ -46,9 +59,14 @@ def summarize_contact_logic(source: str, contact_email: str, fetch_fn, top: int 
         thread_summaries = []
 
         for i, thread in enumerate(threads, start=1):
-            thread_id = thread[0].get("conversationId") or thread[0].get("threadId") or f"{source}_thread_{i}"
+            thread_id = None
+            if isinstance(thread, list) and len(thread) > 0 and isinstance(thread[0], dict):
+                thread_id = thread[0].get("conversationId") or thread[0].get("threadId")
+            elif isinstance(thread, dict):
+                thread_id = thread.get("id") or thread.get("threadId") or thread.get("conversationId")
+            if not thread_id:
+                thread_id = f"{source}_thread_{i}"
             s = summarize_thread_logic(source, contact_email, thread_id, thread_obj=thread, force=force_refresh)
-            thread_summaries.append(s)
 
         summaries_texts = [t["summary"] for t in thread_summaries if "summary" in t]
         contact_summary = summarizer.summarize_contact_threads(
@@ -66,3 +84,22 @@ def summarize_contact_logic(source: str, contact_email: str, fetch_fn, top: int 
 
     except Exception as e:
         return {"error": str(e), "traceback": traceback.format_exc()}
+
+
+def get_thread_text_for_debug(thread_obj):
+    """Extracts raw text from thread_obj for debugging summarization input."""
+    text_parts = []
+    for msg in thread_obj.get("messages", []):
+        payload = msg.get("payload", {})
+        headers = {h["name"]: h["value"] for h in payload.get("headers", [])}
+        subject = headers.get("Subject", "")
+        sender = headers.get("From", "")
+        body = ""
+        if "parts" in payload:
+            for part in payload["parts"]:
+                if part.get("mimeType") == "text/plain" and part.get("body", {}).get("data"):
+                    import base64
+                    body = base64.urlsafe_b64decode(part["body"]["data"]).decode("utf-8", errors="ignore")
+                    break
+        text_parts.append(f"From: {sender}\nSubject: {subject}\n\n{body}")
+    return "\n---\n".join(text_parts)

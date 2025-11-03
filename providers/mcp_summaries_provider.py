@@ -1,18 +1,15 @@
 from typing import List, Dict
 from datetime import datetime, timezone
+import json, os, re, time
+from pathlib import Path
 
-# Import raw helpers, not the MCP-decorated FunctionTool objects
-from main_mcp import gmail_list_threads_raw, gmail_get_message_raw, outlook_list_messages_raw
+# Imports
+from Summarizer.groq_summarizer import GroqSummarizer
+from Gmail.gmail_connector import GmailConnector
+from Outlook.outlook_connector import OutlookConnector
 
-
-def _infer_role_from_email(email_addr: str) -> str:
-    e = (email_addr or "").lower()
-    if e.endswith(".edu") or "university" in e:
-        return "Faculty"
-    if e.endswith(".io") or e.endswith(".inc") or e.endswith(".co"):
-        return "Vendor"
-    return "Student"
-
+import re
+from bs4 import BeautifulSoup
 
 def _parse_iso(s: str) -> datetime:
     if not s:
@@ -27,146 +24,240 @@ def _parse_iso(s: str) -> datetime:
 
 
 class McpSummariesProvider:
-    def _from_outlook(self, limit: int) -> List[Dict]:
-        contacts_by_email: Dict[str, Dict] = {}
+    def __init__(self):
+        self.summarizer = GroqSummarizer()
+        self.cache_path = Path("Summaries/summaries_cache.json")
+
+    # -----------------------------------------------------------------
+    # OUTLOOK EMAILS
+    # -----------------------------------------------------------------
+    def _from_outlook(self, limit: int):
+        contacts_by_email = {}
+        outlook = OutlookConnector()
+
         try:
-            msgs = outlook_list_messages_raw(top=limit * 2)
+            messages = outlook.list_messages(limit)
+            print("[DEBUG] Outlook messages sample:", messages[:2])
+
+            for msg in messages:
+                # skip anything that's not a dict
+                if not isinstance(msg, dict):
+                    print("[WARN] Skipping malformed Outlook message:", msg)
+                    continue
+
+                # --- Sender ---
+                sender = (
+                    msg.get("sender")
+                    if isinstance(msg.get("sender"), str) else
+                    msg.get("sender", {}).get("emailAddress", {}).get("address")
+                ) or (
+                    msg.get("from", {}).get("emailAddress", {}).get("address")
+                    if isinstance(msg.get("from"), dict) else msg.get("from")
+                ) or "unknown@outlook.com"
+
+                # --- Subject ---
+                subject = msg.get("subject", "")
+
+                # --- Body / preview ---
+                body_html = msg.get("body") or msg.get("bodyPreview") or ""
+                
+                # Strip HTML tags for readable preview
+                if "<" in body_html and ">" in body_html:
+                    try:
+                        # BeautifulSoup method (robust)
+                        from bs4 import BeautifulSoup
+                        body_text = BeautifulSoup(body_html, "html.parser").get_text(separator="\n")
+                    except Exception:
+                        # Fallback regex (simple)
+                        body_text = re.sub(r"<[^>]+>", "", body_html)
+                else:
+                    body_text = body_html
+
+                msg_id = msg.get("id")
+
+                # --- Build contact grouping ---
+                if sender not in contacts_by_email:
+                    contacts_by_email[sender] = {
+                        "email": sender,
+                        "threads": [],
+                        "source": "outlook"
+                    }
+
+                contacts_by_email[sender]["threads"].append({
+                    "id": msg_id,
+                    "subject": subject,
+                    "preview": body_text.strip()
+                })
+
+            return list(contacts_by_email.values())
+
         except Exception as e:
             print(f"[MCP] Outlook error: {e}")
             return []
 
-        for m in msgs:
-            email_only = m.get("from", "")
-            date_str = m.get("receivedDateTime", "")
-            msg_id = m.get("id", "")
-            date_obj = _parse_iso(date_str)
-            email_lower = email_only.lower()
-            role = _infer_role_from_email(email_only)
 
-            c = contacts_by_email.get(email_lower)
-            if not c:
-                contacts_by_email[email_lower] = {
-                    "id": msg_id or f"{email_only}|{date_str}",
-                    "email": email_only,
-                    "role": role,
-                    "_message_ids": [msg_id] if msg_id else [],
-                    "date": date_str,
-                }
-            else:
-                if msg_id and msg_id not in c.get("_message_ids", []):
-                    c.setdefault("_message_ids", []).append(msg_id)
-                if date_obj > _parse_iso(c.get("date", "")):
-                    c["date"] = date_str
 
-        items: List[Dict] = []
-        for c in contacts_by_email.values():
-            cnt = len(c.get("_message_ids", []))
-            c["summary"] = f"Summary of {cnt} Outlook message(s) not available yet." if cnt else "Summary not available yet."
-            items.append(c)
-        return items
-
+    # -----------------------------------------------------------------
+    # GMAIL EMAILS
+    # -----------------------------------------------------------------
     def _from_gmail(self, limit: int) -> List[Dict]:
-        contacts_by_email: Dict[str, Dict] = {}
+        contacts_by_email = {}
+        gmail = GmailConnector()
+
         try:
-            threads = gmail_list_threads_raw(max_results=limit * 2)
+            threads = gmail.list_threads(limit)
+            for t in threads:
+                tid = t.get("id")
+                if not tid:
+                    continue
+
+                thread_messages = gmail.get_message(tid)
+                if not isinstance(thread_messages, list):
+                    print(f"[WARN] Thread {tid} messages not a list, skipping...")
+                    continue
+
+                # Find sender email
+                contact_email = "unknown@gmail.com"
+                for msg in thread_messages:
+                    if not isinstance(msg, dict):
+                        print(f"[WARN] Skipping malformed message: {msg}")
+                        continue
+                    sender = msg.get("sender", "")
+                    if sender and "@" in sender:
+                        contact_email = sender
+                        break
+
+                if contact_email not in contacts_by_email:
+                    contacts_by_email[contact_email] = {
+                        "email": contact_email,
+                        "threads": [],
+                        "source": "gmail"
+                    }
+
+                # Clean message bodies
+                clean_messages = []
+                for msg in thread_messages:
+                    if not isinstance(msg, dict):
+                        continue
+                    body = msg.get("body", "")
+                    # Strip HTML if present
+                    if "<" in body and ">" in body:
+                        try:
+                            body = BeautifulSoup(body, "html.parser").get_text(separator="\n")
+                        except Exception:
+                            body = re.sub(r"<[^>]+>", "", body)
+                    body = re.sub(r"\s+", " ", body).strip()
+                    clean_messages.append({**msg, "body": body})
+
+                contacts_by_email[contact_email]["threads"].append({
+                    "id": tid,
+                    "messages": clean_messages
+                })
+
+            return list(contacts_by_email.values())
+
         except Exception as e:
-            print(f"[MCP] Gmail error listing threads: {e}")
+            print(f"[MCP] Gmail error: {e}")
             return []
 
-        for t in threads:
-            tid = t.get("id")
-            if not tid:
-                continue
-            try:
-                thread = gmail_get_message_raw(tid)
-            except Exception as e:
-                print(f"[MCP] Gmail error get_message: {e}")
-                continue
-            messages = thread.get("messages", [])
-            if not messages:
-                continue
-            headers = messages[0].get("payload", {}).get("headers", [])
-            header_dict = {h["name"]: h["value"] for h in headers}
-            sender = header_dict.get("From", "")
-            date_raw = header_dict.get("Date", "")
-            try:
-                date_obj = datetime.strptime(date_raw[:25], "%a, %d %b %Y %H:%M:%S")
-                date_str = date_obj.replace(tzinfo=timezone.utc).isoformat()
-            except Exception:
-                date_str = ""
+    # -----------------------------------------------------------------
+    # SUMMARIZATION
+    # -----------------------------------------------------------------
+    def _summarize_contact_threads(self, contact: Dict) -> str:
+        """Generate a concise summary for a contact using their message bodies."""
+        all_texts = []
 
-            import re
-            email_only = sender
-            m = re.match(r"(.*)<(.+@.+)>", sender)
-            if m:
-                email_only = m.group(2).strip()
-
-            email_lower = email_only.lower()
-            role = _infer_role_from_email(email_only)
-
-            c = contacts_by_email.get(email_lower)
-            if not c:
-                contacts_by_email[email_lower] = {
-                    "id": tid or f"{email_only}|{date_str}",
-                    "email": email_only,
-                    "role": role,
-                    "_thread_ids": [tid],
-                    "date": date_str,
-                }
+        # Combine Outlook previews and Gmail bodies
+        for t in contact.get("threads", []):
+            if "preview" in t:
+                text = t["preview"]
+            elif "messages" in t:
+                text = "\n".join(m.get("body", "") for m in t["messages"])
             else:
-                if tid not in c.get("_thread_ids", []):
-                    c.setdefault("_thread_ids", []).append(tid)
-                if _parse_iso(date_str) > _parse_iso(c.get("date", "")):
-                    c["date"] = date_str
+                text = ""
+            
+            if text:
+                # Strip HTML if any
+                if "<" in text and ">" in text:
+                    try:
+                        text = BeautifulSoup(text, "html.parser").get_text(separator="\n")
+                    except Exception:
+                        text = re.sub(r"<[^>]+>", "", text)
+                
+                # Normalize whitespace
+                text = re.sub(r"\s+", " ", text).strip()
 
-        items: List[Dict] = []
-        for c in contacts_by_email.values():
-            cnt = len(c.get("_thread_ids", []))
-            c["summary"] = f"Summary of {cnt} Gmail thread(s) not available yet." if cnt else "Summary not available yet."
-            items.append(c)
-        return items
+                # Truncate if too long (e.g., >2000 chars)
+                if len(text) > 2000:
+                    text = text[:2000] + "..."
 
-    def get_summaries(self, limit: int = 20) -> List[Dict]:
-        half = max(1, limit // 2)
-        data: List[Dict] = []
-        outlook_items = self._from_outlook(half)
-        gmail_items = self._from_gmail(limit - len(outlook_items))
-        data.extend(outlook_items)
-        data.extend(gmail_items)
+                all_texts.append(text)
 
-        # Merge duplicates across sources
-        merged: Dict[str, Dict] = {}
-        for item in data:
-            email = item.get("email", "").lower()
-            id = item.get("id")
-            if email not in merged:
-                merged[email] = item
+        combined_text = "\n\n".join(all_texts).strip()
+        if not combined_text:
+            return "No message content available."
+
+        try:
+            summary = self.summarizer.summarize_text(combined_text)
+            # Clean final summary whitespace
+            return re.sub(r"\s+", " ", summary).strip()
+        except Exception as e:
+            print(f"[MCP] Summarization error for {contact.get('email')}: {e}")
+            return "Summary generation failed."
+
+    # -----------------------------------------------------------------
+    # MERGED SUMMARIES + CACHE
+    # -----------------------------------------------------------------
+    def get_summaries(self, limit=10) -> List[Dict]:
+        print("[INFO] Fetching summaries from Gmail + Outlook...")
+
+        gmail_data = self._from_gmail(limit)
+        outlook_data = self._from_outlook(limit)
+
+        all_data = gmail_data + outlook_data
+        print(f"[INFO] ✅ Total summaries fetched: {len(all_data)}")
+
+        # Generate AI summaries
+        for contact in all_data:
+            # Ensure stable id and timestamp for dedupe & merging
+            source = contact.get("source", "gmail")
+            email = contact.get("email") or "unknown"
+            contact["id"] = f"{source}:{email}"
+            # Add timestamp if not present
+            contact["timestamp"] = contact.get("timestamp") or datetime.utcnow().isoformat()
+
+            contact["summary"] = self._summarize_contact_threads(contact)
+
+        # --- Cache logic ---
+        try:
+            old_cache = []
+            if self.cache_path.exists():
+                with open(self.cache_path, "r", encoding="utf-8") as f:
+                    try:
+                        old_cache = json.load(f)
+                    except Exception:
+                        print("[CACHE] invalid json in cache, overwriting.")
+
+            # old_cache should be a list; normalize
+            if isinstance(old_cache, dict):
+                # convert to list of values if dict keyed format was used previously
+                old_cache_list = list(old_cache.values())
             else:
-                existing = merged[email]
-                # merge IDs
-                if item.get("_thread_ids"):
-                    existing["_thread_ids"] = existing.get("_thread_ids", []) + item.get("_thread_ids", [])
-                if item.get("_message_ids"):
-                    existing["_message_ids"] = existing.get("_message_ids", []) + item.get("_message_ids", [])
-                # newer date wins
-                if _parse_iso(item.get("date", "")) > _parse_iso(existing.get("date", "")):
-                    existing["date"] = item.get("date", "")
-                # Always prefer a real id if one exists
-                if id:
-                    existing["id"] = id
+                old_cache_list = old_cache or []
 
-        result = list(merged.values())
-        for r in result:
-            t = len(r.get("_thread_ids", []))
-            m = len(r.get("_message_ids", []))
-            parts = []
-            if t:
-                parts.append(f"{t} Gmail thread(s)")
-            if m:
-                parts.append(f"{m} Outlook message(s)")
-            r["summary"] = f"Summary of {', '.join(parts)} not available yet." if parts else "Summary not available yet."
+            # Merge by (email, source)
+            unique_map = {(x.get("email"), x.get("source")): x for x in old_cache_list if isinstance(x, dict)}
+            for d in all_data:
+                unique_map[(d.get("email"), d.get("source"))] = d
 
-        result.sort(key=lambda x: _parse_iso(x.get("date", "")), reverse=True)
-        return result[:limit]
+            merged_list = list(unique_map.values())
 
+            with open(self.cache_path, "w", encoding="utf-8") as f:
+                json.dump(merged_list, f, indent=2, ensure_ascii=False)
 
+            print(f"[CACHE] ✅ Updated {self.cache_path} with {len(merged_list)} records")
+
+        except Exception as e:
+            print(f"[CACHE ERROR] {e}")
+
+        return all_data
