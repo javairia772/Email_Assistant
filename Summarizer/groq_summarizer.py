@@ -1,9 +1,11 @@
 import os
+from pathlib import Path
 import json
 from dotenv import load_dotenv
 import sys
 import io
 import time  # for TTL handling
+from datetime import datetime, timezone
 # Conditional imports for supported providers
 try:
     from groq import Groq
@@ -26,7 +28,8 @@ class GroqSummarizer:
         Universal Summarizer supporting Groq, OpenAI, or Ollama.
         Set PROVIDER in .env: groq / openai / ollama
         """
-        cache_path = cache_path or os.path.join(os.path.dirname(__file__), "Summaries/summaries_cache.json")
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        cache_path = cache_path or os.path.join(BASE_DIR, "Summaries", "summaries_cache.json")
         self.provider = os.getenv("PROVIDER", "groq").lower().strip()
         self.cache_path = cache_path
         self.ttl_seconds = ttl_hours * 3600  # Convert hours to seconds
@@ -242,6 +245,59 @@ class GroqSummarizer:
     # CONTACT-WIDE SUMMARY
     # ------------------------------------------------------
 
+    def summarize_contact(self, contact_obj, source=None, force=False):
+        """
+        Summarize all thread summaries for a given contact into a single compact summary.
+
+        Args:
+            contact_obj (dict): Contact record containing 'email' and 'threads'
+            source (str): Source label (e.g., gmail/outlook)
+            force (bool): If True, clears cache and regenerates
+
+        Returns:
+            str: Compact, human-readable summary for the entire contact.
+        """
+        contact_email = contact_obj.get("email", "unknown")
+        threads = contact_obj.get("threads", [])
+        if not threads:
+            return "No threads found for this contact."
+
+        # ✅ Collect thread summaries
+        thread_summaries = []
+        for t in threads:
+            if "summary" in t:
+                thread_summaries.append(t["summary"])
+            else:
+                # if thread summary not generated yet
+                summary = self.summarize_thread(
+                    t.get("messages", []),
+                    source=source,
+                    contact_email=contact_email,
+                    thread_id=t.get("id")
+                )
+                t["summary"] = summary
+                thread_summaries.append(summary)
+
+        # ✅ Create one compact summary from all threads
+        compact_summary = self.summarize_contact_threads(
+            all_threads=thread_summaries,
+            source=source,
+            contact_email=contact_email,
+            force=force
+        )
+
+        # (Optional) Save in cache as “contact-level” summary
+        if source and contact_email:
+            contact_key = f"{source}:{contact_email}"
+            self.cache[contact_key] = {"summary": compact_summary, "timestamp": time.time()}
+            self._save_cache()
+        # ✅ Update JSON with full contact + threads
+        contact_obj["contact summary"] = compact_summary
+        self._update_contact_json(contact_obj, source)
+
+        return compact_summary
+
+
     def summarize_contact_threads(self, all_threads, source=None, contact_email=None, force=False):
         """
         Create a natural, concise summary from multiple email threads.
@@ -271,7 +327,44 @@ class GroqSummarizer:
         Write the summary as if you’re briefing your manager in plain English.
         """
 
-        return self.summarize_text(prompt, purpose="contact summary")
+        return self._run_groq_model(prompt)
 
 
+    # ------------------------------------------------------
+    # INTERNAL: Update contact summaries JSON
+    # ------------------------------------------------------
+    def _update_contact_json(self, contact_obj, source):
+        """
+        Update the main summaries_ID.json file with the latest contact record.
+        If the contact already exists, replace it; otherwise append a new record.
+        """
+        json_path = os.path.join(Path(__file__).resolve().parent.parent, "Summaries", "summaries_ID.json")
+        os.makedirs(os.path.dirname(json_path), exist_ok=True)
+
+        try:
+            if os.path.exists(json_path):
+                with open(json_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+            else:
+                data = []
+        except Exception as e:
+            print(f"[WARN] Failed to load summaries_ID.json: {e}. Starting new.")
+            data = []
+
+        # remove any old record for this contact
+        email = contact_obj.get("email")
+        data = [d for d in data if d.get("email") != email]
+
+        # add the updated record
+        contact_obj["source"] = source
+        contact_obj["id"] = f"{source}:{email}"
+        contact_obj["timestamp"] = datetime.now(timezone.utc).isoformat()
+
+        data.append(contact_obj)
+
+        # save back
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+        print(f"✅ Updated JSON for contact: {email}")
 
