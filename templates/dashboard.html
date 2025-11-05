@@ -76,23 +76,19 @@
         <table>
           <thead>
             <tr>
-              <th>Id</th>
               <th>Email</th>
               <th>Role</th>
               <th>Summary</th>
               <th>Date</th>
-              <th>Source</th>
             </tr>
           </thead>
           <tbody id="rows-tbody">
             {% for it in items %}
             <tr>
-              <td>{{ it.id }}</td>
               <td>{{ it.email }}</td>
               <td><span class="tag {{ it.role_class }}">{{ it.role }}</span></td>
               <td class="summary">{{ it.summary }}</td>
               <td>{{ it.date }}</td>
-              <td>{{ it.source }}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -104,16 +100,13 @@
       function escapeHTML(s) {
         return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
       }
+
       function toPKT(dateStr) {
-        // Always treat dateStr as UTC, output as PKT (UTC+5) in 12-hour AM/PM format
         if (!dateStr) return '';
         try {
-          // Always parse as UTC, add Z if missing
           let asISO = dateStr.match(/Z|[+-]\d{2}:?\d{2}$/) ? dateStr : dateStr + 'Z';
           let d = new Date(asISO);
-          // Convert to UTC milliseconds
           let utc = d.getTime() + d.getTimezoneOffset() * 60000;
-          // Add 5 hours for PKT
           let pkt = new Date(utc + 5 * 60 * 60 * 1000);
           let yr = pkt.getUTCFullYear();
           let mo = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][pkt.getUTCMonth()];
@@ -121,37 +114,67 @@
           let h24 = pkt.getUTCHours();
           let mn = pkt.getUTCMinutes().toString().padStart(2,'0');
           let ampm = h24 >= 12 ? 'PM' : 'AM';
-          let h12 = h24 % 12; if (h12 === 0) h12 = 12;
+          let h12 = h24 % 12 || 12;
           let hr = h12.toString().padStart(2, '0');
           return `${day} ${mo} ${yr}, ${hr}:${mn} ${ampm} (PKT)`;
         } catch {
           return escapeHTML(dateStr);
         }
       }
+
       function makeRow(it) {
+        const roleClass = it.role_class || (
+          it.role === "Student" ? "tag-student" :
+          it.role === "Faculty" ? "tag-faculty" :
+          it.role === "Vendor" ? "tag-vendor" : "tag-default"
+        );
+
         return `<tr>
-          <td>${escapeHTML(it.id || '')}</td>
           <td>${escapeHTML(it.email || '')}</td>
-          <td><span class="tag ${it.role_class || 'tag-default'}">${escapeHTML(it.role || '')}</span></td>
+          <td><span class="tag ${roleClass}">${escapeHTML(it.role || '')}</span></td>
           <td class="summary">${escapeHTML(it.summary || '')}</td>
           <td>${toPKT(it.date || '')}</td>
-          <td>${escapeHTML(it.source || '')}</td>
         </tr>`;
       }
 
-
       async function updateTable() {
-        const resp = await fetch('/api/summaries');
-        if (!resp.ok) return;
-        const data = await resp.json();
-        const rows = data.items || [];
-        document.getElementById('rows-tbody').innerHTML = rows.map(makeRow).join('');
-        if(document.getElementById('contact-count')) document.getElementById('contact-count').textContent = rows.length;
-        if(document.getElementById('summary-count')) document.getElementById('summary-count').textContent = (data.count || rows.length);
+        const tbody = document.getElementById('rows-tbody');
+        const contactCount = document.getElementById('contact-count');
+        const summaryCount = document.getElementById('summary-count');
+        const refreshStatus = document.getElementById('refresh-status');
+
+        try {
+          refreshStatus.textContent = "⟳ Refreshing...";
+          const resp = await fetch('/api/summaries');
+          if (!resp.ok) throw new Error("Failed to fetch summaries");
+
+          const data = await resp.json();
+          const rows = Array.isArray(data) ? data : data.items || [];
+
+          tbody.innerHTML = rows.map(makeRow).join('');
+          contactCount.textContent = rows.length;
+          summaryCount.textContent = rows.length;
+
+          const now = new Date().toLocaleTimeString();
+          refreshStatus.textContent = `✅ Updated ${now}`;
+        } catch (err) {
+          console.error(err);
+          refreshStatus.textContent = "⚠️ Failed to refresh";
+        }
       }
+
+      // Auto-refresh every 60 seconds
       setInterval(updateTable, 60000);
+
+      // Initial load
       window.addEventListener('DOMContentLoaded', updateTable);
     </script>
+
+    <!-- Add a small “last updated” indicator -->
+    <p id="refresh-status" style="font-size:13px; color:#6b7280; margin-top:10px;">
+      Loading latest summaries...
+    </p>
+
   </body>
   </html>
 
