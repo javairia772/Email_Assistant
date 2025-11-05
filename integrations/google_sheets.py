@@ -14,18 +14,18 @@ SCOPES = [
 
 SPREADSHEET_NAME = "EmailAssistantSummaries"   # consistent name
 WORKSHEET_NAME = "Summaries"                   # consistent sheet tab
-HEADER = ["id", "email", "role", "summary", "date", "source"]
+HEADER = ["Id", "Email", "Role", "Summary", "Date"]
 OUT_KEYS = HEADER.copy()
 
 def normalize_summary_item(item: dict) -> dict:
     """Ensure all summary records have required fields."""
     return {
-        "id": item.get("id", ""),
-        "email": item.get("email", ""),
-        "role": item.get("role", ""),
-        "summary": item.get("summary", ""),
-        "date": item.get("date") or datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "source": item.get("source", ""),
+        "Id": item.get("Id", ""),
+        "Email": item.get("Email", ""),
+        "Role": item.get("Role", ""),
+        "Summary": item.get("Summary", ""),
+        "Date": item.get("Date") or datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        # "source": item.get("source", ""),
     }
 
 # ------------------------- AUTH CLIENT -------------------------
@@ -114,19 +114,25 @@ def upsert_summaries(new_rows: List[Dict]):
     existing = ws.get_all_records(default_blank='')
 
     by_email = {
-        str(r.get("email", "")).strip().lower(): r for r in existing if r.get("email")
+        str(r.get("Email", "")).strip().lower(): r for r in existing if r.get("Email")
     }
 
     for new in new_rows:
         normalized = normalize_summary_item(new)
-        email = str(normalized["email"]).strip().lower()
+        email = str(normalized["Email"]).strip().lower()
         if not email:
             continue
         by_email[email] = normalized
 
     merged_rows = list(by_email.values())
+    if not merged_rows:
+        print("[Sheets] ⚠️ Merged rows empty — aborting update.")
+        return  # ✅ safeguard against clearing everything
 
     ws.clear()
     ws.append_row(HEADER)
-    ws.append_rows([[r.get(k, "") for k in HEADER] for r in merged_rows])
+    ws.append_rows(
+        [[r.get(k, "") for k in HEADER] for r in merged_rows],
+        value_input_option="RAW"
+    )
     print(f"[Sheets] ✅ Upsert successful: wrote {len(merged_rows)} rows.")
