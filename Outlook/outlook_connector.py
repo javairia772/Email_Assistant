@@ -1,5 +1,6 @@
 # Outlook/outlook_connector.py
 import requests
+from bs4 import BeautifulSoup
 from Outlook.outlook_auth import OutlookAuth
 
 
@@ -124,24 +125,45 @@ class OutlookConnector:
     # ------------------------------------------------------
     # NORMALIZE MESSAGE
     # ------------------------------------------------------
+
     def _normalize_message(self, msg, full=False):
+        """
+        Normalize Outlook message for summarization.
+        Extracts sender, subject, date, and plain-text body.
+        """
+        # Sender
         from_field = msg.get("from") or {}
         email_addr = from_field.get("emailAddress") or {}
         sender = email_addr.get("address") or from_field.get("name") or "Unknown Sender"
 
-        body_content = msg.get("body", {}).get("content", "")
+        # Subject
+        subject = msg.get("subject", "")
+
+        # Date
+        date = msg.get("receivedDateTime", "")
+
+        # Body
+        body_content = msg.get("body", {}).get("content", "")  # HTML body
         if not body_content:
+            # Fallback to preview
             body_content = msg.get("bodyPreview", "")
 
+        # Convert HTML to plain text
+        if body_content:
+            soup = BeautifulSoup(body_content, "html.parser")
+            text = soup.get_text(separator="\n")  # preserve line breaks
+            text = text.replace("\r", " ").replace("\n\n", "\n").strip()
+        else:
+            text = ""
+
+        # Return normalized dict
         return {
             "id": msg.get("id", ""),
             "sender": sender,
-            "subject": msg.get("subject", ""),
-            "body": body_content,
-            "date": msg.get("receivedDateTime", ""),
+            "subject": subject,
+            "body": text,
+            "date": date,
         }
-
-
 
     # ------------------------------------------------------
     # GET MESSAGE AS TEXT

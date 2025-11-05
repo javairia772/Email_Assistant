@@ -1,18 +1,17 @@
+import os
+import asyncio
+from collections import defaultdict, Counter
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-import asyncio
 
-import os
 from providers.mcp_summaries_provider import McpSummariesProvider
-# from integrations.google_sheets import upsert_summaries
-from integrations.google_sheets import read_all_summaries
-import time
-last_sync_time = 0
-SYNC_INTERVAL = 300  # seconds (5 minutes)
+from integrations.google_sheets import upsert_summaries, read_all_summaries
 
-
+# -----------------------
+# FastAPI & Jinja setup
+# -----------------------
 app = FastAPI(title="Email Assistant Dashboard")
 
 env = Environment(
@@ -22,158 +21,107 @@ env = Environment(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-
 ROLE_TO_CLASS = {
     "Student": "tag-student",
     "Faculty": "tag-faculty",
     "Vendor": "tag-vendor",
 }
 
-
+# -----------------------
+# Exceptions
+# -----------------------
 class TimeoutError(Exception):
     pass
 
-
+# -----------------------
+# Helper functions
+# -----------------------
 async def fetch_summaries_with_timeout(provider, limit: int, timeout_s: int = 30):
     loop = asyncio.get_event_loop()
     try:
-        return await asyncio.wait_for(loop.run_in_executor(None, provider.get_summaries, limit), timeout=timeout_s)
+        return await asyncio.wait_for(
+            loop.run_in_executor(None, provider.get_summaries, limit),
+            timeout=timeout_s
+        )
     except asyncio.TimeoutError as e:
         raise TimeoutError("Summarization provider timed out") from e
 
-
-async def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries", limit=50):
+def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries", limit=50):
     """
-    Fetch new summaries from MCP asynchronously, dedupe, and upsert only new summaries to Sheets.
+    Fetch from MCP, dedupe, upsert only new summaries to Sheets.
+    Runs synchronously; call it in a background task from routes.
     """
-    global last_sync_time
-    now = time.time()
+    # Read already existing IDs from the sheet
+    db = read_all_summaries()
+    db_ids = set(row.get("Id") for row in db)
 
-    # ✅ Only fetch if enough time has passed
-    if now - last_sync_time < SYNC_INTERVAL:
-        print(f"[INFO] ⏳ Skipping fetch — last sync {round(now - last_sync_time, 1)}s ago (interval {SYNC_INTERVAL}s).")
-        return
 
-    print("[INFO] 🔄 Fetching new data from MCP...")
+    provider = McpSummariesProvider()
+    mcp_rows = provider.get_summaries(limit)
 
-    last_sync_time = now
-    mcp_rows = []  # ✅ always define early
+    new_rows = [row for row in mcp_rows if row.get("id") not in db_ids]
 
-    try:
-        db = read_all_summaries()
-        db_ids = set(row.get("id") for row in db if row.get("id"))
-
-        provider = McpSummariesProvider()
-        # use to_thread to avoid blocking event loop
-        mcp_rows = await asyncio.to_thread(provider.get_summaries, limit)
-
-    except Exception as e:
-        print(f"[MCP] Error fetching summaries: {e}")
-        return  # fail safely, don't crash background loop
-
-    # ✅ Ensure valid format
-    if not isinstance(mcp_rows, list):
-        print("[MCP] unexpected mcp_rows format, expected list.")
-        return
-
-    # ✅ Ensure ids & timestamps exist
-    for r in mcp_rows:
-        if not r.get("id"):
-            source = r.get("source", "gmail")
-            r["id"] = f"{source}:{r.get('email','unknown')}"
-        if not r.get("timestamp"):
-            r["timestamp"] = datetime.utcnow().isoformat()
-
-    # ✅ Filter new contacts only
-    new_rows = [row for row in mcp_rows if (row.get("id") not in db_ids)]
-
-    if not new_rows:
-        print("[Sheets] No new summaries to upsert.")
-        return
-
-    # ✅ Summarize thread bodies safely
-    for r in new_rows:
-        try:
-            source = r.get("source", "gmail")
-            contact_email = r.get("email")
-            if r.get("_thread_bodies"):
-                summ = GroqSummarizer()
-                summaries_texts = []
-                for i, body in enumerate(r.get("_thread_bodies", [])):
-                    if body:
-                        thread_id = (r.get("_thread_ids") or [None])[i] or f"{contact_email}_thread_{i}"
-                        s = summ.summarize_text(body)
-                        summaries_texts.append(s)
-                        summ._set_cache(source, contact_email, thread_id, s)
-                r["summary"] = " ".join(summaries_texts) or r.get("summary")
-        except Exception as e:
-            print(f"[MCP] error summarizing contact {r.get('email')}: {e}")
-
-    # ✅ Push new rows to Google Sheets
-    try:
-        upsert_summaries(sheet_name, new_rows)
-        print(f"[Sheets] ✅ Upserted {len(new_rows)} new summarized contacts.")
-    except Exception as e:
-        print(f"[Sheets] Error upserting summaries: {e}")
-
+    if new_rows:
+        upsert_summaries(new_rows)
 
 def format_pkt(date_str: str) -> str:
-    """Convert ISO date or UNIX timestamp to 'DD Mon YYYY, hh:mm AM/PM (PKT)' on server."""
+    """
+    Convert ISO date to 'DD Mon YYYY, hh:mm AM/PM (PKT)' on server.
+    """
     from datetime import datetime, timezone, timedelta
+
     if not date_str:
         return ""
-    try:
-        # Handle UNIX timestamp
-        if isinstance(date_str, (int, float)) or date_str.isdigit():
-            d = datetime.fromtimestamp(float(date_str), tz=timezone.utc)
-        else:
-            asISO = date_str if (date_str.endswith('Z') or ('+' in date_str)) else date_str + 'Z'
-            d = datetime.fromisoformat(asISO.replace('Z', '+00:00'))
 
+    try:
+        asISO = date_str if (date_str.endswith('Z') or ('+' in date_str)) else date_str + 'Z'
+        d = datetime.fromisoformat(asISO.replace('Z', '+00:00'))
         pkt = d.astimezone(timezone.utc) + timedelta(hours=5)
+
         mo = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][pkt.month-1]
         day = f"{pkt.day:02d}"
         h24 = pkt.hour
         ampm = 'PM' if h24 >= 12 else 'AM'
         h12 = h24 % 12 or 12
+
         return f"{day} {mo} {pkt.year}, {h12:02d}:{pkt.minute:02d} {ampm} (PKT)"
     except Exception:
-        return str(date_str)
-    
+        return date_str
 
-
+# -----------------------
+# Routes
+# -----------------------
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request, limit: int = 20):
     # Kick off background sync; don't block first paint
-    asyncio.create_task(fetch_and_merge_new_data_from_mcp(limit=limit))
+    asyncio.create_task(asyncio.to_thread(fetch_and_merge_new_data_from_mcp, limit=limit))
 
-    rows = read_all_summaries()  # Always display from sheets as the DB
+    rows = read_all_summaries()
 
-    # ✅ Relaxed filter: don't require "date"
+    # Only valid rows
     valid = [
         it for it in rows
-        if it.get("id") and it.get("email") and it.get("summary")
+        if it.get("Id") and it.get("Email") and it.get("Summary") and it.get("Date")
     ]
 
-    from collections import defaultdict, Counter
+    # Group by email
     by_email = defaultdict(list)
     for row in valid:
-        by_email[row["email"]].append(row)
+        by_email[row["Email"]].append(row)
 
     items = []
     for email, lst in by_email.items():
-        summaries = "\n".join(x["summary"] for x in lst if x.get("summary"))
-        dates = [x["date"] for x in lst if x.get("date")]
+        summaries = "\n".join(x["Summary"] for x in lst if x.get("Summary"))
+        dates = [x["Date"] for x in lst if x.get("Date")]
         date = max(dates) if dates else ""
-        roles = [x.get("role") for x in lst if x.get("role")]
+        roles = [x.get("Role") for x in lst if x.get("Role")]
         role = Counter(roles).most_common(1)[0][0] if roles else ""
-        source = lst[0].get("source", "")
+
         items.append({
             "email": email,
             "role": role,
             "summary": summaries,
             "date": format_pkt(date),
-            "source": source,
         })
 
     for it in items:
@@ -183,26 +131,50 @@ async def dashboard(request: Request, limit: int = 20):
     unique_contacts = len(items)
 
     template = env.get_template("dashboard.html")
-    html = template.render(items=items, summary_count=summary_count, unique_contacts=unique_contacts)
+    html = template.render(
+        items=items,
+        summary_count=summary_count,
+        unique_contacts=unique_contacts
+    )
     return HTMLResponse(content=html)
 
-
 @app.get("/api/summaries")
-async def api_summaries(limit: int = 20):
-    asyncio.create_task(fetch_and_merge_new_data_from_mcp(limit=limit))
-    rows = read_all_summaries()
+async def get_summaries(request: Request):
+    """
+    Fetch contact summaries from Google Sheets and return them in JSON format.
+    Used by the dashboard frontend.
+    """
+    try:
+        # Read summaries (list of dicts)
+        rows = read_all_summaries()
 
-    # ✅ Relaxed filter
-    items = [
-        {
-            "email": it.get("email"),
-            "role": it.get("role"),
-            "summary": it.get("summary"),
-            "date": format_pkt(it.get("date")),
-            "source": it.get("source", ""),
-            "role_class": ROLE_TO_CLASS.get(it.get("role"), "tag-default"),
-        }
-        for it in rows
-        if it.get("id") and it.get("email") and it.get("summary")
-    ]
-    return {"ok": True, "count": len(items), "items": items}
+        # Normalize/serialize records for frontend display
+        formatted = []
+        for r in rows:
+            email = str(r.get("Email") or r.get("email") or "").strip()
+            role = r.get("Role") or r.get("role") or "Student"
+            summary = r.get("Summary") or r.get("summary") or "No summary available."
+            date = r.get("Date") or r.get("date") or ""
+
+            formatted.append({
+                "email": email,
+                "role": role,
+                "summary": summary,
+                "date": date,
+            })
+
+        print(f"[Dashboard] ✅ Returning {len(formatted)} summaries.")
+        return JSONResponse(content=formatted, status_code=200)
+
+    except Exception as e:
+        print(f"[Dashboard] ❌ Error fetching summaries: {e}")
+        return JSONResponse(
+            content={"error": f"Failed to fetch summaries: {str(e)}"},
+            status_code=500
+        )
+
+
+@app.get("/")
+async def root():
+    """Simple health check endpoint."""
+    return {"status": "ok", "message": "Email Assistant Dashboard API running."}
