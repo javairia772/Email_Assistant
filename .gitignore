@@ -14,3 +14,7 @@ token_*.pkl
 .vscode/
 
 msal_outlook_cache.bin
+
+Backup/
+Summaries/
+
