@@ -1,6 +1,8 @@
 # Python cache
 __pycache__/
 *.pyc
+
+# Virtual environments
 .venv/
 venv/
 
@@ -13,8 +15,22 @@ token_*.pkl
 # VS Code
 .vscode/
 
-msal_outlook_cache.bin
+# OS-specific files
+.DS_Store
+Thumbs.db
 
+# Logs
+*.log
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# App caches and backups
+msal_outlook_cache.bin
 Backup/
 Summaries/
-
