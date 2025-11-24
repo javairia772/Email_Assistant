@@ -1,23 +1,26 @@
 {
   "seen": {
     "gmail": [
-      "gmail:Cursor Team <hi@mail.cursor.com>",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
-      "gmail:Google <no-reply@accounts.google.com>",
       "gmail:noreply@email.openai.com",
       "gmail:Nexus <n00503033@gmail.com>",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
       "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
       "gmail:Groq <developer@groq.co>",
-      "gmail:Javaria <j66yya@gmail.com>"
+      "gmail:Javaria <j66yya@gmail.com>",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
+      "gmail:Google <no-reply@accounts.google.com>",
+      "gmail:Cursor Team <hi@mail.cursor.com>"
     ],
     "outlook": [
       "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:nexus202540@outlook.com",
-      "outlook:n00503033@gmail.com",
-      "outlook:javariasaleem39@gmail.com",
+      "outlook:minahilmy34@gmail.com",
       "outlook:no-reply@microsoft.com",
-      "outlook:minahilmy34@gmail.com"
+      "outlook:MSSecurity-noreply@microsoft.com",
+      "outlook:nexus202540@outlook.com",
+      "outlook:m365dev@microsoft.com",
+      "outlook:javariasaleem39@gmail.com",
+      "outlook:j66yya@gmail.com",
+      "outlook:n00503033@gmail.com"
     ]
   },
   "summaries": {
@@ -29,10 +32,19 @@
       "role_confidence": 0.4,
       "threads": [
         {
+          "id": "19aba047363c619b",
+          "subject": "Security alert",
+          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and make changes at myaccount.google.com. It's recommended to verify your account security to prevent potential breaches.",
+          "role": "Industry",
+          "importance": "High",
+          "importance_confidence": 0.2
+        },
+        {
           "id": "19ab4ba5f4592009",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and security notifications at myaccount.google.com. No meeting is scheduled, but it's recommended to verify your account settings as soon as possible.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and make changes at myaccount.google.com or review security notifications. It's recommended to verify your account security as soon as possible.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2
@@ -41,7 +53,7 @@
           "id": "19ab0f6b47dfdd9e",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n005",
-          "summary": "A security alert was sent from Google regarding potential unauthorized access to your Google Account data through Google Drive for desktop. You're advised to review your account activity and secure your account. To manage access and view security notifications, visit your Google Account settings or https://myaccount.google.com/notifications. No meeting is required, but it's recommended to take immediate action to protect your account.",
+          "summary": "A security alert was triggered on your Google Account, n00503033@gmail.com, due to Google Drive for desktop accessing your account data. It's recommended to review your account activity and secure your account to prevent potential unauthorized access. You can check activity and make changes at myaccount.google.com.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2
@@ -50,7 +62,7 @@
           "id": "19a5549fbae7fbdf",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at myaccount.google.com/notifications and manage Email Assistant's access through your Google Account settings. No meeting is scheduled, but it's recommended to take a moment to secure your account.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage access permissions in your Google Account settings. No meeting or follow-up is scheduled, but it's recommended to verify your account security as soon as possible.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2
@@ -59,7 +71,7 @@
           "id": "19a5262c1accc1d8",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check activity and make changes to Email Assistant's access at any time through your Google Account. It's recommended to verify your account security at https://myaccount.google.com/notifications.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, suggesting someone else may be trying to access your account if you didn't grant permission. You're advised to check your account activity and secure your account, with options to review and change access settings at any time through your Google Account or https://myaccount.google.com/notifications.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2
@@ -68,14 +80,14 @@
           "id": "19a4d6ef591b04e6",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account activity and make changes to Email Assistant's access at any time through your Google Account settings.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage Email Assistant's access through your Google Account settings.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2
         }
       ],
-      "summary": "Google sent a security alert about potential unauthorized access to your account through Email Assistant, so it's a good idea to review your account activity and settings at myaccount.google.com as soon as possible to ensure everything is secure.",
-      "timestamp": "2025-11-25T07:04:21.099476Z"
+      "summary": "We've received multiple security alerts from Google regarding Email Assistant's access to your account data, prompting a review to ensure no unauthorized access. It's recommended to verify your account security as soon as possible at myaccount.google.com to prevent potential breaches.",
+      "timestamp": "2025-11-24T04:03:40.290535Z"
     },
     "gmail:Groq <developer@groq.co>": {
       "id": "gmail:Groq <developer@groq.co>",
@@ -462,67 +474,130 @@
       "email": "no-reply@microsoft.com",
       "source": "outlook",
       "role": "Industry",
-      "role_confidence": 0.333,
+      "role_confidence": 0.6,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZFAAAA",
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6gAAAA==",
           "subject": "Welcome to your new Outlook.com account",
           "preview": "Hi \nWelcome to the new Outlook! We're bringing the latest features, intelligent capabilities, and a ",
-          "summary": "Microsoft has introduced a new Outlook.com account, offering features like unified email and calendar management, AI-powered email editing, and free access to Microsoft 365 tools. The new design aims to simplify the user experience and improve security. You can explore the updates by clicking on the lightbulb icon in the top corner of the screen. No meetings or decisions are required.",
+          "summary": "Microsoft introduced updates to Outlook, featuring a new design, intelligent capabilities, and simplified management of multiple email accounts and calendars. The updates include AI-powered email suggestions, free access to Microsoft 365 web apps, and enhanced security measures. Users can explore the new features by clicking the lightbulb icon in the Tips pane.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 1.0
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAACDSQAAAA=",
-          "subject": "Welcome to your new Outlook.com account",
-          "preview": "Hi \nWelcome to your Outlook! We're the email service designed to help you conquer your day. Connect,",
-          "summary": "You've received a welcome email from Microsoft regarding your new Outlook.com account, highlighting its features such as the free mobile app, integration with Microsoft 365, and advanced AI-powered email editing. The email also mentions customization options, a built-in calendar, and enterprise-grade security. No meeting or action is required, it's just an informational email about your new account.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.667
+          "importance_confidence": 0.4
         }
       ],
-      "summary": "Microsoft has rolled out a new Outlook.com account with enhanced features like AI-powered email editing and unified calendar management. The update aims to simplify the user experience and boost security. You can explore the new features by clicking the lightbulb icon in the top corner of the screen. No action is required, it's just an informational update about your new account.",
-      "timestamp": "2025-11-09T06:40:23.890315Z"
+      "summary": "Microsoft just rolled out some big updates to Outlook, including a new design and AI-powered email suggestions. The updates also bring enhanced security and free access to Microsoft 365 web apps. You can check out the new features by clicking the lightbulb icon in the Tips pane.",
+      "timestamp": "2025-11-24T04:03:49.238553Z"
     },
     "outlook:account-security-noreply@accountprotection.microsoft.com": {
       "id": "outlook:account-security-noreply@accountprotection.microsoft.com",
       "email": "account-security-noreply@accountprotection.microsoft.com",
       "source": "outlook",
-      "role": "General External",
-      "role_confidence": 0.333,
+      "role": "Industry",
+      "role_confidence": 0.4,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZEAAAA",
-          "subject": "Microsoft account security info was added",
-          "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
-          "summary": "Microsoft's account security team notified us that a new security info, minahilmy34@gmail.com, was added to the ne**0@outlook.com account. If this change wasn't made by the account owner, it may indicate a malicious user has access. The account owner should review recent activity to secure the account. No meetings are scheduled, but the owner can opt out or change security notification settings via a provided link.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.333
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZDAAAA",
-          "subject": "Microsoft account security info verification",
-          "preview": "Microsoft account\nThanks for verifying your security info\nRecently, you verified the security info o",
-          "summary": "The Microsoft account team recently verified the security info for the ne**0@outlook.com account, a periodic check that occurs when a security code hasn't been used recently. This verification is in place to ensure account security and won't require a code for every sign-in. The team emphasized the importance of keeping security info up-to-date and correct, and provided links to learn more or opt out of security notifications. No meetings or follow-ups are required.",
-          "role": "General External",
-          "importance": "High",
-          "importance_confidence": 0.333
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAACDSkAAAA=",
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
           "subject": "New app(s) connected to your Microsoft account",
           "preview": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft ",
-          "summary": "Microsoft notified us that a new app, OutlookIntegration, has been connected to the ne**0@outlook.com account, potentially accessing account data. The account holder is advised to review and remove the app if unauthorized. No meetings are scheduled, but the account holder can manage apps and adjust security notifications as needed.",
-          "role": "General External",
+          "summary": "The Microsoft account team notified us that a new app, OutlookIntegration, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account. The team provided options to manage apps, opt out, or change security notification settings.",
+          "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.333
+          "importance_confidence": 0.2
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "A new sign-in was detected for the ja**y@outlook.com Microsoft account from Pakistan on October 25, 2025. The account team sent a notification with details, including the IP address and service used. If the sign-in wasn't authorized, it may indicate a security issue. The account owner can review account activity and update security information. No meetings are scheduled, but the owner should take action to secure their account. Next steps include reviewing and changing security information if necessary.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "A new sign-in was detected for the Microsoft account jay@outlook.com from Pakistan on October 25, 2025. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. If this wasn't the account owner, it may indicate a security issue. The account owner should review their account activity and consider changing their security information. No meeting is scheduled, but the owner should take immediate action to secure their account.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting or follow-up is scheduled, but the owner can opt out of or modify security notifications as needed.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and alerted the account owner to review their activity. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. The owner is advised to verify if the sign-in was legitimate or potential malicious activity. No meeting is scheduled, but the owner should review and update their security information as needed.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "A new sign-in was detected for the Microsoft account jay@outlook.com from Pakistan on October 25, 2025. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. Microsoft sent a notification to review account activity and change security information if necessary. No meeting is scheduled, but the account owner should review their security settings to ensure no malicious access has occurred. The Microsoft account team provided options to review account activity, opt out, or change security notification settings.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "Microsoft's account security team detected a new sign-in to your account jay@outlook.com from Pakistan on October 25th. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. You should review the account activity to ensure it was a legitimate access, and consider changing your security information if necessary. No meeting or follow-up is scheduled.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "A security alert was triggered for the Microsoft account jay@outlook.com due to a new sign-in from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. To address this, the account owner should review their account activity and consider updating their security information if the sign-in was not legitimate. No meetings are scheduled, but the owner should take immediate action to secure their account.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. No meeting is scheduled, but the account owner is advised to review their account activity and update their security information if necessary.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==",
+          "subject": "New sign-in detected for your Microsoft account",
+          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity. The sign-in was via the IDEAL Labs Email Fetcher service. If the account owner didn't initiate this sign-in, their security may be compromised. The owner can review and change their security information, and also opt out or change security notification settings. No meeting is scheduled, but the owner should take action to secure their account.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==",
+          "subject": "New app(s) connected to your Microsoft account",
+          "preview": "Microsoft account\nNew app(s) have access to your data\nIDEAL Labs Email Fetcher connected to the Micr",
+          "summary": "A new app, IDEAL Labs Email Fetcher, has been connected to the ja**y@outlook.com Microsoft account, potentially granting access to account data. The account owner is advised to review and remove the app if the access was not intentionally granted. No meetings are scheduled, but the account owner can manage apps and modify security notification settings as needed.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2
         }
       ],
-      "summary": "There have been a few security updates on the ne**0@outlook.com account, including a new email added to the security info and a new app connection, OutlookIntegration. Microsoft's account team has been verifying security and sending notifications to ensure the account's security. The account owner should review recent activity and apps to ensure everything is authorized. No meetings are scheduled, but the owner can manage settings and opt out of notifications as needed.",
-      "timestamp": "2025-11-09T06:40:36.282382Z"
+      "summary": "There's a potential security issue with the jay@outlook.com Microsoft account due to a new sign-in from Pakistan on October 25. The account owner should review their activity and update security info if necessary, as a new app, IDEAL Labs Email Fetcher, was also connected to the account. No meetings are scheduled, but immediate action is recommended to secure the account.",
+      "timestamp": "2025-11-24T04:03:47.655879Z"
     },
     "gmail:Cursor Team <hi@mail.cursor.com>": {
       "id": "gmail:Cursor Team <hi@mail.cursor.com>",
@@ -563,407 +638,422 @@
       ],
       "summary": "OpenAI just released GPT-5.1, which promises a better balance of intelligence and speed. The team suggests we test it for coding tasks and consider switching from GPT-4.1 for general use. We can start building with GPT-5.1 using the latest API docs, no meeting is scheduled yet.",
       "timestamp": "2025-11-25T07:04:37.265392Z"
+    },
+    "outlook:MSSecurity-noreply@microsoft.com": {
+      "id": "outlook:MSSecurity-noreply@microsoft.com",
+      "email": "MSSecurity-noreply@microsoft.com",
+      "source": "outlook",
+      "role": "Industry",
+      "role_confidence": 0.6,
+      "threads": [
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0gAAAA==",
+          "subject": "New recommendation available for Default Directory",
+          "preview": "You have a new recommendation for Default Directory\nDesignate more than one global admin\nSee why thi",
+          "summary": "Microsoft's security team has issued a recommendation for our Default Directory to designate more than one global admin, which can be reviewed and remediated in the Microsoft Entra admin center.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0QAAAA==",
+          "subject": "New recommendation available for Default Directory",
+          "preview": "You have a new recommendation for Default Directory\nDo not allow users to grant consent to unreliabl",
+          "summary": "Microsoft sent a recommendation to update the Default Directory settings, suggesting that users be blocked from granting consent to untrusted applications. The recommendation is accessible in the Microsoft Entra admin center, where you can also learn more about the issue and how to resolve it. No meeting is scheduled, but review and remediation are the next steps.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0AAAAA==",
+          "subject": "New recommendation available for Default Directory",
+          "preview": "You have a new recommendation for Default Directory\nEnable password hash sync if hybrid\nSee why this",
+          "summary": "Microsoft sent a recommendation to enable password hash sync for our Default Directory, applicable if we're using a hybrid setup. The suggestion is accessible in the Microsoft Entra admin center, where we can review the reasoning and take remediation steps. No meeting is scheduled, but we can review and address the recommendation at our convenience.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4
+        }
+      ],
+      "summary": "Microsoft's security team has sent a few recommendations for our Default Directory, including designating multiple global admins, blocking consent to untrusted apps, and enabling password hash sync for hybrid setups. These can be reviewed and remediated in the Microsoft Entra admin center. We should take a look and address these suggestions at our convenience, no meetings are scheduled yet.",
+      "timestamp": "2025-11-24T04:03:41.787481Z"
+    },
+    "outlook:m365dev@microsoft.com": {
+      "id": "outlook:m365dev@microsoft.com",
+      "email": "m365dev@microsoft.com",
+      "source": "outlook",
+      "role": "General External",
+      "role_confidence": 0.6,
+      "threads": [
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJjEHhAAAAA==",
+          "subject": "Welcome to the Microsoft 365 Developer Program - please take the next step!",
+          "preview": "Microsoft 365 Developer Program | \nAccess your profile\n \nMicrosoft 365 Developer Program\nWelcome to ",
+          "summary": "You've been welcomed to the Microsoft 365 Developer Program and have the option to set up a Microsoft 365 E5 developer subscription for building solutions. The program team invites you to join their research panel to share your views and feedback on developer experiences. Next steps include reviewing the program terms and conditions, and considering joining the research panel.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.6
+        }
+      ],
+      "summary": "We've been invited to join the Microsoft 365 Developer Program, which includes the option to set up a developer subscription for building solutions. The program team also wants our input on their research panel to share feedback on developer experiences. We just need to review the terms and conditions, and then we can decide about joining the panel.",
+      "timestamp": "2025-11-24T04:03:48.506438Z"
+    },
+    "outlook:j66yya@gmail.com": {
+      "id": "outlook:j66yya@gmail.com",
+      "email": "j66yya@gmail.com",
+      "source": "outlook",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm5wAAAA==",
+          "subject": "",
+          "preview": "i am now working on my project",
+          "summary": "The project is currently underway with j66yya working on it. No specific details or meeting times were discussed. It appears to be a solo effort at this point. Next steps or decisions have not been mentioned. The project's progress will likely be shared in future updates.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm5gAAAA==",
+          "subject": "",
+          "preview": "i am in 5th semester",
+          "summary": "A student reached out from their Gmail account, mentioning they are currently in their 5th semester. No specific meeting or decision was discussed, and the email appears to be an initial point of contact. The student's email is awaiting a response to possibly discuss their semester or seek guidance. Next steps are unclear at this time. The student's email was sent from j66yya@gmail.com.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6AAAAA==",
+          "subject": "",
+          "preview": "what are you doing>",
+          "summary": "The conversation with j66yya appears to be an informal check-in, with the original message asking about current activities. There is no clear purpose or decision made in the thread. The discussion involves only j66yya and the recipient, with no meeting times or next steps mentioned. The tone is casual and brief. The exchange lacks substance, with only a single question posed.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6QAAAA==",
+          "subject": "",
+          "preview": "hey how are you?",
+          "summary": "The conversation appears to have just started with a casual greeting from j66yya@gmail.com, but no main topic or purpose has been established yet. There are no meeting times, decisions, or next steps to report. The thread is currently incomplete, awaiting a response to move the conversation forward. Further discussion is needed to determine the topic and outcome.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5
+        }
+      ],
+      "summary": "We've got a few loose threads with j66yya, who's working on a project and also reached out as a student in their 5th semester. The conversations are pretty casual and haven't led to any specific decisions or meetings yet. We're waiting on some next steps, but for now, it's just a wait-and-see situation with j66yya.",
+      "timestamp": "2025-11-24T04:03:52.063923Z"
     }
   },
-  "last_updated": "2025-11-25T07:05:53.607799+00:00",
+  "last_updated": "2025-11-24T04:37:20.855057+00:00",
+  "gmail:Google <no-reply@accounts.google.com>:19aba047363c619b": {
+    "summary": "Google sent security alerts regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security. You're advised to check your account and make any necessary changes through your Google Account settings or by visiting the security notifications page.",
+    "subject": "Security alert",
+    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+    "role": "Industry",
+    "importance": "High",
+    "role_confidence": 0.4000000000000001,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959073.3047557
+  },
+  "gmail:Google <no-reply@accounts.google.com>:19ab4ba5f4592009": {
+    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and make changes at myaccount.google.com. It's recommended to verify the access and security settings to secure your account.",
+    "subject": "Security alert",
+    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+    "role": "Industry",
+    "importance": "High",
+    "role_confidence": 0.4000000000000001,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959073.651818
+  },
+  "gmail:Google <no-reply@accounts.google.com>:19ab0f6b47dfdd9e": {
+    "summary": "Google sent a security alert regarding potential unauthorized access to your Google Account data through Google Drive for desktop. You're advised to review your account activity and secure your account. No meeting is scheduled, but you can check your account settings and security notifications at any time.",
+    "subject": "Security alert",
+    "preview": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n005",
+    "role": "Industry",
+    "importance": "High",
+    "role_confidence": 0.4000000000000001,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959073.9766145
+  },
+  "gmail:Google <no-reply@accounts.google.com>:19a5549fbae7fbdf": {
+    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account activity and make changes to Email Assistant's access at any time through your Google Account. It's recommended to verify your account security at https://myaccount.google.com/notifications. No meeting is scheduled, but it's essential to take a moment to review your account.",
+    "subject": "Security alert",
+    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+    "role": "Industry",
+    "importance": "High",
+    "role_confidence": 0.4000000000000001,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959074.4909453
+  },
+  "gmail:Google <no-reply@accounts.google.com>:19a5262c1accc1d8": {
+    "summary": "Google sent a security alert regarding the Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings. No meeting is scheduled, but it's recommended to take a moment to review your account.",
+    "subject": "Security alert",
+    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+    "role": "Industry",
+    "importance": "High",
+    "role_confidence": 0.4000000000000001,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959074.8631227
+  },
+  "gmail:Google <no-reply@accounts.google.com>:19a4d6ef591b04e6": {
+    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, suggesting someone may be trying to access your account if you didn't grant permission. You're advised to check your account activity and secure your account, with options to manage access and view security activity on your Google Account page.",
+    "subject": "Security alert",
+    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+    "role": "Industry",
+    "importance": "High",
+    "role_confidence": 0.4000000000000001,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959075.1880565
+  },
   "gmail:Cursor Team <hi@mail.cursor.com>:19ab50600c92f173": {
-    "summary": "The Cursor Team sent a welcome email with a quickstart guide to help get started with their tool, covering features like Tab, Inline Edit, and Agent. The guide is available on their website, along with more in-depth documentation for additional questions.",
+    "summary": "The Cursor Team sent a welcome email with a quickstart guide to help us get started with their platform, covering features like Tab, Inline Edit, and Agent. The guide is available on their website, along with more in-depth documentation for further questions. No meeting or follow-up is required, as this is an introductory email.",
     "subject": "Welcome to Cursor!",
     "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4,
     "importance_confidence": 0.2,
-    "timestamp": 1764054417.6731176
-  },
-  "gmail:Google <no-reply@accounts.google.com>:19ab4ba5f4592009": {
-    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and make changes at myaccount.google.com or review security notifications. It's recommended to verify your account security as soon as possible.",
-    "subject": "Security alert",
-    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-    "role": "Industry",
-    "importance": "High",
-    "role_confidence": 0.4,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054418.2657428
-  },
-  "gmail:Google <no-reply@accounts.google.com>:19ab0f6b47dfdd9e": {
-    "summary": "A security alert was triggered on your Google Account, n00503033@gmail.com, due to Google Drive for desktop accessing your account data. It's recommended to review your account activity and secure your account to prevent potential unauthorized access. You can check activity and make changes at myaccount.google.com.",
-    "subject": "Security alert",
-    "preview": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n005",
-    "role": "Industry",
-    "importance": "High",
-    "role_confidence": 0.4,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054418.586274
-  },
-  "gmail:Google <no-reply@accounts.google.com>:19a5549fbae7fbdf": {
-    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage access permissions in your Google Account settings. No meeting or follow-up is scheduled, but it's recommended to verify your account security as soon as possible.",
-    "subject": "Security alert",
-    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-    "role": "Industry",
-    "importance": "High",
-    "role_confidence": 0.4,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054419.0093
-  },
-  "gmail:Google <no-reply@accounts.google.com>:19a5262c1accc1d8": {
-    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, suggesting someone else may be trying to access your account if you didn't grant permission. You're advised to check your account activity and secure your account, with options to review and change access settings at any time through your Google Account or https://myaccount.google.com/notifications.",
-    "subject": "Security alert",
-    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-    "role": "Industry",
-    "importance": "High",
-    "role_confidence": 0.4,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054419.369685
-  },
-  "gmail:Google <no-reply@accounts.google.com>:19a4d6ef591b04e6": {
-    "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage Email Assistant's access through your Google Account settings.",
-    "subject": "Security alert",
-    "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-    "role": "Industry",
-    "importance": "High",
-    "role_confidence": 0.4,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054419.7411134
+    "timestamp": 1763959076.056065
   },
   "gmail:Tayyba Aftab <tayybat678@gmail.com>:19a9bf536f5d740e": {
-    "summary": "Tayyba Aftab from a company specializing in a specific domain has reached out to Dr. Usman to explore collaboration opportunities. They believe combining their expertise could lead to mutually beneficial outcomes. A meeting or call is proposed to discuss details, with no specific time scheduled yet. Dr. Usman is awaited to respond and suggest a convenient time. The goal is to discuss potential collaboration between the two organizations.",
+    "summary": "Tayyba Aftab from a company specializing in a specific domain reached out to Dr. Usman to explore a potential collaboration opportunity. They believe combining their expertise could lead to mutually beneficial outcomes. A meeting or call is proposed to discuss the details, with the timing to be determined based on Dr. Usman's schedule. Next steps will be decided after Dr. Usman's response.",
     "subject": "Proposal for Collaboration Opportunity",
     "preview": "Dear Dr. Usman, I hope this email finds you well. My name is [Your Name], and I am [Your Position] a",
     "role": "General External",
     "importance": "Medium",
     "role_confidence": 0.7999999999999999,
     "importance_confidence": 0.2,
-    "timestamp": 1764054420.7482483
+    "timestamp": 1763959076.880856
   },
   "gmail:Tayyba Aftab <tayybat678@gmail.com>:19a4932f78a4d50a": {
-    "summary": "Tayyba Aftab has proposed a new project initiative to enhance organizational efficiency, involving the development of a centralized system to streamline operations and improve productivity. The project aims to minimize repetitive workloads and provide real-time insights, with a proposed timeline of 2-3 months and minimal initial resources required. Tayyba is seeking feedback and would like to discuss the idea further with Khaldoon at a convenient time.",
+    "summary": "Tayyba Aftab has proposed a new project initiative to enhance organizational efficiency, aiming to streamline operations and improve productivity. The project, outlined in a brief proposal, involves developing a centralized system to minimize repetitive workloads and provide real-time insights. Tayyba is seeking feedback and suggestions, and is available to discuss the idea further at a convenient time. The proposed timeline for the project is 2-3 months, with minimal resources required initially.",
     "subject": "Subject: Proposal for a New Project Initiative to Enhance Organizational Efficiency",
     "preview": "Email: Dear khaldoon! I hope this email finds you well. I am writing to share an idea for a potentia",
     "role": "General External",
     "importance": "Medium",
     "role_confidence": 0.7999999999999999,
     "importance_confidence": 0.6,
-    "timestamp": 1764054422.4102883
+    "timestamp": 1763959077.3709612
   },
   "gmail:Tayyba Aftab <tayybat678@gmail.com>:19a489e0b2af0c48": {
-    "summary": "The conversation is with Tayyba Aftab regarding a final matter, but the details are unclear. Since the thread contains no specific information, no meeting times or decisions were mentioned. The only participant is Tayyba Aftab, who initiated the conversation. Further context is needed to understand the purpose. No next steps were outlined in the provided email thread.",
+    "summary": "Tayyba Aftab initiated a conversation, although the details are unclear as the content of the email is \"Final fff....\" with no additional information provided, so no decisions or next steps were discussed, and no meeting times were scheduled.",
     "subject": "Final fff.....",
     "preview": "",
     "role": "General External",
     "importance": "Medium",
     "role_confidence": 0.7999999999999999,
     "importance_confidence": 0.5,
-    "timestamp": 1764054422.8418603
+    "timestamp": 1763959077.7655709
   },
   "gmail:noreply@email.openai.com:19a935e453fedf4a": {
-    "summary": "OpenAI has released GPT-5.1, the latest model in their series, which balances intelligence and speed for coding and general tasks. The new model features adaptive reasoning, faster non-reasoning modes, and improved coding capabilities. No meeting is scheduled, but it's recommended to test GPT-5.1 and consider switching from GPT-4.1 for faster tasks.",
+    "summary": "OpenAI has released GPT-5.1, the latest model in their series, which balances intelligence and speed for coding and general tasks. The new model features adaptive reasoning, faster response times, and improved coding capabilities. The team recommends testing GPT-5.1 and considering a switch from GPT-4.1 for general-purpose tasks.",
     "subject": "GPT-5.1 is now live in the OpenAI API",
     "preview": "Start building with the newest model ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ",
     "role": "Student",
     "importance": "High",
     "role_confidence": 0.6,
     "importance_confidence": 0.2,
-    "timestamp": 1764054423.782294
+    "timestamp": 1763959078.764516
   },
   "gmail:Groq <developer@groq.co>:19a5493376b651a5": {
-    "summary": "Groq's development team reached out regarding the project's token limits, suggesting an upgrade to the developer tier for higher limits, premium support, and additional features. This change can help avoid rate limits and downtime, and can be switched back to the original plan at any time with no monthly commitments.",
+    "summary": "Groq reached out regarding your project's token limits, suggesting an upgrade to their Dev Tier for higher limits, premium support, and additional features. You can switch back anytime with no monthly commitment, and they've provided a link to unlock higher limits and learn more about their services.",
     "subject": "It looks like you need more tokens",
     "preview": "You’re maxing out. Dev Tier gives you more Hi there, Looks like your project is reaching some seriou",
     "role": "Admin",
     "importance": "Medium",
     "role_confidence": 0.2,
     "importance_confidence": 0.5,
-    "timestamp": 1764054489.7374287
+    "timestamp": 1763959086.891693
   },
   "gmail:Nexus <n00503033@gmail.com>:19a508ce3308cfc9": {
-    "summary": "Nexus initiated a conversation via email with the subject \"h444\" but didn't provide any substantial content, only \"w444\". The purpose of the conversation is unclear, and no decisions or next steps were discussed. Nexus is the only participant mentioned, and no meeting times were scheduled. The conversation lacks detail, making it difficult to determine the main topic. Further clarification is needed to understand the intent behind the email.",
+    "summary": "Nexus initiated a conversation with a subject labeled \"h444\" and a brief message \"w444\", but the discussion appears to be incomplete or lacking in detail. There are no meeting times, decisions, or next steps mentioned. The conversation involves only Nexus, with no other parties or actions identified. No clear purpose or outcome can be determined from the provided email thread. Further context is needed to understand the intent behind the message.",
     "subject": "h444",
     "preview": "w444",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4,
     "importance_confidence": 0.5,
-    "timestamp": 1764054490.842936
+    "timestamp": 1763959089.0508587
   },
   "gmail:Nexus <n00503033@gmail.com>:19a5086530ab66b8": {
-    "summary": "Nexus initiated a conversation via email with the subject \"h333\" and content \"w333\", but the details are unclear. Since the thread lacks specific information, no meeting times, decisions, or next steps were discussed. The conversation appears to be incomplete or a test message. No concrete actions or outcomes were determined. The purpose of the email remains uncertain. Nexus is the only person involved in the thread.",
+    "summary": "Nexus initiated a conversation with a brief message, but the content is unclear as the email only contains \"h333\" and \"w333\". There is no additional context or information provided. No meetings or decisions were discussed. Nexus is the only party involved in this exchange. Further clarification is needed to understand the purpose of the email.",
     "subject": "h333",
     "preview": "w333",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4,
     "importance_confidence": 0.5,
-    "timestamp": 1764054491.4021516
+    "timestamp": 1763959090.659952
   },
   "gmail:Nexus <n00503033@gmail.com>:19a507a1d7e8c0af": {
-    "summary": "Nexus initiated an email thread with the subject \"h22\" but the content is unclear as it only contains \"w22\". There are no meeting times, decisions, or next steps mentioned, and only Nexus is involved. The purpose of the conversation is unclear due to the lack of information. Further context is needed to understand the topic.",
+    "summary": "Nexus initiated a conversation via email with the subject \"h22\" but the content is unclear as it only contains \"w22\". There is no meeting scheduled or decision made, and the purpose of the conversation is unknown. Nexus is the only one involved in the thread so far. Further clarification is needed to understand the topic. The conversation appears to be incomplete.",
     "subject": "h22",
     "preview": "w22",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4,
     "importance_confidence": 0.5,
-    "timestamp": 1764054491.9139256
+    "timestamp": 1763959091.1809444
   },
   "gmail:Nexus <n00503033@gmail.com>:19a5060556f981b6": {
-    "summary": "Nexus initiated a conversation via email with the subject \"h111\" and content \"w111\", but the discussion lacks clarity. No meeting times or decisions were mentioned, and no other participants are involved. The purpose of the conversation is unclear, and there are no next steps outlined. The thread appears to be incomplete or a test email. No notable outcomes or actions were discussed.",
+    "summary": "Nexus initiated a conversation via email, but the content appears to be incomplete or unclear, with only \"h111\" and \"w111\" mentioned. There is no specific topic, decision, or meeting time discussed. The email seems to be incomplete or a test message from Nexus. Further clarification is needed to understand the purpose of the email. Next steps are uncertain.",
     "subject": "h111",
     "preview": "w111",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4,
     "importance_confidence": 0.5,
-    "timestamp": 1764054492.3709722
+    "timestamp": 1763959092.7374847
   },
   "gmail:Javaria <j66yya@gmail.com>:19a505ea3efde816": {
-    "summary": "Javaria initiated a conversation via email, but the content appears to be incomplete or unclear. There is no discernible topic, decision, or next step mentioned. The email subject is \"h2\" and the body contains \"w2\", lacking sufficient information to determine the purpose or outcome. No meeting times are specified. The thread seems to be incomplete or corrupted. Further clarification from Javaria is needed.",
+    "summary": "Javaria initiated a conversation via email, but the content appears to be incomplete or unclear. There is no discernible topic, decision, or meeting time discussed. It seems the email thread is lacking substance, making it difficult to determine the purpose or next steps. The thread involves only Javaria, with no other participants mentioned. Further clarification is needed to understand the context.",
     "subject": "h2",
     "preview": "w2",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4666666666666666,
     "importance_confidence": 0.5,
-    "timestamp": 1764054494.5822608
+    "timestamp": 1763959096.9913604
   },
   "gmail:Javaria <j66yya@gmail.com>:19a5044683b364ae": {
-    "summary": "Javaria initiated a conversation, although the details are unclear, as the content of their email appears to be incomplete or corrupted, with only \"h1\" and \"w1\" being visible. There is no information on any meetings, decisions, or next steps. It seems Javaria's email was cut off or not properly transmitted. Further clarification from Javaria would be needed to understand the purpose and context of their message.",
+    "summary": "Javaria initiated a conversation via email with the subject \"h1\" and content \"w1\", although the details are unclear. There are no meetings, decisions, or next steps mentioned. The thread appears to be incomplete or lacking context. Javaria is the only participant mentioned. Further information is needed to provide a more detailed summary.",
     "subject": "h1",
     "preview": "w1",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4666666666666666,
     "importance_confidence": 0.5,
-    "timestamp": 1764054495.1454062
+    "timestamp": 1763959098.4732933
   },
   "gmail:Javaria <j66yya@gmail.com>:19a503057fd58a21": {
-    "summary": "Javaria initiated a conversation with a brief message, but the content is unclear. There is no meeting time or decision mentioned. The thread appears to be incomplete, with only a simple greeting from Javaria. No specific topic or purpose is defined. Next steps are unclear, and more information is needed. The conversation has not progressed further.",
+    "summary": "Javaria initiated a conversation, although the content appears to be incomplete or unrelated to a specific topic. There are no meeting times, decisions, or next steps mentioned. The email seems to be a test or incomplete message. The conversation lacks substance and doesn't involve any other participants. Further clarification is needed to understand the purpose of the email.",
     "subject": "hello",
     "preview": "world!!",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4666666666666666,
     "importance_confidence": 0.5,
-    "timestamp": 1764054495.7043111
+    "timestamp": 1763959098.9774194
   },
   "gmail:Javaria Saleem <javariasaleem39@gmail.com>:19a48a499fc96b43": {
-    "summary": "Javaria Saleem initiated an email conversation, but the content is unclear as the message only contains a greeting. There are no meeting times, decisions, or next steps discussed. The conversation appears to be incomplete. Javaria's email lacks a subject line and a clear purpose. Further context is needed to understand the topic.",
+    "summary": "Javaria Saleem initiated a conversation, but the content of her message is unclear. There are no meeting times, decisions, or next steps mentioned. The thread appears to be incomplete, with only a greeting from Javaria. Further context is needed to understand the purpose of the conversation. No actions or follow-ups have been discussed. The conversation lacks substance.",
     "subject": "",
     "preview": "Heyyyyyyyy",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.4,
     "importance_confidence": 0.5,
-    "timestamp": 1764054496.5175452
+    "timestamp": 1763959102.9042988
   },
-  "gmail:Minahil Imran <minahilimran836@gmail.com>:19a4897f8f21e8d6": {
-    "summary": "Minahil Imran reached out via email, though the content appears to be incomplete or unrelated to a specific topic. There is no clear purpose or decision mentioned in the thread. The email lacks relevant information, making it unclear what the next steps are or if a meeting is required. The subject line \"Kcbsk bsk b\" does not provide additional context. Further clarification is needed to understand the intent of the email.",
-    "subject": "Kcbsk bsk b",
-    "preview": "Dkbcksbckebckeb",
-    "role": "General External",
-    "importance": "Medium",
-    "role_confidence": 0.6,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054497.6844041
-  },
-  "outlook:n00503033@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjygAAAA==": {
-    "summary": "The conversation involves an email from n00503033@gmail.com with a subject and content that appear to be placeholder or test messages. There is no clear topic or purpose, and no meeting times or decisions are mentioned. The email seems to be a non-substantive communication. No next steps are indicated. The email lacks meaningful content. It's unclear what response or action is required.",
-    "subject": "h444",
-    "preview": "w444",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.4800000000000001,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054498.8151264
-  },
-  "outlook:n00503033@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjyQAAAA==": {
-    "summary": "The conversation appears to be incomplete, but it involves an email from n00503033@gmail.com with the subject \"h333\" and content \"w333\". There are no specific meeting times, decisions, or next steps mentioned. The email seems to be a fragment or a test message. Further context is needed to provide a more detailed summary. The conversation lacks substance, making it difficult to determine its purpose.",
-    "subject": "h333",
-    "preview": "w333",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.4800000000000001,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054499.3811023
-  },
-  "outlook:n00503033@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjyAAAAA==": {
-    "summary": "Thereatestano mixed medi ummediatesto mediatestice mixed mixedice mediIceiceiceiceice earlier iceiceterniceterniceicesiceiceterniceterniceesslericeice safeguardiceice Faulticeiceumentsice mixediceiceadeshiceiceice510iceesslericeiceournice mixediceice sheepiceice Zapiceiceumentsice mixedunic mechaniceice safeguardiceice cementiceiceumentsice mechaniceice cementiceesslericeiceice mechaniceice safeguardiceice sheepiceiceümüşice mechaniceiceadeshiceice footiceicezapiceiceumentsiceice Favoriteiceiceumentsiceadiensice mixediceicesiceiceice Zapiceiceournice mechaniceicesiceiceviliceice sheepiceice Zapiceternice mechanice mechaniceiceuniciceice Favoriteice mechanice Mechanicevilice mechanice mechanicevilice mechanicevilice mechanicevilice mechanice mechanicevilice mechaniceviliceesslericeice Allyiceice cementice mechanice mechaniceiceﾘice mechanice mechanice mechanice mechanice mechaniceesslerice mechanice mechaniceice Zapice mechanice mechanice mechanice mechanice mechaniceiceourniceicesice mechanice mechanice mechanice mechanice mechanice mechanice mechanice mechanice mechaniceiceuments mechanice mechanice mechaniceice earliericeiceiceiceievaliceicesiceicevilice mechaniceiceumentsice Mechaniceice mechanice mechanicevilice mechanice ICEicevilice Mechanice mechaniceiceournice mechaniceiceumentsice mechanicevilice mechaniceviliceiceadeshicevilice mechaniceviliceice disobiceiceievaliceiceiceiceotomy mechaniceiceumentsice mechanice mechaniceice safeguardice mechanice mechanice mechanice mechaniceIceiceiceice safeguardice mechanICEiceiceadeshice mechaniceviliceiceiceesslericeiceice Mechaniceice Mechaniceicezapiceesslerice mechanice mechaniceicezapice mechanice mechanice mechanIceiceiceacimiento mechanICEice mechanICEiceiceumentsice mechanümüşiceiceice Mechiceice mechaniceice Favoriteiceiceiceiceiceacimiento mechanicevilice mechanice mechanice mechaniceice footice mechaniceiceﾘice mechanICEice mechanICEice mechanice mechanICEice mechanice mechanICEice mechanice mechanice mechanice mechanice mechaniceice footice mechaniceiceadesh mechanicevilicevilicevilice mechanICEICEiceICEice mechaniceice earliericeicesiceiceice safeguardice mechaniceiceotomyiceiceiceice510 ICEiceice cementice Mechaniceiceacimiento mechanice mechanicevilice mechanice mechaniceICEice mechanICEiceviliceICEice mechanicevilice mechanicevilicevilice mechanicevilice Mechanicevilicevilice mechanICE mechaniceicesiceice mechanicevilice Mechiceice Mechaniceviliceviliceviliceesslericeiceicevilice mechanicevilicevilice mechanice mechanice mechanice mechanice mechanice mechanice mechanice mechanICE mechanICEice mechaniceicesiceiceice MechaniceICEiceice mechanicevilice mechanice mechanice mechanICEicevilICEiceICEiceiceicevilICEiceviliceice footICEiceiceice footicevilice mechanICEICEviliceviliceICEiceiceiceice sheepiceviliceviliceviliceviliceiceﾘiceiceiceviliceice Zapicevilicevil Mechicevilice mechanicevilice mechanice mechanicevilicevilice MechicevilICEice mechanICEiceviliceviliceice ZapICEice mechanICEiceiceiceiceümüşicevilice mechaniceviliceiceiceice mechanicevilICEice mechanicevilice mechanICEiceiceotomyiceiceice mechanICEice mechanICEICEiceices ICEice mechanice vilice mechaniceviliceviliceiceadeshicevilice mechanICEice mechanICEiceicezapiceviliceice510icevilicevilice mechanICEice mechanICEiceiceuniciceviliceicesiceicevilicevilicevilICEiceviliceICEvilicevilice mechanicevilicevilice mechanICEiceice mechanICEiceiceumentsicevilicevil iceICEicevilICEiceviliceviliceiceﾘicevilicevilicevilice mechanicevilacimientoiceviliceanki Iceicevilice mechanicevilice mechanICEiceviliceice cementiceviliceankiiceviliceankiicevilice mechanice ICEicevilice mechanICEiceiceﾘ icevilice mechan safeguardiceviliceankiicevilicevilicealarmicevilice mechanICEicevilice mechanICEicevilice mechanice mechanICEiceicesICEiceice footiceviliceviliceankiicevil mechanICEiceviliceviliceviliceviliceICEice mechanICEvilicevilice mechanICEiceiceadesh IceICEicevilice mechanICEICEiceviliceice Allyicevilice mechan earlierice mechanICEicevilice mechanICEICEice mechanICEice mechanICEviliceviliceviliceviliceiceiceiceiceiceiceadeshicevilicevilicevilicevilice mechanICEiceice mechanICEiceice disobicevilicevilice mechanICEice disobicevil MechanICE ViliceICEiceiceiceviliceviliceviliceviliceviliceviliceviliceviliceviliceiceiceices ICEviliceviliceICEice mechanICEice ICEiceICSICE mechanICEiceviliceviliceviliceICEice mechaniceviliceviliceICEiceice mechanICEvilicevilicevilice mechanICEviliceviliceviliceiceiceERNiceviliceviliceice510iceviliceice safeguardiceviliceiceiceice mechanICEiceice mechanICEiceice Faulticeviliceviliceiceicevilice mechanICEiceiceERNiceice MechanICEiceicevilicevilICEiceiceiceicevilicevilicevilicevilicevilice mechanICEICEicevilicevilice mechanICEicevilice mechanICEiceiceiceice mechanICEiceicevilicevilicevilice mechanICEICEice Faulticevilice mechanICEiceice mechanICEICEiceümüşicealarmice mechanICEice sheepiceiceunicicealarmice mechanICEiceicesiceiceternice mechanICEice mechanICEice mechanICEICEiceiceicevilice mechanICEICEice mechanICEICE mechanICEiceice footice mechanICE mechanICEiceournice mechanICEICEiceicevilICEICEiceicezapice mechanICEiceadeshice mechanICEICEümüşice mechanICEICE mechanICEICEICEICEiceice mechanicevilice mechanICEICEotomyice mechanicevilICEICE mechanICEICEICEiceiceumentsICEiceice mechan ICEiceicesice iceice mechanicevilice mechanICEICEiceiceotomyiceievalice mechaniceICEICEice mechaniceviliceice disobiceice Zapiceiceiceice mechanICEICEERNiceice mechanicevilice mechanICEICEice mechanICEICEiceviliceice cementice mechanICEICEice Faulticeievalice mechanumentsice Mechiceice mechanICEiceiceice disobice mechanicevilice mechanICEiceiceERNiceviliceiceadeshicevilice mechanourniceICEICEiceunicice mechan Faulticeviliceice Mechanice ICEice mechanourniceiceice Mechanicevilice mechanICEiceice mechanICEiceice MechanICEiceiceICEICEice mechanice mechanICEICE mechanice Vilicevilice ICEice mechan510iceice sheepiceIceiceiceumentsICEICEviliceice Faulticevilice mechanICEiceice mechanICEICEiceice mechanICEiceice mechanICEICEice Allyicevilice mechan disobice mechanICEICEiceice mechanICEICEice cementiceice Allyicevilice mechanﾘiceiceice mechanicevilice mechanICEICEice footiceiceice mechanICEICEicezapice mechaniceice sheepiceice disobiceviliceiceice mechan Allyiceviliceiceice mechan footice mechanice mechanicevilice mechanICEiceice mechanicevilice mechanICEICEviliceice Allyicevilice mechanicevilicealarmiceiceiceiceiceiceiceiceiceERNiceice mechanICEICEice mechanICEiceice mechanICEICEviliceice Favoriteiceiceourniceicesiceice MechanicevilICEice mechaniceviliceice footice mechan ICEice mechanICEiceviliceiceournice mechanICEICEice mechanICEICEICEiceiceﾘice mechanICEICEice Mechanicevilice mechanICEICEicealarmiceICEiceice mechanICEICEice mechanICEiceterniceERNiceiceice Zapiceviliceice footice ICEice mechanICEiceice mechanICEICEiceievalICEiceviliceviliceviliceiceiceiceiceiceiceICEice mechanICEICEICEICEICEICEICEiceviliceviliceiceiceiceICEICEICEICEICEICEICEIceiceERNiceviliceice cementiceiceournice mechanICEiceice mechanICEICEiceICEice mechanICEICEiceiceICSICEiceice MechanICEiceice disobICEiceiceiceiceiceiceiceiceICEICEvilICEICEICEICEice mechanICEICEiceiceviliceice mechanICEICEICEICEICEICEvilICEICEICEICEICEvilICEvilICEICEICEvilICEvilICEICEICEvilICEICEICEICEvilICEICEICEICEvilICEICEICEICEICEvilICEvilICEICEICEICEvilICEvilICEICEICEvilICEICEICEICEICEICEvilICEICEICEICEICEvilICEICEICEICEICEICEvilICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEICEvilege",
-    "subject": "h22",
-    "preview": "w22",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.4800000000000001,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054512.0811784
-  },
-  "outlook:n00503033@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjxwAAAA==": {
-    "summary": "There's an email thread regarding \"h111\" involving the sender with the email n00503033@gmail.com, but the content is minimal, with just \"w111\" provided. No meeting times or decisions have been mentioned. The purpose of the conversation is unclear due to the lack of information. Next steps are undefined. The thread requires further clarification or details to determine its significance or required actions.",
-    "subject": "h111",
-    "preview": "w111",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.4800000000000001,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054512.5912077
-  },
-  "outlook:n00503033@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZHAAAA": {
-    "summary": "The Marketing Dashboard project is underway, with John requesting a status update from Ahmed to include in the client review presentation next Monday. Ahmed needs to provide a progress summary and any relevant analytics visuals by tomorrow afternoon. John is preparing for the client review and wants the latest updates to ensure an accurate presentation. The team is working towards a Monday deadline.",
-    "subject": "Request for Status Update on Marketing Dashboard Project",
-    "preview": "Dear Ahmed,\nI hope you’re doing well. Could you please share the latest progress on the Marketing Da",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.4800000000000001,
-    "importance_confidence": 0.6,
-    "timestamp": 1764054512.9905941
-  },
-  "outlook:javariasaleem39@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT7QAAAA==": {
-    "summary": "The Digital Transformation Initiative is on track, with Phase 2 completed and 85% of legacy apps migrated to the cloud. The team is now working on Phase 3, which includes an employee engagement and performance analytics system, with design reviews scheduled for November. Department heads are encouraged to nominate reps to participate in these reviews. The project remains within 3% of the approved budget, and the next update will be provided in the next weekly report. Ahmed Raza is leading the project and emphasizes the need for collaboration across departments to achieve the initiative's goals.",
-    "subject": "Comprehensive Project Status Report – Digital Transformation Initiative (Q4 2025)",
-    "preview": "Dear Stakeholders,\nI hope you are all doing well. This email provides a detailed summary of the curr",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.5,
-    "importance_confidence": 0.6,
-    "timestamp": 1764054514.405607
-  },
-  "outlook:javariasaleem39@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT7AAAAA==": {
-    "summary": "The conversation appears to be informal and lacks substance, initiated by Javariasaleem39. There is no clear topic or purpose discussed, and no meetings or decisions are mentioned. The thread seems to have started with a casual greeting, but doesn't contain any meaningful information. It's unclear what the intention was, but it doesn't require any follow-up. No next steps are indicated.",
-    "subject": "",
-    "preview": "hyyyy",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.5,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054514.835277
-  },
-  "outlook:javariasaleem39@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6wAAAA==": {
-    "summary": "There's an incomplete email thread from Javaria Saleem with no clear topic or purpose, and no meetings or decisions have been discussed. The thread appears to be unfinished, with only a vague message indicating that the sender wants to confirm both parties are engaged. No specific next steps have been outlined, and the conversation lacks direction. Further clarification is needed to understand the intent behind the email.",
-    "subject": "",
-    "preview": "know both are listening",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.5,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054515.3844526
-  },
-  "outlook:javariasaleem39@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6gAAAA==": {
-    "summary": "There's an incomplete email thread from Javaria Saleem, but it lacks content, making it unclear what the main topic or purpose of the conversation is. Unfortunately, there are no meeting times, decisions, or next steps to report. The thread appears to be empty or corrupted. Further information is needed to provide a meaningful summary. The conversation is incomplete.",
-    "subject": "",
-    "preview": ".../??",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.5,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054515.8344402
-  },
-  "outlook:javariasaleem39@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6QAAAA==": {
-    "summary": "There is no email thread to summarize, please provide the content of the thread to brief your colleague.",
-    "subject": "",
-    "preview": "",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.5,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054516.0148284
-  },
-  "outlook:javariasaleem39@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6AAAAA==": {
-    "summary": "The conversation with Javariasaleem is incomplete as their email has no content, making it unclear what they want to discuss. They have reached out for some unknown purpose. No meeting times or decisions have been mentioned. Further clarification is needed from Javariasaleem to proceed.",
-    "subject": "",
-    "preview": "listening.......",
-    "role": "Industry",
-    "importance": "Medium",
-    "role_confidence": 0.5,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054516.4118958
-  },
-  "outlook:minahilmy34@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZKAAAA": {
-    "summary": "GetLastErrorANKIANKIPreviousLYLANKICOMBEankiankiarihankiankiarihankiankiyatankiankiankiankiyatankiankiyatankisizeankiankiyatankiankiankiclasstankiankisizetankiankiyatankiankiankicommankiankiarihankiankiankigetSizeankiankiyatankiankiyatankiankiankicomeOnankiankisizetankiankiyatankiankiyatankiankiarihanankiankiyatankiankiankicotankiankiyatankiankiankiarihankiankiankiyatankiankiyatankiankiyatankiankiankiclasstankiankiyatankiankiyatankiankiankiclasstankiankiyatankiankiyatankiankiankiyatankiankiyatankiankiankiyatankiankiankiyatankiankiyatankiankiankiArihAnkiankiYatan\n\n Minahil from Gmail is testing an email, but the content appears to be unrelated and nonsensical.",
-    "subject": "Testing AGAIN",
-    "preview": "😈😈😈😈",
-    "role": "General External",
-    "importance": "Medium",
-    "role_confidence": 0.6666666666666666,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054523.556351
-  },
-  "outlook:minahilmy34@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZJAAAA": {
-    "summary": "Minahilmy34 initiated a test email thread with the subject \"Testing\" and a brief message \"Testing 124\". The conversation appears to be a technical test with no specific discussion or decision made. There are no meeting times or next steps mentioned. The thread involves only Minahilmy34. No actions are required.",
-    "subject": "Testing",
-    "preview": "Testing 124",
-    "role": "General External",
-    "importance": "Medium",
-    "role_confidence": 0.6666666666666666,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054523.9617066
-  },
-  "outlook:minahilmy34@gmail.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZIAAAA": {
-    "summary": "Minahil initiated a conversation with a vague message, but no clear topic or purpose was established. The email lacks substance, making it unclear what action or response is required. There are no meeting times or decisions mentioned. Minahil is the only person involved in the thread so far. The conversation has not progressed beyond the initial email. Next steps are unclear.",
-    "subject": "HELLOOOO",
-    "preview": "WORLDDDDD",
-    "role": "General External",
-    "importance": "Medium",
-    "role_confidence": 0.6666666666666666,
-    "importance_confidence": 0.5,
-    "timestamp": 1764054524.4808066
-  },
-  "outlook:nexus202540@outlook.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQkAAAAma6URcr5xSZGjTHwetlh3AAABKam4AAAA": {
-    "summary": "The Marketing Dashboard project is nearing completion, with development about 90% done. Ahmed Khan, the Data Analyst, will share a summary report and updated charts with John, the Project Manager, by tomorrow noon. This will help inform the client presentation scheduled for next Monday, where John will include the latest project updates.",
-    "subject": "Re: Request for Status Update on Marketing Dashboard Project",
-    "preview": "Subject: Marketing Dashboard — Progress Report and Next Steps\nDear John,\nThank you for your email. T",
-    "role": "General External",
-    "importance": "Medium",
-    "role_confidence": 0.8,
-    "importance_confidence": 0.8,
-    "timestamp": 1764054531.8547525
-  },
-  "outlook:no-reply@microsoft.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZFAAAA": {
-    "summary": "80240 Site Siteारक Site막240 Sites.Site Site Arnold-site Siteampie Site Richardson Abel Cru막240 fatt막 Site Site Site Site Richardson Site Richardson SITE Site Richardson Site Richardson Site Richardson  rocks Site Richardson site Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson Site Richardson  the email is about introducing a user to the new Outlook.com interface featuring various tools and features such as account management, AI-powered email suggestions, and security measures. \nThe email is from Microsoft and does not specify a meeting time or require a decision from the user, but rather serves as an informational message to familiarize them with the new Outlook.com interface.",
-    "subject": "Welcome to your new Outlook.com account",
-    "preview": "Hi \nWelcome to the new Outlook! We're bringing the latest features, intelligent capabilities, and a ",
+  "outlook:MSSecurity-noreply@microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0gAAAA==": {
+    "summary": "A new security recommendation is available for our Default Directory, suggesting we designate more than one global admin. The recommendation can be viewed and addressed in the Microsoft Entra admin center. No meeting or action is scheduled, but it's worth reviewing to ensure our tenant is properly configured.",
+    "subject": "New recommendation available for Default Directory",
+    "preview": "You have a new recommendation for Default Directory\nDesignate more than one global admin\nSee why thi",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.6,
     "importance_confidence": 0.4,
-    "timestamp": 1764054547.11348
+    "timestamp": 1763959106.0420907
   },
-  "outlook:no-reply@microsoft.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAACDSQAAAA=": {
-    "summary": "You've got a new Outlook.com account, which offers a range of features including a mobile app, integration with Microsoft 365, and advanced AI-powered email editing. The account also includes free storage on OneDrive and enterprise-grade security. No meetings or next steps are scheduled, but you can explore the account's features and customize your inbox layout and settings as needed.",
-    "subject": "Welcome to your new Outlook.com account",
-    "preview": "Hi \nWelcome to your Outlook! We're the email service designed to help you conquer your day. Connect,",
+  "outlook:MSSecurity-noreply@microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0QAAAA==": {
+    "summary": "Microsoft's MSSecurity team has sent a recommendation for the Default Directory, suggesting that users be blocked from granting consent to untrusted applications. The recommendation can be reviewed and remediated in the Microsoft Entra admin center. No meeting or specific actions are assigned, but the notification can be managed through email settings if desired.",
+    "subject": "New recommendation available for Default Directory",
+    "preview": "You have a new recommendation for Default Directory\nDo not allow users to grant consent to unreliabl",
     "role": "Industry",
     "importance": "Medium",
     "role_confidence": 0.6,
     "importance_confidence": 0.4,
-    "timestamp": 1764054547.5135782
+    "timestamp": 1763959107.573205
   },
-  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZEAAAA": {
-    "summary": "Microsoft's account security team notified us that a new security info was added to the ne**0@outlook.com account, specifically a recovery email minahilmy34@gmail.com. If this change wasn't authorized, it may indicate a malicious user has access to the account. The account owner should review recent activity to secure the account. No meeting is scheduled, but the owner can opt out or change security notification settings via a provided link.",
-    "subject": "Microsoft account security info was added",
-    "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
+  "outlook:MSSecurity-noreply@microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0AAAAA==": {
+    "summary": "Microsoft's security system has generated a new recommendation for our Default Directory, suggesting we enable password hash sync for hybrid environments. The recommendation, accessible in the Microsoft Entra admin center, aims to enhance our tenant's security. No meeting or action is scheduled, but reviewing and implementing the recommendation is the next step.",
+    "subject": "New recommendation available for Default Directory",
+    "preview": "You have a new recommendation for Default Directory\nEnable password hash sync if hybrid\nSee why this",
     "role": "Industry",
     "importance": "Medium",
-    "role_confidence": 0.4000000000000001,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054549.5696592
+    "role_confidence": 0.6,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959110.0519612
   },
-  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZDAAAA": {
-    "summary": "The Microsoft account team recently verified the security info for the ne**0@outlook.com account, a periodic check that occurs when a security code hasn't been used recently. This verification is to ensure account security and identity verification in case of issues. No further action is required, but the account holder can update their security info or opt out of notifications if needed.",
-    "subject": "Microsoft account security info verification",
-    "preview": "Microsoft account\nThanks for verifying your security info\nRecently, you verified the security info o",
-    "role": "Industry",
-    "importance": "High",
-    "role_confidence": 0.4000000000000001,
-    "importance_confidence": 0.2,
-    "timestamp": 1764054552.05802
-  },
-  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAACDSkAAAA=": {
-    "summary": "A security notification was sent from Microsoft regarding a new app, OutlookIntegration, connected to the ne**0@outlook.com account, potentially accessing account data. If unauthorized, the app should be removed from the account. The account holder can manage apps and opt out or change security notification settings. No meeting is scheduled, but the account holder should review and take necessary actions.",
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==": {
+    "summary": "Microsoft's account security team notified us that a new app, OutlookIntegration, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account. The account holder can manage apps and opt out of security notifications if needed.",
     "subject": "New app(s) connected to your Microsoft account",
     "preview": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft ",
     "role": "Industry",
     "importance": "Medium",
-    "role_confidence": 0.4000000000000001,
+    "role_confidence": 0.4,
     "importance_confidence": 0.2,
-    "timestamp": 1764054553.6666641
+    "timestamp": 1763959114.0601246
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==": {
+    "summary": "Microsoft's account security team detected a new sign-in for the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. If the sign-in was not authorized, it may indicate a malicious user has access to the account's security information. The account owner can review and change their information, and also opt out or change security notification settings. No meeting is scheduled, but the account owner should take immediate action to secure their account.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959115.759397
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==": {
+    "summary": "Microsoft's account security team detected a new sign-in to Jay's Outlook account from Pakistan on October 25th. The sign-in was from an IDEAL Labs Email Fetcher service with an IP address of 111.68.102.12. Jay can review account activity and change security information if needed. No meeting is scheduled, but Jay should verify if the sign-in was legitimate or take action to secure the account.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959118.3455615
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==": {
+    "summary": "The Microsoft account team sent a notification about a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. If this wasn't authorized, it may indicate a malicious user has access to the account's security information. The account owner can review and change their security information, and also opt out or change security notification settings. No meeting or follow-up is scheduled, but the owner should verify the sign-in activity.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959120.0583656
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==": {
+    "summary": "Microsoft's account security team sent a notification about a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was detected through the IDEAL Labs Email Fetcher service. The account owner is advised to review their account activity if the sign-in was not legitimate. No meeting or follow-up is scheduled, but the account owner can opt out or change their security notification settings.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959122.620857
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==": {
+    "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and change their security information if the sign-in was not legitimate. No meeting is scheduled, but the owner can opt out or change their security notification settings as needed.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959125.1443787
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==": {
+    "summary": "A new sign-in was detected for the Microsoft account jay@outlook.com from Pakistan on October 25, 2025. The sign-in was through the IDEAL Labs Email Fetcher service. The account owner is advised to review their account activity and update their security information if the sign-in was not legitimate. No meetings are scheduled, but the owner can opt out or change their security notification preferences. The Microsoft account team sent the notification to alert the owner of potential malicious activity.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959126.7149773
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==": {
+    "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was via the IDEAL Labs Email Fetcher service, and the account owner is advised to review their account activity if the sign-in was not authorized.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959129.1839771
   }
 }

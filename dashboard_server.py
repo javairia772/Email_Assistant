@@ -64,7 +64,7 @@ async def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries"
     mcp_rows = []  # ✅ always define early
 
     try:
-        db = read_all_summaries()
+        db = read_all_summaries(sheet_name)
         db_ids = set(row.get("id") for row in db if row.get("id"))
 
         provider = McpSummariesProvider()
@@ -181,42 +181,31 @@ async def dashboard(request: Request, limit: int = 20):
 
     rows = read_all_summaries()  # Always display from sheets as the DB
 
-    # More flexible validation
-    valid = []
-    for it in rows:
-        # Check if we have minimum required fields
-        if it.get("id") and it.get("email"):
-            # Ensure we have a summary field, even if empty
-            if "summary" not in it:
-                it["summary"] = ""
-            valid.append(it)
-
-    from collections import defaultdict, Counter
-    by_email = defaultdict(list)
-    for row in valid:
-        by_email[row["email"]].append(row)
-
     items = []
-    for email, lst in by_email.items():
-        summaries = "\n".join(x["summary"] for x in lst if x.get("summary"))
-        dates = [x["date"] for x in lst if x.get("date")]
-        date = max(dates) if dates else ""
-        roles = [x.get("Role") or x.get("role") for x in lst if (x.get("Role") or x.get("role"))]
-        role = Counter(roles).most_common(1)[0][0] if roles else "Uncategorized"
-        source = lst[0].get("source", "")
-        items.append({
+    for row in rows:
+        email = row.get("email")
+        if not email:
+            continue
+
+        summary_text = row.get("contact_summary") or row.get("summary") or ""
+        date_value = row.get("last_summary") or row.get("timestamp") or row.get("date") or ""
+        role_value = row.get("role") or row.get("Role") or "Uncategorized"
+        importance_value = row.get("importance") or row.get("Importance") or ""
+
+        item = {
+            "id": row.get("id") or f"{row.get('source','unknown')}:{email}",
             "email": email,
-            "role": role,
-            "summary": summaries,
-            "date": format_pkt(date),
-            "source": source,
-        })
+            "role": role_value,
+            "summary": summary_text,
+            "date": format_pkt(date_value),
+            "source": row.get("source", ""),
+            "importance": importance_value,
+            "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
+        }
+        items.append(item)
 
-    for it in items:
-        it["role_class"] = ROLE_TO_CLASS.get(it.get("role"), "tag-default")
-
-    summary_count = sum(len(lst) for lst in by_email.values())
-    unique_contacts = len(items)
+    summary_count = len(items)
+    unique_contacts = len({item["email"] for item in items})
 
     template = env.get_template("dashboard.html")
     html = template.render(items=items, summary_count=summary_count, unique_contacts=unique_contacts)
@@ -229,17 +218,24 @@ async def api_summaries(limit: int = 20):
     rows = read_all_summaries()
 
     items = []
-    for it in rows:
-        if it.get("id") and it.get("email") and it.get("summary"):
-            role_value = it.get("Role") or it.get("role") or "Uncategorized"
+    for row in rows:
+        email = row.get("email")
+        if not email:
+            continue
 
-            items.append({
-                "email": it.get("email"),
-                "role": role_value,
-                "summary": it.get("summary"),
-                "date": format_pkt(it.get("date")),
-                "source": it.get("source", ""),
-                "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
-            })
+        role_value = row.get("role") or row.get("Role") or "Uncategorized"
+        summary_text = row.get("contact_summary") or row.get("summary") or ""
+        date_value = row.get("last_summary") or row.get("timestamp") or row.get("date")
+
+        items.append({
+            "id": row.get("id") or f"{row.get('source','unknown')}:{email}",
+            "email": email,
+            "role": role_value,
+            "summary": summary_text,
+            "date": format_pkt(date_value),
+            "source": row.get("source", ""),
+            "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
+            "importance": row.get("importance") or row.get("Importance") or "",
+        })
 
     return {"ok": True, "count": len(items), "items": items}
