@@ -1055,5 +1055,95 @@
     "role_confidence": 0.4,
     "importance_confidence": 0.4,
     "timestamp": 1763959129.1839771
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==": {
+    "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting is scheduled, but the owner can opt out or change their security notification preferences. The Microsoft account team sent the notification for the owner's attention.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959131.8377054
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==": {
+    "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if the sign-in was not authorized. No meeting is scheduled, but the owner can opt out or change their security notification settings as needed.",
+    "subject": "New sign-in detected for your Microsoft account",
+    "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959133.3641236
+  },
+  "outlook:account-security-noreply@accountprotection.microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==": {
+    "summary": "A new app, IDEAL Labs Email Fetcher, has been connected to your Microsoft account, jay@outlook.com, and has access to your data. If this wasn't authorized, you should remove the app from your account. You can manage your apps and opt out of security notifications if needed.",
+    "subject": "New app(s) connected to your Microsoft account",
+    "preview": "Microsoft account\nNew app(s) have access to your data\nIDEAL Labs Email Fetcher connected to the Micr",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.2,
+    "timestamp": 1763959135.8135197
+  },
+  "outlook:m365dev@microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJjEHhAAAAA==": {
+    "summary": "You've been welcomed to the Microsoft 365 Developer Program and have the option to set up a Microsoft 365 E5 developer subscription for building solutions. The program team invites you to join their research panel to share your views and feedback. You can access your profile and find more information on the program's dashboard and terms.",
+    "subject": "Welcome to the Microsoft 365 Developer Program - please take the next step!",
+    "preview": "Microsoft 365 Developer Program | \nAccess your profile\n \nMicrosoft 365 Developer Program\nWelcome to ",
+    "role": "General External",
+    "importance": "Medium",
+    "role_confidence": 0.6,
+    "importance_confidence": 0.6,
+    "timestamp": 1763959145.0568595
+  },
+  "outlook:no-reply@microsoft.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6gAAAA==": {
+    "summary": "Microsoft introduced updates to Outlook, featuring a modern design, AI-powered email suggestions, and integrated access to Microsoft 365 apps like Word and Excel. The new Outlook allows users to manage multiple email accounts and calendars in one place, with enhanced security and organization tools. No meetings or decisions were discussed in this automated email from Microsoft.",
+    "subject": "Welcome to your new Outlook.com account",
+    "preview": "Hi \nWelcome to the new Outlook! We're bringing the latest features, intelligent capabilities, and a ",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.6,
+    "importance_confidence": 0.4,
+    "timestamp": 1763959149.1492302
+  },
+  "outlook:j66yya@gmail.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm5wAAAA==": {
+    "summary": "The conversation involves j66yya, who has started working on their project, although details are sparse. There's no mention of meetings or specific decisions. The thread appears to be an informal update. Next steps are unclear.",
+    "subject": "",
+    "preview": "i am now working on my project",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.5,
+    "timestamp": 1763959154.0693789
+  },
+  "outlook:j66yya@gmail.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm5gAAAA==": {
+    "summary": "A student, j66yya, has reached out to inform us that they are currently in their 5th semester. There is no meeting scheduled or decision made, and no next steps have been discussed. The purpose of the email appears to be simply to share their current academic status. The student's email does not provide any additional context or requests.",
+    "subject": "",
+    "preview": "i am in 5th semester",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.5,
+    "timestamp": 1763959156.4911861
+  },
+  "outlook:j66yya@gmail.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6AAAAA==": {
+    "summary": "The conversation involves an email from j66yya@gmail.com inquiring about the recipient's current activities. There are no specific meeting times, decisions, or next steps mentioned. The tone is informal and brief, lacking clear context or purpose. The sender simply asks \"what are you doing\". The conversation appears to be a casual check-in.",
+    "subject": "",
+    "preview": "what are you doing>",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.5,
+    "timestamp": 1763959158.954806
+  },
+  "outlook:j66yya@gmail.com:AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6QAAAA==": {
+    "summary": "There's an email thread started by j66yya@gmail.com, but it lacks substance as the initial message only includes a casual greeting. No meeting times, decisions, or next steps have been discussed. The conversation has not progressed beyond the introductory message. The topic and purpose of the conversation are unclear. Further communication is needed to determine the intent.",
+    "subject": "",
+    "preview": "hey how are you?",
+    "role": "Industry",
+    "importance": "Medium",
+    "role_confidence": 0.4,
+    "importance_confidence": 0.5,
+    "timestamp": 1763959161.423978
   }
 }

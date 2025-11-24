@@ -58,6 +58,10 @@
     .tag-researcher { background: #fef3c7; color: #92400e; border-color: #fde68a; }
     .tag-admin { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
     .tag-default { background: #e5e7eb; color: #374151; border-color: #d1d5db; }
+    .clickable-row { cursor: pointer; transition: background-color 0.12s ease; }
+    .clickable-row:hover { background: #f8fafc; }
+    .email-link { color: inherit; text-decoration: none; }
+    .email-link:hover { text-decoration: underline; }
   </style>
 </head>
 
@@ -120,9 +124,9 @@
           </thead>
           <tbody id="rows-tbody">
             {% for it in items %}
-            <tr data-role="{{ it.role }}" data-importance="{{ it.importance|default('Medium') }}">
+            <tr class="clickable-row" data-role="{{ it.role }}" data-importance="{{ it.importance|default('Medium') }}" onclick="window.location='{{ it.detail_url }}'">
               <td>{{ it.id }}</td>
-              <td>{{ it.email }}</td>
+              <td><a class="email-link" href="{{ it.detail_url }}">{{ it.email }}</a></td>
               <td><span class="tag {{ it.role_class }}">{{ it.role }}</span></td>
               <td class="summary">{{ it.summary }}</td>
               <td>{{ it.date }}</td>
@@ -162,9 +166,10 @@
     }
 
     function makeRow(it) {
-      return `<tr data-role="${it.role || ''}" data-importance="${it.importance || 'Medium'}">
+      const detailUrl = it.detail_url || `/contact/${encodeURIComponent(it.id || '')}`;
+      return `<tr class="clickable-row" data-role="${it.role || ''}" data-importance="${it.importance || 'Medium'}" onclick="window.location='${detailUrl}'">
         <td>${escapeHTML(it.id || '')}</td>
-        <td>${escapeHTML(it.email || '')}</td>
+        <td><a class="email-link" href="${detailUrl}">${escapeHTML(it.email || '')}</a></td>
         <td><span class="tag ${it.role_class || 'tag-default'}">${escapeHTML(it.role || '')}</span></td>
         <td class="summary">${escapeHTML(it.summary || '')}</td>
         <td>${toPKT(it.date || '')}</td>
@@ -180,6 +185,7 @@
       document.getElementById('rows-tbody').innerHTML = rows.map(makeRow).join('');
       document.getElementById('contact-count').textContent = rows.length;
       document.getElementById('summary-count').textContent = (data.count || rows.length);
+      applyFilters();
     }
 
     function applyFilters() {

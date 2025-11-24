@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Threads • {{ contact.email }}</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; color: #1f2937; background: #f6f8fa; }
+    .page { max-width: 1040px; margin: 0 auto; padding: 32px 24px 48px 24px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: #2563eb; text-decoration: none; margin-bottom: 16px; font-size: 14px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { margin: 0; font-size: 28px; color: #111827; }
+    .meta { margin-top: 6px; color: #6b7280; font-size: 15px; }
+    .summary-card { background: #fff; border-radius: 10px; padding: 20px; margin-top: 22px; box-shadow: 0 2px 8px #1112; }
+    .summary-card h2 { margin: 0 0 12px 0; font-size: 18px; color: #0f172a; }
+    .summary-text { white-space: pre-wrap; line-height: 1.5; color: #1f2937; }
+    .tags { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .tag { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: #e0e7ff; color: #312e81; }
+    .threads-list { margin-top: 30px; }
+    .thread-card { background: #fff; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 6px #0001; }
+    .thread-header { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .thread-subject { font-size: 17px; font-weight: 600; color: #111827; margin: 0; }
+    .thread-meta { color: #6b7280; font-size: 14px; }
+    .thread-summary { margin-top: 12px; line-height: 1.5; color: #1f2937; white-space: pre-wrap; }
+    .empty-state { text-align: center; margin-top: 40px; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back-link" href="/">&larr; Back to dashboard</a>
+    <h1>{{ contact.email }}</h1>
+    <div class="meta">
+      Source: {{ contact.source or "unknown" }} • Last updated: {{ contact.last_summary }}
+    </div>
+
+    <section class="summary-card">
+      <h2>Contact Summary</h2>
+      <div class="summary-text">
+        {{ contact.summary or "No summary available yet." }}
+      </div>
+      <div class="tags">
+        <span class="tag">Role: {{ contact.role }}</span>
+        {% if contact.importance %}
+        <span class="tag">Importance: {{ contact.importance }}</span>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="threads-list">
+      <h2>Threads ({{ threads|length }})</h2>
+      {% if threads %}
+        {% for thread in threads %}
+          <article class="thread-card">
+            <div class="thread-header">
+              <p class="thread-subject">{{ thread.subject }}</p>
+              <div class="thread-meta">
+                {{ thread.timestamp_display or "—" }}
+                {% if thread.importance %}
+                  • {{ thread.importance }}
+                {% endif %}
+              </div>
+            </div>
+            <div class="thread-summary">{{ thread.summary or "No summary available." }}</div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">No thread data found in cache for this contact.</div>
+      {% endif %}
+    </section>
+  </div>
+</body>
+</html>
+

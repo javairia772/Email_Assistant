@@ -280,13 +280,55 @@ def _build_unique_key(row_id: Optional[str], email: Optional[str], source: Optio
         return f"{source}:{email}"
     return email
 
+# ============================================================
+# 100% IDEMPOTENT UPSERT FOR GOOGLE SHEETS
+# ============================================================
+
+def _stable_json(value):
+    """Stable JSON encoding so dedupe works reliably."""
+    if isinstance(value, (list, dict)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=True)
+    return value
+
+
+def _row_equals(a: dict, b: dict) -> bool:
+    """Check if two normalized rows are logically identical."""
+    for col in HEADER:
+        av = _stable_json(a.get(col, ""))
+        bv = _stable_json(b.get(col, ""))
+        if str(av) != str(bv):
+            return False
+    return True
+
+
+def _should_update(existing: dict, incoming: dict) -> bool:
+    """Decide whether this row needs an update."""
+    # If summary changed → update
+    if existing.get("contact_summary") != incoming.get("contact_summary"):
+        return True
+
+    # If role changed
+    if str(existing.get("role")) != str(incoming.get("role")):
+        return True
+
+    # If role confidence changed
+    if str(existing.get("role_confidence")) != str(incoming.get("role_confidence")):
+        return True
+
+    # If threads changed (compare JSON stable encoding)
+    if _stable_json(existing.get("threads")) != _stable_json(incoming.get("threads")):
+        return True
+
+    return False
+
 
 def upsert_summaries(*args, **kwargs):
     """
-    Safe upsert (update or insert) for Google Sheets.
-    Supports legacy signature `upsert_summaries(rows)` as well as
-    `upsert_summaries("SpreadsheetName", rows, "Worksheet")`.
+    IDEMPOTENT upsert for Google Sheets.
+    Only writes to sheet when real changes occur.
+    No duplicate rows. Stable keys. 
     """
+
     new_rows, spreadsheet_name, worksheet_name = _coerce_args(*args, **kwargs)
 
     if not isinstance(new_rows, list) or not new_rows:
@@ -295,50 +337,100 @@ def upsert_summaries(*args, **kwargs):
 
     ws = _get_or_create_worksheet(spreadsheet_name, worksheet_name)
 
-    # Build lookup of existing rows
-    existing_lookup: dict[str, Dict] = {}
+    # ------------------------------------------
+    # Load existing rows and normalize
+    # ------------------------------------------
+    existing_lookup: dict[str, dict] = {}
+
     try:
         existing_records = ws.get_all_records()
         for rec in existing_records:
             normalized = _normalize_row_payload(rec)
-            key = _build_unique_key(normalized.get("id"), normalized.get("email"), normalized.get("source"))
+            key = _build_unique_key(
+                normalized.get("id"),
+                normalized.get("email"),
+                normalized.get("source")
+            )
             if key:
                 existing_lookup[key] = normalized
     except Exception as e:
         print(f"[Sheets] Error reading sheet for dedupe: {e}")
 
-    # Merge incoming rows
-    inserted = 0
-    updated = 0
+    # ------------------------------------------
+    # Merge incoming rows (idempotent logic)
+    # ------------------------------------------
+    inserts = 0
+    updates = 0
+
     for row in new_rows:
         if not isinstance(row, dict):
             continue
+
         normalized = _normalize_row_payload(row)
-        key = _build_unique_key(normalized.get("id"), normalized.get("email"), normalized.get("source"))
+        key = _build_unique_key(
+            normalized.get("id"),
+            normalized.get("email"),
+            normalized.get("source")
+        )
         if not key:
             continue
-        if key in existing_lookup:
-            updated += 1
-        else:
-            inserted += 1
-        existing_lookup[key] = normalized
 
-    # Deterministic ordering (latest first)
+        if key not in existing_lookup:
+            # New row → insert
+            inserts += 1
+            existing_lookup[key] = normalized
+        else:
+            # Existing row → check if update needed
+            existing_row = existing_lookup[key]
+
+            if _should_update(existing_row, normalized):
+                updates += 1
+                
+                # Preserve last_summary unless content changed
+                if existing_row.get("contact_summary") != normalized.get("contact_summary"):
+                    # Summary changed → update timestamp
+                    normalized["last_summary"] = datetime.now(timezone.utc).isoformat()
+                else:
+                    # No content change → keep old timestamp
+                    normalized["last_summary"] = existing_row.get("last_summary")
+
+                existing_lookup[key] = normalized
+
+            # else: identical → do nothing
+
+    # ------------------------------------------
+    # If nothing changed, skip sheet write
+    # ------------------------------------------
+    if updates == 0 and inserts == 0:
+        print("[Sheets] No changes — sheet sync skipped.")
+        return
+
+    # ------------------------------------------
+    # Sort rows (latest first)
+    # ------------------------------------------
     def _sort_key(item):
         dt = _parse_date(item.get("last_summary"))
         return dt or datetime.min.replace(tzinfo=timezone.utc)
 
     ordered_rows = sorted(existing_lookup.values(), key=_sort_key, reverse=True)
 
-    # Prepare payload
+    # ------------------------------------------
+    # Prepare final write matrix
+    # ------------------------------------------
     matrix = [HEADER]
     for row in ordered_rows:
         serialized = [_serialize_value(row.get(col, "")) for col in HEADER]
         matrix.append(serialized)
 
+    # ------------------------------------------
+    # Write only when needed
+    # ------------------------------------------
     try:
         ws.clear()
-        ws.update('A1', matrix)
-        print(f"[Sheets] ✅ Sync complete — {updated} updated, {inserted} inserted, total {len(ordered_rows)} rows.")
+        ws.update("A1", matrix)
+        print(
+            f"[Sheets] ✅ Sync complete — "
+            f"{updates} updated, {inserts} inserted, total {len(ordered_rows)} rows."
+        )
     except Exception as e:
         print(f"[Sheets] ❌ Error rewriting sheet: {e}")
