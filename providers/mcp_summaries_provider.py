@@ -2,7 +2,6 @@ from typing import List, Dict
 from datetime import datetime, timezone
 import json, os, re, time
 from pathlib import Path
-
 # Imports
 from Summarizer.groq_summarizer import GroqSummarizer
 from Gmail.gmail_connector import GmailConnector
@@ -26,7 +25,9 @@ def _parse_iso(s: str) -> datetime:
 class McpSummariesProvider:
     def __init__(self):
         self.summarizer = GroqSummarizer()
-        self.cache_path = Path("Summaries/summaries_cache.json")
+        self.cache_path = Path(__file__).resolve().parent / "Summaries" / "summaries_cache.json"
+        self.cache_path.parent.mkdir(parents=True, exist_ok=True)
+
 
     # -----------------------------------------------------------------
     # OUTLOOK EMAILS
@@ -163,101 +164,109 @@ class McpSummariesProvider:
     # -----------------------------------------------------------------
     # SUMMARIZATION
     # -----------------------------------------------------------------
-    def _summarize_contact_threads(self, contact: Dict) -> str:
-        """Generate a concise summary for a contact using their message bodies."""
-        all_texts = []
+    def _summarize_contact_threads(self, contact: Dict) -> Dict:
+        """Summarize all threads for a contact using GroqSummarizer, includes role/importance."""
+        thread_ids = []
+        all_threads_texts = []
 
-        # Combine Outlook previews and Gmail bodies
         for t in contact.get("threads", []):
-            if "preview" in t:
-                text = t["preview"]
-            elif "messages" in t:
-                text = "\n".join(m.get("body", "") for m in t["messages"])
+            thread_id = t.get("id")
+            thread_ids.append(thread_id)
+
+            # Build thread message list for summarizer
+            if "messages" in t:
+                thread_emails = t["messages"]
             else:
-                text = ""
-            
-            if text:
-                # Strip HTML if any
-                if "<" in text and ">" in text:
-                    try:
-                        text = BeautifulSoup(text, "html.parser").get_text(separator="\n")
-                    except Exception:
-                        text = re.sub(r"<[^>]+>", "", text)
-                
-                # Normalize whitespace
-                text = re.sub(r"\s+", " ", text).strip()
+                thread_emails = [{"sender": contact["email"], "subject": t.get("subject", ""), "body": t.get("preview", "")}]
 
-                # Truncate if too long (e.g., >2000 chars)
-                if len(text) > 2000:
-                    text = text[:2000] + "..."
+            # Summarize each thread (also caches role/importance)
+            summary = self.summarizer.summarize_thread(
+                thread_emails,
+                source=contact.get("source"),
+                contact_email=contact.get("email"),
+                thread_id=thread_id
+            )
 
-                all_texts.append(text)
+            # Append text for contact-level summary
+            all_threads_texts.append(summary)
 
-        combined_text = "\n\n".join(all_texts).strip()
-        if not combined_text:
-            return "No message content available."
+        # Generate contact-level summary object
+        contact_entry = self.summarizer.summarize_contact_threads(
+            all_threads_texts,
+            source=contact.get("source"),
+            contact_email=contact.get("email"),
+            thread_ids=thread_ids
+        )
 
-        try:
-            summary = self.summarizer.summarize_text(combined_text)
-            # Clean final summary whitespace
-            return re.sub(r"\s+", " ", summary).strip()
-        except Exception as e:
-            print(f"[MCP] Summarization error for {contact.get('email')}: {e}")
-            return "Summary generation failed."
-
+        return contact_entry
     # -----------------------------------------------------------------
     # MERGED SUMMARIES + CACHE
     # -----------------------------------------------------------------
-    def get_summaries(self, limit=10) -> List[Dict]:
+    def get_summaries(self, limit=10, existing_cache=None) -> List[Dict]:
+        """
+        Fetch and summarize emails from Gmail + Outlook.
+        
+        Args:
+            limit: Number of emails to fetch per source
+            existing_cache: Previously loaded cache to avoid re-summarizing
+        
+        Returns:
+            List of contact summaries
+        """
         print("[INFO] Fetching summaries from Gmail + Outlook...")
 
         gmail_data = self._from_gmail(limit)
         outlook_data = self._from_outlook(limit)
-
         all_data = gmail_data + outlook_data
-        print(f"[INFO] ✅ Total summaries fetched: {len(all_data)}")
+        print(f"[INFO] ✅ Total contacts fetched: {len(all_data)}")
 
-        # Generate AI summaries
+        merged_summaries = []
+        
+        # Load existing cache if provided
+        existing_summaries = {}
+        if existing_cache and "summaries" in existing_cache:
+            existing_summaries = existing_cache["summaries"]
+
+        # Summarize each contact
         for contact in all_data:
-            # Ensure stable id and timestamp for dedupe & merging
-            source = contact.get("source", "gmail")
-            email = contact.get("email") or "unknown"
-            contact["id"] = f"{source}:{email}"
-            # Add timestamp if not present
-            contact["timestamp"] = contact.get("timestamp") or datetime.utcnow().isoformat()
+            contact_email = contact.get("email")
+            source = contact.get("source")
+            cache_key = f"{source}:{contact_email}"
+            
+            # ✅ Check if this contact is already in cache
+            if cache_key in existing_summaries:
+                existing_contact = existing_summaries[cache_key]
+                existing_thread_ids = {t.get("id") for t in existing_contact.get("threads", [])}
+                new_thread_ids = {t.get("id") for t in contact.get("threads", [])}
+                
+                # If no new threads, reuse cached summary
+                if new_thread_ids.issubset(existing_thread_ids):
+                    print(f"⚡ Using cached summary for {contact_email} (no new threads)")
+                    merged_summaries.append(existing_contact)
+                    continue
+                else:
+                    print(f"🔄 Found new threads for {contact_email}, re-summarizing...")
+            
+            # Summarize contact (new or updated)
+            contact_summary = self._summarize_contact_threads(contact)
+            merged_summaries.append(contact_summary)
 
-            contact["summary"] = self._summarize_contact_threads(contact)
+        # --- Build final cache JSON ---
+        cache_data = {
+            "seen": {
+                "gmail": [c["id"] for c in merged_summaries if c.get("source") == "gmail"],
+                "outlook": [c["id"] for c in merged_summaries if c.get("source") == "outlook"]
+            },
+            "summaries": merged_summaries,
+            "last_updated": datetime.now(timezone.utc).isoformat()
+        }
 
-        # --- Cache logic ---
+        # Write cache
         try:
-            old_cache = []
-            if self.cache_path.exists():
-                with open(self.cache_path, "r", encoding="utf-8") as f:
-                    try:
-                        old_cache = json.load(f)
-                    except Exception:
-                        print("[CACHE] invalid json in cache, overwriting.")
-
-            # old_cache should be a list; normalize
-            if isinstance(old_cache, dict):
-                # convert to list of values if dict keyed format was used previously
-                old_cache_list = list(old_cache.values())
-            else:
-                old_cache_list = old_cache or []
-
-            # Merge by (email, source)
-            unique_map = {(x.get("email"), x.get("source")): x for x in old_cache_list if isinstance(x, dict)}
-            for d in all_data:
-                unique_map[(d.get("email"), d.get("source"))] = d
-
-            merged_list = list(unique_map.values())
-
             with open(self.cache_path, "w", encoding="utf-8") as f:
-                json.dump(merged_list, f, indent=2, ensure_ascii=False)
-
-            print(f"[CACHE] ✅ Updated {self.cache_path} with {len(merged_list)} records")
-
+                json.dump(cache_data, f, indent=2, ensure_ascii=False)
+            print(f"[CACHE] ✅ Saved structured cache with {len(merged_summaries)} summaries to {self.cache_path}")
         except Exception as e:
             print(f"[CACHE ERROR] {e}")
 
-        return all_data
+        return merged_summaries

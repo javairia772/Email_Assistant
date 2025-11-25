@@ -22,6 +22,29 @@
     .stat-label { color: #64748b; font-size: 13px; letter-spacing: .06em; margin-bottom: 5px; }
     .stat-value { color: #111827; font-size: 23px; font-weight: 600; }
     
+    .filter-bar {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px #0001;
+      margin-bottom: 20px;
+    }
+    .filter-bar select, .filter-bar button {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+    .filter-bar button {
+      background: #2563eb;
+      color: #fff;
+      cursor: pointer;
+    }
+    .filter-bar button:hover { background: #1e40af; }
+
     .email-data-card { margin-top: 36px; }
     table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px 0 #1112; }
     th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e5e7eb; }
@@ -32,47 +55,58 @@
     .tag-student { background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe; }
     .tag-faculty { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
     .tag-vendor { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+    .tag-researcher { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+    .tag-admin { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
     .tag-default { background: #e5e7eb; color: #374151; border-color: #d1d5db; }
   </style>
-  <script>
-    async function exportToSheets() {
-      const btn = document.getElementById('exportBtn');
-      btn.disabled = true;
-      try {
-        const res = await fetch('/export-to-sheets', { method: 'POST' });
-        const data = await res.json();
-        alert(data.ok ? `Exported ${data.count} rows to Google Sheets.` : `Export failed: ${data.error}`);
-      } catch (e) {
-        alert('Export failed.');
-      } finally {
-        btn.disabled = false;
-      }
-    }
-  </script>
-  </head>
-  <body>
-    <div class="layout-root">
-      <aside class="sidebar">
-        <h2>Email Assistant</h2>
-        <div class="nav-section">NAVIGATION <span style="font-size:11px; color:#64748b;">(future)</span></div>
-        <ul>
-          <li style="color:#bae6fd; margin: 19px 0 7px 0; font-weight:560;">Dashboard</li>
-          <!-- TODO: Add role-based filter/sort links here -->
-          <li class="coming-soon">Filters, Roles, Analytics (soon)</li>
-        </ul>
-        <div class="coming-soon" style="margin-top:44px;">More features coming soon...</div>
-      </aside>
-      <main class="main">
-        <div class="title-row">
-          <h1>Email Assistant Dashboard</h1>
-        </div>
-        <div class="subtitle">Monitor, organize, and analyze your multi-source institutional email conversations.</div>
-        <div class="statsbar">
-          <div class="stat"><span class="stat-label">Unique Contacts</span><span class="stat-value" id="contact-count">{{ unique_contacts }}</span></div>
-          <div class="stat"><span class="stat-label">Total Summaries</span><span class="stat-value" id="summary-count">{{ summary_count }}</span></div>
-          <!-- Add more stats as needed in the future -->
-        </div>
-        <div class="email-data-card">
+</head>
+
+<body>
+  <div class="layout-root">
+    <aside class="sidebar">
+      <h2>Email Assistant</h2>
+      <div class="nav-section">NAVIGATION <span style="font-size:11px; color:#64748b;"></span></div>
+      <ul>
+        <li style="color:#bae6fd; margin: 19px 0 7px 0; font-weight:560;">Dashboard</li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <div class="title-row">
+        <h1>Email Assistant Dashboard</h1>
+      </div>
+      <div class="subtitle">Monitor, organize, and analyze your multi-source institutional email conversations.</div>
+
+      <div class="statsbar">
+        <div class="stat"><span class="stat-label">Unique Contacts</span><span class="stat-value" id="contact-count">{{ unique_contacts }}</span></div>
+        <div class="stat"><span class="stat-label">Total Summaries</span><span class="stat-value" id="summary-count">{{ summary_count }}</span></div>
+      </div>
+
+      <!-- 🔽 Filter bar -->
+      <div class="filter-bar">
+        <label for="roleFilter">Role:</label>
+        <select id="roleFilter">
+          <option value="">All Roles</option>
+          <option value="Student">Student</option>
+          <option value="Faculty">Faculty</option>
+          <option value="Vendor">Vendor</option>
+          <option value="Researcher">Researcher</option>
+          <option value="Admin">Admin</option>
+          <option value="Uncategorized">Uncategorized</option>
+        </select>
+
+        <label for="importanceFilter">Importance:</label>
+        <select id="importanceFilter">
+          <option value="">All</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <button onclick="clearFilters()">Clear Filters</button>
+      </div>
+
+      <div class="email-data-card">
         <table>
           <thead>
             <tr>
@@ -86,7 +120,7 @@
           </thead>
           <tbody id="rows-tbody">
             {% for it in items %}
-            <tr>
+            <tr data-role="{{ it.role }}" data-importance="{{ it.importance|default('Medium') }}">
               <td>{{ it.id }}</td>
               <td>{{ it.email }}</td>
               <td><span class="tag {{ it.role_class }}">{{ it.role }}</span></td>
@@ -97,62 +131,79 @@
             {% endfor %}
           </tbody>
         </table>
-        </div>
-      </main>
-    </div>
-    <script>
-      function escapeHTML(s) {
-        return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-      }
-      function toPKT(dateStr) {
-        // Always treat dateStr as UTC, output as PKT (UTC+5) in 12-hour AM/PM format
-        if (!dateStr) return '';
-        try {
-          // Always parse as UTC, add Z if missing
-          let asISO = dateStr.match(/Z|[+-]\d{2}:?\d{2}$/) ? dateStr : dateStr + 'Z';
-          let d = new Date(asISO);
-          // Convert to UTC milliseconds
-          let utc = d.getTime() + d.getTimezoneOffset() * 60000;
-          // Add 5 hours for PKT
-          let pkt = new Date(utc + 5 * 60 * 60 * 1000);
-          let yr = pkt.getUTCFullYear();
-          let mo = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][pkt.getUTCMonth()];
-          let day = pkt.getUTCDate().toString().padStart(2,'0');
-          let h24 = pkt.getUTCHours();
-          let mn = pkt.getUTCMinutes().toString().padStart(2,'0');
-          let ampm = h24 >= 12 ? 'PM' : 'AM';
-          let h12 = h24 % 12; if (h12 === 0) h12 = 12;
-          let hr = h12.toString().padStart(2, '0');
-          return `${day} ${mo} ${yr}, ${hr}:${mn} ${ampm} (PKT)`;
-        } catch {
-          return escapeHTML(dateStr);
-        }
-      }
-      function makeRow(it) {
-        return `<tr>
-          <td>${escapeHTML(it.id || '')}</td>
-          <td>${escapeHTML(it.email || '')}</td>
-          <td><span class="tag ${it.role_class || 'tag-default'}">${escapeHTML(it.role || '')}</span></td>
-          <td class="summary">${escapeHTML(it.summary || '')}</td>
-          <td>${toPKT(it.date || '')}</td>
-          <td>${escapeHTML(it.source || '')}</td>
-        </tr>`;
-      }
+      </div>
+    </main>
+  </div>
 
+  <script>
+    function escapeHTML(s) {
+      return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    }
 
-      async function updateTable() {
-        const resp = await fetch('/api/summaries');
-        if (!resp.ok) return;
-        const data = await resp.json();
-        const rows = data.items || [];
-        document.getElementById('rows-tbody').innerHTML = rows.map(makeRow).join('');
-        if(document.getElementById('contact-count')) document.getElementById('contact-count').textContent = rows.length;
-        if(document.getElementById('summary-count')) document.getElementById('summary-count').textContent = (data.count || rows.length);
+    function toPKT(dateStr) {
+      if (!dateStr) return '';
+      try {
+        let asISO = dateStr.match(/Z|[+-]\d{2}:?\d{2}$/) ? dateStr : dateStr + 'Z';
+        let d = new Date(asISO);
+        let utc = d.getTime() + d.getTimezoneOffset() * 60000;
+        let pkt = new Date(utc + 5 * 60 * 60 * 1000);
+        let yr = pkt.getUTCFullYear();
+        let mo = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][pkt.getUTCMonth()];
+        let day = pkt.getUTCDate().toString().padStart(2,'0');
+        let h24 = pkt.getUTCHours();
+        let mn = pkt.getUTCMinutes().toString().padStart(2,'0');
+        let ampm = h24 >= 12 ? 'PM' : 'AM';
+        let h12 = h24 % 12; if (h12 === 0) h12 = 12;
+        let hr = h12.toString().padStart(2, '0');
+        return `${day} ${mo} ${yr}, ${hr}:${mn} ${ampm} (PKT)`;
+      } catch {
+        return escapeHTML(dateStr);
       }
-      setInterval(updateTable, 60000);
-      window.addEventListener('DOMContentLoaded', updateTable);
-    </script>
-  </body>
-  </html>
+    }
 
+    function makeRow(it) {
+      return `<tr data-role="${it.role || ''}" data-importance="${it.importance || 'Medium'}">
+        <td>${escapeHTML(it.id || '')}</td>
+        <td>${escapeHTML(it.email || '')}</td>
+        <td><span class="tag ${it.role_class || 'tag-default'}">${escapeHTML(it.role || '')}</span></td>
+        <td class="summary">${escapeHTML(it.summary || '')}</td>
+        <td>${toPKT(it.date || '')}</td>
+        <td>${escapeHTML(it.source || '')}</td>
+      </tr>`;
+    }
 
+    async function updateTable() {
+      const resp = await fetch('/api/summaries');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      const rows = data.items || [];
+      document.getElementById('rows-tbody').innerHTML = rows.map(makeRow).join('');
+      document.getElementById('contact-count').textContent = rows.length;
+      document.getElementById('summary-count').textContent = (data.count || rows.length);
+    }
+
+    function applyFilters() {
+      const role = document.getElementById('roleFilter').value;
+      const importance = document.getElementById('importanceFilter').value;
+      const rows = document.querySelectorAll('#rows-tbody tr');
+      rows.forEach(r => {
+        const matchesRole = !role || r.dataset.role === role;
+        const matchesImportance = !importance || r.dataset.importance === importance;
+        r.style.display = (matchesRole && matchesImportance) ? '' : 'none';
+      });
+    }
+
+    function clearFilters() {
+      document.getElementById('roleFilter').value = '';
+      document.getElementById('importanceFilter').value = '';
+      applyFilters();
+    }
+
+    document.getElementById('roleFilter').addEventListener('change', applyFilters);
+    document.getElementById('importanceFilter').addEventListener('change', applyFilters);
+
+    setInterval(updateTable, 60000);
+    window.addEventListener('DOMContentLoaded', updateTable);
+  </script>
+</body>
+</html>

@@ -27,3 +27,7 @@ jinja2
 fastapi[standard]
 
 bs4
+
+#classification
+transformers torch
+sentencepiece

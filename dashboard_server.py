@@ -3,10 +3,11 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import asyncio
-
+from datetime import datetime
+from Summarizer.groq_summarizer import GroqSummarizer
+from integrations.google_sheets import upsert_summaries
 import os
 from providers.mcp_summaries_provider import McpSummariesProvider
-# from integrations.google_sheets import upsert_summaries
 from integrations.google_sheets import read_all_summaries
 import time
 last_sync_time = 0
@@ -27,6 +28,9 @@ ROLE_TO_CLASS = {
     "Student": "tag-student",
     "Faculty": "tag-faculty",
     "Vendor": "tag-vendor",
+    "Researcher": "tag-researcher",
+    "Admin": "tag-admin",
+    "Uncategorized": "tag-default",
 }
 
 
@@ -84,30 +88,58 @@ async def fetch_and_merge_new_data_from_mcp(sheet_name="EmailAssistantSummaries"
         if not r.get("timestamp"):
             r["timestamp"] = datetime.utcnow().isoformat()
 
-    # ✅ Filter new contacts only
-    new_rows = [row for row in mcp_rows if (row.get("id") not in db_ids)]
-
-    if not new_rows:
-        print("[Sheets] No new summaries to upsert.")
-        return
-
-    # ✅ Summarize thread bodies safely
-    for r in new_rows:
-        try:
-            source = r.get("source", "gmail")
-            contact_email = r.get("email")
-            if r.get("_thread_bodies"):
+    # Process only new or updated rows
+    new_rows = []
+    for row in mcp_rows:
+        row_id = row.get("id")
+        if not row_id:
+            continue
+            
+        # Check if we already have this in the database
+        existing = next((r for r in db if r.get("id") == row_id), None)
+        
+        # Skip if we already have a summary and the content hasn't changed
+        if existing and existing.get("summary") and not row.get("force_update", False):
+            print(f"[MCP] Skipping already summarized: {row_id}")
+            continue
+            
+        # Only summarize if we have thread bodies and no existing summary
+        if row.get("_thread_bodies") and (not existing or not existing.get("summary")):
+            try:
+                source = row.get("source", "gmail")
+                contact_email = row.get("email")
                 summ = GroqSummarizer()
                 summaries_texts = []
-                for i, body in enumerate(r.get("_thread_bodies", [])):
-                    if body:
-                        thread_id = (r.get("_thread_ids") or [None])[i] or f"{contact_email}_thread_{i}"
+                
+                for i, body in enumerate(row.get("_thread_bodies", [])):
+                    if not body:
+                        continue
+                        
+                    thread_id = (row.get("_thread_ids") or [None])[i] or f"{contact_email}_thread_{i}"
+                    
+                    # Check if we already have a cached summary
+                    cached = summ._get_from_cache(source, contact_email, thread_id)
+                    if cached and cached.get("summary"):
+                        summaries_texts.append(cached["summary"])
+                    else:
+                        # Only summarize if we don't have a cached version
                         s = summ.summarize_text(body)
-                        summaries_texts.append(s)
-                        summ._set_cache(source, contact_email, thread_id, s)
-                r["summary"] = " ".join(summaries_texts) or r.get("summary")
-        except Exception as e:
-            print(f"[MCP] error summarizing contact {r.get('email')}: {e}")
+                        if s:
+                            summaries_texts.append(s)
+                            summ._set_cache(source, contact_email, thread_id, s)
+                
+                if summaries_texts:
+                    row["summary"] = " ".join(summaries_texts)
+                    
+            except Exception as e:
+                print(f"[MCP] Error summarizing {row_id}: {e}")
+                row["summary"] = existing.get("summary", "") if existing else ""
+        
+        new_rows.append(row)
+
+    if not new_rows:
+        print("[Sheets] No new or updated summaries to process.")
+        return
 
     # ✅ Push new rows to Google Sheets
     try:
@@ -149,11 +181,15 @@ async def dashboard(request: Request, limit: int = 20):
 
     rows = read_all_summaries()  # Always display from sheets as the DB
 
-    # ✅ Relaxed filter: don't require "date"
-    valid = [
-        it for it in rows
-        if it.get("id") and it.get("email") and it.get("summary")
-    ]
+    # More flexible validation
+    valid = []
+    for it in rows:
+        # Check if we have minimum required fields
+        if it.get("id") and it.get("email"):
+            # Ensure we have a summary field, even if empty
+            if "summary" not in it:
+                it["summary"] = ""
+            valid.append(it)
 
     from collections import defaultdict, Counter
     by_email = defaultdict(list)
@@ -165,8 +201,8 @@ async def dashboard(request: Request, limit: int = 20):
         summaries = "\n".join(x["summary"] for x in lst if x.get("summary"))
         dates = [x["date"] for x in lst if x.get("date")]
         date = max(dates) if dates else ""
-        roles = [x.get("role") for x in lst if x.get("role")]
-        role = Counter(roles).most_common(1)[0][0] if roles else ""
+        roles = [x.get("Role") or x.get("role") for x in lst if (x.get("Role") or x.get("role"))]
+        role = Counter(roles).most_common(1)[0][0] if roles else "Uncategorized"
         source = lst[0].get("source", "")
         items.append({
             "email": email,
@@ -192,17 +228,18 @@ async def api_summaries(limit: int = 20):
     asyncio.create_task(fetch_and_merge_new_data_from_mcp(limit=limit))
     rows = read_all_summaries()
 
-    # ✅ Relaxed filter
-    items = [
-        {
-            "email": it.get("email"),
-            "role": it.get("role"),
-            "summary": it.get("summary"),
-            "date": format_pkt(it.get("date")),
-            "source": it.get("source", ""),
-            "role_class": ROLE_TO_CLASS.get(it.get("role"), "tag-default"),
-        }
-        for it in rows
-        if it.get("id") and it.get("email") and it.get("summary")
-    ]
+    items = []
+    for it in rows:
+        if it.get("id") and it.get("email") and it.get("summary"):
+            role_value = it.get("Role") or it.get("role") or "Uncategorized"
+
+            items.append({
+                "email": it.get("email"),
+                "role": role_value,
+                "summary": it.get("summary"),
+                "date": format_pkt(it.get("date")),
+                "source": it.get("source", ""),
+                "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
+            })
+
     return {"ok": True, "count": len(items), "items": items}
