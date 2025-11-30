@@ -5,8 +5,11 @@ from fastmcp import FastMCP
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
 from Agents.contact_aggregator_agent import ContactAggregatorAgent
+from Agents.email_agent import EmailAgent
+from Agents.agent_tools import AgentTools
 from Summarizer.groq_summarizer import GroqSummarizer
 from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
+from classifier.email_classifier import classify_email
 from integrations.google_sheets import upsert_summaries
 from datetime import datetime
 
@@ -16,6 +19,8 @@ mcp = FastMCP(name="email_mcp_server")
 gmail = GmailConnector()
 outlook = OutlookConnector()
 summarizer = GroqSummarizer()  # this uses the cache built into the class
+agent = EmailAgent()
+agent_tools = AgentTools()
 
 # --------------------
 # Utilities
@@ -58,6 +63,70 @@ def m_outlook_fetch_threads(contact_email: str, top: int = 50):
 @mcp.tool("outlook_get_thread_text")
 def m_outlook_get_thread_text(message_id: str):
     return safe_run(outlook.get_thread_text, message_id)
+
+
+def _build_agent_email_payload(source: str, thread_id: str):
+    source = source.lower()
+    try:
+        if source == "gmail":
+            thread_messages = gmail.fetch_threads_by_id(thread_id)
+            if isinstance(thread_messages, dict) and thread_messages.get("error"):
+                return {"error": thread_messages.get("error")}
+            if not thread_messages:
+                return {"error": "Thread not found"}
+            latest = thread_messages[-1]
+            combined = "\n\n---\n\n".join(
+                f"From: {msg.get('sender','Unknown')}\nSubject: {msg.get('subject','')}\n\n{msg.get('body','')}"
+                for msg in thread_messages
+            )
+            sender = latest.get("sender", "unknown")
+            subject = latest.get("subject", "(no subject)")
+            classification = classify_email(
+                latest.get("sender", sender),
+                latest.get("subject", subject),
+                latest.get("body", combined)
+            )
+            return {
+                "id": thread_id,
+                "source": "gmail",
+                "sender": sender,
+                "subject": subject,
+                "body": combined,
+                "importance": classification.get("importance", "Unknown"),
+                "role": classification.get("role", "Unknown"),
+            }
+        elif source == "outlook":
+            message = outlook.get_message(thread_id)
+            sender = message.get("sender", "unknown")
+            subject = message.get("subject", "(no subject)")
+            body = message.get("body", "")
+            classification = classify_email(sender, subject, body)
+            return {
+                "id": thread_id,
+                "source": "outlook",
+                "sender": sender,
+                "subject": subject,
+                "body": body,
+                "importance": classification.get("importance", "Unknown"),
+                "role": classification.get("role", "Unknown"),
+            }
+        else:
+            return {"error": "Unknown source. Use 'gmail' or 'outlook'."}
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+@mcp.tool("agent_process_email")
+def m_agent_process_email(source: str, thread_id: str):
+    """
+    Run the autonomous EmailAgent on a given thread.
+    """
+    payload = _build_agent_email_payload(source, thread_id)
+    if payload.get("error"):
+        return {"ok": False, "error": payload["error"]}
+
+    result = agent.process_email(payload, agent_tools.get_all_tools())
+    return {"ok": True, "result": result}
 
 
 

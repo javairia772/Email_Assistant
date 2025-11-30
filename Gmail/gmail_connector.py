@@ -1,6 +1,7 @@
 # Gmail/gmail_connector.py
 from Gmail.gmail_auth import GmailAuth
 import base64
+from email.mime.text import MIMEText
 from googleapiclient.errors import HttpError
 # Import summarization logic (Groq + caching)
 from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
@@ -185,7 +186,8 @@ class GmailConnector:
                 "sender": sender,
                 "subject": subject,
                 "body": body.strip(),
-                "date": date
+                "date": date,
+                "message_id": msg.get("id")
             })
         return parsed
 
@@ -198,6 +200,21 @@ class GmailConnector:
             return base64.urlsafe_b64decode(data.encode("UTF-8")).decode("UTF-8")
         except Exception:
             return ""
+
+    # ------------------------------------------------------
+    # SEND REPLY
+    # ------------------------------------------------------
+    def send_reply(self, thread_id, to_email, subject, reply_body):
+        """Send a reply within an existing Gmail thread."""
+        message = MIMEText(reply_body)
+        message["to"] = to_email
+        message["subject"] = f"Re: {subject}"
+        raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+        body = {
+            "raw": raw,
+            "threadId": thread_id
+        }
+        self.service.users().messages().send(userId="me", body=body).execute()
 
     # ------------------------------------------------------
     # Optional: plain text joiner for summarization

@@ -166,3 +166,40 @@ class OutlookConnector:
             return self._normalize_message(response.json(), full=True)
         else:
             raise Exception(f"Error fetching message: {response.text}")
+
+    # ------------------------------------------------------
+    # SEND REPLY
+    # ------------------------------------------------------
+    def send_reply(self, message_id, to_email, subject, reply_body):
+        """Send an Outlook reply; falls back to sendMail if message_id missing."""
+        self.ensure_authenticated()
+        headers = {**self._headers(), "Content-Type": "application/json"}
+        if message_id:
+            url = f"https://graph.microsoft.com/v1.0/me/messages/{message_id}/reply"
+            payload = {
+                "message": {
+                    "body": {
+                        "contentType": "Text",
+                        "content": reply_body
+                    }
+                },
+                "comment": ""
+            }
+        else:
+            url = "https://graph.microsoft.com/v1.0/me/sendMail"
+            payload = {
+                "message": {
+                    "subject": f"Re: {subject}",
+                    "body": {
+                        "contentType": "Text",
+                        "content": reply_body
+                    },
+                    "toRecipients": [
+                        {"emailAddress": {"address": to_email}}
+                    ],
+                },
+                "saveToSentItems": True
+            }
+        response = requests.post(url, headers=headers, json=payload)
+        if response.status_code not in (200, 202):
+            raise Exception(f"Error sending reply: {response.text}")
