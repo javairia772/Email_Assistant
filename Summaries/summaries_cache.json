@@ -1,28 +1,28 @@
 {
   "seen": {
     "gmail": [
-      "gmail:Groq <developer@groq.co>",
-      "gmail:OpenAI <noreply@email.openai.com>",
-      "gmail:Nexus <n00503033@gmail.com>",
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
-      "gmail:Javaria <j66yya@gmail.com>",
       "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+      "gmail:Groq <developer@groq.co>",
       "gmail:Cursor Team <hi@mail.cursor.com>",
+      "gmail:OpenAI <noreply@email.openai.com>",
       "gmail:Google <no-reply@accounts.google.com>",
-      "gmail:noreply@email.openai.com"
+      "gmail:noreply@email.openai.com",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
+      "gmail:Nexus <n00503033@gmail.com>",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+      "gmail:Javaria <j66yya@gmail.com>"
     ],
     "outlook": [
+      "outlook:no-reply@microsoft.com",
+      "outlook:nexus202540@outlook.com",
+      "outlook:minahilmy34@gmail.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com",
+      "outlook:MSSecurity-noreply@microsoft.com",
+      "outlook:javariasaleem39@gmail.com",
       "outlook:n00503033@gmail.com",
       "outlook:m365dev@microsoft.com",
-      "outlook:javariasaleem39@gmail.com",
-      "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:MicrosoftRewards@infoemail.microsoft.com",
-      "outlook:nexus202540@outlook.com",
-      "outlook:MSSecurity-noreply@microsoft.com",
       "outlook:j66yya@gmail.com",
-      "outlook:minahilmy34@gmail.com",
-      "outlook:no-reply@microsoft.com"
+      "outlook:MicrosoftRewards@infoemail.microsoft.com"
     ]
   },
   "summaries": {
@@ -261,28 +261,43 @@
       "email": "Tayyba Aftab <tayybat678@gmail.com>",
       "source": "gmail",
       "role": "General External",
-      "role_confidence": 1.0,
+      "role_confidence": 0.933,
       "threads": [
         {
           "id": "19ad95ec356da4b0",
           "subject": "IDEAL LABS Consultant",
           "preview": "Dear Dr. Usman Ghani, I hope you are doing well. I wanted to ask if you could please share some insi",
-          "summary": "Tayyba Aftab reached out to Dr. Usman Ghani for insights on Ideal Labs' success and notable achievements to better align her work with the organization's vision. Dr. Ghani's feedback is awaited, with no meeting scheduled yet. The goal is to understand Ideal Labs' impact and milestones.",
+          "summary": "Summary unavailable due to model error.",
           "role": "General External",
           "importance": "Low",
           "importance_confidence": 0.2,
           "role_confidence": 1.0,
-          "last_message_ts": "2025-12-01T10:04:05+00:00",
+          "last_message_ts": "2025-12-01T10:27:57+00:00",
           "auto_replied": false,
-          "last_message_id": "19ad95ec356da4b0",
-          "last_subject": "IDEAL LABS Consultant",
-          "last_body": "Dear Dr. Usman Ghani, I hope you are doing well. I wanted to ask if you could please share some insights about Ideal Labs—specifically, how successful the organization has been so far and any notable achievements or milestones you consider significant. Understanding this will help me better align my work and expectations with the vision and impact of Ideal Labs. Thank you for your time, and I appreciate any details you can provide. Warm regards, Ali"
+          "last_message_id": "19ad9749d4296281",
+          "last_subject": "Re: IDEAL LABS Consultant",
+          "last_body": "Kindly i wanted to do internship, please inform me Kindly regards Thanks On Mon, 1 Dec 2025, 3:04 pm Tayyba Aftab, wrote: > Dear Dr. Usman Ghani, > > I hope you are doing well. I wanted to ask if you could please share some > insights about Ideal Labs—specifically, how successful the organization has > been so far and any notable achievements or milestones you consider > significant. > > Understanding this will help me better align my work and expectations with > the vision and impact of Ideal Labs. > > Thank you for your time, and I appreciate any details you can provide. > > Warm regards, > Ali >"
+        },
+        {
+          "id": "19ad973bcf96cb26",
+          "subject": "Coordination",
+          "preview": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me B",
+          "summary": "Summary unavailable due to model error.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": 0.8,
+          "last_message_ts": "2025-12-01T10:26:59+00:00",
+          "auto_replied": false,
+          "last_message_id": "19ad973bcf96cb26",
+          "last_subject": "Coordination",
+          "last_body": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me Best wishes"
         },
         {
           "id": "19a9bf536f5d740e",
           "subject": "Proposal for Collaboration Opportunity",
           "preview": "Dear Dr. Usman, I hope this email finds you well. My name is [Your Name], and I am [Your Position] a",
-          "summary": "Ali from [Company Name] reached out to Dr. Usman Ghani to explore a potential collaboration between their organizations. Dr. Ghani expressed interest and openness to discussing the proposal, and they agreed to meet on Friday at 10 am to discuss further. Ali will share more details on the proposed scope and objectives before the meeting.",
+          "summary": "Summary unavailable due to model error.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.4,
@@ -294,8 +309,8 @@
           "last_body": "Ok sure Ali lets have a meeting at 10 am at friday Thanks On Mon, 1 Dec 2025, 2:59 pm Tayyba Aftab, wrote: > > > Dear Dr. Usman Ghani, > > Thank you for your kind response. I truly appreciate your openness to > explore potential collaboration opportunities. > > I will prepare and share the detailed scope and objectives shortly. > Meanwhile, here are a few time slots that work well for me for a meeting: > > Friday at 10 am > > Please let me know which of these suits you best, and I will gladly > confirm. > > Thank you once again for your time and consideration. I look forward to > discussing this further. > > Warm regards, > Ali > > On Thu, 27 Nov 2025, 1:17 pm Nexus, wrote: > >> Dear Ali, >> >> Thank you for your email. I appreciate your interest in collaborating and >> the introduction to your organization’s work. >> >> Your areas of expertise sound relevant, and I am open to exploring how we >> might work together. Please feel free to share more details regarding your >> proposed scope or objectives. Additionally, you may suggest a few available >> time slots for a meeting, and I will confirm a suitable option from my end. >> >> Thank you once again for reaching out. I look forward to learning more. >> >> Warm regards, >> *Dr. Usman Ghani* >> >> On Thu, Nov 27, 2025 at 12:50 PM Nexus wrote: >> >>> Dear Ali, >>> >>> Thank you for reaching out and for your interest in exploring a >>> potential collaboration. I appreciate the concise overview of your work and >>> the initiative you have taken to connect. >>> >>> Your proposal sounds promising, and I would be glad to learn more about >>> the specific areas where our organizations could collaborate. Please share >>> a few suggested time slots for a brief meeting or call in the coming days, >>> and I will do my best to accommodate one that fits both our schedules. >>> >>> Looking forward to our discussion. >>> >>> Best regards, >>> *Dr. Usman Ghani* >>> >>> On Wed, Nov 19, 2025 at 4:52 PM Tayyba Aftab >>> wrote: >>> >>>> Dear Dr. Usman, >>>> >>>> I hope this email finds you well. My name is [Your Name], and I am >>>> [Your Position] at [Company Name], based in [Country]. We specialize in >>>> [brief description of your company’s domain or expertise]. >>>> >>>> I am reaching out to explore potential opportunities for collaboration >>>> between [Company Name] and [Director’s Organization]. We believe that >>>> combining our expertise in [specific area] with your ongoing projects could >>>> lead to mutually beneficial outcomes. >>>> >>>> We would greatly appreciate the opportunity to discuss this in more >>>> detail at a time convenient for you. Please let me know if a meeting or >>>> call would be suitable, and we will be happy to accommodate your schedule. >>>> >>>> Thank you very much for your time and consideration. I look forward to >>>> your response. >>>> >>>> Best regards, >>>> >>>> Ali >>>> >>>"
         }
       ],
-      "summary": "We've got a couple of threads with Dr. Usman Ghani - Tayyba's waiting to hear back from him on Ideal Labs' success stories, while Ali from another company is meeting him on Friday to discuss a potential collaboration. Dr. Ghani seems open to exploring the proposal and Ali will share more details beforehand.",
-      "timestamp": "2025-11-30T06:09:51.578453Z"
+      "summary": "Unfortunately, it looks like we've hit a roadblock - all email threads are unavailable due to a model error, so there's nothing to summarize just yet. Let's try to retrieve the information again or reach out to the contacts for an update. I'll keep an eye on it and brief you as soon as we have something.",
+      "timestamp": "2025-11-30T06:34:58.814615Z"
     },
     "gmail:Javaria Saleem <javariasaleem39@gmail.com>": {
       "id": "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
@@ -894,21 +909,21 @@
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEUAAAAucVXBXj8pECCXiUT6z7IOAACOrZDDgAAAA==",
           "subject": "Important update to your Microsoft Rewards account",
           "preview": "Watch for an email about this next month\n͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ",
-          "summary": "Microsoft Rewards is updating its program starting January 2026, introducing three new participation levels - Member, Silver, and Gold - with varying benefits and daily search point limits. No action is required, but users can expect new opportunities to earn bonus points and potential future changes to further enhance the program's benefits.",
+          "summary": "Microsoft Rewards is updating its program starting January 2026, introducing three new participation levels - Member, Silver, and Gold - with varying benefits and daily search point limits. No action is required, but users can expect new opportunities to earn bonus points and potential future changes to further enhance the program.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.4,
           "role_confidence": 0.4,
-          "last_message_ts": "2025-11-30T06:11:03.891849+00:00",
+          "last_message_ts": "2025-11-30T06:35:35.064971+00:00",
           "auto_replied": false,
           "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEUAAAAucVXBXj8pECCXiUT6z7IOAACOrZDDgAAAA==",
           "last_subject": "Important update to your Microsoft Rewards account",
           "last_body": "Watch for an email about this next month\n͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   \n                                                            \nView as a webpage \n \n \n \n \nKey updates to Microsoft Rewards \n \n \nStarting in January 2026, we will be making updates to the Rewards program.\nHere's what you need to know:\nWe're announcing 3 new participation levels with a range of benefits that allow you to earn points in new ways: Member, Silver, and Gold.\nIn order to accommodate these changes, the daily search point limit will update by level. They will update to Member (15), Silver (30), and Gold (60). There will be new opportunities to earn additional bonus points.\nAs we evaluate the program, we might make more changes to further the benefits of the program. There's no action required on your part.\nVisit dashboard\n \n \n \nPrivacy Statement\n \nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         }
       ],
-      "summary": "Microsoft Rewards is getting an update in January 2026, adding new participation levels with varying benefits. The changes include daily search point limits and potential bonus point opportunities. No action is needed, but the program may see further enhancements down the line. This update aims to improve user experience and provide more earning opportunities. The new levels are Member, Silver, and Gold, each with its own set of perks. We can expect more updates in the future.",
-      "timestamp": "2025-11-30T06:11:07.051377Z"
+      "summary": "Summary unavailable due to model error.",
+      "timestamp": "2025-11-30T06:35:37.223353Z"
     }
   },
-  "last_updated": "2025-11-30T06:11:07.061423+00:00"
+  "last_updated": "2025-11-30T06:35:37.269911+00:00"
 }

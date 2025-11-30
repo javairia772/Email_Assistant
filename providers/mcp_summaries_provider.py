@@ -101,6 +101,7 @@ class McpSummariesProvider:
 
         reply_text = reply.get("reply", "")
         try:
+            print(f"[AutoReply] High priority thread detected ({source}:{thread_id}). Sending reply...")
             if source == "gmail":
                 self.gmail.send_reply(
                     thread_id=thread_id,
@@ -117,6 +118,7 @@ class McpSummariesProvider:
                 )
             self.auto_replied_threads[signature] = last_ts or datetime.now(timezone.utc).isoformat()
             self._save_reply_log()
+            print(f"[AutoReply] Reply sent successfully for {thread_id}")
             return True
         except Exception as exc:
             print(f"[AutoReply] Failed to send reply for {thread_id}: {exc}")
@@ -272,11 +274,17 @@ class McpSummariesProvider:
     # -----------------------------------------------------------------
     # SUMMARIZATION
     # -----------------------------------------------------------------
-    def _summarize_contact_threads(self, contact: Dict) -> Dict:
+    def _summarize_contact_threads(self, contact: Dict, existing_contact: Dict = None) -> Dict:
         """Summarize all threads for a contact using GroqSummarizer, includes role/importance."""
         thread_ids = []
         all_threads_texts = []
         thread_details = {}
+        existing_threads = {}
+
+        if existing_contact and isinstance(existing_contact.get("threads"), list):
+            existing_threads = {
+                t.get("id"): t for t in existing_contact.get("threads", []) if t.get("id")
+            }
 
         for t in contact.get("threads", []):
             thread_id = t.get("id")
@@ -329,6 +337,26 @@ class McpSummariesProvider:
                 "last_message_id": t.get("last_message_id"),
                 "last_subject": t.get("last_subject"),
                 "last_body": t.get("last_body"),
+            }
+            if thread_id in existing_threads:
+                existing_threads.pop(thread_id, None)
+
+        # ✅ Preserve previously-known threads so they remain visible even if not re-fetched
+        for tid, old_thread in existing_threads.items():
+            summary_text = old_thread.get("summary") or old_thread.get("body") or old_thread.get("display_summary") or ""
+            if summary_text:
+                all_threads_texts.append(summary_text)
+            thread_ids.append(tid)
+            thread_details[tid] = {
+                "importance": old_thread.get("importance"),
+                "importance_confidence": old_thread.get("importance_confidence"),
+                "role": old_thread.get("role"),
+                "role_confidence": old_thread.get("role_confidence"),
+                "last_message_ts": old_thread.get("last_message_ts"),
+                "auto_replied": old_thread.get("auto_replied", False),
+                "last_message_id": old_thread.get("last_message_id"),
+                "last_subject": old_thread.get("last_subject"),
+                "last_body": old_thread.get("last_body"),
             }
 
         # Generate contact-level summary object
@@ -398,7 +426,7 @@ class McpSummariesProvider:
                     print(f"🔄 Changes detected for {contact_email}, re-summarizing...")
             
             # Summarize contact (new or updated)
-            contact_summary = self._summarize_contact_threads(contact)
+            contact_summary = self._summarize_contact_threads(contact, existing_contact)
             merged_summaries.append(contact_summary)
 
         # --- Build final cache JSON ---
