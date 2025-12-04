@@ -6,9 +6,16 @@ from email.utils import parsedate_to_datetime
 from Summarizer.groq_summarizer import GroqSummarizer
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
-from Agents.agent_tools import AgentTools
 from classifier.email_classifier import classify_email
 from bs4 import BeautifulSoup
+from providers.reply_queue import ReplyQueue
+
+DEFAULT_REPLY_PROMPT = (
+    "You are an executive email assistant for a busy lab director. "
+    "Given the summary of the email thread and the metadata provided, draft a concise, polite reply "
+    "that acknowledges the sender, addresses the key request, and clearly states next steps. "
+    "Keep the reply under 5 sentences and maintain a professional, helpful tone."
+)
 
 def _parse_iso(s: str) -> datetime:
     if not s:
@@ -29,23 +36,7 @@ class McpSummariesProvider:
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
         self.gmail = GmailConnector()
         self.outlook = OutlookConnector()
-        self.agent_tools = AgentTools()
-        self.reply_log_path = Path(__file__).resolve().parent / "Summaries" / "auto_replies.json"
-        self.auto_replied_threads = self._load_reply_log()
-
-    def _load_reply_log(self) -> Dict:
-        if self.reply_log_path.exists():
-            try:
-                with self.reply_log_path.open("r", encoding="utf-8") as f:
-                    return json.load(f)
-            except Exception:
-                return {}
-        return {}
-
-    def _save_reply_log(self):
-        self.reply_log_path.parent.mkdir(parents=True, exist_ok=True)
-        with self.reply_log_path.open("w", encoding="utf-8") as f:
-            json.dump(self.auto_replied_threads, f, indent=2, ensure_ascii=False)
+        self.reply_queue = ReplyQueue()
 
     def _normalize_timestamp(self, value: str) -> str:
         if not value:
@@ -79,51 +70,73 @@ class McpSummariesProvider:
                 return True
         return False
 
-    def _handle_high_priority_reply(self, source: str, contact_email: str, thread_data: Dict, latest_msg: Dict, summary: str) -> bool:
-        thread_id = thread_data.get("id")
-        if not thread_id:
-            return False
-        signature = f"{source}:{thread_id}"
-        last_ts = thread_data.get("last_message_ts") or self._normalize_timestamp(latest_msg.get("date", ""))
-        already_replied_ts = self.auto_replied_threads.get(signature)
-        if already_replied_ts and last_ts and already_replied_ts >= last_ts:
-            return False
+    def _should_generate_draft(self, classification: Dict) -> bool:
+        return classification.get("importance", "").lower() == "high"
 
-        reply = self.agent_tools.generate_reply(
-            email_id=thread_id,
-            sender=contact_email,
-            subject=latest_msg.get("subject", thread_data.get("last_subject", "")),
-            body=latest_msg.get("body", thread_data.get("last_body", "")),
-            summary=summary,
-        )
-        if not reply.get("success"):
-            return False
+    def _enqueue_reply_draft(
+        self,
+        contact: Dict,
+        thread_id: str,
+        thread_summary: str,
+        classification: Dict,
+        latest_msg: Dict,
+        last_ts: str,
+        prompt_override: str = None,
+    ):
+        if not thread_summary:
+            return
 
-        reply_text = reply.get("reply", "")
-        try:
-            print(f"[AutoReply] High priority thread detected ({source}:{thread_id}). Sending reply...")
-            if source == "gmail":
-                self.gmail.send_reply(
-                    thread_id=thread_id,
-                    to_email=contact_email,
-                    subject=latest_msg.get("subject", thread_data.get("last_subject", "")),
-                    reply_body=reply_text,
-                )
-            else:
-                self.outlook.send_reply(
-                    message_id=thread_data.get("last_message_id"),
-                    to_email=contact_email,
-                    subject=latest_msg.get("subject", thread_data.get("last_subject", "")),
-                    reply_body=reply_text,
-                )
-            self.auto_replied_threads[signature] = last_ts or datetime.now(timezone.utc).isoformat()
-            self._save_reply_log()
-            print(f"[AutoReply] Reply sent successfully for {thread_id}")
-            return True
-        except Exception as exc:
-            print(f"[AutoReply] Failed to send reply for {thread_id}: {exc}")
-            return False
+        contact_email = contact.get("email")
+        source = contact.get("source")
+        if not contact_email or not source:
+            return
 
+        summary_snippet = thread_summary.strip()
+        latest_body = (latest_msg.get("body") or "")[:1200]
+        prompt_core = prompt_override or DEFAULT_REPLY_PROMPT
+        composed_prompt = f"""{prompt_core}
+
+Thread Summary:
+{summary_snippet}
+
+Contact Email: {contact_email}
+Role: {classification.get("role", "Unknown")}
+Importance: {classification.get("importance", "Unknown")}
+
+Most Recent Message:
+Subject: {latest_msg.get("subject", "(no subject)")}
+Body:
+{latest_body}
+
+Write the reply in first person plural ("we") unless the context clearly requires singular. Avoid apologies unless necessary."""
+
+        reply_text = self.summarizer._run_groq_model(composed_prompt)
+        if not reply_text:
+            return
+
+        if self.reply_queue.has_recent_draft(
+            thread_id,
+            last_message_ts=last_ts,
+            statuses=["pending_review", "approved", "sent"],
+        ):
+            return
+
+        draft = {
+            "contact_id": f"{source}:{contact_email}",
+            "contact_email": contact_email,
+            "source": source,
+            "thread_id": thread_id,
+            "subject": latest_msg.get("subject") or "(no subject)",
+            "thread_summary": summary_snippet,
+            "generated_reply": reply_text.strip(),
+            "prompt": prompt_core,
+            "status": "pending_review",
+            "last_message_ts": last_ts,
+            "importance": classification.get("importance"),
+            "role": classification.get("role"),
+        }
+        self.reply_queue.enqueue_draft(draft)
+        print(f"[DraftQueue] ✏️ Created reply draft for {contact_email} ({thread_id})")
 
     # -----------------------------------------------------------------
     # OUTLOOK EMAILS
@@ -314,30 +327,26 @@ class McpSummariesProvider:
                 latest_msg.get("body", "")
             )
             last_ts = t.get("last_message_ts") or self._normalize_timestamp(latest_msg.get("date", ""))
-            signature = f"{contact.get('source')}:{thread_id}"
-            auto_replied = False
-            previous_reply_ts = self.auto_replied_threads.get(signature)
-            if previous_reply_ts and last_ts and previous_reply_ts >= last_ts:
-                auto_replied = True
-            if classification.get("importance", "").lower() == "high":
-                auto_replied = self._handle_high_priority_reply(
-                    contact.get("source"),
-                    contact.get("email"),
-                    t,
-                    latest_msg,
-                    summary
-                )
             thread_details[thread_id] = {
                 "importance": classification.get("importance"),
                 "importance_confidence": classification.get("importance_confidence"),
                 "role": classification.get("role"),
                 "role_confidence": classification.get("role_confidence"),
                 "last_message_ts": last_ts,
-                "auto_replied": auto_replied,
                 "last_message_id": t.get("last_message_id"),
                 "last_subject": t.get("last_subject"),
                 "last_body": t.get("last_body"),
             }
+
+            if self._should_generate_draft(classification):
+                self._enqueue_reply_draft(
+                    contact=contact,
+                    thread_id=thread_id,
+                    thread_summary=summary,
+                    classification=classification,
+                    latest_msg=latest_msg,
+                    last_ts=last_ts,
+                )
             if thread_id in existing_threads:
                 existing_threads.pop(thread_id, None)
 
@@ -353,7 +362,6 @@ class McpSummariesProvider:
                 "role": old_thread.get("role"),
                 "role_confidence": old_thread.get("role_confidence"),
                 "last_message_ts": old_thread.get("last_message_ts"),
-                "auto_replied": old_thread.get("auto_replied", False),
                 "last_message_id": old_thread.get("last_message_id"),
                 "last_subject": old_thread.get("last_subject"),
                 "last_body": old_thread.get("last_body"),
@@ -375,7 +383,6 @@ class McpSummariesProvider:
             thread_meta["role"] = details.get("role", thread_meta.get("role"))
             thread_meta["role_confidence"] = details.get("role_confidence", thread_meta.get("role_confidence"))
             thread_meta["last_message_ts"] = details.get("last_message_ts")
-            thread_meta["auto_replied"] = details.get("auto_replied", False)
             thread_meta["last_message_id"] = details.get("last_message_id")
             thread_meta["last_subject"] = details.get("last_subject")
             thread_meta["last_body"] = details.get("last_body")

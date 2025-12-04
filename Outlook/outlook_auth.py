@@ -24,8 +24,15 @@ class OutlookAuth:
 
         self.authority = f"https://login.microsoftonline.com/{self.tenant_id}"
         self.scope = [
-            "https://graph.microsoft.com/User.Read",
-            "https://graph.microsoft.com/Mail.Read",
+            "User.Read",
+            "Mail.Read",
+            "Mail.Send",
+            "Mail.ReadWrite",
+            "Mail.ReadWrite.All",
+            "Mail.Send.All",
+            "offline_access",
+            "openid",
+            "profile",
         ]
 
         # Initialize token cache (persistent)

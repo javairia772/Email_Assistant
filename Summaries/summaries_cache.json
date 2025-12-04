@@ -3,26 +3,26 @@
     "gmail": [
       "gmail:Tayyba Aftab <tayybat678@gmail.com>",
       "gmail:Groq <developer@groq.co>",
-      "gmail:Cursor Team <hi@mail.cursor.com>",
-      "gmail:OpenAI <noreply@email.openai.com>",
-      "gmail:Google <no-reply@accounts.google.com>",
       "gmail:noreply@email.openai.com",
+      "gmail:Google <no-reply@accounts.google.com>",
+      "gmail:Javaria <j66yya@gmail.com>",
+      "gmail:OpenAI <noreply@email.openai.com>",
       "gmail:Minahil Imran <minahilimran836@gmail.com>",
       "gmail:Nexus <n00503033@gmail.com>",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
-      "gmail:Javaria <j66yya@gmail.com>"
+      "gmail:Cursor Team <hi@mail.cursor.com>",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>"
     ],
     "outlook": [
-      "outlook:no-reply@microsoft.com",
       "outlook:nexus202540@outlook.com",
-      "outlook:minahilmy34@gmail.com",
-      "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:MSSecurity-noreply@microsoft.com",
-      "outlook:javariasaleem39@gmail.com",
-      "outlook:n00503033@gmail.com",
-      "outlook:m365dev@microsoft.com",
+      "outlook:MicrosoftRewards@infoemail.microsoft.com",
       "outlook:j66yya@gmail.com",
-      "outlook:MicrosoftRewards@infoemail.microsoft.com"
+      "outlook:n00503033@gmail.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com",
+      "outlook:javariasaleem39@gmail.com",
+      "outlook:minahilmy34@gmail.com",
+      "outlook:no-reply@microsoft.com",
+      "outlook:MSSecurity-noreply@microsoft.com",
+      "outlook:m365dev@microsoft.com"
     ]
   },
   "summaries": {
@@ -34,16 +34,29 @@
       "role_confidence": 0.4,
       "threads": [
         {
+          "id": "19ae7d2616142363",
+          "subject": "Security alert",
+          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
+          "summary": "Google sent a security alert regarding Email Assistant's access to a Google Account, prompting a review of account activity to ensure security. The account in question is n00503033@gmail.com, and the owner is advised to check their account and make changes as needed through their Google Account settings or by visiting https://myaccount.google.com/notifications.",
+          "role": "Industry",
+          "importance": "High",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:41+00:00",
+          "last_message_id": "19ae811f5bf4b75f",
+          "last_subject": "Security alert",
+          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
+        },
+        {
           "id": "19ad8c5d9d2cb891",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-12-01T07:17:15+00:00",
-          "auto_replied": false,
           "last_message_id": "19ad8c5d9d2cb891",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
@@ -52,13 +65,12 @@
           "id": "19ac444e4ca09fb5",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security measures. You're advised to check your account and make any necessary changes through your Google Account settings or by visiting the security notifications page.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security. You're advised to check your account and make any necessary changes to ensure your account is secure, with options to review security activity at https://myaccount.google.com/notifications.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-27T07:44:32+00:00",
-          "auto_replied": false,
           "last_message_id": "19ac44562c087fad",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
@@ -67,13 +79,12 @@
           "id": "19aba047363c619b",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security. You're advised to check your account and make any necessary changes through your Google Account settings or by visiting the security notifications page.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to a Google Account, prompting a review of account activity and security settings. The account holder, n00503033@gmail.com, is advised to check their account and make changes as needed. No meetings are scheduled, but the account holder should visit their Google Account and https://myaccount.google.com/notifications to review security activity.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-25T07:59:03+00:00",
-          "auto_replied": false,
           "last_message_id": "19aba05f63e650cc",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
@@ -82,13 +93,12 @@
           "id": "19ab4ba5f4592009",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding the Email Assistant's access to your Google Account data. If unauthorized, it may indicate someone else is trying to access your account. To review and secure your account, visit your Google Account settings or check security activity at https://myaccount.google.com/notifications.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at myaccount.google.com/notifications and adjust Email Assistant's access in your Google Account settings.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-24T07:18:22+00:00",
-          "auto_replied": false,
           "last_message_id": "19ab4ba5f4592009",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
@@ -97,50 +107,47 @@
           "id": "19ab0f6b47dfdd9e",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n005",
-          "summary": "Google sent a security alert regarding potential unauthorized access to your Google Account data through Google Drive for desktop. You're advised to review your account activity and secure your account, with options to manage access and view security notifications at myaccount.google.com.",
+          "summary": "Google sent a security alert regarding potential unauthorized access to your Google Account data through Google Drive for desktop. It's recommended to review your account activity and secure your account as soon as possible. You can check your account notifications at https://myaccount.google.com/notifications and make changes to Google Drive's access to your data in your Google Account settings.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-23T13:45:48+00:00",
-          "auto_replied": false,
           "last_message_id": "19ab0f6b47dfdd9e",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n00503033@gmail.com If you didn’t allow Google Drive for desktop access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Google Drive for desktop has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         },
         {
           "id": "19a5549fbae7fbdf",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check activity and make changes at any time through your Google Account or https://myaccount.google.com/notifications. No meeting is scheduled, but it's recommended to take a moment to secure your account.",
+          "subject": "",
+          "preview": "",
+          "summary": "",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-05T18:31:42+00:00",
-          "auto_replied": false,
           "last_message_id": "19a5549fbae7fbdf",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         },
         {
           "id": "19a5262c1accc1d8",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and make changes at any time through your Google Account settings or review security activity at https://myaccount.google.com/notifications.",
+          "subject": "",
+          "preview": "",
+          "summary": "",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-05T04:59:53+00:00",
-          "auto_replied": false,
           "last_message_id": "19a5262c1accc1d8",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         }
       ],
-      "summary": "Google sent a security alert about Email Assistant's access to your account, so it's a good idea to review your account activity and settings to ensure everything looks okay. You can check it out at myaccount.google.com/notifications. No meeting is scheduled, but take a minute to secure your account when you can.",
-      "timestamp": "2025-11-30T03:23:42.150649Z"
+      "summary": "Google sent a security alert about Email Assistant's access to our Google Account, prompting a review to ensure no unauthorized access. The account owner should check their security settings at myaccount.google.com/notifications and make any necessary changes.",
+      "timestamp": "2025-12-04T07:08:07.516022Z"
     },
     "gmail:Groq <developer@groq.co>": {
       "id": "gmail:Groq <developer@groq.co>",
@@ -261,19 +268,46 @@
       "email": "Tayyba Aftab <tayybat678@gmail.com>",
       "source": "gmail",
       "role": "General External",
-      "role_confidence": 0.933,
+      "role_confidence": 0.85,
       "threads": [
+        {
+          "id": "19ae7ff6192dce3b",
+          "subject": "Request to Organize Free Northern Areas Trip for Students",
+          "preview": "Dear Usman Ghani, I hope you are doing well. Our students have been showing great progress and dedic",
+          "summary": "Tayyba Aftab requested Usman Ghani to organize a free trip to the Northern Areas for students as a token of appreciation for their progress. Usman Ghani agreed to handle all arrangements, including travel, accommodation, and safety measures, to ensure the trip is fully sponsored. He will share the plan and dates once finalized, aiming to make it a memorable experience for the students.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-04T07:16:42+00:00",
+          "last_message_id": "19ae83868f2604cc",
+          "last_subject": "",
+          "last_body": "I appreciate your suggestion, Tayyba Aftab 🙏, to organize a free trip to the Northern Areas for our students as a token of appreciation for their progress 📚. I am happy to handle all the arrangements, including travel 🚐, accommodation 🏨, and safety measures 🛡️, to ensure the trip is fully sponsored 🎁. I will share the plan and dates once everything is finalized 📅, and I am looking forward to making this a memorable experience for our students 😊."
+        },
+        {
+          "id": "19a9bf536f5d740e",
+          "subject": "Proposal for Collaboration Opportunity",
+          "preview": "Dear Dr. Usman, I hope this email finds you well. My name is [Your Name], and I am [Your Position] a",
+          "summary": "Ali from [Company Name] and Dr. Usman Ghani discussed a potential collaboration between their organizations, with a meeting scheduled for Friday at 10 am. The meeting went well, and they will consider collaboration opportunities soon.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-04T06:09:48+00:00",
+          "last_message_id": "19ae7fb58041c488",
+          "last_subject": "Re: Proposal for Collaboration Opportunity",
+          "last_body": "Thanks Usman ghani The meeting went really well We will think about collaboration soon On Mon, 1 Dec 2025, 3:02 pm Tayyba Aftab, wrote: > Ok sure Ali lets have a meeting at 10 am at friday > Thanks > > On Mon, 1 Dec 2025, 2:59 pm Tayyba Aftab, wrote: > >> >> >> Dear Dr. Usman Ghani, >> >> Thank you for your kind response. I truly appreciate your openness to >> explore potential collaboration opportunities. >> >> I will prepare and share the detailed scope and objectives shortly. >> Meanwhile, here are a few time slots that work well for me for a meeting: >> >> Friday at 10 am >> >> Please let me know which of these suits you best, and I will gladly >> confirm. >> >> Thank you once again for your time and consideration. I look forward to >> discussing this further. >> >> Warm regards, >> Ali >> >> On Thu, 27 Nov 2025, 1:17 pm Nexus, wrote: >> >>> Dear Ali, >>> >>> Thank you for your email. I appreciate your interest in collaborating >>> and the introduction to your organization’s work. >>> >>> Your areas of expertise sound relevant, and I am open to exploring how >>> we might work together. Please feel free to share more details regarding >>> your proposed scope or objectives. Additionally, you may suggest a few >>> available time slots for a meeting, and I will confirm a suitable option >>> from my end. >>> >>> Thank you once again for reaching out. I look forward to learning more. >>> >>> Warm regards, >>> *Dr. Usman Ghani* >>> >>> On Thu, Nov 27, 2025 at 12:50 PM Nexus wrote: >>> >>>> Dear Ali, >>>> >>>> Thank you for reaching out and for your interest in exploring a >>>> potential collaboration. I appreciate the concise overview of your work and >>>> the initiative you have taken to connect. >>>> >>>> Your proposal sounds promising, and I would be glad to learn more about >>>> the specific areas where our organizations could collaborate. Please share >>>> a few suggested time slots for a brief meeting or call in the coming days, >>>> and I will do my best to accommodate one that fits both our schedules. >>>> >>>> Looking forward to our discussion. >>>> >>>> Best regards, >>>> *Dr. Usman Ghani* >>>> >>>> On Wed, Nov 19, 2025 at 4:52 PM Tayyba Aftab >>>> wrote: >>>> >>>>> Dear Dr. Usman, >>>>> >>>>> I hope this email finds you well. My name is [Your Name], and I am >>>>> [Your Position] at [Company Name], based in [Country]. We specialize in >>>>> [brief description of your company’s domain or expertise]. >>>>> >>>>> I am reaching out to explore potential opportunities for collaboration >>>>> between [Company Name] and [Director’s Organization]. We believe that >>>>> combining our expertise in [specific area] with your ongoing projects could >>>>> lead to mutually beneficial outcomes. >>>>> >>>>> We would greatly appreciate the opportunity to discuss this in more >>>>> detail at a time convenient for you. Please let me know if a meeting or >>>>> call would be suitable, and we will be happy to accommodate your schedule. >>>>> >>>>> Thank you very much for your time and consideration. I look forward to >>>>> your response. >>>>> >>>>> Best regards, >>>>> >>>>> Ali >>>>> >>>>"
+        },
         {
           "id": "19ad95ec356da4b0",
           "subject": "IDEAL LABS Consultant",
           "preview": "Dear Dr. Usman Ghani, I hope you are doing well. I wanted to ask if you could please share some insi",
-          "summary": "Summary unavailable due to model error.",
+          "summary": "Tayyba Aftab reached out to Dr. Usman Ghani for insights on Ideal Labs' success and notable achievements to align her work with their vision. She's also expressed interest in an internship, but no meeting or decision has been made yet.",
           "role": "General External",
           "importance": "Low",
           "importance_confidence": 0.2,
           "role_confidence": 1.0,
           "last_message_ts": "2025-12-01T10:27:57+00:00",
-          "auto_replied": false,
           "last_message_id": "19ad9749d4296281",
           "last_subject": "Re: IDEAL LABS Consultant",
           "last_body": "Kindly i wanted to do internship, please inform me Kindly regards Thanks On Mon, 1 Dec 2025, 3:04 pm Tayyba Aftab, wrote: > Dear Dr. Usman Ghani, > > I hope you are doing well. I wanted to ask if you could please share some > insights about Ideal Labs—specifically, how successful the organization has > been so far and any notable achievements or milestones you consider > significant. > > Understanding this will help me better align my work and expectations with > the vision and impact of Ideal Labs. > > Thank you for your time, and I appreciate any details you can provide. > > Warm regards, > Ali >"
@@ -282,55 +316,75 @@
           "id": "19ad973bcf96cb26",
           "subject": "Coordination",
           "preview": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me B",
-          "summary": "Summary unavailable due to model error.",
+          "summary": "Tayyba Aftab reached out to Usman Ghnai to update him on her relocation to London, also taking a moment to thank him for his guidance.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.4,
           "role_confidence": 0.8,
           "last_message_ts": "2025-12-01T10:26:59+00:00",
-          "auto_replied": false,
           "last_message_id": "19ad973bcf96cb26",
           "last_subject": "Coordination",
           "last_body": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me Best wishes"
-        },
-        {
-          "id": "19a9bf536f5d740e",
-          "subject": "Proposal for Collaboration Opportunity",
-          "preview": "Dear Dr. Usman, I hope this email finds you well. My name is [Your Name], and I am [Your Position] a",
-          "summary": "Summary unavailable due to model error.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 1.0,
-          "last_message_ts": "2025-12-01T10:02:46+00:00",
-          "auto_replied": false,
-          "last_message_id": "19ad95d900a8f00e",
-          "last_subject": "Re: Proposal for Collaboration Opportunity",
-          "last_body": "Ok sure Ali lets have a meeting at 10 am at friday Thanks On Mon, 1 Dec 2025, 2:59 pm Tayyba Aftab, wrote: > > > Dear Dr. Usman Ghani, > > Thank you for your kind response. I truly appreciate your openness to > explore potential collaboration opportunities. > > I will prepare and share the detailed scope and objectives shortly. > Meanwhile, here are a few time slots that work well for me for a meeting: > > Friday at 10 am > > Please let me know which of these suits you best, and I will gladly > confirm. > > Thank you once again for your time and consideration. I look forward to > discussing this further. > > Warm regards, > Ali > > On Thu, 27 Nov 2025, 1:17 pm Nexus, wrote: > >> Dear Ali, >> >> Thank you for your email. I appreciate your interest in collaborating and >> the introduction to your organization’s work. >> >> Your areas of expertise sound relevant, and I am open to exploring how we >> might work together. Please feel free to share more details regarding your >> proposed scope or objectives. Additionally, you may suggest a few available >> time slots for a meeting, and I will confirm a suitable option from my end. >> >> Thank you once again for reaching out. I look forward to learning more. >> >> Warm regards, >> *Dr. Usman Ghani* >> >> On Thu, Nov 27, 2025 at 12:50 PM Nexus wrote: >> >>> Dear Ali, >>> >>> Thank you for reaching out and for your interest in exploring a >>> potential collaboration. I appreciate the concise overview of your work and >>> the initiative you have taken to connect. >>> >>> Your proposal sounds promising, and I would be glad to learn more about >>> the specific areas where our organizations could collaborate. Please share >>> a few suggested time slots for a brief meeting or call in the coming days, >>> and I will do my best to accommodate one that fits both our schedules. >>> >>> Looking forward to our discussion. >>> >>> Best regards, >>> *Dr. Usman Ghani* >>> >>> On Wed, Nov 19, 2025 at 4:52 PM Tayyba Aftab >>> wrote: >>> >>>> Dear Dr. Usman, >>>> >>>> I hope this email finds you well. My name is [Your Name], and I am >>>> [Your Position] at [Company Name], based in [Country]. We specialize in >>>> [brief description of your company’s domain or expertise]. >>>> >>>> I am reaching out to explore potential opportunities for collaboration >>>> between [Company Name] and [Director’s Organization]. We believe that >>>> combining our expertise in [specific area] with your ongoing projects could >>>> lead to mutually beneficial outcomes. >>>> >>>> We would greatly appreciate the opportunity to discuss this in more >>>> detail at a time convenient for you. Please let me know if a meeting or >>>> call would be suitable, and we will be happy to accommodate your schedule. >>>> >>>> Thank you very much for your time and consideration. I look forward to >>>> your response. >>>> >>>> Best regards, >>>> >>>> Ali >>>> >>>"
         }
       ],
-      "summary": "Unfortunately, it looks like we've hit a roadblock - all email threads are unavailable due to a model error, so there's nothing to summarize just yet. Let's try to retrieve the information again or reach out to the contacts for an update. I'll keep an eye on it and brief you as soon as we have something.",
-      "timestamp": "2025-11-30T06:34:58.814615Z"
+      "summary": "We've got a few updates from Dr. Usman Ghani - he's organizing a sponsored trip to the Northern Areas for students and discussing a potential collaboration with Ali from [Company Name]. Tayyba Aftab has been in touch with him for guidance and is interested in an internship, and also recently updated him on her relocation to London. Next steps include finalizing the trip plan and considering collaboration opportunities.",
+      "timestamp": "2025-12-04T07:17:02.005348Z"
     },
     "gmail:Javaria Saleem <javariasaleem39@gmail.com>": {
       "id": "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
       "email": "Javaria Saleem <javariasaleem39@gmail.com>",
       "source": "gmail",
       "role": "General External",
-      "role_confidence": 0.0,
+      "role_confidence": 1.0,
       "threads": [
+        {
+          "id": "19ae7eeb03ef8999",
+          "subject": "Follow-Up: Equipment Issue in Chemistry Lab",
+          "preview": "*Dear Dr. Usman,* Thank you for your prompt response regarding the spectrometer issue. To provide fu",
+          "summary": "Dawood Saleem, a research assistant in the Chemistry Department, is experiencing issues with the spectrometer in the lab, which is producing inconsistent readings and making unusual noises. He's seeking guidance from Dr. Usman on the cause of the problem, which occurred on December 3, 2025. Dawood is willing to provide additional information to help resolve the issue and ensure the lab equipment functions reliably.",
+          "role": "General External",
+          "importance": "Low",
+          "importance_confidence": 0.2,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-03T02:01:08+00:00",
+          "auto_replied": false,
+          "last_message_id": "19ae7eeb03ef8999",
+          "last_subject": "Follow-Up: Equipment Issue in Chemistry Lab",
+          "last_body": "*Dear Dr. Usman,* Thank you for your prompt response regarding the spectrometer issue. To provide further details, on *December 3, 2025*, while attempting calibration, I observed that the spectrometer’s readings were inconsistent and fluctuated despite following the standard procedure. I also noticed a slight unusual noise from the device during operation. This seems to have affected the measurements of the experiments conducted on that day. Could you please advise why this issue may have occurred? I want to ensure that such problems can be prevented in the future and that the lab equipment functions reliably for ongoing experiments. I am happy to provide additional observations or assist the technical team in any way required. Thank you again for your guidance. Best regards, *Dawood Saleem* Research Assistant, Chemistry Department"
+        },
+        {
+          "id": "19ae7dd12bac185b",
+          "subject": "Reporting Equipment Issue in Chemistry Lab",
+          "preview": "*Dear Dr. Usman,* I hope this message finds you well. I am writing to report an issue observed in th",
+          "summary": "Javaria Saleem reported a spectrometer issue in the Chemistry Lab to Dr. Usman, which affected ongoing experiments. The technical team will inspect and perform maintenance on December 4, 2025. Javaria has been asked to pause critical experiments and document observations for the team's reference. Dr. Usman will oversee the resolution and arrange for special accommodations if needed.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-03T01:58:10+00:00",
+          "auto_replied": false,
+          "last_message_id": "19ae7ebcb9660f13",
+          "last_subject": "Re: Reporting Equipment Issue in Chemistry Lab",
+          "last_body": "*Dear Dr. Usman,* I hope this message finds you well. I am writing to report an issue observed in the spectrometer in the Chemistry Lab. On *December 3, 2025*, I noticed that the spectrometer was not calibrating properly, which affected the accuracy of ongoing measurements. This has impacted several experiments scheduled for this week. I kindly request your guidance on the next steps to resolve this issue. If required, I am available to provide further details or assist with troubleshooting at your convenience. Thank you for your attention to this matter. I look forward to your advice. Best regards, *Dawood Saleem* Research Assistant, Chemistry Department >"
+        },
         {
           "id": "19a48a499fc96b43",
           "subject": "",
-          "preview": "Heyyyyyyyy",
-          "summary": "Javaria Saleem initiated a conversation, although the content is unclear. No meeting times, decisions, or next steps were discussed. The email appears to be incomplete or a test message. The thread lacks substance, making it difficult to determine the main topic or purpose. Further clarification is needed from Javaria.",
+          "preview": "",
+          "summary": "",
           "role": "General External",
           "importance": "Medium",
-          "importance_confidence": 0.5
+          "importance_confidence": 0.5,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
         }
       ],
-      "summary": "Javaria Saleem reached out, but the email was unclear and lacked substance. It's unclear what she's trying to discuss or what the purpose is. We'll need her to provide more clarification on what she's looking for. No decisions or next steps were mentioned. I'll wait for her to follow up with more information. We can reassess once we hear back from her.",
-      "timestamp": "2025-11-09T06:39:23.414623Z"
+      "summary": "There's an issue with the spectrometer in the Chemistry Lab that's causing inconsistent readings and noises, which was reported by Dawood and Javaria Saleem. Dr. Usman is overseeing the resolution and the technical team is set to inspect and perform maintenance on December 4. Experiments have been paused and Javaria is documenting observations to aid in the repair.",
+      "timestamp": "2025-12-04T06:04:52.002417Z"
     },
     "gmail:Minahil Imran <minahilimran836@gmail.com>": {
       "id": "gmail:Minahil Imran <minahilimran836@gmail.com>",
@@ -595,107 +649,176 @@
       "role_confidence": 0.4,
       "threads": [
         {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACO6IcbAAAAA==",
+          "subject": "Microsoft account security info was added",
+          "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
+          "summary": "The Microsoft account team notified us that new security info was added to the jay@outlook.com account, specifically a Gmail address. If this change wasn't made by the account owner, it may indicate a malicious user has gained access. The account owner should review recent activity to secure the account. No meeting is scheduled, but the owner can opt out or change security notification settings via a provided link.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.435247+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACO6IcbAAAAA==",
+          "last_subject": "Microsoft account security info was added",
+          "last_body": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Microsoft account \nja**y@outlook.com\n:\nj66yya@gmail.com\nIf this was you, then you can safely ignore this email.\nIf this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.\nReview recent activity\nTo opt out or change where you receive security notifications, \nclick here\n.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+        },
+        {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
           "subject": "New app(s) connected to your Microsoft account",
           "preview": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft ",
-          "summary": "The Microsoft account team notified us that a new app, OutlookIntegration, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account. The team provided options to manage apps, opt out, or change security notification settings.",
+          "summary": "Microsoft's account security team notified us that a new app, OutlookIntegration, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account settings. No meeting is scheduled, but the account owner should review and manage app permissions to ensure security.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.2
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.474851+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
+          "last_subject": "New app(s) connected to your Microsoft account",
+          "last_body": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft account \nja**y@outlook.com\n.\nIf you didn't grant this access, please remove the app(s) from your account.\nManage your apps\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "A new sign-in was detected for the ja**y@outlook.com Microsoft account from Pakistan on October 25, 2025. The account team sent a notification with details, including the IP address and service used. If the sign-in wasn't authorized, it may indicate a security issue. The account owner can review account activity and update security information. No meetings are scheduled, but the owner should take action to secure their account. Next steps include reviewing and changing security information if necessary.",
+          "summary": "Microsoft's account security team detected a new sign-in from Pakistan on October 25th, prompting a notification to be sent to ja**y@outlook.com. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting or follow-up is scheduled, but the owner can opt out or change their notification preferences.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.486150+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:40 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "A new sign-in was detected for the Microsoft account jay@outlook.com from Pakistan on October 25, 2025. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. If this wasn't the account owner, it may indicate a security issue. The account owner should review their account activity and consider changing their security information. No meeting is scheduled, but the owner should take immediate action to secure their account.",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification with details, including the IP address and service used. The email suggests reviewing account activity and changing security information if the sign-in was not authorized. No meeting or action is required unless the account owner is unsure about the sign-in.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.489416+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:38 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting or follow-up is scheduled, but the owner can opt out of or modify security notifications as needed.",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review account activity and update security information if the sign-in was not legitimate. No meetings are scheduled, but the owner can opt out or change security notification settings as needed.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.493054+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:32 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and alerted the account owner to review their activity. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. The owner is advised to verify if the sign-in was legitimate or potential malicious activity. No meeting is scheduled, but the owner should review and update their security information as needed.",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity and security information. No meeting is scheduled, but the account owner should verify if the sign-in was legitimate and consider reviewing and changing their security settings.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.498142+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:23 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "A new sign-in was detected for the Microsoft account jay@outlook.com from Pakistan on October 25, 2025. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. Microsoft sent a notification to review account activity and change security information if necessary. No meeting is scheduled, but the account owner should review their security settings to ensure no malicious access has occurred. The Microsoft account team provided options to review account activity, opt out, or change security notification settings.",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account holder is advised to review their account activity and update their security information if the sign-in was not authorized. No meeting or follow-up is scheduled, but the account owner can opt out or change their security notification settings as needed.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.502480+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:21 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to your account jay@outlook.com from Pakistan on October 25th. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. You should review the account activity to ensure it was a legitimate access, and consider changing your security information if necessary. No meeting or follow-up is scheduled.",
+          "summary": "A new sign-in was detected for the ja**y@outlook.com Microsoft account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting is scheduled, but the owner should take immediate action to secure their account.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.506156+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 2:30 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "A security alert was triggered for the Microsoft account jay@outlook.com due to a new sign-in from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. To address this, the account owner should review their account activity and consider updating their security information if the sign-in was not legitimate. No meetings are scheduled, but the owner should take immediate action to secure their account.",
+          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. If the sign-in wasn't authorized, a malicious user may have access to the account's security information. No meeting is scheduled, but the account owner should review and potentially change their security settings.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.510130+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 12:44 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. No meeting is scheduled, but the account owner is advised to review their account activity and update their security information if necessary.",
+          "summary": "A new sign-in was detected for the ja**y@outlook.com Microsoft account from Pakistan on October 25, 2025. The Microsoft account team sent a notification with details, including the IP address and service used. If the sign-in wasn't authorized, it may indicate a malicious user has access to the account. The account holder can review and change their security information or opt out of notifications. Next steps include verifying the sign-in and taking necessary security measures.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.516111+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 12:28 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==",
           "subject": "New sign-in detected for your Microsoft account",
           "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity. The sign-in was via the IDEAL Labs Email Fetcher service. If the account owner didn't initiate this sign-in, their security may be compromised. The owner can review and change their security information, and also opt out or change security notification settings. No meeting is scheduled, but the owner should take action to secure their account.",
+          "summary": "Microsoft detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. If the account owner didn't initiate this, it may indicate a malicious user has access to their security information. No meeting is scheduled, but the account owner should review and potentially update their security settings. Next steps include reviewing account activity and considering opting out of security notifications.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.520021+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==",
+          "last_subject": "New sign-in detected for your Microsoft account",
+          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 12:21 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         },
         {
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==",
           "subject": "New app(s) connected to your Microsoft account",
           "preview": "Microsoft account\nNew app(s) have access to your data\nIDEAL Labs Email Fetcher connected to the Micr",
-          "summary": "A new app, IDEAL Labs Email Fetcher, has been connected to the ja**y@outlook.com Microsoft account, potentially granting access to account data. The account owner is advised to review and remove the app if the access was not intentionally granted. No meetings are scheduled, but the account owner can manage apps and modify security notification settings as needed.",
+          "summary": "Microsoft's account security team notified us that a new app, IDEAL Labs Email Fetcher, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account. No meeting is scheduled, but the account owner should review and manage app access as needed.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.2
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T06:34:44.522511+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==",
+          "last_subject": "New app(s) connected to your Microsoft account",
+          "last_body": "Microsoft account\nNew app(s) have access to your data\nIDEAL Labs Email Fetcher connected to the Microsoft account \nja**y@outlook.com\n.\nIf you didn't grant this access, please remove the app(s) from your account.\nManage your apps\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         }
       ],
-      "summary": "There's a potential security issue with the jay@outlook.com Microsoft account due to a new sign-in from Pakistan on October 25. The account owner should review their activity and update security info if necessary, as a new app, IDEAL Labs Email Fetcher, was also connected to the account. No meetings are scheduled, but immediate action is recommended to secure the account.",
-      "timestamp": "2025-11-24T04:03:47.655879Z"
+      "summary": "There were several security notifications sent to jay@outlook.com regarding a new sign-in from Pakistan on October 25, 2025, and some potential security changes, including a new app connection and a Gmail address addition. The account owner should review recent activity and update their security info if necessary, but no meetings are scheduled.",
+      "timestamp": "2025-12-04T06:34:45.057729Z"
     },
     "gmail:Cursor Team <hi@mail.cursor.com>": {
       "id": "gmail:Cursor Team <hi@mail.cursor.com>",
@@ -705,10 +828,25 @@
       "role_confidence": 0.4,
       "threads": [
         {
+          "id": "19ade62e33c858a9",
+          "subject": "Using Cursor's Agent",
+          "preview": "Cursor Cursor Agent ( https://cursor.com/docs/agent/overview ) can take on complex coding tasks, suc",
+          "summary": "The Cursor Team shared tips on using their Agent tool, which can handle complex coding tasks, and provided documentation links for features like context symbols, checkpoints, and command execution. The team outlined how to get the most out of Agent, including using \"@\" for specific context and defining rules for system-level instructions. No meeting is scheduled, but the information is available for reference on the Cursor website.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-02T09:26:52+00:00",
+          "auto_replied": false,
+          "last_message_id": "19ade62e33c858a9",
+          "last_subject": "Using Cursor's Agent",
+          "last_body": "Cursor Cursor Agent ( https://cursor.com/docs/agent/overview ) can take on complex coding tasks, such as creating features or fixing bugs end-to-end. You can use it in the sidepane with Cmd/Ctrl-I. To get the most out of Agent, here are some tips: * Use “@” in your prompt ( https://cursor.com/docs/context/symbols#definitions ) to pull in specific context, such as specific files, websites, and git branches. * If you want to jump backwards in the Agent’s history, you can use checkpoints ( https://cursor.com/docs/agent/chat/checkpoints ) to revert changes. * Agent can run shell commands ( https://cursor.com/docs/agent/terminal ) as it works. You can also define command execution ( https://cursor.com/docs/agent/terminal#command-execution-modes ) rules. * With rules ( https://cursor.com/docs/context/rules#rules ) and /commands ( https://cursor.com/docs/agent/chat/commands ), you can configure system-level instructions and reusable workflows. * With cloud agents ( https://cursor.com/docs/cloud-agent ), you can spawn asynchronous agents that edit and run code in a remote environment. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBAPSntBzzp7QcAZreYtiKChCS8UINgrjOHg== )"
+        },
+        {
           "id": "19ad93c823e44e2e",
           "subject": "Welcome to Cursor!",
           "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
-          "summary": "The Cursor Team sent an introductory email with a quickstart guide to help get started with their platform, covering features like Tab, Inline Edit, and Agent. They provided links to detailed documentation for further questions. No meeting or follow-up is required, but resources are available for reference.",
+          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help get started with their tool, covering features like Tab, Inline Edit, and Agent. The guide is available on their website, along with more in-depth documentation for additional questions. No meeting or follow-up is scheduled, but the team can be referenced for further support.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.2,
@@ -723,7 +861,7 @@
           "id": "19abf2720c60ef2b",
           "subject": "Using Cursor as a team",
           "preview": "Cursor We use Cursor as a team, as do thousands of other organizations from NVIDIA to Figma. A few w",
-          "summary": "The Cursor Team reached out to discuss using their platform for team collaboration, highlighting integrations with Slack and Linear, as well as their Bugbot code review product and Team Rules feature to ensure consistency. They provided links to these tools for further information.",
+          "summary": "The Cursor Team reached out to discuss using their platform for team collaboration, similar to other organizations like NVIDIA and Figma. They highlighted integrations with Slack and Linear, as well as their Bugbot code review product and Team Rules feature. No meeting was scheduled, but the team can explore these features to improve their workflow. Next steps involve reviewing the provided links to learn more about implementation. The Cursor Team provided resources for further information.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -738,7 +876,7 @@
           "id": "19ab50600c92f173",
           "subject": "Welcome to Cursor!",
           "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
-          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help get started with their platform, covering features like Tab, Inline Edit, and Agent. The guide is available at cursor.com/docs, with more in-depth information in their docs section. No meeting or follow-up is scheduled, but the team is available for questions.",
+          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help us get started with their platform, covering Tab, Inline Edit, and Agent features. They also provided links to more in-depth documentation for additional questions. No meetings or next steps were discussed, just an introductory overview of their tools and resources.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.2,
@@ -750,8 +888,8 @@
           "last_body": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor.com/docs/get-started/quickstart ). It will walk through how to use Tab ( https://cursor.com/docs/tab/overview ), Inline Edit ( https://cursor.com/docs/inline-edit/overview ), and Agent ( https://cursor.com/docs/agent/overview ). If you have more questions, our docs ( https://cursor.com/docs ) go into greater depth. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBANuBjhzagY4cAZq02ih_MUkzS1_99YkBNw== )"
         }
       ],
-      "summary": "The Cursor Team has been in touch to introduce their platform for team collaboration, highlighting features like Tab, Inline Edit, and Agent, as well as integrations with Slack and Linear. They've provided a quickstart guide and links to detailed documentation for reference. The team is available for questions, but no meeting or follow-up is scheduled at this time.",
-      "timestamp": "2025-11-30T05:45:37.721987Z"
+      "summary": "The Cursor Team has been in touch, sharing tips and resources on how to use their Agent tool and platform for team collaboration. They've provided quickstart guides, documentation, and links to features like context symbols and code review. We can review the resources at our leisure, with no meetings scheduled, and explore integrations with tools like Slack and Linear to improve our workflow.",
+      "timestamp": "2025-12-03T01:31:52.188415Z"
     },
     "gmail:noreply@email.openai.com": {
       "id": "gmail:noreply@email.openai.com",
@@ -909,21 +1047,20 @@
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEUAAAAucVXBXj8pECCXiUT6z7IOAACOrZDDgAAAA==",
           "subject": "Important update to your Microsoft Rewards account",
           "preview": "Watch for an email about this next month\n͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ",
-          "summary": "Microsoft Rewards is updating its program starting January 2026, introducing three new participation levels - Member, Silver, and Gold - with varying benefits and daily search point limits. No action is required, but users can expect new opportunities to earn bonus points and potential future changes to further enhance the program.",
+          "summary": "Microsoft Rewards is updating its program in January 2026, introducing three new participation levels - Member, Silver, and Gold - which will offer new ways to earn points and updated daily search point limits. No action is required, but the program may see further changes to enhance benefits.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.4,
           "role_confidence": 0.4,
-          "last_message_ts": "2025-11-30T06:35:35.064971+00:00",
-          "auto_replied": false,
+          "last_message_ts": "2025-12-04T06:34:44.449076+00:00",
           "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEUAAAAucVXBXj8pECCXiUT6z7IOAACOrZDDgAAAA==",
           "last_subject": "Important update to your Microsoft Rewards account",
           "last_body": "Watch for an email about this next month\n͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   \n                                                            \nView as a webpage \n \n \n \n \nKey updates to Microsoft Rewards \n \n \nStarting in January 2026, we will be making updates to the Rewards program.\nHere's what you need to know:\nWe're announcing 3 new participation levels with a range of benefits that allow you to earn points in new ways: Member, Silver, and Gold.\nIn order to accommodate these changes, the daily search point limit will update by level. They will update to Member (15), Silver (30), and Gold (60). There will be new opportunities to earn additional bonus points.\nAs we evaluate the program, we might make more changes to further the benefits of the program. There's no action required on your part.\nVisit dashboard\n \n \n \nPrivacy Statement\n \nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-11-30T06:35:37.223353Z"
+      "summary": "Microsoft Rewards is getting an update in January 2026, adding new participation levels and ways to earn points. The changes include three tiers - Member, Silver, and Gold - with updated daily search point limits. No action is needed from our end, but we can expect potential future changes to enhance benefits.",
+      "timestamp": "2025-12-04T06:34:45.474127Z"
     }
   },
-  "last_updated": "2025-11-30T06:35:37.269911+00:00"
+  "last_updated": "2025-12-04T07:19:28.136136+00:00"
 }

@@ -24,6 +24,34 @@
     .thread-meta { color: #6b7280; font-size: 14px; }
     .thread-summary { margin-top: 12px; line-height: 1.5; color: #1f2937; white-space: pre-wrap; }
     .empty-state { text-align: center; margin-top: 40px; color: #6b7280; }
+    .reply-section { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e5e7eb; }
+    .reply-btn { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+    .reply-btn:hover { background: #1e40af; }
+    .reply-btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .reply-form { margin-top: 12px; display: none; }
+    .reply-form.active { display: block; }
+    .prompt-input { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; margin-bottom: 10px; }
+    .prompt-input:focus { outline: none; border-color: #2563eb; }
+    .generated-reply { background: #f3f4f6; padding: 12px; border-radius: 6px; margin-top: 10px; margin-bottom: 10px; white-space: pre-wrap; line-height: 1.5; color: #1f2937; }
+    .send-btn { background: #10b981; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; margin-left: 8px; }
+    .send-btn:hover { background: #059669; }
+    .send-btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .loading { color: #6b7280; font-size: 14px; margin-top: 8px; }
+    .error { color: #dc2626; font-size: 14px; margin-top: 8px; }
+    .success { color: #10b981; font-size: 14px; margin-top: 8px; }
+    .drafts-list { margin-top: 26px; }
+    .draft-card { background: #fff; border-radius: 10px; padding: 18px 20px; margin-bottom: 18px; box-shadow: 0 1px 6px #0001; }
+    .draft-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .draft-title { font-size: 16px; font-weight: 600; margin: 0; color: #0f172a; }
+    .draft-meta { font-size: 14px; color: #6b7280; }
+    .draft-textarea { width: 100%; min-height: 140px; margin-top: 12px; border: 1px solid #d1d5db; border-radius: 8px; padding: 12px; font-size: 14px; line-height: 1.5; }
+    .draft-textarea:focus { border-color: #2563eb; outline: none; }
+    .draft-actions { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .draft-actions button { border: none; border-radius: 6px; padding: 8px 14px; font-size: 14px; cursor: pointer; }
+    .draft-actions .primary { background: #10b981; color: #fff; }
+    .draft-actions .secondary { background: #2563eb; color: #fff; }
+    .draft-actions .danger { background: #ef4444; color: #fff; }
+    .history-list { margin-top: 8px; font-size: 13px; color: #6b7280; }
   </style>
 </head>
 <body>
@@ -47,6 +75,59 @@
       </div>
     </section>
 
+    {% if pending_drafts %}
+    <section class="drafts-list">
+      <h2>Pending Reply Drafts ({{ pending_drafts|length }})</h2>
+      {% for draft in pending_drafts %}
+        <article class="draft-card" id="draft-card-{{ draft.id }}">
+          <div class="draft-header">
+            <p class="draft-title">{{ draft.subject }}</p>
+            <div class="draft-meta">
+              Created: {{ draft.created_at_display or "—" }}
+              {% if draft.importance %} • {{ draft.importance }}{% endif %}
+              {% if draft.role %} • {{ draft.role }}{% endif %}
+            </div>
+          </div>
+          <textarea class="draft-textarea" id="draft-text-{{ draft.id }}">{{ draft.reply }}</textarea>
+          <div class="draft-actions">
+            <button class="secondary" onclick="saveDraft('{{ draft.id }}')">Save Changes</button>
+            <button class="primary" onclick="sendDraft('{{ draft.id }}')">Send</button>
+            <button class="danger" onclick="rejectDraft('{{ draft.id }}')">Reject</button>
+          </div>
+          <div id="draft-status-{{ draft.id }}" class="loading" style="display:none;"></div>
+          {% if draft.history %}
+            <div class="history-list">
+              <strong>History:</strong>
+              <ul>
+                {% for event in draft.history %}
+                  <li>{{ event.timestamp }} — {{ event.event }}{% if event.note %}: {{ event.note }}{% endif %}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if history_drafts %}
+    <section class="drafts-list">
+      <h2>Draft History</h2>
+      {% for draft in history_drafts %}
+        <article class="draft-card">
+          <div class="draft-header">
+            <p class="draft-title">{{ draft.subject }} <span style="font-size:13px; color:#6b7280;">({{ draft.status|capitalize }})</span></p>
+            <div class="draft-meta">Updated: {{ draft.updated_at_display or draft.created_at_display }}</div>
+          </div>
+          <div class="history-list">
+            <strong>Reply:</strong>
+            <div style="white-space: pre-wrap; margin-top:6px;">{{ draft.reply }}</div>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
     <section class="threads-list">
       <h2>Threads ({{ threads|length }})</h2>
       {% if threads %}
@@ -62,6 +143,30 @@
               </div>
             </div>
             <div class="thread-summary">{{ thread.summary or "No summary available." }}</div>
+            <div class="reply-section">
+              <button class="reply-btn" onclick="toggleReplyForm('{{ thread.id }}', '{{ contact.id }}', '{{ thread.subject }}')">
+                Reply
+              </button>
+              <div class="reply-form" id="reply-form-{{ thread.id }}">
+                <input 
+                  type="text" 
+                  class="prompt-input" 
+                  id="prompt-{{ thread.id }}" 
+                  placeholder="Enter your instructions for the reply (e.g., 'Be brief and professional', 'Ask for more details', etc.)"
+                  maxlength="200"
+                />
+                <button class="reply-btn" onclick="generateReply('{{ thread.id }}', '{{ contact.id }}', '{{ thread.subject }}')">
+                  Generate Reply
+                </button>
+                <div id="loading-{{ thread.id }}" class="loading" style="display: none;">Generating reply...</div>
+                <div id="error-{{ thread.id }}" class="error" style="display: none;"></div>
+                <div id="reply-{{ thread.id }}" class="generated-reply" style="display: none;"></div>
+                <button class="send-btn" id="send-btn-{{ thread.id }}" onclick="sendReply('{{ thread.id }}', '{{ contact.id }}', '{{ thread.subject }}')" style="display: none;">
+                  Send Reply
+                </button>
+                <div id="send-status-{{ thread.id }}" style="display: none;"></div>
+              </div>
+            </div>
           </article>
         {% endfor %}
       {% else %}
@@ -69,6 +174,234 @@
       {% endif %}
     </section>
   </div>
+
+  <script>
+    const contactId = '{{ contact.id }}';
+    
+    function toggleReplyForm(threadId, contactId, subject) {
+      const form = document.getElementById(`reply-form-${threadId}`);
+      form.classList.toggle('active');
+      if (!form.classList.contains('active')) {
+        // Reset form when hiding
+        document.getElementById(`prompt-${threadId}`).value = '';
+        document.getElementById(`reply-${threadId}`).style.display = 'none';
+        document.getElementById(`send-btn-${threadId}`).style.display = 'none';
+        document.getElementById(`error-${threadId}`).style.display = 'none';
+        document.getElementById(`loading-${threadId}`).style.display = 'none';
+        document.getElementById(`send-status-${threadId}`).style.display = 'none';
+      }
+    }
+    
+    async function generateReply(threadId, contactId, subject) {
+      const promptInput = document.getElementById(`prompt-${threadId}`);
+      const userPrompt = promptInput.value.trim();
+      
+      if (!userPrompt) {
+        alert('Please enter instructions for the reply');
+        return;
+      }
+      
+      const loadingEl = document.getElementById(`loading-${threadId}`);
+      const errorEl = document.getElementById(`error-${threadId}`);
+      const replyEl = document.getElementById(`reply-${threadId}`);
+      const sendBtn = document.getElementById(`send-btn-${threadId}`);
+      
+      loadingEl.style.display = 'block';
+      errorEl.style.display = 'none';
+      replyEl.style.display = 'none';
+      sendBtn.style.display = 'none';
+      
+      try {
+        const response = await fetch('/api/generate-reply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contact_id: contactId,
+            thread_id: threadId,
+            user_prompt: userPrompt
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.ok) {
+          replyEl.textContent = data.reply;
+          replyEl.style.display = 'block';
+          sendBtn.style.display = 'inline-block';
+        } else {
+          errorEl.textContent = data.error || 'Failed to generate reply';
+          errorEl.style.display = 'block';
+        }
+      } catch (error) {
+        errorEl.textContent = 'Error: ' + error.message;
+        errorEl.style.display = 'block';
+      } finally {
+        loadingEl.style.display = 'none';
+      }
+    }
+    
+    async function sendReply(threadId, contactId, subject) {
+      const replyEl = document.getElementById(`reply-${threadId}`);
+      const replyText = replyEl.textContent.trim();
+      const sendBtn = document.getElementById(`send-btn-${threadId}`);
+      const statusEl = document.getElementById(`send-status-${threadId}`);
+      
+      if (!replyText) {
+        alert('No reply to send');
+        return;
+      }
+      
+      if (!confirm('Are you sure you want to send this reply?')) {
+        return;
+      }
+      
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending...';
+      statusEl.style.display = 'block';
+      statusEl.className = 'loading';
+      statusEl.textContent = 'Sending reply...';
+      
+      try {
+        const response = await fetch('/api/send-reply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contact_id: contactId,
+            thread_id: threadId,
+            reply_text: replyText,
+            subject: subject
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.ok) {
+          statusEl.className = 'success';
+          statusEl.textContent = '✓ Reply sent successfully!';
+          sendBtn.textContent = 'Sent';
+          sendBtn.disabled = true;
+          
+          // Hide form after 3 seconds
+          setTimeout(() => {
+            toggleReplyForm(threadId, contactId, subject);
+          }, 3000);
+        } else {
+          statusEl.className = 'error';
+          statusEl.textContent = 'Error: ' + (data.error || 'Failed to send reply');
+          sendBtn.disabled = false;
+          sendBtn.textContent = 'Send Reply';
+        }
+      } catch (error) {
+        statusEl.className = 'error';
+        statusEl.textContent = 'Error: ' + error.message;
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send Reply';
+      }
+    }
+
+    async function saveDraft(draftId) {
+      const textArea = document.getElementById(`draft-text-${draftId}`);
+      const statusEl = document.getElementById(`draft-status-${draftId}`);
+      const replyText = textArea.value.trim();
+      if (!replyText) {
+        alert('Draft reply cannot be empty.');
+        return;
+      }
+      statusEl.style.display = 'block';
+      statusEl.className = 'loading';
+      statusEl.textContent = 'Saving draft...';
+      try {
+        const response = await fetch('/api/drafts/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draft_id: draftId, reply_text: replyText })
+        });
+        const data = await response.json();
+        if (data.ok) {
+          statusEl.className = 'success';
+          statusEl.textContent = 'Draft saved.';
+        } else {
+          statusEl.className = 'error';
+          statusEl.textContent = data.error || 'Failed to save draft.';
+        }
+      } catch (error) {
+        statusEl.className = 'error';
+        statusEl.textContent = error.message;
+      }
+    }
+
+    async function rejectDraft(draftId) {
+      const reason = prompt('Optional: reason for rejection', 'Needs manual rewrite');
+      const statusEl = document.getElementById(`draft-status-${draftId}`);
+      statusEl.style.display = 'block';
+      statusEl.className = 'loading';
+      statusEl.textContent = 'Rejecting draft...';
+      try {
+        const response = await fetch('/api/drafts/reject', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draft_id: draftId, reason })
+        });
+        const data = await response.json();
+        if (data.ok) {
+          statusEl.className = 'success';
+          statusEl.textContent = 'Draft rejected.';
+          setTimeout(() => {
+            const card = document.getElementById(`draft-card-${draftId}`);
+            if (card) card.remove();
+          }, 1000);
+        } else {
+          statusEl.className = 'error';
+          statusEl.textContent = data.error || 'Failed to reject draft.';
+        }
+      } catch (error) {
+        statusEl.className = 'error';
+        statusEl.textContent = error.message;
+      }
+    }
+
+    async function sendDraft(draftId) {
+      if (!confirm('Send this approved reply?')) {
+        return;
+      }
+      const textArea = document.getElementById(`draft-text-${draftId}`);
+      const replyText = textArea.value.trim();
+      const statusEl = document.getElementById(`draft-status-${draftId}`);
+      statusEl.style.display = 'block';
+      statusEl.className = 'loading';
+      statusEl.textContent = 'Sending draft...';
+
+      try {
+        // Save latest edits before sending
+        await fetch('/api/drafts/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draft_id: draftId, reply_text: replyText })
+        });
+
+        const response = await fetch('/api/drafts/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draft_id: draftId })
+        });
+        const data = await response.json();
+        if (data.ok) {
+          statusEl.className = 'success';
+          statusEl.textContent = 'Draft sent successfully.';
+          setTimeout(() => {
+            const card = document.getElementById(`draft-card-${draftId}`);
+            if (card) card.remove();
+          }, 1200);
+        } else {
+          statusEl.className = 'error';
+          statusEl.textContent = data.error || 'Failed to send draft.';
+        }
+      } catch (error) {
+        statusEl.className = 'error';
+        statusEl.textContent = error.message;
+      }
+    }
+  </script>
 </body>
 </html>
 

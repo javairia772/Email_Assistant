@@ -5,8 +5,7 @@ import pickle
 import os
 
 class GmailAuth:
-    SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
-
+    SCOPES = [ "https://www.googleapis.com/auth/gmail.readonly","https://www.googleapis.com/auth/gmail.modify", "https://www.googleapis.com/auth/gmail.send"]
     def __init__(self, credentials_file="credentials.json", token_file="token_gmail.pkl"):
         self.credentials_file = credentials_file
         self.token_file = token_file

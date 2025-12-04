@@ -1,12 +1,18 @@
+from typing import Dict
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi import Body
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 import json
 from integrations.google_sheets import read_all_summaries
+from Summarizer.groq_summarizer import GroqSummarizer
+from Gmail.gmail_connector import GmailConnector
+from Outlook.outlook_connector import OutlookConnector
+from providers.reply_queue import ReplyQueue
 SUMMARY_CACHE_PATH = Path("Summaries/summaries_cache.json")
 
 
@@ -18,6 +24,10 @@ env = Environment(
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+reply_queue = ReplyQueue()
+gmail_client = GmailConnector()
+outlook_client = OutlookConnector()
+groq_client = GroqSummarizer()
 
 
 ROLE_TO_CLASS = {
@@ -94,6 +104,44 @@ def _parse_iso(value: str):
 
 def _build_detail_url(contact_id: str) -> str:
     return f"/contact/{quote(contact_id, safe='')}"
+
+
+def _decorate_draft(draft: Dict) -> Dict:
+    return {
+        "id": draft.get("id"),
+        "thread_id": draft.get("thread_id"),
+        "subject": draft.get("subject") or "(No subject)",
+        "reply": draft.get("generated_reply", ""),
+        "prompt": draft.get("prompt", ""),
+        "importance": draft.get("importance", ""),
+        "role": draft.get("role", ""),
+        "status": draft.get("status", "pending_review"),
+        "created_at": draft.get("created_at"),
+        "created_at_display": format_pkt(draft.get("created_at")),
+        "updated_at_display": format_pkt(draft.get("updated_at")),
+        "history": draft.get("history", []),
+        "last_message_ts": draft.get("last_message_ts"),
+    }
+
+
+def _send_email(source: str, thread_id: str, contact_email: str, subject: str, reply_text: str, message_id: str = None):
+    source_lower = (source or "").lower()
+    if source_lower == "gmail":
+        gmail_client.send_reply(
+            thread_id=thread_id,
+            to_email=contact_email,
+            subject=subject,
+            reply_body=reply_text,
+        )
+    elif source_lower == "outlook":
+        outlook_client.send_reply(
+            message_id=message_id,
+            to_email=contact_email,
+            subject=subject,
+            reply_body=reply_text,
+        )
+    else:
+        raise HTTPException(status_code=400, detail=f"Unknown source for sending reply: {source}")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -193,6 +241,10 @@ async def contact_detail(contact_id: str):
 
     threads.sort(key=lambda t: _parse_iso(t.get("timestamp")), reverse=True)
 
+    drafts = reply_queue.list_drafts(contact_id=contact_id)
+    pending_drafts = [_decorate_draft(d) for d in drafts if d.get("status") == "pending_review"]
+    history_drafts = [_decorate_draft(d) for d in drafts if d.get("status") != "pending_review"]
+
     template = env.get_template("contact_detail.html")
     html = template.render(
         contact={
@@ -206,5 +258,177 @@ async def contact_detail(contact_id: str):
             "detail_url": _build_detail_url(contact_id),
         },
         threads=threads,
+        pending_drafts=pending_drafts,
+        history_drafts=history_drafts,
     )
     return HTMLResponse(content=html)
+
+
+@app.post("/api/generate-reply")
+async def generate_reply(
+    contact_id: str = Body(...),
+    thread_id: str = Body(...),
+    user_prompt: str = Body(...)
+):
+    """Generate a reply for a thread using thread summary + user prompt."""
+    try:
+        summaries = _load_cached_summaries()
+        contact_entry = summaries.get(contact_id)
+        
+        if not contact_entry:
+            raise HTTPException(status_code=404, detail="Contact not found")
+        
+        # Find the thread
+        thread = None
+        for t in contact_entry.get("threads", []):
+            if (t.get("thread_id") or t.get("id")) == thread_id:
+                thread = t
+                break
+        
+        if not thread:
+            raise HTTPException(status_code=404, detail="Thread not found")
+        
+        thread_summary = thread.get("summary") or thread.get("body") or ""
+        if not thread_summary:
+            raise HTTPException(status_code=400, detail="Thread summary not available")
+        
+        prompt = f"""You are an email assistant helping write a professional reply.
+
+Thread Summary:
+{thread_summary}
+
+User Instructions:
+{user_prompt}
+
+Generate a concise, professional reply based on the thread summary and user instructions. 
+Write the reply directly (no greetings like "Here's a reply:")."""
+        
+        reply_text = groq_client._run_groq_model(prompt)
+        
+        return {
+            "ok": True,
+            "reply": reply_text,
+            "thread_id": thread_id,
+            "contact_id": contact_id
+        }
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+@app.post("/api/drafts/save")
+async def save_draft(
+    draft_id: str = Body(...),
+    reply_text: str = Body(...)
+):
+    draft = reply_queue.get_draft(draft_id)
+    if not draft:
+        raise HTTPException(status_code=404, detail="Draft not found")
+    reply_queue.update_draft(
+        draft_id,
+        generated_reply=reply_text,
+        history={
+            "event": "edited",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "note": "Draft edited via dashboard",
+        },
+    )
+    print(f"[DraftQueue] ✏️ Draft {draft_id} updated")
+    return {"ok": True, "draft": _decorate_draft(reply_queue.get_draft(draft_id))}
+
+
+@app.post("/api/drafts/reject")
+async def reject_draft(draft_id: str = Body(...), reason: str = Body(default="Rejected by reviewer")):
+    draft = reply_queue.get_draft(draft_id)
+    if not draft:
+        raise HTTPException(status_code=404, detail="Draft not found")
+    reply_queue.update_draft(
+        draft_id,
+        status="rejected",
+        history={
+            "event": "rejected",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "note": reason,
+        },
+    )
+    print(f"[DraftQueue] ❌ Draft {draft_id} rejected")
+    return {"ok": True}
+
+
+@app.post("/api/drafts/send")
+async def send_draft(draft_id: str = Body(...)):
+    draft = reply_queue.get_draft(draft_id)
+    if not draft:
+        raise HTTPException(status_code=404, detail="Draft not found")
+
+    reply_text = draft.get("generated_reply", "").strip()
+    if not reply_text:
+        raise HTTPException(status_code=400, detail="Draft reply text is empty")
+
+    _send_email(
+        draft.get("source"),
+        draft.get("thread_id"),
+        draft.get("contact_email"),
+        draft.get("subject") or "(no subject)",
+        reply_text,
+        message_id=draft.get("last_message_id"),
+    )
+    reply_queue.update_draft(
+        draft_id,
+        status="sent",
+        history={
+            "event": "sent",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "note": "Draft sent after human approval",
+        },
+        sent_at=datetime.now(timezone.utc).isoformat(),
+    )
+    print(f"[DraftQueue] ✅ Draft {draft_id} sent")
+    return {"ok": True}
+
+
+@app.post("/api/send-reply")
+async def send_reply(
+    contact_id: str = Body(...),
+    thread_id: str = Body(...),
+    reply_text: str = Body(...),
+    subject: str = Body(...),
+    draft_id: str = Body(default=None)
+):
+    """Send a reply to a thread via Gmail or Outlook."""
+    try:
+        summaries = _load_cached_summaries()
+        contact_entry = summaries.get(contact_id)
+        
+        if not contact_entry:
+            raise HTTPException(status_code=404, detail="Contact not found")
+        
+        source = contact_entry.get("source", "").lower()
+        contact_email = contact_entry.get("email")
+        
+        thread = None
+        for t in contact_entry.get("threads", []):
+            if (t.get("thread_id") or t.get("id")) == thread_id:
+                thread = t
+                break
+
+        message_id = thread.get("last_message_id") if thread else None
+        _send_email(source, thread_id, contact_email, subject, reply_text, message_id=message_id)
+
+        if draft_id:
+            note = "Sent via manual review"
+            reply_queue.update_draft(
+                draft_id,
+                status="sent",
+                generated_reply=reply_text,
+                history={"event": "sent", "timestamp": datetime.now(timezone.utc).isoformat(), "note": note},
+                sent_at=datetime.now(timezone.utc).isoformat(),
+            )
+            print(f"[DraftQueue] 📬 Draft {draft_id} sent and marked as completed.")
+
+        return {
+            "ok": True,
+            "message": "Reply sent successfully",
+            "thread_id": thread_id
+        }
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
