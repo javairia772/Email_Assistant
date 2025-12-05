@@ -29,5 +29,5 @@ fastapi[standard]
 bs4
 
 #classification
-transformers torch
+transformers 
 sentencepiece

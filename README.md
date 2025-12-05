@@ -14,3 +14,7 @@ Powered by:
 - ⚙️ **FastMCP** for modular coordination  
 - 🧠 **GROQ** for efficient inference  
 - 📬 **Google & Microsoft APIs** for secure email integration
+
+### External MCP integration (agentic send-email)
+- Use `connectors/mcp_send_email_tool.py` in a separate MCP server to expose a `send_email_via_mcp` tool.
+- Other projects can call that MCP tool with `to`, `subject`, `body`, optional `attachments`, and `source` (gmail|outlook) to trigger delivery via this service.

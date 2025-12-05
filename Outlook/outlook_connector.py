@@ -39,6 +39,25 @@ class OutlookConnector:
         return {"Authorization": f"Bearer {self.token}"}
 
     # ------------------------------------------------------
+    # SEND NEW EMAIL
+    # ------------------------------------------------------
+    def send_email(self, to_email, subject, body_text, attachments=None):
+        """Send a new Outlook email via Graph API."""
+        self.ensure_authenticated()
+        url = "https://graph.microsoft.com/v1.0/me/sendMail"
+        payload = {
+            "message": {
+                "subject": subject,
+                "body": {"contentType": "Text", "content": body_text},
+                "toRecipients": [{"emailAddress": {"address": to_email}}],
+            },
+            "saveToSentItems": True,
+        }
+        resp = requests.post(url, headers={**self._headers(), "Content-Type": "application/json"}, json=payload)
+        if resp.status_code not in (200, 202):
+            raise Exception(f"Outlook send failed: {resp.text}")
+
+    # ------------------------------------------------------
     # LIST MESSAGES
     # ------------------------------------------------------
     def list_messages(self, top=5):

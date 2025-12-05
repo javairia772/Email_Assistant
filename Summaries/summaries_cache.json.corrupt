@@ -1,29 +1,53 @@
 {
   "seen": {
     "gmail": [
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
-      "gmail:n00503033@gmail.com",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+<<<<<<< Updated upstream
+      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
+=======
+      "gmail:Google <no-reply@accounts.google.com>",
+      "gmail:Nexus <n00503033@gmail.com>",
+>>>>>>> Stashed changes
+      "gmail:Groq <developer@groq.co>",
       "gmail:noreply@email.openai.com",
       "gmail:Google <no-reply@accounts.google.com>",
-      "gmail:Groq <developer@groq.co>",
       "gmail:Javaria <j66yya@gmail.com>",
-      "gmail:Cursor Team <hi@mail.cursor.com>",
-      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
+      "gmail:OpenAI <noreply@email.openai.com>",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
+<<<<<<< Updated upstream
       "gmail:Nexus <n00503033@gmail.com>",
-      "gmail:OpenAI <noreply@email.openai.com>"
+      "gmail:Cursor Team <hi@mail.cursor.com>",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>"
     ],
     "outlook": [
       "outlook:nexus202540@outlook.com",
-      "outlook:minahilmy34@gmail.com",
+      "outlook:MicrosoftRewards@infoemail.microsoft.com",
+      "outlook:j66yya@gmail.com",
+      "outlook:n00503033@gmail.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com",
       "outlook:javariasaleem39@gmail.com",
+      "outlook:minahilmy34@gmail.com",
       "outlook:no-reply@microsoft.com",
       "outlook:MSSecurity-noreply@microsoft.com",
-      "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:j66yya@gmail.com",
-      "outlook:MicrosoftRewards@infoemail.microsoft.com",
+      "outlook:m365dev@microsoft.com"
+=======
+      "gmail:OpenAI <noreply@email.openai.com>",
+      "gmail:Cursor Team <hi@mail.cursor.com>",
+      "gmail:Javaria <j66yya@gmail.com>",
+      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>"
+    ],
+    "outlook": [
+      "outlook:MSSecurity-noreply@microsoft.com",
       "outlook:m365dev@microsoft.com",
-      "outlook:n00503033@gmail.com"
+      "outlook:nexus202540@outlook.com",
+      "outlook:n00503033@gmail.com",
+      "outlook:j66yya@gmail.com",
+      "outlook:no-reply@microsoft.com",
+      "outlook:MicrosoftRewards@infoemail.microsoft.com",
+      "outlook:minahilmy34@gmail.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com",
+      "outlook:javariasaleem39@gmail.com"
+>>>>>>> Stashed changes
     ]
   },
   "summaries": {
@@ -38,13 +62,21 @@
           "id": "19ae7d2616142363",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security measures. Google recommends checking account activity and securing the account to prevent potential unauthorized access.",
+<<<<<<< Updated upstream
+          "summary": "Google sent a security alert regarding Email Assistant's access to a Google Account, prompting a review of account activity to ensure security. The account in question is n00503033@gmail.com, and the owner is advised to check their account and make changes as needed through their Google Account settings or by visiting https://myaccount.google.com/notifications.",
+=======
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check and manage access through your Google Account settings or view security activity at https://myaccount.google.com/notifications.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T08:54:28+00:00",
-          "last_message_id": "19ae891f0578b4e7",
+          "last_message_ts": "2025-12-04T06:34:41+00:00",
+<<<<<<< Updated upstream
+=======
+          "auto_replied": false,
+>>>>>>> Stashed changes
+          "last_message_id": "19ae811f5bf4b75f",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         },
@@ -52,7 +84,11 @@
           "id": "19ad8c5d9d2cb891",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings.",
+<<<<<<< Updated upstream
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings.",
+=======
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, suggesting someone may be trying to access your account. You're advised to review your account activity and secure it. To manage access, visit your Google Account settings or check security activity at https://myaccount.google.com/notifications.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
@@ -66,7 +102,11 @@
           "id": "19ac444e4ca09fb5",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security measures. The notification was sent to n00503033@gmail.com, and you can check for any suspicious activity or make changes at https://myaccount.google.com/notifications.",
+<<<<<<< Updated upstream
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security. You're advised to check your account and make any necessary changes to ensure your account is secure, with options to review security activity at https://myaccount.google.com/notifications.",
+=======
+          "summary": "Google sent a security alert regarding Email Assistant's access to the user's Google Account data, prompting a review of account activity to ensure no unauthorized access. The user can check their account and make changes at any time through their Google Account or by visiting the security notifications page.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
@@ -80,7 +120,11 @@
           "id": "19aba047363c619b",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, suggesting someone else may be trying to access it. You're advised to check account activity and secure your account, with options to review security activity at https://myaccount.google.com/notifications or make changes in your Google Account settings.",
+<<<<<<< Updated upstream
+          "summary": "Google sent a security alert regarding Email Assistant's access to a Google Account, prompting a review of account activity and security settings. The account holder, n00503033@gmail.com, is advised to check their account and make changes as needed. No meetings are scheduled, but the account holder should visit their Google Account and https://myaccount.google.com/notifications to review security activity.",
+=======
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting you to review account activity and secure your account. You can check security activity at https://myaccount.google.com/notifications and make changes to Email Assistant's access in your Google Account settings.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
@@ -94,7 +138,11 @@
           "id": "19ab4ba5f4592009",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "A security alert was triggered when Email Assistant was granted access to a Google Account, specifically n00503033@gmail.com. The account owner is advised to review their account activity and secure their account to prevent potential unauthorized access. They can check their account activity and make changes to Email Assistant's access at any time through their Google Account settings. No meeting is scheduled, but the owner should take immediate action to secure their account.",
+<<<<<<< Updated upstream
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at myaccount.google.com/notifications and adjust Email Assistant's access in your Google Account settings.",
+=======
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account and make changes at myaccount.google.com. It's recommended to verify the access and secure your account to prevent potential breaches.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
@@ -108,7 +156,11 @@
           "id": "19ab0f6b47dfdd9e",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n005",
-          "summary": "Google sent a security alert regarding potential unauthorized access to your Google Account data through Google Drive for desktop, prompting a review of account activity and security settings, which can be done at https://myaccount.google.com/notifications.",
+<<<<<<< Updated upstream
+          "summary": "Google sent a security alert regarding potential unauthorized access to your Google Account data through Google Drive for desktop. It's recommended to review your account activity and secure your account as soon as possible. You can check your account notifications at https://myaccount.google.com/notifications and make changes to Google Drive's access to your data in your Google Account settings.",
+=======
+          "summary": "Google sent a security alert regarding potential unauthorized access to your account, specifically through Google Drive for desktop. The alert suggests reviewing account activity and securing the account. You can check security notifications at myaccount.google.com/notifications and manage data access in your Google Account settings. No meeting is scheduled, but it's recommended to take a moment to review and secure your account.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
@@ -117,10 +169,43 @@
           "last_message_id": "19ab0f6b47dfdd9e",
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n00503033@gmail.com If you didn’t allow Google Drive for desktop access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Google Drive for desktop has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
+        },
+        {
+          "id": "19a5549fbae7fbdf",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "High",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-11-05T18:31:42+00:00",
+          "last_message_id": "19a5549fbae7fbdf",
+          "last_subject": "Security alert",
+          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
+        },
+        {
+          "id": "19a5262c1accc1d8",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "High",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-11-05T04:59:53+00:00",
+          "last_message_id": "19a5262c1accc1d8",
+          "last_subject": "Security alert",
+          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:25.982639Z"
+<<<<<<< Updated upstream
+      "summary": "Google sent a security alert about Email Assistant's access to our Google Account, prompting a review to ensure no unauthorized access. The account owner should check their security settings at myaccount.google.com/notifications and make any necessary changes.",
+      "timestamp": "2025-12-04T07:08:07.516022Z"
+=======
+      "summary": "Google sent a security alert about potential unauthorized access to your account through Email Assistant, so it's a good idea to review your account activity and secure it by checking the settings at myaccount.google.com.",
+      "timestamp": "2025-12-04T06:50:31.101029Z"
+>>>>>>> Stashed changes
     },
     "gmail:Groq <developer@groq.co>": {
       "id": "gmail:Groq <developer@groq.co>",
@@ -247,7 +332,8 @@
           "id": "19ae7ff6192dce3b",
           "subject": "Request to Organize Free Northern Areas Trip for Students",
           "preview": "Dear Usman Ghani, I hope you are doing well. Our students have been showing great progress and dedic",
-          "summary": "Tayyba Aftab has requested Usman Ghani to organize a free trip to the Northern Areas for students as a gesture of appreciation for their progress. Usman will handle all arrangements, including travel, accommodation, and safety measures, to ensure the trip is fully sponsored. He will share the plan and dates once finalized, aiming to make it a memorable experience for the students.",
+<<<<<<< Updated upstream
+          "summary": "Tayyba Aftab requested Usman Ghani to organize a free trip to the Northern Areas for students as a token of appreciation for their progress. Usman Ghani agreed to handle all arrangements, including travel, accommodation, and safety measures, to ensure the trip is fully sponsored. He will share the plan and dates once finalized, aiming to make it a memorable experience for the students.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -256,17 +342,37 @@
           "last_message_id": "19ae83868f2604cc",
           "last_subject": "",
           "last_body": "I appreciate your suggestion, Tayyba Aftab 🙏, to organize a free trip to the Northern Areas for our students as a token of appreciation for their progress 📚. I am happy to handle all the arrangements, including travel 🚐, accommodation 🏨, and safety measures 🛡️, to ensure the trip is fully sponsored 🎁. I will share the plan and dates once everything is finalized 📅, and I am looking forward to making this a memorable experience for our students 😊."
+=======
+          "summary": "Tayyba Aftab has requested Usman Ghani to organize a fully sponsored trip to the Northern Areas for students as a gesture of appreciation for their progress. Usman will handle all arrangements, including travel, accommodation, and safety measures. He will share the plan and dates once finalized, with the goal of covering all costs so students don't incur any expenses.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-04T06:14:13+00:00",
+          "auto_replied": false,
+          "last_message_id": "19ae7ff6192dce3b",
+          "last_subject": "Request to Organize Free Northern Areas Trip for Students",
+          "last_body": "Dear Usman Ghani, I hope you are doing well. Our students have been showing great progress and dedication recently. As a gesture of appreciation, I would like you to arrange a free trip to the Northern Areas for them. Please take care of all necessary arrangements—travel, accommodation, safety measures, and a suitable itinerary. Make sure the entire trip is fully sponsored so students do not have to bear any cost. Do share the plan and dates once finalized. Looking forward to your support. Best regards From Tayyba Aftab"
+>>>>>>> Stashed changes
         },
         {
           "id": "19a9bf536f5d740e",
           "subject": "Proposal for Collaboration Opportunity",
           "preview": "Dear Dr. Usman, I hope this email finds you well. My name is [Your Name], and I am [Your Position] a",
-          "summary": "Ali from [Company Name] reached out to Dr. Usman Ghani to explore a potential collaboration between their organizations, and after some discussion, they agreed to meet on Friday at 10 am. The meeting apparently went well, and they are now considering a collaboration, with a decision to be made soon.",
+<<<<<<< Updated upstream
+          "summary": "Ali from [Company Name] and Dr. Usman Ghani discussed a potential collaboration between their organizations, with a meeting scheduled for Friday at 10 am. The meeting went well, and they will consider collaboration opportunities soon.",
+=======
+          "summary": "Ali from [Company Name] reached out to Dr. Usman Ghani to explore collaboration opportunities, and after some discussion, they scheduled a meeting for Friday at 10 am, which reportedly went well, with plans to consider collaboration soon.",
+>>>>>>> Stashed changes
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.4,
           "role_confidence": 1.0,
           "last_message_ts": "2025-12-04T06:09:48+00:00",
+<<<<<<< Updated upstream
+=======
+          "auto_replied": false,
+>>>>>>> Stashed changes
           "last_message_id": "19ae7fb58041c488",
           "last_subject": "Re: Proposal for Collaboration Opportunity",
           "last_body": "Thanks Usman ghani The meeting went really well We will think about collaboration soon On Mon, 1 Dec 2025, 3:02 pm Tayyba Aftab, wrote: > Ok sure Ali lets have a meeting at 10 am at friday > Thanks > > On Mon, 1 Dec 2025, 2:59 pm Tayyba Aftab, wrote: > >> >> >> Dear Dr. Usman Ghani, >> >> Thank you for your kind response. I truly appreciate your openness to >> explore potential collaboration opportunities. >> >> I will prepare and share the detailed scope and objectives shortly. >> Meanwhile, here are a few time slots that work well for me for a meeting: >> >> Friday at 10 am >> >> Please let me know which of these suits you best, and I will gladly >> confirm. >> >> Thank you once again for your time and consideration. I look forward to >> discussing this further. >> >> Warm regards, >> Ali >> >> On Thu, 27 Nov 2025, 1:17 pm Nexus, wrote: >> >>> Dear Ali, >>> >>> Thank you for your email. I appreciate your interest in collaborating >>> and the introduction to your organization’s work. >>> >>> Your areas of expertise sound relevant, and I am open to exploring how >>> we might work together. Please feel free to share more details regarding >>> your proposed scope or objectives. Additionally, you may suggest a few >>> available time slots for a meeting, and I will confirm a suitable option >>> from my end. >>> >>> Thank you once again for reaching out. I look forward to learning more. >>> >>> Warm regards, >>> *Dr. Usman Ghani* >>> >>> On Thu, Nov 27, 2025 at 12:50 PM Nexus wrote: >>> >>>> Dear Ali, >>>> >>>> Thank you for reaching out and for your interest in exploring a >>>> potential collaboration. I appreciate the concise overview of your work and >>>> the initiative you have taken to connect. >>>> >>>> Your proposal sounds promising, and I would be glad to learn more about >>>> the specific areas where our organizations could collaborate. Please share >>>> a few suggested time slots for a brief meeting or call in the coming days, >>>> and I will do my best to accommodate one that fits both our schedules. >>>> >>>> Looking forward to our discussion. >>>> >>>> Best regards, >>>> *Dr. Usman Ghani* >>>> >>>> On Wed, Nov 19, 2025 at 4:52 PM Tayyba Aftab >>>> wrote: >>>> >>>>> Dear Dr. Usman, >>>>> >>>>> I hope this email finds you well. My name is [Your Name], and I am >>>>> [Your Position] at [Company Name], based in [Country]. We specialize in >>>>> [brief description of your company’s domain or expertise]. >>>>> >>>>> I am reaching out to explore potential opportunities for collaboration >>>>> between [Company Name] and [Director’s Organization]. We believe that >>>>> combining our expertise in [specific area] with your ongoing projects could >>>>> lead to mutually beneficial outcomes. >>>>> >>>>> We would greatly appreciate the opportunity to discuss this in more >>>>> detail at a time convenient for you. Please let me know if a meeting or >>>>> call would be suitable, and we will be happy to accommodate your schedule. >>>>> >>>>> Thank you very much for your time and consideration. I look forward to >>>>> your response. >>>>> >>>>> Best regards, >>>>> >>>>> Ali >>>>> >>>>"
@@ -275,7 +381,11 @@
           "id": "19ad95ec356da4b0",
           "subject": "IDEAL LABS Consultant",
           "preview": "Dear Dr. Usman Ghani, I hope you are doing well. I wanted to ask if you could please share some insi",
-          "summary": "Tayyba Aftab reached out to Dr. Usman Ghani to inquire about Ideal Labs' success and notable achievements, aiming to align her work with the organization's vision. She also expressed interest in an internship, but no meeting or decision has been made yet.",
+<<<<<<< Updated upstream
+          "summary": "Tayyba Aftab reached out to Dr. Usman Ghani for insights on Ideal Labs' success and notable achievements to align her work with their vision. She's also expressed interest in an internship, but no meeting or decision has been made yet.",
+=======
+          "summary": "Tayyba Aftab reached out to Dr. Usman Ghani for insights on Ideal Labs' success and achievements to better align her work. She's also expressed interest in interning, but no meeting or decision has been made yet.",
+>>>>>>> Stashed changes
           "role": "General External",
           "importance": "Low",
           "importance_confidence": 0.2,
@@ -289,7 +399,11 @@
           "id": "19ad973bcf96cb26",
           "subject": "Coordination",
           "preview": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me B",
-          "summary": "Tayyba Aftab reached out to Usman Ghnai to update him on her relocation to London, also taking a moment to express gratitude for his guidance.",
+<<<<<<< Updated upstream
+          "summary": "Tayyba Aftab reached out to Usman Ghnai to update him on her relocation to London, also taking a moment to thank him for his guidance.",
+=======
+          "summary": "Tayyba Aftab reached out to Usman Ghnai to update him on her relocation to London, also taking the opportunity to thank him for his guidance.",
+>>>>>>> Stashed changes
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.4,
@@ -300,8 +414,13 @@
           "last_body": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me Best wishes"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:26.363114Z"
+<<<<<<< Updated upstream
+      "summary": "We've got a few updates from Dr. Usman Ghani - he's organizing a sponsored trip to the Northern Areas for students and discussing a potential collaboration with Ali from [Company Name]. Tayyba Aftab has been in touch with him for guidance and is interested in an internship, and also recently updated him on her relocation to London. Next steps include finalizing the trip plan and considering collaboration opportunities.",
+      "timestamp": "2025-12-04T07:17:02.005348Z"
+=======
+      "summary": "It looks like Usman Ghani has a few irons in the fire - he's organizing a sponsored trip for students to the Northern Areas, and also met with Ali from a company to discuss potential collaboration. Meanwhile, Tayyba Aftab has been in touch with him for guidance and to discuss potential internship opportunities, and recently updated him on her move to London.",
+      "timestamp": "2025-12-04T06:50:32.961251Z"
+>>>>>>> Stashed changes
     },
     "gmail:Javaria Saleem <javariasaleem39@gmail.com>": {
       "id": "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
@@ -314,12 +433,17 @@
           "id": "19ae7eeb03ef8999",
           "subject": "Follow-Up: Equipment Issue in Chemistry Lab",
           "preview": "*Dear Dr. Usman,* Thank you for your prompt response regarding the spectrometer issue. To provide fu",
-          "summary": "Dawood Saleem from the Chemistry Department reached out to Dr. Usman regarding an issue with the spectrometer in the lab, which produced inconsistent readings and made a strange noise on December 3, 2025. He's seeking guidance on the cause and prevention of the issue to ensure reliable equipment function for ongoing experiments.",
+<<<<<<< Updated upstream
+          "summary": "Dawood Saleem, a research assistant in the Chemistry Department, is experiencing issues with the spectrometer in the lab, which is producing inconsistent readings and making unusual noises. He's seeking guidance from Dr. Usman on the cause of the problem, which occurred on December 3, 2025. Dawood is willing to provide additional information to help resolve the issue and ensure the lab equipment functions reliably.",
+=======
+          "summary": "Dawood Saleem, a research assistant in the chemistry department, reached out to Dr. Usman regarding an issue with the spectrometer in the chemistry lab on December 3, 2025. The device produced inconsistent readings and made an unusual noise, affecting experiment measurements. Dawood is seeking guidance on the cause of the problem and potential prevention methods. He's offered to provide additional information and assist the technical team as needed. Next steps are pending Dr. Usman's response.",
+>>>>>>> Stashed changes
           "role": "General External",
           "importance": "Low",
           "importance_confidence": 0.2,
           "role_confidence": 1.0,
           "last_message_ts": "2025-12-03T02:01:08+00:00",
+          "auto_replied": false,
           "last_message_id": "19ae7eeb03ef8999",
           "last_subject": "Follow-Up: Equipment Issue in Chemistry Lab",
           "last_body": "*Dear Dr. Usman,* Thank you for your prompt response regarding the spectrometer issue. To provide further details, on *December 3, 2025*, while attempting calibration, I observed that the spectrometer’s readings were inconsistent and fluctuated despite following the standard procedure. I also noticed a slight unusual noise from the device during operation. This seems to have affected the measurements of the experiments conducted on that day. Could you please advise why this issue may have occurred? I want to ensure that such problems can be prevented in the future and that the lab equipment functions reliably for ongoing experiments. I am happy to provide additional observations or assist the technical team in any way required. Thank you again for your guidance. Best regards, *Dawood Saleem* Research Assistant, Chemistry Department"
@@ -328,19 +452,44 @@
           "id": "19ae7dd12bac185b",
           "subject": "Reporting Equipment Issue in Chemistry Lab",
           "preview": "*Dear Dr. Usman,* I hope this message finds you well. I am writing to report an issue observed in th",
-          "summary": "Javaria Saleem reported a spectrometer issue in the Chemistry Lab to Dr. Usman, which affected ongoing experiments. The technical team will inspect and calibrate the equipment the next day, and Javaria will pause critical experiments and document observations. Dr. Usman advised Javaria to halt experiments until the issue is resolved and to notify him of any further problems or urgent needs.",
+<<<<<<< Updated upstream
+          "summary": "Javaria Saleem reported a spectrometer issue in the Chemistry Lab to Dr. Usman, which affected ongoing experiments. The technical team will inspect and perform maintenance on December 4, 2025. Javaria has been asked to pause critical experiments and document observations for the team's reference. Dr. Usman will oversee the resolution and arrange for special accommodations if needed.",
+=======
+          "summary": "Javaria Saleem reported an issue with the spectrometer in the Chemistry Lab to Dr. Usman, noting it wasn't calibrating properly on December 3, affecting ongoing experiments. Dr. Usman has arranged for the technical team to inspect and maintain the equipment the next day. Javaria has been asked to pause critical experiments and document any observations for the technical team's reference.",
+>>>>>>> Stashed changes
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.2,
           "role_confidence": 1.0,
           "last_message_ts": "2025-12-03T01:58:10+00:00",
+          "auto_replied": false,
           "last_message_id": "19ae7ebcb9660f13",
           "last_subject": "Re: Reporting Equipment Issue in Chemistry Lab",
           "last_body": "*Dear Dr. Usman,* I hope this message finds you well. I am writing to report an issue observed in the spectrometer in the Chemistry Lab. On *December 3, 2025*, I noticed that the spectrometer was not calibrating properly, which affected the accuracy of ongoing measurements. This has impacted several experiments scheduled for this week. I kindly request your guidance on the next steps to resolve this issue. If required, I am available to provide further details or assist with troubleshooting at your convenience. Thank you for your attention to this matter. I look forward to your advice. Best regards, *Dawood Saleem* Research Assistant, Chemistry Department >"
+        },
+        {
+          "id": "19a48a499fc96b43",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:26.514097Z"
+<<<<<<< Updated upstream
+      "summary": "There's an issue with the spectrometer in the Chemistry Lab that's causing inconsistent readings and noises, which was reported by Dawood and Javaria Saleem. Dr. Usman is overseeing the resolution and the technical team is set to inspect and perform maintenance on December 4. Experiments have been paused and Javaria is documenting observations to aid in the repair.",
+      "timestamp": "2025-12-04T06:04:52.002417Z"
+=======
+      "summary": "There's an issue with the spectrometer in the chemistry lab that's affecting experiment measurements, with both Dawood and Javaria reporting problems on December 3. Dr. Usman has stepped in, arranging for the technical team to inspect the equipment. Javaria's been asked to pause critical experiments and document any observations. We're waiting to hear back from Dr. Usman on next steps.",
+      "timestamp": "2025-12-04T06:50:34.750217Z"
+>>>>>>> Stashed changes
     },
     "gmail:Minahil Imran <minahilimran836@gmail.com>": {
       "id": "gmail:Minahil Imran <minahilimran836@gmail.com>",
@@ -353,12 +502,13 @@
           "id": "19ad9526eadafad3",
           "subject": "Update: Q4 Deliverables & Upcoming Client Review",
           "preview": "Hi Team, I hope you’re all doing well. As we move into the final phase of Q4, I’d like to share a qu",
-          "summary": "Minahil Imran updated the team on Q4 deliverables and the upcoming client review, requesting that all campaign performance reports be finalized by Thursday at 4 PM. She'll compile these into a consolidated deck for the client call on Monday at 10 AM. Nexus acknowledged the update and plans to review later, with no delays or issues reported so far.",
+          "summary": "Minahil Imran is coordinating Q4 deliverables and an upcoming client review, requesting that all campaign performance reports be finalized by Thursday at 4 PM. She'll compile these into a consolidated deck for a client call on Monday at 10 AM. Team members are encouraged to reach out if they anticipate delays or need support.",
           "role": "General External",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.8,
           "last_message_ts": "2025-12-01T09:52:35+00:00",
+          "auto_replied": false,
           "last_message_id": "19ad9540c7b33e00",
           "last_subject": "Re: Update: Q4 Deliverables & Upcoming Client Review",
           "last_body": "Ok we will review later today On Mon, Dec 1, 2025, 2:50 PM Minahil Imran wrote: > Hi Team, > > I hope you’re all doing well. As we move into the final phase of Q4, I’d > like to share a quick update regarding our deliverables and the upcoming > client review meeting. > > Please ensure that all campaign performance reports are finalized by > Thursday, 4 PM. I’ll be compiling these into a consolidated deck for our > client call scheduled on Monday at 10 AM. > > If anyone anticipates delays or requires support, feel free to reach out > so we can address it proactively. > > Thank you for your continued hard work and dedication. >"
@@ -367,12 +517,13 @@
           "id": "19ad94f5c8a15431",
           "subject": "We are in dire need of some madad from ghaib",
           "preview": "Project ain't gonna make it itself",
-          "summary": "Minahil Imran reached out for urgent assistance with a project that's at risk of not being completed. She implied that external help is needed to get it back on track. No meeting times or decisions were mentioned, but it's clear that prompt action is required to save the project. Next steps are unclear, but Minahil's message suggests a call to action. The project's deadline and details are not specified.",
+          "summary": "Minahil Imran reached out for assistance, indicating that a project is struggling and unlikely to meet its goals without help. She implied that urgent support is needed to get the project back on track. No meeting times or decisions were mentioned, but it appears that next steps will involve providing aid to the project. The project's success is uncertain without this help. Minahil is seeking assistance to prevent project failure.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.5,
           "role_confidence": 0.6,
           "last_message_ts": "2025-12-01T09:47:16+00:00",
+          "auto_replied": false,
           "last_message_id": "19ad94f5c8a15431",
           "last_subject": "We are in dire need of some madad from ghaib",
           "last_body": "Project ain't gonna make it itself"
@@ -381,19 +532,20 @@
           "id": "19a357d45ec147c7",
           "subject": "TEST",
           "preview": "aik din bug reh jaega or mein resolve hojaungi",
-          "summary": "Minahil Imran and Nexus discussed a test, with Minahil mentioning a bug that she believes will be resolved. The conversation was informal, with no specific meeting or decision made, and seemed to be a casual exchange between the two. No next steps were outlined, and the thread appears to be a brief, lighthearted conversation. The discussion took place on October 30, 2025.",
+          "summary": "Minahil Imran and Nexus discussed a test-related issue, with Minahil expressing confidence in resolving a bug. The conversation took place on October 30, 2025, but no specific meeting time or decision was made. The exchange appears to be a casual, informal discussion between the two. No clear next steps were outlined.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.5,
           "role_confidence": 0.6,
           "last_message_ts": "2025-12-01T09:45:40+00:00",
+          "auto_replied": false,
           "last_message_id": "19ad94de965bb989",
           "last_subject": "Re: TEST",
           "last_body": "Baat to sach hai On Thu, Oct 30, 2025, 8:22 PM Nexus wrote: > Us bro us🫠 > > On Thu, 30 Oct 2025, 7:19 pm Minahil Imran, > wrote: > >> aik din bug reh jaega or mein resolve hojaungi >> >"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:27.150964Z"
+      "summary": "Minahil Imran is wrapping up Q4 deliverables and preparing for a client review on Monday at 10 AM, so she needs all campaign reports by Thursday at 4 PM. She's also seeking urgent help for a struggling project to get it back on track. Everything else, including a recent test issue, seems to be under control.",
+      "timestamp": "2025-11-30T05:59:48.512421Z"
     },
     "outlook:n00503033@gmail.com": {
       "id": "outlook:n00503033@gmail.com",
@@ -582,17 +734,38 @@
       "role_confidence": 0.6,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6gAAAA==",
+          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZFAAAA",
           "subject": "Welcome to your new Outlook.com account",
           "preview": "Hi \nWelcome to the new Outlook! We're bringing the latest features, intelligent capabilities, and a ",
-          "summary": "Microsoft introduced updates to Outlook, featuring a new design, intelligent capabilities, and simplified management of multiple email accounts and calendars. The updates include AI-powered email suggestions, free access to Microsoft 365 web apps, and enhanced security measures. Users can explore the new features by clicking the lightbulb icon in the Tips pane.",
+          "summary": "Microsoft has introduced a new Outlook.com account with updated features, including a modern design and AI-powered email suggestions. The account allows users to manage multiple email accounts and calendars in one place, and also provides access to Microsoft 365 tools like Word and Excel for free. No meetings or actions are required, but users can explore the new features and download the Outlook mobile app for on-the-go access.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-04T07:00:28.322283+00:00",
+          "auto_replied": false,
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZFAAAA",
+          "last_subject": "Welcome to your new Outlook.com account",
+          "last_body": "Hi \nWelcome to the new Outlook! We're bringing the latest features, intelligent capabilities, and a new modern and simplified design to your Outlook app. \n \n \nManage all your email accounts and calendars in a single place  \nNow you can access all your emails in one spot. That's Outlook.com, Hotmail, Gmail, Yahoo!, iCloud, IMAP accounts and even that account you use for shopping. \nAdd gmail account \nAdd other email accounts \n \nWrite better emails \nUse the advanced AI of Microsoft Editor, built into Outlook, to get suggestions as you type for impactful, clear, and error-free messages. \n \nUse Word, Excel, PowerPoint, and OneDrive for free on the web \nEnjoy Microsoft 365 free on the web to use Word, Excel, PowerPoint and OneDrive with the click of a button.   \nUse Microsoft 365 for free\n \n \nStay on top of your day \nSchedule email to be sent at a later time, undo a sent email within ten seconds, and get reminders to follow up on important conversations.  \nLearn more\n \n \nBacked by enterprise-grade security \nTrust in Microsoft's security to help keep your emails and documents safe from phishing and scams. \nLearn more\n \n \nKeep things organized \nFile your content neatly or find it simply with universal search and plan your day with the My Day view. \n \n\"What's New\" in Outlook  \nTo stay up to date on all the new features in this version of Outlook, click on the lightbulb icon at the top of your screen to open the Tips pane. \n \nGet the free Outlook mobile app \nGet the free Outlook app for iOS or Android to access your email accounts and calendars together, all in one place. \nDownload\n \nPrivacy Statement\n \n \nMicrosoft Corporation • One Microsoft Way • Redmond, WA 98052"
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6gAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
         }
       ],
-      "summary": "Microsoft just rolled out some big updates to Outlook, including a new design and AI-powered email suggestions. The updates also bring enhanced security and free access to Microsoft 365 web apps. You can check out the new features by clicking the lightbulb icon in the Tips pane.",
-      "timestamp": "2025-11-24T04:03:49.238553Z"
+      "summary": "Microsoft just launched an updated Outlook.com account with a fresh design and AI-powered features. It lets users manage multiple emails and calendars in one spot, and even throws in free access to Microsoft 365 tools like Word and Excel. You can check it out and download the mobile app for easy access on the go.",
+      "timestamp": "2025-12-04T07:00:31.889751Z"
     },
     "outlook:account-security-noreply@accountprotection.microsoft.com": {
       "id": "outlook:account-security-noreply@accountprotection.microsoft.com",
@@ -602,6 +775,7 @@
       "role_confidence": 0.4,
       "threads": [
         {
+<<<<<<< Updated upstream
           "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACO6IcbAAAAA==",
           "subject": "Microsoft account security info was added",
           "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
@@ -620,10 +794,17 @@
           "subject": "New app(s) connected to your Microsoft account",
           "preview": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft ",
           "summary": "Microsoft's account security team notified us that a new app, OutlookIntegration, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account settings. No meeting is scheduled, but the account owner should review and manage app permissions to ensure security.",
+=======
+          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAF0ndlQAAAA==",
+          "subject": "Microsoft account security info was added",
+          "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
+          "summary": "Microsoft's account security team notified us that a new passkey was added to the ne**0@outlook.com account, prompting a review of recent activity to ensure no malicious access has occurred. The account owner should verify if the change was authorized and take steps to secure the account if necessary. No meeting is scheduled, but the owner should take immediate action to review account activity.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
+<<<<<<< Updated upstream
           "last_message_ts": "2025-12-04T06:34:44.474851+00:00",
           "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
           "last_subject": "New app(s) connected to your Microsoft account",
@@ -772,6 +953,227 @@
       ],
       "summary": "There were several security notifications sent to jay@outlook.com regarding a new sign-in from Pakistan on October 25, 2025, and some potential security changes, including a new app connection and a Gmail address addition. The account owner should review recent activity and update their security info if necessary, but no meetings are scheduled.",
       "timestamp": "2025-12-04T06:34:45.057729Z"
+=======
+          "last_message_ts": "2025-12-04T07:00:28.222113+00:00",
+          "auto_replied": false,
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAF0ndlQAAAA==",
+          "last_subject": "Microsoft account security info was added",
+          "last_body": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Microsoft account \nne**0@outlook.com\n:\nPasskey\nIf this was you, then you can safely ignore this email.\nIf this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.\nReview recent activity\nTo opt out or change where you receive security notifications, \nclick here\n.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+        },
+        {
+          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZEAAAA",
+          "subject": "Microsoft account security info was added",
+          "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
+          "summary": "Microsoft's account security team notified the user of a new security info addition to their ne**0@outlook.com account, specifically a Gmail address. If this change was unauthorized, it may indicate a malicious user has account access. The user is advised to review recent activity to secure their account, with an option to opt out or change notification settings.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T07:00:28.335959+00:00",
+          "auto_replied": false,
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZEAAAA",
+          "last_subject": "Microsoft account security info was added",
+          "last_body": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Microsoft account \nne**0@outlook.com\n:\nminahilmy34@gmail.com\nIf this was you, then you can safely ignore this email.\nIf this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.\nReview recent activity\nTo opt out or change where you receive security notifications, \nclick here\n.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+        },
+        {
+          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZDAAAA",
+          "subject": "Microsoft account security info verification",
+          "preview": "Microsoft account\nThanks for verifying your security info\nRecently, you verified the security info o",
+          "summary": "The Microsoft account team recently verified the security info for the ne**0@outlook.com account, a periodic check that occurs when a security code hasn't been used recently. This verification is part of their security protocol to ensure account protection. No further action is required, but the account holder can update their security info or opt out of notifications if needed. The team emphasized that the security info will only be used for identity verification purposes.",
+          "role": "Industry",
+          "importance": "High",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T07:00:28.347525+00:00",
+          "auto_replied": false,
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZDAAAA",
+          "last_subject": "Microsoft account security info verification",
+          "last_body": "Microsoft account\nThanks for verifying your security info\nRecently, you verified the security info on the Microsoft account \nne**0@outlook.com\n. This was a periodic security check which only happens if you haven't used a security code recently. You won't need to provide a code every time you sign in.\nIt's important to keep the security info associated with your account correct and up-to-date. We'll never use this info to spam you or for any marketing purposes — it's only to verify your identity if there's ever a problem with your account.\nTo learn more or contact support, \nclick here\n.\nTo opt out or change where you receive security notifications, \nclick here\n.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+        },
+        {
+          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAACDSkAAAA=",
+          "subject": "New app(s) connected to your Microsoft account",
+          "preview": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft ",
+          "summary": "A new app, OutlookIntegration, has been connected to the ne**0@outlook.com Microsoft account, potentially accessing account data. The account holder is advised to review and remove the app if the access was not granted. No meetings are scheduled, but the user can manage app access and security notifications through their account settings.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-04T07:00:28.361022+00:00",
+          "auto_replied": false,
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAACDSkAAAA=",
+          "last_subject": "New app(s) connected to your Microsoft account",
+          "last_body": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft account \nne**0@outlook.com\n.\nIf you didn't grant this access, please remove the app(s) from your account.\nManage your apps\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        },
+        {
+          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==",
+          "subject": "",
+          "preview": "",
+          "summary": "",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": null,
+          "last_message_ts": null,
+          "auto_replied": false,
+          "last_message_id": null,
+          "last_subject": null,
+          "last_body": null
+        }
+      ],
+      "summary": "There's been some activity on the ne**0@outlook.com account that requires attention, including a new passkey and a connected app. The account owner should review recent activity to ensure no malicious access has occurred and take steps to secure the account if necessary. Microsoft's security team has been notifying the user of these changes, but no meetings are scheduled. The owner can manage app access and security notifications through their settings. They should verify the changes were authorized to prevent any potential issues. Immediate review is recommended.",
+      "timestamp": "2025-12-04T07:00:31.480630Z"
+>>>>>>> Stashed changes
     },
     "gmail:Cursor Team <hi@mail.cursor.com>": {
       "id": "gmail:Cursor Team <hi@mail.cursor.com>",
@@ -784,12 +1186,17 @@
           "id": "19ade62e33c858a9",
           "subject": "Using Cursor's Agent",
           "preview": "Cursor Cursor Agent ( https://cursor.com/docs/agent/overview ) can take on complex coding tasks, suc",
-          "summary": "The Cursor Team sent an email about utilizing their Agent tool, which can handle complex coding tasks. They provided tips on how to get the most out of it, including using specific context and defining command execution rules. No meetings are scheduled, but the team invites you to explore the linked resources for more information on using the Agent effectively.",
+<<<<<<< Updated upstream
+          "summary": "The Cursor Team shared tips on using their Agent tool, which can handle complex coding tasks, and provided documentation links for features like context symbols, checkpoints, and command execution. The team outlined how to get the most out of Agent, including using \"@\" for specific context and defining rules for system-level instructions. No meeting is scheduled, but the information is available for reference on the Cursor website.",
+=======
+          "summary": "The Cursor Team shared tips on using their Agent tool, which can handle complex coding tasks, and outlined features like using \"@\" for context, creating checkpoints, and running shell commands. Key takeaways include configuring system-level instructions and reusable workflows with rules and commands. No meeting is scheduled, but reviewing the provided documentation links can help get the most out of the Agent tool.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
           "role_confidence": 0.4,
           "last_message_ts": "2025-12-02T09:26:52+00:00",
+          "auto_replied": false,
           "last_message_id": "19ade62e33c858a9",
           "last_subject": "Using Cursor's Agent",
           "last_body": "Cursor Cursor Agent ( https://cursor.com/docs/agent/overview ) can take on complex coding tasks, such as creating features or fixing bugs end-to-end. You can use it in the sidepane with Cmd/Ctrl-I. To get the most out of Agent, here are some tips: * Use “@” in your prompt ( https://cursor.com/docs/context/symbols#definitions ) to pull in specific context, such as specific files, websites, and git branches. * If you want to jump backwards in the Agent’s history, you can use checkpoints ( https://cursor.com/docs/agent/chat/checkpoints ) to revert changes. * Agent can run shell commands ( https://cursor.com/docs/agent/terminal ) as it works. You can also define command execution ( https://cursor.com/docs/agent/terminal#command-execution-modes ) rules. * With rules ( https://cursor.com/docs/context/rules#rules ) and /commands ( https://cursor.com/docs/agent/chat/commands ), you can configure system-level instructions and reusable workflows. * With cloud agents ( https://cursor.com/docs/cloud-agent ), you can spawn asynchronous agents that edit and run code in a remote environment. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBAPSntBzzp7QcAZreYtiKChCS8UINgrjOHg== )"
@@ -798,12 +1205,17 @@
           "id": "19ad93c823e44e2e",
           "subject": "Welcome to Cursor!",
           "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
-          "summary": "The Cursor Team has onboarded us to their platform, providing a quickstart guide and documentation on key features like Tab, Inline Edit, and Agent. The guide is available at https://cursor.com/docs/get-started/quickstart. We can review the resources at our convenience, with no meeting scheduled.",
+<<<<<<< Updated upstream
+          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help get started with their tool, covering features like Tab, Inline Edit, and Agent. The guide is available on their website, along with more in-depth documentation for additional questions. No meeting or follow-up is scheduled, but the team can be referenced for further support.",
+=======
+          "summary": "The Cursor Team sent an introductory email with a quickstart guide to help us get started with their platform, covering features like Tab, Inline Edit, and Agent. The guide is available at cursor.com/docs, and they've also provided links to more detailed documentation for further questions. No meeting or follow-up is required at this point.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-12-01T09:26:50+00:00",
+          "auto_replied": false,
           "last_message_id": "19ad93c823e44e2e",
           "last_subject": "Welcome to Cursor!",
           "last_body": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor.com/docs/get-started/quickstart ). It will walk through how to use Tab ( https://cursor.com/docs/tab/overview ), Inline Edit ( https://cursor.com/docs/inline-edit/overview ), and Agent ( https://cursor.com/docs/agent/overview ). If you have more questions, our docs ( https://cursor.com/docs ) go into greater depth. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBAPSntBzzp7QcAZrZPHdW8idnqSH9YEf7iw== )"
@@ -812,12 +1224,17 @@
           "id": "19abf2720c60ef2b",
           "subject": "Using Cursor as a team",
           "preview": "Cursor We use Cursor as a team, as do thousands of other organizations from NVIDIA to Figma. A few w",
-          "summary": "The Cursor Team reached out to discuss using their tool as a team, highlighting collaborations with companies like NVIDIA and Figma. They outlined key integrations with Slack and Linear, as well as their Bugbot code review product and Team Rules feature to ensure consistent coding standards. The team is available for further discussion, but no meeting times were specified.",
+<<<<<<< Updated upstream
+          "summary": "The Cursor Team reached out to discuss using their platform for team collaboration, similar to other organizations like NVIDIA and Figma. They highlighted integrations with Slack and Linear, as well as their Bugbot code review product and Team Rules feature. No meeting was scheduled, but the team can explore these features to improve their workflow. Next steps involve reviewing the provided links to learn more about implementation. The Cursor Team provided resources for further information.",
+=======
+          "summary": "The Cursor Team reached out to discuss using their tool for team collaboration, highlighting integrations with Slack and Linear, as well as features like Bugbot for code review and Team Rules for consistent coding standards. They provided links to documentation for these features, aiming to support our team's potential adoption of Cursor.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-26T07:53:17+00:00",
+          "auto_replied": false,
           "last_message_id": "19abf2720c60ef2b",
           "last_subject": "Using Cursor as a team",
           "last_body": "Cursor We use Cursor as a team, as do thousands of other organizations from NVIDIA to Figma. A few ways we’ve seen teams collaborate with Cursor: * We built Slack ( https://cursor.com/docs/integrations/slack ) and Linear ( https://cursor.com/docs/integrations/linear ) integrations so you kick off agents and assign tickets by simply tagging @Cursor. * Bugbot ( https://cursor.com/bugbot ), our code review product, automatically reviews your changes with AI to help catch bugs, patch security issues, and improve code quality. * Write Team Rules ( https://cursor.com/docs/context/rules#team-rules ) to ensure consistent coding standards, practices, and workflows across your team when they use Cursor. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBANuBjhzagY4cAZq_JwK8V0XauSGMSd5ORw== )"
@@ -826,19 +1243,29 @@
           "id": "19ab50600c92f173",
           "subject": "Welcome to Cursor!",
           "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
-          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help get started with their platform, covering features like Tab, Inline Edit, and Agent. The guide is available on their website, along with more in-depth documentation for further questions.",
+<<<<<<< Updated upstream
+          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help us get started with their platform, covering Tab, Inline Edit, and Agent features. They also provided links to more in-depth documentation for additional questions. No meetings or next steps were discussed, just an introductory overview of their tools and resources.",
+=======
+          "summary": "The Cursor Team sent a welcome email with a quickstart guide to get started with their tool, covering features like Tab, Inline Edit, and Agent. The guide is available at cursor.com/docs, with more in-depth information in their docs section. No meeting or follow-up is required, but the team is available for questions.",
+>>>>>>> Stashed changes
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
           "last_message_ts": "2025-11-24T08:41:00+00:00",
+          "auto_replied": false,
           "last_message_id": "19ab50600c92f173",
           "last_subject": "Welcome to Cursor!",
           "last_body": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor.com/docs/get-started/quickstart ). It will walk through how to use Tab ( https://cursor.com/docs/tab/overview ), Inline Edit ( https://cursor.com/docs/inline-edit/overview ), and Agent ( https://cursor.com/docs/agent/overview ). If you have more questions, our docs ( https://cursor.com/docs ) go into greater depth. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBANuBjhzagY4cAZq02ih_MUkzS1_99YkBNw== )"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:26.864930Z"
+<<<<<<< Updated upstream
+      "summary": "The Cursor Team has been in touch, sharing tips and resources on how to use their Agent tool and platform for team collaboration. They've provided quickstart guides, documentation, and links to features like context symbols and code review. We can review the resources at our leisure, with no meetings scheduled, and explore integrations with tools like Slack and Linear to improve our workflow.",
+      "timestamp": "2025-12-03T01:31:52.188415Z"
+=======
+      "summary": "The Cursor Team has been in touch, sharing tips and resources on using their Agent tool and platform for team collaboration, with features like integrations with Slack and Linear. They've provided a quickstart guide and links to documentation, including cursor.com/docs. We can review these resources at our convenience, with no meeting scheduled, and reach out if we have any questions.",
+      "timestamp": "2025-12-04T06:50:40.331070Z"
+>>>>>>> Stashed changes
     },
     "gmail:noreply@email.openai.com": {
       "id": "gmail:noreply@email.openai.com",
@@ -976,33 +1403,14 @@
           "id": "19ac40aa80b42499",
           "subject": "Third-party security incident",
           "preview": "OpenAI Logo ( https://openai.com/ ) Transparency is important to us, so we want to inform you about ",
-          "summary": "OpenAI's data analytics provider, Mixpanel, experienced a security incident, potentially exposing limited customer identifiable information, including names, email addresses, and location data, of OpenAI API account users. No sensitive data like passwords or API keys were compromised. OpenAI has terminated its use of Mixpanel and is conducting additional security reviews across its vendor ecosystem. Users are advised to remain vigilant for potential phishing attempts and to enable multi-factor authentication for added protection.",
+          "summary": "OpenAI experienced a security incident through their data analytics provider, Mixpanel, which affected limited user data, including names, email addresses, and location information. No sensitive information like passwords or API keys was compromised. OpenAI has terminated its use of Mixpanel, is conducting additional security reviews, and is notifying impacted users, advising them to be cautious of potential phishing attempts.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.8,
-          "role_confidence": 0.8,
-          "last_message_ts": "2025-11-27T06:40:23+00:00",
-          "last_message_id": "19ac40aa80b42499",
-          "last_subject": "Third-party security incident",
-          "last_body": "OpenAI Logo ( https://openai.com/ ) Transparency is important to us, so we want to inform you about a recent security incident at Mixpanel, a data analytics provider that OpenAI used for web analytics on the frontend interface for our API product (platform.openai.com). The incident occurred within Mixpanel’s systems and involved limited analytics data related to your API account. This was not a breach of OpenAI’s systems. No chat, API requests, API usage data, passwords, credentials, API keys, payment details, or government IDs were compromised or exposed. *What happened* On November 9, 2025, Mixpanel became aware of an attacker that gained unauthorized access to part of their systems and exported a dataset containing limited customer identifiable information and analytics information. Mixpanel notified OpenAI that they were investigating, and on November 25, 2025, they shared the affected dataset with us. *What this means for you* User profile information associated with use of platform.openai.com ( http://platform.openai.com ) may have been included in data exported from Mixpanel. The information that may have been affected was limited to: * Name that was provided to us on the API account * Email address associated with the API account * Approximate coarse location based on API user browser (city, state, country) * Operating system and browser used to access the API account * Referring websites * Organization or User IDs associated with the API account *Our response* As part of our security investigation, we removed Mixpanel from our production services, reviewed the affected datasets, and are working closely with Mixpanel and other partners to fully understand the incident and its scope. We are in the process of notifying impacted organizations, admins, and users directly. While we have found no evidence of any effect on systems or data outside Mixpanel’s environment, we continue to monitor closely for any signs of misuse. Trust, security, and privacy are foundational to our products, our organization, and our mission. We are committed to transparency, and are notifying all impacted customers and users. We also hold our partners and vendors accountable for the highest bar for security and privacy of their services. After reviewing this incident, OpenAI has terminated its use of Mixpanel. Beyond Mixpanel, we are conducting additional and expanded security reviews across our vendor ecosystem and are elevating security requirements for all partners and vendors. *What you should keep in mind* The information that may have been affected here could be used as part of phishing or social engineering attacks against you or your organization. Since names, email addresses, and OpenAI API metadata (e.g., user IDs) were included, we encourage you to remain vigilant for credible-looking phishing attempts or spam. As a reminder: * Treat unexpected emails or messages with caution, especially if they include links or attachments. * Double-check that any message claiming to be from OpenAI is sent from an official OpenAI domain. * OpenAI does not request passwords, API keys, or verification codes through email, text, or chat. * Further protect your account by enabling multi-factor authentication. The security and privacy of our products are paramount, and we remain resolute in protecting your information and communicating transparently when issues arise. Thank you for your continued trust in us. For more information about this incident and what it means for impacted users, please see our blog post here ( https://openai.com/index/mixpanel-incident ). Please contact your account team or mixpanelincident@openai.com ( mixpanelincident@openai.com ) if you have any questions or need our support. OpenAI OpenAI 1455 3rd Street , San Francisco , CA 94158 Unsubscribe ( http://url3243.email.openai.com/asm/unsubscribe/?user_id=20216706&data=ZGPCnMp_O9pINOcah8RhJFCzWVpWEXWyEBjrqI2A7yxoMDAwdTAwMAfqZMtBXvDOBuyg2l63EWTn4aU2wH__zg4n9AQ6Op5YhfodqUxgsw6jIJ9CA4LTu77GRtQqdjS6IZUkfRWOrh_WEEEK1FC-53LFx-jz75Znw_gRQ2EQtFKJAWMSduQ_hl4VrDTtNlWU54eredtLK1GLISA7S3V3TTbgp8TcwzmtOypGKXV8t0vZpN_qj7vYrFhvsjnUmrkWjV5TQiz5uGqqB1ZjdzkhxyKIBoGh-_M__r0wh_czjimbPr2m_Sjkr5-uSXLAo73u1YKkKUVOs_HSqybu_7ucxFMz7ek6vmkBu9rvqZBcppOpaMIzpotylX17i5E8uASM8-7xQQ4fhHRlBLqpnPm-I81smFwG6eqOvcXW-znLvxbRM1eFDU8Lplkuox7Gd-kCzpJdGz5veXT8W-WxP9GggbwAbH1OS1mdDiJtc9eZbPdxoik6HPvAUhEvJHX0RVm-Klv4sLMqHYbxAdqgBU8M_eKtrs_gIyeMYY8sz4NoesUNxPHO6slAICgJQucpAA3FIbtQU_MXBJ-coiU8RYZZQEjp6id8TAuZeNffROwFgOYM9nfkIl5QxZyAoLSnpvv76yuDUIicy6qKbx-QOQPdDttqXHd5Nm1sicwnPjglU-h0YdXEo_wdmSaOpU9rqdqzLfXAfK6uyY7oZvw1oQWuD1Rygqj_8C-LCqo0RjH3TK15XzVpJeVEgpmzD7KrPBQvGMpJtSH9oIQCOJ-peK1C6am66RbA5LBLqafJ-uyWjwynjBg6hJUOyuY7Buo_BHpIeUuL1lPCUjbkg355wbDJuSyeUYtAapJ78sYZSGAsjfbX9OabrLcb7e5iSj-LRxqucOY5Es-Xflo5ERMfuRbvQt_1nhAod3hWrlVaOU2rjQs0FGjo1wI9MQUmOvf6tY4wkSFi1TffKwoC_v7Ely_C01qSrhAA1tYHZGIFXDncM7PCNbIpxR3PAS_wWRP8EyqVT1xXupQjEAx4oEKoZh-4M8K68tA4x-LMsfFNxYP45BB2OhCe1bpaz5vOlaAKXnFSN4QPEOGaXYTbi2e4Iq3yu1c6R7eF_l5QFIYJwBYUbiSp5taIaoBtJ_zgxgFsEOY5DrZywPQCX_GHYjQKYxhAxYyUZ_l-UMrRRlX39BFDef9k2N_qqlJK-CxFKy92ompVvmFzeLJbYV8= )"
-        },
-        {
-          "id": "19a935e453fedf4a",
-          "subject": "",
-          "preview": "",
-          "summary": "",
-          "role": "Student",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": null,
-          "last_message_ts": null,
-          "last_message_id": null,
-          "last_subject": null,
-          "last_body": null
+          "importance_confidence": 0.8
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:27.300679Z"
+      "summary": "There was a security incident at OpenAI through their data provider Mixpanel, affecting some user data like names and emails. Fortunately, no sensitive info was compromised. OpenAI has stopped using Mixpanel and is reviewing security, also notifying impacted users to beware of phishing attempts.",
+      "timestamp": "2025-11-26T06:03:20.104594Z"
     },
     "outlook:MicrosoftRewards@infoemail.microsoft.com": {
       "id": "outlook:MicrosoftRewards@infoemail.microsoft.com",
@@ -1028,32 +1436,11 @@
       ],
       "summary": "Microsoft Rewards is getting an update in January 2026, adding new participation levels and ways to earn points. The changes include three tiers - Member, Silver, and Gold - with updated daily search point limits. No action is needed from our end, but we can expect potential future changes to enhance benefits.",
       "timestamp": "2025-12-04T06:34:45.474127Z"
-    },
-    "gmail:n00503033@gmail.com": {
-      "id": "gmail:n00503033@gmail.com",
-      "email": "n00503033@gmail.com",
-      "source": "gmail",
-      "role": "General External",
-      "role_confidence": 0.6,
-      "threads": [
-        {
-          "id": "19aee0a83b88296e",
-          "subject": "",
-          "preview": "hello world",
-          "summary": "The conversation appears to be initiated by n00503033@gmail.com, but the content is empty except for \"hello world\", indicating a test or introductory email. There is no meeting time, decision, or next step mentioned. The thread lacks substance, suggesting it may be a preliminary or mistaken email. No meaningful discussion or action items are present. The sender's intent is unclear.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5,
-          "role_confidence": 0.6,
-          "last_message_ts": "2025-12-05T10:24:17+00:00",
-          "last_message_id": "19aee0a83b88296e",
-          "last_subject": "",
-          "last_body": "hello world"
-        }
-      ],
-      "summary": "It looks like we have a pretty empty email thread here, just a \"hello world\" test email from n00503033@gmail.com with no real content or next steps. Doesn't seem like any decisions or meetings were discussed. I'd say this one can be disregarded as it appears to be a preliminary or mistaken email. No action items to follow up on.",
-      "timestamp": "2025-12-05T10:24:54.793776Z"
     }
   },
-  "last_updated": "2025-12-05T10:35:26.296901+00:00"
+<<<<<<< Updated upstream
+  "last_updated": "2025-12-04T07:19:28.136136+00:00"
+=======
+  "last_updated": "2025-12-04T07:00:31.916859+00:00"
+>>>>>>> Stashed changes
 }

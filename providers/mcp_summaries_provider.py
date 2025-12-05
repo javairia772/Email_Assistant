@@ -32,7 +32,8 @@ def _parse_iso(s: str) -> datetime:
 class McpSummariesProvider:
     def __init__(self):
         self.summarizer = GroqSummarizer()
-        self.cache_path = Path(__file__).resolve().parent / "Summaries" / "summaries_cache.json"
+        project_root = Path(__file__).resolve().parents[1]
+        self.cache_path = project_root / "Summaries" / "summaries_cache.json"
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
         self.gmail = GmailConnector()
         self.outlook = OutlookConnector()
@@ -71,7 +72,10 @@ class McpSummariesProvider:
         return False
 
     def _should_generate_draft(self, classification: Dict) -> bool:
-        return classification.get("importance", "").lower() == "high"
+        importance = (classification.get("importance") or "").lower()
+        if not importance:
+            return True
+        return importance not in {"low", "spam", "junk", "ignore"}
 
     def _enqueue_reply_draft(
         self,
@@ -90,6 +94,8 @@ class McpSummariesProvider:
         source = contact.get("source")
         if not contact_email or not source:
             return
+
+        contact_id = contact.get("id") or f"{source}:{contact_email}"
 
         summary_snippet = thread_summary.strip()
         latest_body = (latest_msg.get("body") or "")[:1200]
@@ -118,11 +124,12 @@ Write the reply in first person plural ("we") unless the context clearly require
             thread_id,
             last_message_ts=last_ts,
             statuses=["pending_review", "approved", "sent"],
+            contact_id=contact_id,
         ):
             return
 
         draft = {
-            "contact_id": f"{source}:{contact_email}",
+            "contact_id": contact_id,
             "contact_email": contact_email,
             "source": source,
             "thread_id": thread_id,

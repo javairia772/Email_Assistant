@@ -1,5 +1,6 @@
 from typing import List, Dict, Optional
 import os
+from pathlib import Path
 import gspread
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -29,6 +30,7 @@ HEADER = [
 ]
 
 OUT_KEYS = HEADER.copy()
+FALLBACK_CACHE_PATH = Path(os.getenv("SUMMARY_CACHE_PATH", "Summaries/summaries_cache.json"))
 
 
 # ---------------------- AUTH ----------------------
@@ -59,17 +61,13 @@ def _get_client():
 
 # ---------------------- SPREADSHEET HELPERS ----------------------
 def _get_or_create_spreadsheet(gc, spreadsheet_name: Optional[str] = None):
-    """Get or create spreadsheet."""
+    """Get or create spreadsheet without enumerating the entire drive."""
     target_name = spreadsheet_name or SPREADSHEET_NAME
     try:
-        for sh in gc.openall():
-            if sh.title == target_name:
-                return sh
-    except Exception:
-        pass
-
-    print(f"[Sheets] Creating new spreadsheet: {target_name}")
-    return gc.create(target_name)
+        return gc.open(target_name)
+    except gspread.SpreadsheetNotFound:
+        print(f"[Sheets] Creating new spreadsheet: {target_name}")
+        return gc.create(target_name)
 
 
 def _get_or_create_worksheet(spreadsheet_name: Optional[str] = None, worksheet_name: Optional[str] = None):
@@ -141,15 +139,15 @@ def read_all_summaries(spreadsheet_name: Optional[str] = None, worksheet_name: O
     """Read all rows safely from Google Sheets."""
     try:
         ws = _get_or_create_worksheet(spreadsheet_name, worksheet_name)
-        
+
         # First, get all values to inspect the headers
         all_values = ws.get_all_values()
         if not all_values:
-            return []
-            
+            return _fallback_rows_from_cache()
+
         # Get the first row as headers and clean them up
         headers = [h.strip() for h in all_values[0]]
-        
+
         # Handle empty or duplicate headers
         seen = set()
         clean_headers = []
@@ -161,7 +159,7 @@ def read_all_summaries(spreadsheet_name: Optional[str] = None, worksheet_name: O
             else:
                 clean_headers.append(h)
                 seen.add(h)
-        
+
         # Convert rows to dictionaries with clean headers
         rows = []
         for row in all_values[1:]:  # Skip header row
@@ -172,14 +170,57 @@ def read_all_summaries(spreadsheet_name: Optional[str] = None, worksheet_name: O
                 else:
                     row_dict[f"column_{i}"] = value
             rows.append(row_dict)
-            
+
+        if not rows:
+            return _fallback_rows_from_cache()
+
         print(f"[Sheets] ✅ Read {len(rows)} rows (showing up to 5):")
         import pprint; pprint.pprint(rows[:5])
         return rows
-        
+
     except Exception as e:
         print(f"[Sheets] ❌ Error reading sheet: {str(e)}")
+        return _fallback_rows_from_cache()
+
+
+def _fallback_rows_from_cache() -> List[Dict]:
+    if not FALLBACK_CACHE_PATH.exists():
         return []
+    try:
+        with FALLBACK_CACHE_PATH.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as exc:
+        print(f"[Sheets] ⚠ Fallback cache read failed: {exc}")
+        return []
+
+    entries = data.get("summaries", data)
+    if isinstance(entries, dict):
+        records = list(entries.values())
+    elif isinstance(entries, list):
+        records = entries
+    else:
+        return []
+
+    fallback_rows = []
+    for entry in records:
+        if not isinstance(entry, dict):
+            continue
+        email = entry.get("email", "")
+        if not email:
+            continue
+        fallback_rows.append({
+            "id": entry.get("id") or f"{entry.get('source','unknown')}:{email}",
+            "email": email,
+            "source": entry.get("source", ""),
+            "role": entry.get("role", "Unknown"),
+            "role_confidence": entry.get("role_confidence", ""),
+            "contact_summary": entry.get("contact_summary") or entry.get("summary") or "",
+            "threads": entry.get("threads", []),
+            "last_summary": entry.get("last_summary") or entry.get("timestamp") or entry.get("date") or "",
+        })
+    if fallback_rows:
+        print(f"[Sheets] ⚠ Using fallback cache rows ({len(fallback_rows)})")
+    return fallback_rows
 
 
 # ---------------------- UPSERT (ADD/UPDATE) ----------------------
@@ -341,6 +382,7 @@ def upsert_summaries(*args, **kwargs):
     # Load existing rows and normalize
     # ------------------------------------------
     existing_lookup: dict[str, dict] = {}
+    existing_records: List[Dict] = []
 
     try:
         existing_records = ws.get_all_records()
@@ -422,11 +464,15 @@ def upsert_summaries(*args, **kwargs):
         serialized = [_serialize_value(row.get(col, "")) for col in HEADER]
         matrix.append(serialized)
 
+    extra_rows = max(0, len(existing_records) - len(ordered_rows))
+    blank_row = [""] * len(HEADER)
+    for _ in range(extra_rows):
+        matrix.append(blank_row.copy())
+
     # ------------------------------------------
     # Write only when needed
     # ------------------------------------------
     try:
-        ws.clear()
         ws.update("A1", matrix)
         print(
             f"[Sheets] ✅ Sync complete — "

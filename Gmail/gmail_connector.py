@@ -217,6 +217,18 @@ class GmailConnector:
         self.service.users().messages().send(userId="me", body=body).execute()
 
     # ------------------------------------------------------
+    # SEND NEW EMAIL
+    # ------------------------------------------------------
+    def send_email(self, to_email, subject, body_text, attachments=None):
+        """Send a new email (non-thread). Attachments optional (ignored if none)."""
+        message = MIMEText(body_text)
+        message["to"] = to_email
+        message["subject"] = subject
+        raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+        body = {"raw": raw}
+        self.service.users().messages().send(userId="me", body=body).execute()
+
+    # ------------------------------------------------------
     # Optional: plain text joiner for summarization
     # ------------------------------------------------------
     def get_thread_text(self, thread_id):

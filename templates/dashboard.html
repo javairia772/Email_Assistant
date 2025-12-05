@@ -73,6 +73,9 @@
       <ul>
         <li style="color:#bae6fd; margin: 19px 0 7px 0; font-weight:560;">Dashboard</li>
       </ul>
+      <div style="margin-top:26px;">
+        <button class="btn" style="width:100%; text-align:center; padding:10px 12px;" onclick="openCompose()">Compose Email</button>
+      </div>
     </aside>
 
     <main class="main">
@@ -99,14 +102,6 @@
           <option value="Uncategorized">Uncategorized</option>
         </select>
 
-        <label for="importanceFilter">Importance:</label>
-        <select id="importanceFilter">
-          <option value="">All</option>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
-
         <button onclick="clearFilters()">Clear Filters</button>
       </div>
 
@@ -124,7 +119,7 @@
           </thead>
           <tbody id="rows-tbody">
             {% for it in items %}
-            <tr class="clickable-row" data-role="{{ it.role }}" data-importance="{{ it.importance|default('Medium') }}" onclick="window.location='{{ it.detail_url }}'">
+            <tr class="clickable-row" data-role="{{ it.role }}" onclick="window.location='{{ it.detail_url }}'">
               <td>{{ it.id }}</td>
               <td><a class="email-link" href="{{ it.detail_url }}">{{ it.email }}</a></td>
               <td><span class="tag {{ it.role_class }}">{{ it.role }}</span></td>
@@ -137,6 +132,26 @@
         </table>
       </div>
     </main>
+  </div>
+
+  <!-- Compose Modal -->
+  <div id="compose-modal" style="display:none; position:fixed; inset:0; background:#0006; align-items:center; justify-content:center; z-index:9999;">
+    <div style="background:#fff; padding:20px; border-radius:8px; width:520px; max-width:95%; box-shadow:0 8px 24px #0003;">
+      <h3 style="margin-top:0;">Compose Email</h3>
+      <label>To</label>
+      <input id="compose-to" type="email" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="recipient@example.com" />
+      <label>Subject</label>
+      <input id="compose-subject" type="text" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="Subject" />
+      <label>Body</label>
+      <textarea id="compose-body" style="width:100%; min-height:140px; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;"></textarea>
+      <label>Attachments (base64 JSON array)</label>
+      <textarea id="compose-attachments" placeholder='[{"filename":"file.txt","content_base64":"..."}]' style="width:100%; min-height:80px; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;"></textarea>
+      <div id="compose-status" style="margin-top:6px; color:#6b7280; font-size:14px;"></div>
+      <div style="margin-top:12px; display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn" style="background:#6b7280;" onclick="closeCompose()">Cancel</button>
+        <button class="btn" onclick="sendCompose()">Send</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -167,7 +182,7 @@
 
     function makeRow(it) {
       const detailUrl = it.detail_url || `/contact/${encodeURIComponent(it.id || '')}`;
-      return `<tr class="clickable-row" data-role="${it.role || ''}" data-importance="${it.importance || 'Medium'}" onclick="window.location='${detailUrl}'">
+      return `<tr class="clickable-row" data-role="${it.role || ''}" onclick="window.location='${detailUrl}'">
         <td>${escapeHTML(it.id || '')}</td>
         <td><a class="email-link" href="${detailUrl}">${escapeHTML(it.email || '')}</a></td>
         <td><span class="tag ${it.role_class || 'tag-default'}">${escapeHTML(it.role || '')}</span></td>
@@ -190,26 +205,60 @@
 
     function applyFilters() {
       const role = document.getElementById('roleFilter').value;
-      const importance = document.getElementById('importanceFilter').value;
       const rows = document.querySelectorAll('#rows-tbody tr');
       rows.forEach(r => {
         const matchesRole = !role || r.dataset.role === role;
-        const matchesImportance = !importance || r.dataset.importance === importance;
-        r.style.display = (matchesRole && matchesImportance) ? '' : 'none';
+        r.style.display = (matchesRole) ? '' : 'none';
       });
     }
 
     function clearFilters() {
       document.getElementById('roleFilter').value = '';
-      document.getElementById('importanceFilter').value = '';
       applyFilters();
     }
 
     document.getElementById('roleFilter').addEventListener('change', applyFilters);
-    document.getElementById('importanceFilter').addEventListener('change', applyFilters);
-
     setInterval(updateTable, 60000);
     window.addEventListener('DOMContentLoaded', updateTable);
+
+    function openCompose() {
+      document.getElementById('compose-modal').style.display = 'flex';
+      document.getElementById('compose-status').textContent = '';
+    }
+    function closeCompose() {
+      document.getElementById('compose-modal').style.display = 'none';
+    }
+    async function sendCompose() {
+      const to = document.getElementById('compose-to').value.trim();
+      const subject = document.getElementById('compose-subject').value.trim();
+      const body = document.getElementById('compose-body').value.trim();
+      const attachmentsRaw = document.getElementById('compose-attachments').value.trim();
+      let attachments = [];
+      if (attachmentsRaw) {
+        try { attachments = JSON.parse(attachmentsRaw); } catch { attachments = []; }
+      }
+      if (!to || !subject || !body) {
+        document.getElementById('compose-status').style.color = '#dc2626';
+        document.getElementById('compose-status').textContent = 'To, subject, and body are required.';
+        return;
+      }
+      document.getElementById('compose-status').style.color = '#6b7280';
+      document.getElementById('compose-status').textContent = 'Sending...';
+      const resp = await fetch('/api/compose-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to, subject, body, attachments })
+      });
+      const data = await resp.json();
+      if (data.ok) {
+        document.getElementById('compose-status').style.color = '#10b981';
+        document.getElementById('compose-status').textContent = 'Sent successfully.';
+        setTimeout(closeCompose, 1200);
+      } else {
+        document.getElementById('compose-status').style.color = '#dc2626';
+        document.getElementById('compose-status').textContent = data.error || 'Failed to send.';
+      }
+    }
   </script>
 </body>
 </html>

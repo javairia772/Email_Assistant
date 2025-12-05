@@ -62,8 +62,46 @@ def format_pkt(date_str: str) -> str:
         return f"{day} {mo} {pkt.year}, {h12:02d}:{pkt.minute:02d} {ampm} (PKT)"
     except Exception:
         return str(date_str)
-    
 
+# Local helpers (avoid external imports)
+def extract_email(s: str) -> str:
+    import re
+    if not s:
+        return ""
+    s = s.strip()
+    if "<" in s and ">" in s:
+        s = re.search(r"<([^>]+)>", s).group(1)
+    match = re.search(r"[\w\.-]+@[\w\.-]+\.\w+", s)
+    return match.group(0).lower() if match else s.lower()
+
+
+def normalize_contact_id(cid: str) -> str:
+    """Convert anything into 'source:email'."""
+    if not cid:
+        return ""
+    email = extract_email(cid)
+    if cid.lower().startswith("gmail:"):
+        source = "gmail"
+    elif cid.lower().startswith("outlook:"):
+        source = "outlook"
+    else:
+        source = "gmail"
+    return f"{source}:{email}"
+
+
+def expand_possible_ids(cid: str):
+    """Return all possible forms of the contact ID for backward matching."""
+    if not cid:
+        return []
+    email = extract_email(cid)
+    return list({
+        cid,
+        email,
+        f"gmail:{email}",
+        f"outlook:{email}",
+        f"unknown:{email}",
+        f"{email}",
+    })
 def _load_cached_summaries() -> dict:
     """Read the local summaries cache for contact drilldowns."""
     if not SUMMARY_CACHE_PATH.exists():
@@ -77,21 +115,33 @@ def _load_cached_summaries() -> dict:
         return {}
 
     summaries = data.get("summaries", data)
+    mapped = {}
+    iterable = []
     if isinstance(summaries, dict):
-        return summaries
+        iterable = summaries.values()
+    elif isinstance(summaries, list):
+        iterable = summaries
+    else:
+        return {}
 
-    if isinstance(summaries, list):
-        mapped = {}
-        for entry in summaries:
-            if not isinstance(entry, dict):
-                continue
-            key = entry.get("id") or f"{entry.get('source','')}:{entry.get('email','')}"
-            if key:
-                mapped[key] = entry
-        return mapped
-
-    return {}
-
+    for entry in iterable:
+        if not isinstance(entry, dict):
+            continue
+        email = extract_email(entry.get("email", ""))
+        source_guess = entry.get("source") or (
+            "gmail"
+            if "gmail" in (entry.get("id") or "").lower()
+            else "outlook"
+            if "outlook" in (entry.get("id") or "").lower()
+            else ""
+        )
+        norm_id = normalize_contact_id(entry.get("id") or f"{source_guess}:{email}")
+        if not norm_id:
+            continue
+        entry["id"] = norm_id
+        entry["email"] = email or entry.get("email", "")
+        mapped[norm_id] = entry
+    return mapped
 
 def _parse_iso(value: str):
     if not value:
@@ -104,6 +154,33 @@ def _parse_iso(value: str):
 
 def _build_detail_url(contact_id: str) -> str:
     return f"/contact/{quote(contact_id, safe='')}"
+
+
+def _latest_thread_ts(threads_value):
+    """
+    Extract the latest timestamp from a threads field that may be a list or JSON string.
+    """
+    if not threads_value:
+        return ""
+    threads = threads_value
+    if isinstance(threads_value, str):
+        try:
+            import json as _json
+            threads = _json.loads(threads_value)
+        except Exception:
+            return ""
+    if not isinstance(threads, list):
+        return ""
+    latest = ""
+    for t in threads:
+        if not isinstance(t, dict):
+            continue
+        ts = t.get("last_message_ts") or t.get("timestamp") or t.get("date") or t.get("last_modified") or t.get("created_at")
+        if not ts:
+            continue
+        if not latest or _parse_iso(ts) > _parse_iso(latest):
+            latest = ts
+    return latest
 
 
 def _decorate_draft(draft: Dict) -> Dict:
@@ -155,9 +232,8 @@ async def dashboard(request: Request, limit: int = 20):
             continue
 
         summary_text = row.get("contact_summary") or row.get("summary") or ""
-        date_value = row.get("last_summary") or row.get("timestamp") or row.get("date") or ""
+        date_value = _latest_thread_ts(row.get("threads")) or row.get("last_summary") or row.get("timestamp") or row.get("date") or ""
         role_value = row.get("role") or row.get("Role") or "Uncategorized"
-        importance_value = row.get("importance") or row.get("Importance") or ""
 
         item = {
             "id": row.get("id") or f"{row.get('source','unknown')}:{email}",
@@ -166,7 +242,6 @@ async def dashboard(request: Request, limit: int = 20):
             "summary": summary_text,
             "date": format_pkt(date_value),
             "source": row.get("source", ""),
-            "importance": importance_value,
             "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
         }
         item["detail_url"] = _build_detail_url(item["id"])
@@ -192,7 +267,7 @@ async def api_summaries(limit: int = 20):
 
         role_value = row.get("role") or row.get("Role") or "Uncategorized"
         summary_text = row.get("contact_summary") or row.get("summary") or ""
-        date_value = row.get("last_summary") or row.get("timestamp") or row.get("date")
+        date_value = _latest_thread_ts(row.get("threads")) or row.get("last_summary") or row.get("timestamp") or row.get("date")
 
         items.append({
             "id": row.get("id") or f"{row.get('source','unknown')}:{email}",
@@ -202,7 +277,7 @@ async def api_summaries(limit: int = 20):
             "date": format_pkt(date_value),
             "source": row.get("source", ""),
             "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
-            "importance": row.get("importance") or row.get("Importance") or "",
+            "importance": "",
             "detail_url": _build_detail_url(row.get("id") or f"{row.get('source','unknown')}:{email}"),
         })
 
@@ -212,7 +287,16 @@ async def api_summaries(limit: int = 20):
 @app.get("/contact/{contact_id}", response_class=HTMLResponse)
 async def contact_detail(contact_id: str):
     summaries = _load_cached_summaries()
-    contact_entry = summaries.get(contact_id)
+    # Try normalized key and fallbacks
+    norm_id = normalize_contact_id(contact_id)
+    contact_entry = summaries.get(norm_id) or summaries.get(contact_id)
+
+    if not contact_entry:
+        for pid in expand_possible_ids(contact_id):
+            if pid in summaries:
+                contact_entry = summaries[pid]
+                contact_id = pid
+                break
 
     if not contact_entry:
         raise HTTPException(status_code=404, detail="Contact not found in cache.")
@@ -228,7 +312,7 @@ async def contact_detail(contact_id: str):
     for thread in contact_entry.get("threads", []):
         if not isinstance(thread, dict):
             continue
-        ts = thread.get("timestamp") or thread.get("date") or thread.get("last_modified") or thread.get("created_at")
+        ts = thread.get("last_message_ts") or thread.get("timestamp") or thread.get("date") or thread.get("last_modified") or thread.get("created_at")
         threads.append({
             "id": thread.get("thread_id") or thread.get("id"),
             "subject": thread.get("subject") or "(No subject)",
@@ -241,7 +325,16 @@ async def contact_detail(contact_id: str):
 
     threads.sort(key=lambda t: _parse_iso(t.get("timestamp")), reverse=True)
 
-    drafts = reply_queue.list_drafts(contact_id=contact_id)
+    possible_ids = expand_possible_ids(contact_id)
+    drafts = []
+    for pid in possible_ids:
+        drafts.extend(reply_queue.list_drafts(contact_id=pid))
+    if not drafts:
+        alt_id = contact_entry.get("id") or f"{source}:{email}"
+        if alt_id and alt_id != contact_id:
+            drafts = reply_queue.list_drafts(contact_id=alt_id)
+        elif source and email and ":" not in contact_id:
+            drafts = reply_queue.list_drafts(contact_id=f"{source}:{email}")
     pending_drafts = [_decorate_draft(d) for d in drafts if d.get("status") == "pending_review"]
     history_drafts = [_decorate_draft(d) for d in drafts if d.get("status") != "pending_review"]
 
@@ -430,5 +523,27 @@ async def send_reply(
             "message": "Reply sent successfully",
             "thread_id": thread_id
         }
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
+# Compose / send ad-hoc email (also used by external MCP tool triggers)
+@app.post("/api/compose-email")
+async def compose_email(
+    to: str = Body(...),
+    subject: str = Body(...),
+    body: str = Body(...),
+    attachments: list = Body(default=None),
+    source: str = Body(default="gmail"),
+):
+    try:
+        src = (source or "gmail").lower()
+        if src == "gmail":
+            GmailConnector().send_email(to, subject, body, attachments or [])
+        elif src == "outlook":
+            OutlookConnector().send_email(to, subject, body, attachments or [])
+        else:
+            raise HTTPException(status_code=400, detail="Unsupported source")
+        return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}
