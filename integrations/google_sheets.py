@@ -36,12 +36,22 @@ FALLBACK_CACHE_PATH = Path(os.getenv("SUMMARY_CACHE_PATH", "Summaries/summaries_
 # ---------------------- AUTH ----------------------
 def _get_client():
     creds = None
-    credentials_file = os.getenv("GOOGLE_SHEETS_OAUTH_CLIENT", "credentials.json")
     token_file = os.getenv("GOOGLE_SHEETS_TOKEN", "token_gmail_sheets.pkl")
 
-    print(f"[Sheets] Using credentials file: {credentials_file}")
+    print(f"[Sheets] Using environment variables for authentication")
     print(f"[Sheets] Using spreadsheet: {SPREADSHEET_NAME}")
     print(f"[Sheets] Using worksheet: {WORKSHEET_NAME}")
+
+    # Create client config from environment variables (same as Gmail)
+    client_config = {
+        "installed": {
+            "client_id": os.getenv("GOOGLE_CLIENT_ID"),
+            "client_secret": os.getenv("GOOGLE_CLIENT_SECRET"),
+            "redirect_uris": ["http://localhost:8081/"],
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token"
+        }
+    }
 
     if os.path.exists(token_file):
         with open(token_file, "rb") as token:
@@ -51,10 +61,23 @@ def _get_client():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(credentials_file, SCOPES)
-            creds = flow.run_local_server(port=8081)
-        with open(token_file, "wb") as token:
-            pickle.dump(creds, token)
+            # Create a temporary credentials file
+            import tempfile
+            with tempfile.NamedTemporaryFile(mode='w+', suffix='.json', delete=False) as temp_creds:
+                json.dump(client_config, temp_creds)
+                temp_creds_path = temp_creds.name
+            
+            try:
+                flow = InstalledAppFlow.from_client_secrets_file(temp_creds_path, SCOPES)
+                creds = flow.run_local_server(port=8081)
+                with open(token_file, "wb") as token:
+                    pickle.dump(creds, token)
+            finally:
+                # Clean up the temporary file
+                try:
+                    os.unlink(temp_creds_path)
+                except:
+                    pass
 
     return gspread.authorize(creds)
 
