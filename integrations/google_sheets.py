@@ -110,15 +110,21 @@ def _parse_date(date_str):
     if isinstance(date_str, datetime):
         return date_str.astimezone(timezone.utc) if date_str.tzinfo else date_str.replace(tzinfo=timezone.utc)
 
+    # Handle the case where the date string is already in ISO 8601 format with timezone
+    if isinstance(date_str, str) and '+' in date_str and ':' == date_str[-3:-2]:
+        # Remove the colon from the timezone offset (e.g., +00:00 -> +0000)
+        date_str = date_str[:-3] + date_str[-2:]
+    
     date_formats = [
-        '%Y-%m-%dT%H:%M:%S%z',
-        '%Y-%m-%d %H:%M:%S%z',
-        '%Y-%m-%dT%H:%M:%S.%fZ',
-        '%Y-%m-%dT%H:%M:%SZ',
-        '%Y-%m-%d %H:%M:%S',
-        '%Y-%m-%d',
-        '%d-%m-%Y %H:%M',
-        '%m/%d/%Y %I:%M %p',
+        '%Y-%m-%dT%H:%M:%S.%f%z',  # With microseconds and timezone
+        '%Y-%m-%dT%H:%M:%S%z',     # Without microseconds, with timezone
+        '%Y-%m-%d %H:%M:%S%z',     # Space separator, with timezone
+        '%Y-%m-%dT%H:%M:%S.%fZ',   # With microseconds, UTC
+        '%Y-%m-%dT%H:%M:%SZ',      # Without microseconds, UTC
+        '%Y-%m-%d %H:%M:%S',       # Local time without timezone
+        '%Y-%m-%d',                # Date only
+        '%d-%m-%Y %H:%M',          # European date format
+        '%m/%d/%Y %I:%M %p',       # US date format with AM/PM
     ]
 
     for fmt in date_formats:

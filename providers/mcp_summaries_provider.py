@@ -416,40 +416,83 @@ Write the reply in first person plural ("we") unless the context clearly require
         all_data = gmail_data + outlook_data
         print(f"[INFO] ✅ Total contacts fetched: {len(all_data)}")
 
-        merged_summaries = []
-        
-        # Load existing cache if provided
-        existing_summaries = {}
+        # Initialize with existing summaries if available
         if existing_cache and "summaries" in existing_cache:
-            existing_summaries = existing_cache["summaries"]
+            # Convert the summaries dict to a list
+            existing_summaries = list(existing_cache["summaries"].values())
+            print(f"[CACHE] Loaded {len(existing_summaries)} existing summaries from cache")
+        else:
+            existing_summaries = []
 
-        # Summarize each contact
+        # Create a dictionary of existing summaries by cache key for quick lookup
+        existing_summaries_dict = {}
+        for summary in existing_summaries:
+            source = summary.get("source", "unknown")
+            email = summary.get("email", "")
+            if email:
+                cache_key = f"{source}:{email}"
+                existing_summaries_dict[cache_key] = summary
+
+        merged_summaries = []
+        processed_emails = set()
+        
+        # First process all existing summaries to include them in the output
+        for cache_key, summary in existing_summaries_dict.items():
+            email = summary.get("email")
+            if email and email not in processed_emails:
+                processed_emails.add(email)
+                merged_summaries.append(summary)
+                print(f"⚡ Using cached summary for {email}")
+
+        # Now process new/updated contacts
         for contact in all_data:
             contact_email = contact.get("email")
-            source = contact.get("source")
+            if not contact_email:
+                continue
+                
+            source = contact.get("source", "unknown")
             cache_key = f"{source}:{contact_email}"
             
-            # ✅ Check if this contact is already in cache
-            existing_contact = existing_summaries.get(cache_key)
+            # Skip if we've already processed this email
+            if contact_email in processed_emails:
+                continue
+                
+            # Check if this contact is already in cache
+            existing_contact = existing_summaries_dict.get(cache_key)
             if existing_contact and not self._threads_changed(contact, existing_contact):
                 print(f"⚡ Using cached summary for {contact_email} (no updates)")
                 merged_summaries.append(existing_contact)
+                processed_emails.add(contact_email)
                 continue
             else:
                 if existing_contact:
                     print(f"🔄 Changes detected for {contact_email}, re-summarizing...")
             
             # Summarize contact (new or updated)
-            contact_summary = self._summarize_contact_threads(contact, existing_contact)
-            merged_summaries.append(contact_summary)
+            try:
+                contact_summary = self._summarize_contact_threads(contact, existing_contact)
+                if contact_summary and "email" in contact_summary:
+                    merged_summaries.append(contact_summary)
+                    processed_emails.add(contact_summary["email"])
+            except Exception as e:
+                print(f"[ERROR] Failed to summarize {contact_email}: {str(e)}")
 
         # --- Build final cache JSON ---
+        # Create a dictionary of summaries for the cache
+        cache_summaries = {}
+        for summary in merged_summaries:
+            email = summary.get("email")
+            source = summary.get("source", "unknown")
+            if email:
+                cache_key = f"{source}:{email}"
+                cache_summaries[cache_key] = summary
+
         cache_data = {
             "seen": {
                 "gmail": [c["id"] for c in merged_summaries if c.get("source") == "gmail"],
                 "outlook": [c["id"] for c in merged_summaries if c.get("source") == "outlook"]
             },
-            "summaries": merged_summaries,
+            "summaries": cache_summaries,
             "last_updated": datetime.now(timezone.utc).isoformat()
         }
 

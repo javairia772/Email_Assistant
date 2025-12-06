@@ -1,28 +1,28 @@
 {
   "seen": {
     "gmail": [
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
-      "gmail:n00503033@gmail.com",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
       "gmail:noreply@email.openai.com",
+      "gmail:Nexus <n00503033@gmail.com>",
       "gmail:Google <no-reply@accounts.google.com>",
-      "gmail:Groq <developer@groq.co>",
       "gmail:Javaria <j66yya@gmail.com>",
       "gmail:Cursor Team <hi@mail.cursor.com>",
+      "gmail:Groq <developer@groq.co>",
+      "gmail:n00503033@gmail.com",
+      "gmail:OpenAI <noreply@email.openai.com>",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
       "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Nexus <n00503033@gmail.com>",
-      "gmail:OpenAI <noreply@email.openai.com>"
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>"
     ],
     "outlook": [
-      "outlook:nexus202540@outlook.com",
-      "outlook:minahilmy34@gmail.com",
-      "outlook:javariasaleem39@gmail.com",
-      "outlook:no-reply@microsoft.com",
       "outlook:MSSecurity-noreply@microsoft.com",
-      "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:j66yya@gmail.com",
-      "outlook:MicrosoftRewards@infoemail.microsoft.com",
+      "outlook:no-reply@microsoft.com",
       "outlook:m365dev@microsoft.com",
+      "outlook:MicrosoftRewards@infoemail.microsoft.com",
+      "outlook:javariasaleem39@gmail.com",
+      "outlook:j66yya@gmail.com",
+      "outlook:minahilmy34@gmail.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com",
+      "outlook:nexus202540@outlook.com",
       "outlook:n00503033@gmail.com"
     ]
   },
@@ -1055,5 +1055,5 @@
       "timestamp": "2025-12-05T10:24:54.793776Z"
     }
   },
-  "last_updated": "2025-12-05T10:35:26.296901+00:00"
+  "last_updated": "2025-12-06T20:02:07.692448+00:00"
 }

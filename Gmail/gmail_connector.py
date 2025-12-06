@@ -204,17 +204,42 @@ class GmailConnector:
     # ------------------------------------------------------
     # SEND REPLY
     # ------------------------------------------------------
-    def send_reply(self, thread_id, to_email, subject, reply_body):
-        """Send a reply within an existing Gmail thread."""
+    def send_reply(self, thread_id, to_email, subject, reply_body, in_reply_to=None, references=None):
+        """Send a reply within an existing Gmail thread.
+        
+        Args:
+            thread_id: The ID of the thread to reply to
+            to_email: Email address to send the reply to
+            subject: Subject of the email (will be prefixed with 'Re: ')
+            reply_body: The body of the reply
+            in_reply_to: The Message-ID of the message being replied to (optional)
+            references: References header for threading (optional)
+        """
+        # Get the sender's email address from Gmail settings
+        profile = self.service.users().getProfile(userId='me').execute()
+        sender_email = profile.get('emailAddress')
+        
         message = MIMEText(reply_body)
         message["to"] = to_email
-        message["subject"] = f"Re: {subject}"
-        raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+        message["from"] = sender_email  # Explicitly set the From header
+        message["subject"] = f"Re: {subject}" if not subject.lower().startswith("re: ") else subject
+        
+        # Add threading headers if available
+        if in_reply_to:
+            message["In-Reply-To"] = in_reply_to
+            message["References"] = references or in_reply_to
+        
+        raw = base64.urlsafe_b64encode(message.as_string().encode("utf-8")).decode()
         body = {
             "raw": raw,
             "threadId": thread_id
         }
-        self.service.users().messages().send(userId="me", body=body).execute()
+        
+        try:
+            self.service.users().messages().send(userId="me", body=body).execute()
+        except Exception as e:
+            print(f"[Gmail] Error sending reply: {str(e)}")
+            raise
 
     # ------------------------------------------------------
     # SEND NEW EMAIL

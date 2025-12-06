@@ -189,36 +189,71 @@ class OutlookConnector:
     # ------------------------------------------------------
     # SEND REPLY
     # ------------------------------------------------------
-    def send_reply(self, message_id, to_email, subject, reply_body):
-        """Send an Outlook reply; falls back to sendMail if message_id missing."""
+    def send_reply(self, message_id, to_email, subject, reply_body, thread_id=None):
+        """
+        Send an Outlook reply within the same thread.
+        
+        Args:
+            message_id: The ID of the message being replied to
+            to_email: The email address to send the reply to
+            subject: The email subject
+            reply_body: The body of the reply
+            thread_id: The conversation ID (optional, used for logging)
+        """
         self.ensure_authenticated()
         headers = {**self._headers(), "Content-Type": "application/json"}
-        if message_id:
+        
+        if not message_id:
+            # Fallback to creating a new message if no message_id is provided
+            return self.send_email(to_email, subject, reply_body)
+            
+        try:
+            # First, get the original message to include in the reply
+            msg_url = f"https://graph.microsoft.com/v1.0/me/messages/{message_id}?$select=conversationId,internetMessageId,sender"
+            msg_resp = requests.get(msg_url, headers=headers)
+            
+            if msg_resp.status_code != 200:
+                print(f"[Outlook] Failed to get message details: {msg_resp.text}")
+                # Fallback to basic reply if we can't get message details
+                return self.send_email(to_email, subject, reply_body)
+                
+            msg_data = msg_resp.json()
+            conversation_id = msg_data.get('conversationId')
+            
+            # Format the reply to include the original message
+            formatted_body = f"{reply_body}\n\n---\nOriginal message:\n{'-'*20}\n"
+            
+            # Get the sender's email address from the profile
+            me = requests.get("https://graph.microsoft.com/v1.0/me", headers=headers).json()
+            sender_email = me.get('mail') or me.get('userPrincipalName')
+            
+            # Send the reply using the reply endpoint to maintain thread
             url = f"https://graph.microsoft.com/v1.0/me/messages/{message_id}/reply"
             payload = {
                 "message": {
+                    "from": {
+                        "emailAddress": {
+                            "address": sender_email
+                        }
+                    },
                     "body": {
                         "contentType": "Text",
-                        "content": reply_body
+                        "content": formatted_body
                     }
                 },
                 "comment": ""
             }
-        else:
-            url = "https://graph.microsoft.com/v1.0/me/sendMail"
-            payload = {
-                "message": {
-                    "subject": f"Re: {subject}",
-                    "body": {
-                        "contentType": "Text",
-                        "content": reply_body
-                    },
-                    "toRecipients": [
-                        {"emailAddress": {"address": to_email}}
-                    ],
-                },
-                "saveToSentItems": True
-            }
-        response = requests.post(url, headers=headers, json=payload)
-        if response.status_code not in (200, 202):
-            raise Exception(f"Error sending reply: {response.text}")
+            
+            response = requests.post(url, headers=headers, json=payload)
+            if response.status_code not in (200, 202):
+                print(f"[Outlook] Failed to send reply: {response.text}")
+                # Fallback to basic send if reply fails
+                return self.send_email(to_email, subject, reply_body)
+                
+            print(f"[Outlook] Reply sent successfully (Conversation: {conversation_id})")
+            return True
+            
+        except Exception as e:
+            print(f"[Outlook] Error sending reply: {str(e)}")
+            # Fallback to basic send if anything goes wrong
+            return self.send_email(to_email, subject, reply_body)

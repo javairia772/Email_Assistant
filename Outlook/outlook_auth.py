@@ -17,8 +17,8 @@ class OutlookAuth:
     def __init__(self, token_cache_file="msal_outlook_cache.bin"):
         load_dotenv()
 
-        self.client_id = os.getenv("CLIENT_ID")
-        self.redirect_uri = os.getenv("REDIRECT_URI")
+        self.client_id = os.getenv("OUTLOOK_CLIENT_ID")
+        self.redirect_uri = os.getenv("OUTLOOK_REDIRECT_URI")
         self.tenant_id = os.getenv("TENANT_ID", "consumers")
         self.token_cache_file = token_cache_file
 

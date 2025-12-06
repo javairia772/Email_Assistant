@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi import Body
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import quote
 import json
@@ -13,6 +13,7 @@ from Summarizer.groq_summarizer import GroqSummarizer
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
 from providers.reply_queue import ReplyQueue
+from providers.utils import extract_email, normalize_contact_id, expand_possible_ids
 SUMMARY_CACHE_PATH = Path("Summaries/summaries_cache.json")
 
 
@@ -63,45 +64,7 @@ def format_pkt(date_str: str) -> str:
     except Exception:
         return str(date_str)
 
-# Local helpers (avoid external imports)
-def extract_email(s: str) -> str:
-    import re
-    if not s:
-        return ""
-    s = s.strip()
-    if "<" in s and ">" in s:
-        s = re.search(r"<([^>]+)>", s).group(1)
-    match = re.search(r"[\w\.-]+@[\w\.-]+\.\w+", s)
-    return match.group(0).lower() if match else s.lower()
 
-
-def normalize_contact_id(cid: str) -> str:
-    """Convert anything into 'source:email'."""
-    if not cid:
-        return ""
-    email = extract_email(cid)
-    if cid.lower().startswith("gmail:"):
-        source = "gmail"
-    elif cid.lower().startswith("outlook:"):
-        source = "outlook"
-    else:
-        source = "gmail"
-    return f"{source}:{email}"
-
-
-def expand_possible_ids(cid: str):
-    """Return all possible forms of the contact ID for backward matching."""
-    if not cid:
-        return []
-    email = extract_email(cid)
-    return list({
-        cid,
-        email,
-        f"gmail:{email}",
-        f"outlook:{email}",
-        f"unknown:{email}",
-        f"{email}",
-    })
 def _load_cached_summaries() -> dict:
     """Read the local summaries cache for contact drilldowns."""
     if not SUMMARY_CACHE_PATH.exists():
@@ -202,23 +165,49 @@ def _decorate_draft(draft: Dict) -> Dict:
 
 
 def _send_email(source: str, thread_id: str, contact_email: str, subject: str, reply_text: str, message_id: str = None):
+    """Send an email reply, maintaining thread context.
+    
+    Args:
+        source: The email source ('gmail' or 'outlook')
+        thread_id: The ID of the conversation thread
+        contact_email: The email address to send to
+        subject: The email subject
+        reply_text: The body of the reply
+        message_id: The ID of the message being replied to (for threading)
+    """
     source_lower = (source or "").lower()
-    if source_lower == "gmail":
-        gmail_client.send_reply(
-            thread_id=thread_id,
-            to_email=contact_email,
-            subject=subject,
-            reply_body=reply_text,
-        )
-    elif source_lower == "outlook":
-        outlook_client.send_reply(
-            message_id=message_id,
-            to_email=contact_email,
-            subject=subject,
-            reply_body=reply_text,
-        )
-    else:
-        raise HTTPException(status_code=400, detail=f"Unknown source for sending reply: {source}")
+    
+    # Format message_id for Gmail if needed
+    if source_lower == "gmail" and message_id:
+        # Ensure message_id is properly formatted with angle brackets if it's not already
+        if not message_id.startswith('<'):
+            message_id = f'<{message_id}'
+        if not message_id.endswith('>'):
+            message_id = f'{message_id}>'
+    
+    try:
+        if source_lower == "gmail":
+            gmail_client.send_reply(
+                thread_id=thread_id,
+                to_email=contact_email,
+                subject=subject,
+                reply_body=reply_text,
+                in_reply_to=message_id,
+                references=message_id  # For Gmail, we can use the same message ID for both
+            )
+        elif source_lower == "outlook":
+            outlook_client.send_reply(
+                message_id=message_id,
+                to_email=contact_email,
+                subject=subject,
+                reply_body=reply_text,
+                thread_id=thread_id  # Pass thread_id for logging purposes
+            )
+        else:
+            raise HTTPException(status_code=400, detail=f"Unknown source for sending reply: {source}")
+    except Exception as e:
+        print(f"[ERROR] Failed to send email via {source_lower}: {str(e)}")
+        raise
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -365,11 +354,59 @@ async def generate_reply(
 ):
     """Generate a reply for a thread using thread summary + user prompt."""
     try:
+        from urllib.parse import unquote
+        
+        # Decode URL-encoded contact_id
+        decoded_contact_id = unquote(contact_id)
+        
         summaries = _load_cached_summaries()
-        contact_entry = summaries.get(contact_id)
+        
+        # First try with the exact ID from the URL
+        contact_entry = summaries.get(decoded_contact_id)
+        
+        # If not found, try to find a matching contact by normalizing the ID
+        if not contact_entry and ':' in decoded_contact_id:
+            source_part, email_part = decoded_contact_id.split(':', 1)
+            
+            # Try different variations of the contact ID
+            variations = [
+                decoded_contact_id,  # Original format
+                f"{source_part}:{email_part.split('<')[0].strip()}",  # Without angle brackets
+                f"{source_part}:{email_part.split('<')[-1].split('>')[0].strip()}"  # Just email part
+            ]
+            
+            # Try each variation until we find a match
+            for variation in variations:
+                contact_entry = summaries.get(variation)
+                if contact_entry:
+                    break
+        
+        # As a last resort, try to find by email only (without source prefix)
+        if not contact_entry and ':' in decoded_contact_id:
+            _, email_part = decoded_contact_id.split(':', 1)
+            # Extract just the email if it's in <email> format
+            if '<' in email_part and '>' in email_part:
+                email = email_part.split('<')[-1].split('>')[0].strip()
+            else:
+                email = email_part.strip()
+                
+            # Search through all summaries for a matching email
+            for key, entry in summaries.items():
+                entry_email = None
+                # Extract email from the key if it's in the format "source:name <email>"
+                if ':' in key and '<' in key and '>' in key:
+                    entry_email = key.split('<')[-1].split('>')[0].strip()
+                # Or if it's just "source:email"
+                elif ':' in key and '@' in key.split(':')[1]:
+                    entry_email = key.split(':', 1)[1].strip()
+                
+                # Check if emails match
+                if entry_email and entry_email.lower() == email.lower():
+                    contact_entry = entry
+                    break
         
         if not contact_entry:
-            raise HTTPException(status_code=404, detail="Contact not found")
+            raise HTTPException(status_code=404, detail=f"Contact not found: {decoded_contact_id}")
         
         # Find the thread
         thread = None
@@ -489,22 +526,89 @@ async def send_reply(
 ):
     """Send a reply to a thread via Gmail or Outlook."""
     try:
+        from urllib.parse import unquote
+        
+        # Decode URL-encoded contact_id
+        decoded_contact_id = unquote(contact_id)
+        
         summaries = _load_cached_summaries()
-        contact_entry = summaries.get(contact_id)
+        
+        # First try with the exact ID from the URL
+        contact_entry = summaries.get(decoded_contact_id)
+        
+        # If not found, try to find a matching contact by normalizing the ID
+        if not contact_entry and ':' in decoded_contact_id:
+            source_part, email_part = decoded_contact_id.split(':', 1)
+            
+            # Try different variations of the contact ID
+            variations = [
+                decoded_contact_id,  # Original format
+                f"{source_part}:{email_part.split('<')[0].strip()}",  # Without angle brackets
+                f"{source_part}:{email_part.split('<')[-1].split('>')[0].strip()}"  # Just email part
+            ]
+            
+            # Try each variation until we find a match
+            for variation in variations:
+                contact_entry = summaries.get(variation)
+                if contact_entry:
+                    break
+        
+        # As a last resort, try to find by email only (without source prefix)
+        if not contact_entry and ':' in decoded_contact_id:
+            _, email_part = decoded_contact_id.split(':', 1)
+            # Extract just the email if it's in <email> format
+            if '<' in email_part and '>' in email_part:
+                email = email_part.split('<')[-1].split('>')[0].strip()
+            else:
+                email = email_part.strip()
+                
+            # Search through all summaries for a matching email
+            for key, entry in summaries.items():
+                entry_email = None
+                # Extract email from the key if it's in the format "source:name <email>"
+                if ':' in key and '<' in key and '>' in key:
+                    entry_email = key.split('<')[-1].split('>')[0].strip()
+                # Or if it's just "source:email"
+                elif ':' in key and '@' in key.split(':')[1]:
+                    entry_email = key.split(':', 1)[1].strip()
+                
+                # Check if emails match
+                if entry_email and entry_email.lower() == email.lower():
+                    contact_entry = entry
+                    break
         
         if not contact_entry:
-            raise HTTPException(status_code=404, detail="Contact not found")
+            raise HTTPException(status_code=404, detail=f"Contact not found: {decoded_contact_id}")
         
         source = contact_entry.get("source", "").lower()
         contact_email = contact_entry.get("email")
         
+        # Find the thread and get the last message ID for threading
         thread = None
+        message_id = None
+        
+        # First try to find the thread in the contact's threads
         for t in contact_entry.get("threads", []):
             if (t.get("thread_id") or t.get("id")) == thread_id:
                 thread = t
+                # Try to get the message ID from different possible fields
+                message_id = t.get("last_message_id") or t.get("message_id") or t.get("id")
                 break
-
-        message_id = thread.get("last_message_id") if thread else None
+        
+        # If we still don't have a message ID, try to get it from the thread details
+        if not message_id and source_lower == "gmail":
+            try:
+                # Fetch the thread to get the latest message ID
+                thread_details = gmail_client.service.users().threads().get(
+                    userId="me", id=thread_id
+                ).execute()
+                if thread_details and 'messages' in thread_details and thread_details['messages']:
+                    # Get the ID of the most recent message in the thread
+                    message_id = thread_details['messages'][-1]['id']
+            except Exception as e:
+                print(f"[ERROR] Failed to fetch thread details: {str(e)}")
+        
+        print(f"[DEBUG] Sending reply with thread_id={thread_id}, message_id={message_id}")
         _send_email(source, thread_id, contact_email, subject, reply_text, message_id=message_id)
 
         if draft_id:

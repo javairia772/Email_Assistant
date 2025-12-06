@@ -4,6 +4,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
+from .utils import expand_possible_ids
+
 
 
 class ReplyQueue:

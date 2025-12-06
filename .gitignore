@@ -1,16 +1,57 @@
 # Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# Virtual environments
 .venv/
 venv/
+ENV/
+
+# Environment variables
+.env
+.env.*
+!.env.example
 
 # Secrets and credentials
-.env
 credentials.json
 service_account.json
 token_*.pkl
+msal_outlook_cache.bin
+*.pem
+*.key
 
 # VS Code
 .vscode/
+.idea/
 
-msal_outlook_cache.bin
+# Logs
+logs/
+*.log
+
+# Local development
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.db
+*.sqlite3
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Build and distribution
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Local development settings
+local_settings.py
+
+# Project specific
+.summaries/

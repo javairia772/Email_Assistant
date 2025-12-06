@@ -1,6 +1,11 @@
 # server.py
 import os
 import traceback
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv('.envSecrets')
+
 from fastmcp import FastMCP
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
