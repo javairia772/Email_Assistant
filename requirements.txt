@@ -12,22 +12,20 @@ google-auth>=2.35.0
 google-auth-oauthlib>=1.2.1
 google-api-python-client>=2.151.0
 
-# For token saving
-pickle5>=0.0.12 ; python_version < '3.8'
+# AI/LLM
+groq>=0.4.0
 
-groq
-openai
-requests
+# Web Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+jinja2>=3.1.2
 
+# Google Sheets
+gspread>=5.12.0
+google-auth-httplib2>=0.1.1
 
-gspread
-fastapi
-jinja2
+# HTML Parsing
+beautifulsoup4>=4.12.0
 
-fastapi[standard]
-
-bs4
-
-#classification
-transformers 
-sentencepiece
+# Utilities
+email-validator>=2.1.0
