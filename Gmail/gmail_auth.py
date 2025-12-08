@@ -13,7 +13,24 @@ class GmailAuth:
         "https://www.googleapis.com/auth/gmail.send"
     ]
 
+
     def __init__(self, token_file="token_gmail.pkl"):
+        # ONLINE: check for environment variable refresh token
+        refresh_token = os.getenv("GOOGLE_REFRESH_TOKEN")
+        client_id = os.getenv("GOOGLE_CLIENT_ID")
+        client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
+
+        if refresh_token and client_id and client_secret:
+            from google.oauth2.credentials import Credentials
+            self.creds = Credentials(
+                token=None,
+                refresh_token=refresh_token,
+                token_uri="https://oauth2.googleapis.com/token",
+                client_id=client_id,
+                client_secret=client_secret,
+                scopes=self.SCOPES
+            )
+
         self.token_file = token_file
         self.creds = None
         
@@ -27,6 +44,8 @@ class GmailAuth:
                 "token_uri": "https://oauth2.googleapis.com/token"
             }
         }
+
+        
 
     def authenticate(self):
         """

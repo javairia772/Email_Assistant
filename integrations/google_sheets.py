@@ -7,6 +7,9 @@ from google.auth.transport.requests import Request
 import pickle
 from datetime import datetime, timezone
 import json
+import gspread
+from google.oauth2.service_account import Credentials
+
 
 # ---------------------- CONFIG ----------------------
 SCOPES = [
@@ -35,6 +38,14 @@ FALLBACK_CACHE_PATH = Path(os.getenv("SUMMARY_CACHE_PATH", "Summaries/summaries_
 
 # ---------------------- AUTH ----------------------
 def _get_client():
+    import base64
+
+    sa_b64 = os.getenv("SHEETS_SERVICE_ACCOUNT_JSON")
+    if sa_b64:
+        sa_json = json.loads(base64.b64decode(sa_b64))
+        creds = Credentials.from_service_account_info(sa_json, scopes=SCOPES)
+        return gspread.authorize(creds)
+
     creds = None
     token_file = os.getenv("GOOGLE_SHEETS_TOKEN", "token_gmail_sheets.pkl")
 

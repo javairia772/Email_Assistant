@@ -62,6 +62,17 @@ class OutlookAuth:
         Return a valid access token for Microsoft Graph API.
         Automatically handles silent refresh and fallback to interactive login.
         """
+        # ONLINE: refresh token from environment
+        refresh_token = os.getenv("OUTLOOK_REFRESH_TOKEN")
+        if refresh_token and self.client_id and self.tenant_id:
+            result = self.app.acquire_token_by_refresh_token(
+                refresh_token=refresh_token,
+                scopes=self.scope
+            )
+            if result and "access_token" in result:
+                self.token = result["access_token"]
+                return self.token
+
         # Try silent login first (if not forced interactive)
         if not force_interactive:
             accounts = self.app.get_accounts()

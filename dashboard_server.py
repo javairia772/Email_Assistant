@@ -8,6 +8,8 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import quote
 import json
+import os
+from dotenv import load_dotenv
 from integrations.google_sheets import read_all_summaries
 from Summarizer.groq_summarizer import GroqSummarizer
 from Gmail.gmail_connector import GmailConnector
@@ -15,6 +17,28 @@ from Outlook.outlook_connector import OutlookConnector
 from providers.reply_queue import ReplyQueue
 from providers.sent_store import SentStore
 from providers.utils import extract_email, normalize_contact_id, expand_possible_ids
+
+
+# ----------------------------
+# Load environment variables
+# ----------------------------
+load_dotenv('.envSecrets')
+
+# ----------------------------
+# MODE: "development" = localhost, "production" = online
+# ----------------------------
+MODE = os.getenv("MODE", "development")
+
+if MODE == "development":
+    BASE_URL = "http://localhost:8001"  # local dashboard port
+    PORT = 8001
+else:
+    BASE_URL = "https://your-railway-dashboard-domain.up.railway.app"
+    PORT = int(os.getenv("PORT", 8001))  # Railway sets this automatically
+
+# ----------------------------
+
+
 SUMMARY_CACHE_PATH = Path("Summaries/summaries_cache.json")
 
 
@@ -708,7 +732,7 @@ async def send_reply(
                 break
         
         # If we still don't have a message ID, try to get it from the thread details
-        if not message_id and source_lower == "gmail":
+        if not message_id and source.lower() == "gmail":
             try:
                 # Fetch the thread to get the latest message ID
                 thread_details = gmail_client.service.users().threads().get(
@@ -778,3 +802,7 @@ async def sent_view():
 async def api_sent(limit: int = 200):
     items = sent_store.list_sent(limit=limit)
     return {"ok": True, "count": len(items), "items": items}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=PORT, reload=(MODE=="development"))

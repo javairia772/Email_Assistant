@@ -6,6 +6,19 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv('.envSecrets')
 
+# ----------------------------
+# MODE: "development" = localhost, "production" = online
+# This controls whether the server runs locally or online
+# ----------------------------
+MODE = os.getenv("MODE", "development")
+
+if MODE == "development":
+    BASE_URL = "http://localhost:8000"
+    PORT = 8000
+else:
+    BASE_URL = "https://your-railway-domain.up.railway.app"
+    PORT = int(os.getenv("PORT", 8000))  # Railway automatically sets PORT
+
 from fastmcp import FastMCP
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
@@ -439,4 +452,5 @@ def agent_aggregate_contacts(max_threads: int = 50, include_outlook: bool = True
 # --------------------
 if __name__ == "__main__":
     mcp.cache_contact_summary = {}
+    # Run MCP on correct port, with reload only in development
     mcp.run()
