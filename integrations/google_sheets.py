@@ -1,6 +1,5 @@
 from typing import List, Dict, Optional
 import os
-from pathlib import Path
 import gspread
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -30,28 +29,17 @@ HEADER = [
 ]
 
 OUT_KEYS = HEADER.copy()
-FALLBACK_CACHE_PATH = Path(os.getenv("SUMMARY_CACHE_PATH", "Summaries/summaries_cache.json"))
 
 
 # ---------------------- AUTH ----------------------
 def _get_client():
     creds = None
+    credentials_file = os.getenv("GOOGLE_SHEETS_OAUTH_CLIENT", "credentials.json")
     token_file = os.getenv("GOOGLE_SHEETS_TOKEN", "token_gmail_sheets.pkl")
 
-    print(f"[Sheets] Using environment variables for authentication")
+    print(f"[Sheets] Using credentials file: {credentials_file}")
     print(f"[Sheets] Using spreadsheet: {SPREADSHEET_NAME}")
     print(f"[Sheets] Using worksheet: {WORKSHEET_NAME}")
-
-    # Create client config from environment variables (same as Gmail)
-    client_config = {
-        "installed": {
-            "client_id": os.getenv("GOOGLE_CLIENT_ID"),
-            "client_secret": os.getenv("GOOGLE_CLIENT_SECRET"),
-            "redirect_uris": ["http://localhost:8081/"],
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://oauth2.googleapis.com/token"
-        }
-    }
 
     if os.path.exists(token_file):
         with open(token_file, "rb") as token:
@@ -61,36 +49,27 @@ def _get_client():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            # Create a temporary credentials file
-            import tempfile
-            with tempfile.NamedTemporaryFile(mode='w+', suffix='.json', delete=False) as temp_creds:
-                json.dump(client_config, temp_creds)
-                temp_creds_path = temp_creds.name
-            
-            try:
-                flow = InstalledAppFlow.from_client_secrets_file(temp_creds_path, SCOPES)
-                creds = flow.run_local_server(port=8081)
-                with open(token_file, "wb") as token:
-                    pickle.dump(creds, token)
-            finally:
-                # Clean up the temporary file
-                try:
-                    os.unlink(temp_creds_path)
-                except:
-                    pass
+            flow = InstalledAppFlow.from_client_secrets_file(credentials_file, SCOPES)
+            creds = flow.run_local_server(port=8081)
+        with open(token_file, "wb") as token:
+            pickle.dump(creds, token)
 
     return gspread.authorize(creds)
 
 
 # ---------------------- SPREADSHEET HELPERS ----------------------
 def _get_or_create_spreadsheet(gc, spreadsheet_name: Optional[str] = None):
-    """Get or create spreadsheet without enumerating the entire drive."""
+    """Get or create spreadsheet."""
     target_name = spreadsheet_name or SPREADSHEET_NAME
     try:
-        return gc.open(target_name)
-    except gspread.SpreadsheetNotFound:
-        print(f"[Sheets] Creating new spreadsheet: {target_name}")
-        return gc.create(target_name)
+        for sh in gc.openall():
+            if sh.title == target_name:
+                return sh
+    except Exception:
+        pass
+
+    print(f"[Sheets] Creating new spreadsheet: {target_name}")
+    return gc.create(target_name)
 
 
 def _get_or_create_worksheet(spreadsheet_name: Optional[str] = None, worksheet_name: Optional[str] = None):
@@ -133,21 +112,15 @@ def _parse_date(date_str):
     if isinstance(date_str, datetime):
         return date_str.astimezone(timezone.utc) if date_str.tzinfo else date_str.replace(tzinfo=timezone.utc)
 
-    # Handle the case where the date string is already in ISO 8601 format with timezone
-    if isinstance(date_str, str) and '+' in date_str and ':' == date_str[-3:-2]:
-        # Remove the colon from the timezone offset (e.g., +00:00 -> +0000)
-        date_str = date_str[:-3] + date_str[-2:]
-    
     date_formats = [
-        '%Y-%m-%dT%H:%M:%S.%f%z',  # With microseconds and timezone
-        '%Y-%m-%dT%H:%M:%S%z',     # Without microseconds, with timezone
-        '%Y-%m-%d %H:%M:%S%z',     # Space separator, with timezone
-        '%Y-%m-%dT%H:%M:%S.%fZ',   # With microseconds, UTC
-        '%Y-%m-%dT%H:%M:%SZ',      # Without microseconds, UTC
-        '%Y-%m-%d %H:%M:%S',       # Local time without timezone
-        '%Y-%m-%d',                # Date only
-        '%d-%m-%Y %H:%M',          # European date format
-        '%m/%d/%Y %I:%M %p',       # US date format with AM/PM
+        '%Y-%m-%dT%H:%M:%S%z',
+        '%Y-%m-%d %H:%M:%S%z',
+        '%Y-%m-%dT%H:%M:%S.%fZ',
+        '%Y-%m-%dT%H:%M:%SZ',
+        '%Y-%m-%d %H:%M:%S',
+        '%Y-%m-%d',
+        '%d-%m-%Y %H:%M',
+        '%m/%d/%Y %I:%M %p',
     ]
 
     for fmt in date_formats:
@@ -168,15 +141,15 @@ def read_all_summaries(spreadsheet_name: Optional[str] = None, worksheet_name: O
     """Read all rows safely from Google Sheets."""
     try:
         ws = _get_or_create_worksheet(spreadsheet_name, worksheet_name)
-
+        
         # First, get all values to inspect the headers
         all_values = ws.get_all_values()
         if not all_values:
-            return _fallback_rows_from_cache()
-
+            return []
+            
         # Get the first row as headers and clean them up
         headers = [h.strip() for h in all_values[0]]
-
+        
         # Handle empty or duplicate headers
         seen = set()
         clean_headers = []
@@ -188,7 +161,7 @@ def read_all_summaries(spreadsheet_name: Optional[str] = None, worksheet_name: O
             else:
                 clean_headers.append(h)
                 seen.add(h)
-
+        
         # Convert rows to dictionaries with clean headers
         rows = []
         for row in all_values[1:]:  # Skip header row
@@ -199,57 +172,14 @@ def read_all_summaries(spreadsheet_name: Optional[str] = None, worksheet_name: O
                 else:
                     row_dict[f"column_{i}"] = value
             rows.append(row_dict)
-
-        if not rows:
-            return _fallback_rows_from_cache()
-
+            
         print(f"[Sheets] ✅ Read {len(rows)} rows (showing up to 5):")
         import pprint; pprint.pprint(rows[:5])
         return rows
-
+        
     except Exception as e:
         print(f"[Sheets] ❌ Error reading sheet: {str(e)}")
-        return _fallback_rows_from_cache()
-
-
-def _fallback_rows_from_cache() -> List[Dict]:
-    if not FALLBACK_CACHE_PATH.exists():
         return []
-    try:
-        with FALLBACK_CACHE_PATH.open("r", encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception as exc:
-        print(f"[Sheets] ⚠ Fallback cache read failed: {exc}")
-        return []
-
-    entries = data.get("summaries", data)
-    if isinstance(entries, dict):
-        records = list(entries.values())
-    elif isinstance(entries, list):
-        records = entries
-    else:
-        return []
-
-    fallback_rows = []
-    for entry in records:
-        if not isinstance(entry, dict):
-            continue
-        email = entry.get("email", "")
-        if not email:
-            continue
-        fallback_rows.append({
-            "id": entry.get("id") or f"{entry.get('source','unknown')}:{email}",
-            "email": email,
-            "source": entry.get("source", ""),
-            "role": entry.get("role", "Unknown"),
-            "role_confidence": entry.get("role_confidence", ""),
-            "contact_summary": entry.get("contact_summary") or entry.get("summary") or "",
-            "threads": entry.get("threads", []),
-            "last_summary": entry.get("last_summary") or entry.get("timestamp") or entry.get("date") or "",
-        })
-    if fallback_rows:
-        print(f"[Sheets] ⚠ Using fallback cache rows ({len(fallback_rows)})")
-    return fallback_rows
 
 
 # ---------------------- UPSERT (ADD/UPDATE) ----------------------
@@ -411,7 +341,6 @@ def upsert_summaries(*args, **kwargs):
     # Load existing rows and normalize
     # ------------------------------------------
     existing_lookup: dict[str, dict] = {}
-    existing_records: List[Dict] = []
 
     try:
         existing_records = ws.get_all_records()
@@ -493,15 +422,11 @@ def upsert_summaries(*args, **kwargs):
         serialized = [_serialize_value(row.get(col, "")) for col in HEADER]
         matrix.append(serialized)
 
-    extra_rows = max(0, len(existing_records) - len(ordered_rows))
-    blank_row = [""] * len(HEADER)
-    for _ in range(extra_rows):
-        matrix.append(blank_row.copy())
-
     # ------------------------------------------
     # Write only when needed
     # ------------------------------------------
     try:
+        ws.clear()
         ws.update("A1", matrix)
         print(
             f"[Sheets] ✅ Sync complete — "
@@ -509,3 +434,4 @@ def upsert_summaries(*args, **kwargs):
         )
     except Exception as e:
         print(f"[Sheets] ❌ Error rewriting sheet: {e}")
+
