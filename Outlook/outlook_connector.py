@@ -140,6 +140,41 @@ class OutlookConnector:
         print(f"📨 Fetched {len(threads)} Outlook threads for {contact_email}")
         return list(threads.values())
 
+    def fetch_thread_by_id(self, contact_email: str, conversation_id: str, top: int = 50):
+        """
+        Fetch a specific conversation (thread) by conversationId for a contact.
+        Does not trigger summarization to keep this lightweight for the UI.
+        """
+        self.ensure_authenticated()
+        contact_email = contact_email or self.user_email
+        url = (
+            "https://graph.microsoft.com/v1.0/me/messages"
+            f"?$filter=conversationId eq '{conversation_id}'"
+            f"&$orderby=receivedDateTime asc"
+            f"&$top={top}"
+            f"&$select=id,conversationId,subject,from,toRecipients,body,bodyPreview,receivedDateTime"
+        )
+        response = requests.get(url, headers=self._headers())
+        if response.status_code == 401:
+            self.token = self.auth.get_access_token(force_refresh=True)
+            response = requests.get(url, headers=self._headers())
+
+        if response.status_code != 200:
+            raise Exception(f"Error fetching conversation: {response.text}")
+
+        data = response.json()
+        messages = data.get("value", [])
+        parsed = []
+        for msg in messages:
+            parsed.append({
+                "id": msg.get("id"),
+                "sender": msg.get("from", {}).get("emailAddress", {}).get("address", ""),
+                "subject": msg.get("subject", ""),
+                "body": msg.get("body", {}).get("content", msg.get("bodyPreview", "")),
+                "date": msg.get("receivedDateTime", ""),
+            })
+        return parsed
+
     # ------------------------------------------------------
     # NORMALIZE MESSAGE
     # ------------------------------------------------------

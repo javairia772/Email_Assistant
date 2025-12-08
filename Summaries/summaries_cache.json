@@ -1,28 +1,31 @@
 {
   "seen": {
     "gmail": [
-      "gmail:noreply@email.openai.com",
-      "gmail:Nexus <n00503033@gmail.com>",
-      "gmail:Google <no-reply@accounts.google.com>",
       "gmail:Javaria <j66yya@gmail.com>",
-      "gmail:Cursor Team <hi@mail.cursor.com>",
-      "gmail:Groq <developer@groq.co>",
+      "gmail:unknown@gmail.com",
+      "gmail:Tayyba Aftab <tayybar130@gmail.com>",
       "gmail:n00503033@gmail.com",
-      "gmail:OpenAI <noreply@email.openai.com>",
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
       "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>"
+      "gmail:Nexus <n00503033@gmail.com>",
+      "gmail:Groq <developer@groq.co>",
+      "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
+      "gmail:OpenAI <noreply@email.openai.com>",
+      "gmail:noreply@email.openai.com",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+      "gmail:Google <no-reply@accounts.google.com>",
+      "gmail:Cursor Team <hi@mail.cursor.com>",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>"
     ],
     "outlook": [
-      "outlook:MSSecurity-noreply@microsoft.com",
-      "outlook:no-reply@microsoft.com",
       "outlook:m365dev@microsoft.com",
       "outlook:MicrosoftRewards@infoemail.microsoft.com",
-      "outlook:javariasaleem39@gmail.com",
-      "outlook:j66yya@gmail.com",
       "outlook:minahilmy34@gmail.com",
-      "outlook:account-security-noreply@accountprotection.microsoft.com",
+      "outlook:j66yya@gmail.com",
+      "outlook:javariasaleem39@gmail.com",
+      "outlook:MSSecurity-noreply@microsoft.com",
       "outlook:nexus202540@outlook.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com",
+      "outlook:no-reply@microsoft.com",
       "outlook:n00503033@gmail.com"
     ]
   },
@@ -1053,7 +1056,82 @@
       ],
       "summary": "It looks like we have a pretty empty email thread here, just a \"hello world\" test email from n00503033@gmail.com with no real content or next steps. Doesn't seem like any decisions or meetings were discussed. I'd say this one can be disregarded as it appears to be a preliminary or mistaken email. No action items to follow up on.",
       "timestamp": "2025-12-05T10:24:54.793776Z"
+    },
+    "gmail:unknown@gmail.com": {
+      "id": "gmail:unknown@gmail.com",
+      "email": "unknown@gmail.com",
+      "source": "gmail",
+      "role": "General External",
+      "role_confidence": 0.0,
+      "threads": [
+        {
+          "id": "19af8f68a8d39256",
+          "subject": "",
+          "preview": "helo world number 47987598",
+          "summary": "There's an email thread with no clear topic or purpose, as it appears to be a test message with a random string of numbers. The thread is incomplete, with no sender or subject specified. No meetings or decisions have been discussed. The content is minimal and lacks context. Further information is needed to provide a meaningful summary.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.0,
+          "last_message_ts": "2025-12-07T13:18:18+00:00",
+          "last_message_id": "19af8f68a8d39256",
+          "last_subject": "",
+          "last_body": "helo world number 47987598"
+        }
+      ],
+      "summary": "I took a look at the email threads, but unfortunately, there's not much to report - one thread appears to be a test message with no clear topic or purpose, and there's no meaningful information to summarize.",
+      "timestamp": "2025-12-08T06:04:41.879674Z"
+    },
+    "gmail:Tayyba Aftab <tayybar130@gmail.com>": {
+      "id": "gmail:Tayyba Aftab <tayybar130@gmail.com>",
+      "email": "Tayyba Aftab <tayybar130@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 1.0,
+      "threads": [
+        {
+          "id": "19afc94678ae491f",
+          "subject": "Request for Collaboration with UET Ideal Labs",
+          "preview": "*Dear Team at UET Ideal Labs,* I hope this message finds you well. My name is *Michael Reynolds*, an",
+          "summary": "Michael Reynolds from CyberNova Solutions reached out to UET Ideal Labs to explore a strategic collaboration, seeking their expertise to address operational and technical challenges. He proposed a meeting to discuss the scope and objectives of the potential partnership. The goal is to optimize processes and co-develop solutions to enhance CyberNova's operations, with the hope of a mutually beneficial outcome.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-08T06:09:32+00:00",
+          "last_message_id": "19afc94678ae491f",
+          "last_subject": "Request for Collaboration with UET Ideal Labs",
+          "last_body": "*Dear Team at UET Ideal Labs,* I hope this message finds you well. My name is *Michael Reynolds*, and I am the *Head of Operations* at *CyberNova Solutions*, a technology company specializing in cybersecurity and AI solutions. We are currently facing *significant operational and technical challenges* that are affecting our workflow and overall project delivery. After reviewing potential collaborators, we believe that *UET Ideal Labs’ expertise and innovative approach* could be invaluable in helping us overcome these hurdles. We would like to explore a *strategic collaboration* where your team can assist us in addressing the technical issues, optimizing our processes, and potentially co-developing solutions to enhance our operations. Could we schedule a meeting at your earliest convenience to discuss the scope, potential objectives, and collaboration framework? We are confident that a partnership with UET Ideal Labs will be mutually beneficial and lead to meaningful outcomes. Thank you for considering this opportunity. We look forward to your positive response. *Warm regards,* Michael Reynolds Head of Operations *CyberNova Solutions* Email: m.reynolds@cybernova.com"
+        }
+      ],
+      "summary": "Michael Reynolds from CyberNova Solutions is looking to collaborate with UET Ideal Labs to tackle some operational and technical challenges. He's proposed a meeting to discuss the details, aiming to co-develop solutions that benefit both parties. The goal is to optimize CyberNova's processes and hopefully create a mutually beneficial outcome. Next steps will be determined after the meeting.",
+      "timestamp": "2025-12-08T06:10:10.904943Z"
+    },
+    "gmail:Rafia Sattar <sattarrafia355@gmail.com>": {
+      "id": "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
+      "email": "Rafia Sattar <sattarrafia355@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19afcb0f56db851e",
+          "subject": "",
+          "preview": "Am i invisible to you?",
+          "summary": "Rafia Sattar reached out regarding feeling ignored, but the conversation lacks context. The thread is brief and doesn't include any meeting times or decisions. It appears to be an initial message without a response. Next steps are unclear, and the conversation seems to be at a standstill. Further information is needed to understand the issue.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-08T06:40:34+00:00",
+          "last_message_id": "19afcb0f56db851e",
+          "last_subject": "",
+          "last_body": "Am i invisible to you?"
+        }
+      ],
+      "summary": "Rafia Sattar has reached out feeling ignored, but the conversation is vague and hasn't gotten far. We don't have much context or any agreed-upon next steps. It seems like the issue is still unresolved and we need more information to move forward.",
+      "timestamp": "2025-12-08T09:56:41.566967Z"
     }
   },
-  "last_updated": "2025-12-06T20:02:07.692448+00:00"
+  "last_updated": "2025-12-08T10:04:24.313264+00:00"
 }

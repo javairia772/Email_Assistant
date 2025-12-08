@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sent Emails</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f6f8fa; color:#111827; }
+    .layout { display:flex; min-height:100vh; }
+    .sidebar { width:220px; padding:30px 22px 0 24px; background:#21293a; color:#dbeafe; }
+    .sidebar h2 { color:#60a5fa; font-size:19px; margin-bottom:16px; }
+    .sidebar ul { list-style:none; padding:0; margin:0; }
+    .sidebar a { color:#bae6fd; text-decoration:none; display:block; padding:8px 0; }
+    .sidebar a:hover { text-decoration: underline; }
+    .main { flex:1; padding:32px 40px; }
+    h1 { margin:0 0 10px 0; }
+    .card { background:#fff; border-radius:10px; padding:18px; box-shadow:0 2px 10px #1112; margin-bottom:12px; }
+    .meta { color:#6b7280; font-size:13px; }
+    .body { margin-top:10px; white-space: pre-wrap; line-height:1.5; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Email Assistant</h2>
+      <ul>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="#" onclick="openCompose(); return false;">Compose</a></li>
+        <li style="margin-top:10px; font-weight:700;">Sent</li>
+      </ul>
+    </aside>
+    <main class="main">
+      <h1>Sent Emails</h1>
+      <div class="meta">Only emails sent via Compose are shown here.</div>
+      {% if items %}
+        {% for m in items %}
+          <article class="card">
+            <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:700;">{{ m.subject }}</div>
+                <div class="meta">To: {{ m.to }} • Source: {{ m.source }}</div>
+              </div>
+              <div class="meta">{{ m.sent_at }}</div>
+            </div>
+            <div class="body">{{ m.body }}</div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <p class="meta">No sent emails recorded yet.</p>
+      {% endif %}
+    </main>
+  </div>
+
+  <script>
+    function openCompose() {
+      if (window.opener && window.opener.openCompose) {
+        window.opener.openCompose();
+        window.focus();
+      } else if (window.parent && window.parent.openCompose) {
+        window.parent.openCompose();
+      } else {
+        alert('Compose modal is available from the dashboard.');
+        window.location = '/';
+      }
+    }
+  </script>
+</body>
+</html>
+

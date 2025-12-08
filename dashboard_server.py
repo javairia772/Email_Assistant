@@ -13,6 +13,7 @@ from Summarizer.groq_summarizer import GroqSummarizer
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
 from providers.reply_queue import ReplyQueue
+from providers.sent_store import SentStore
 from providers.utils import extract_email, normalize_contact_id, expand_possible_ids
 SUMMARY_CACHE_PATH = Path("Summaries/summaries_cache.json")
 
@@ -26,6 +27,7 @@ env = Environment(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 reply_queue = ReplyQueue()
+sent_store = SentStore()
 gmail_client = GmailConnector()
 outlook_client = OutlookConnector()
 groq_client = GroqSummarizer()
@@ -146,6 +148,58 @@ def _latest_thread_ts(threads_value):
     return latest
 
 
+def _find_contact_entry(contact_id: str, summaries: dict) -> Dict:
+    """Central helper to resolve a contact entry with flexible ID matching."""
+    norm_id = normalize_contact_id(contact_id)
+    contact_entry = summaries.get(norm_id) or summaries.get(contact_id)
+
+    if not contact_entry:
+        for pid in expand_possible_ids(contact_id):
+            if pid in summaries:
+                return summaries[pid]
+
+    if contact_entry:
+        return contact_entry
+    raise HTTPException(status_code=404, detail="Contact not found in cache.")
+
+
+def _format_thread_messages(messages: list, contact_email: str) -> list:
+    """Normalize message payloads for the chat view."""
+    contact_email = (contact_email or "").lower()
+    if not isinstance(messages, list):
+        return []
+
+    def _format_date(value):
+        try:
+            # Try to parse RFC2822 style first
+            from email.utils import parsedate_to_datetime
+
+            dt = parsedate_to_datetime(value)
+            return dt.astimezone(timezone.utc)
+        except Exception:
+            try:
+                return datetime.fromisoformat(value.replace("Z", "+00:00"))
+            except Exception:
+                return None
+
+    normalized = []
+    for msg in messages or []:
+        sender_raw = msg.get("sender") or msg.get("from", "")
+        sender_email = extract_email(sender_raw).lower()
+        ts = _format_date(msg.get("date", "") or msg.get("receivedDateTime", ""))
+        normalized.append({
+            "sender": sender_raw,
+            "subject": msg.get("subject", ""),
+            "body": msg.get("body", ""),
+            "date": ts.isoformat() if ts else msg.get("date", "") or "",
+            "display_ts": format_pkt(ts.isoformat()) if ts else (msg.get("date", "") or ""),
+            "is_outgoing": sender_email and sender_email != contact_email,
+        })
+
+    normalized.sort(key=lambda m: _parse_iso(m.get("date", "")))
+    return normalized
+
+
 def _decorate_draft(draft: Dict) -> Dict:
     return {
         "id": draft.get("id"),
@@ -224,6 +278,7 @@ async def dashboard(request: Request, limit: int = 20):
         date_value = _latest_thread_ts(row.get("threads")) or row.get("last_summary") or row.get("timestamp") or row.get("date") or ""
         role_value = row.get("role") or row.get("Role") or "Uncategorized"
 
+        parsed_ts = _parse_iso(_latest_thread_ts(row.get("threads")) or row.get("last_summary") or row.get("timestamp") or row.get("date") or "")
         item = {
             "id": row.get("id") or f"{row.get('source','unknown')}:{email}",
             "email": email,
@@ -232,9 +287,14 @@ async def dashboard(request: Request, limit: int = 20):
             "date": format_pkt(date_value),
             "source": row.get("source", ""),
             "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
+            "sort_ts": parsed_ts,
         }
         item["detail_url"] = _build_detail_url(item["id"])
         items.append(item)
+
+    items.sort(key=lambda it: it.get("sort_ts", datetime.min.replace(tzinfo=timezone.utc)), reverse=True)
+    for it in items:
+        it.pop("sort_ts", None)
 
     summary_count = len(items)
     unique_contacts = len({item["email"] for item in items})
@@ -258,6 +318,7 @@ async def api_summaries(limit: int = 20):
         summary_text = row.get("contact_summary") or row.get("summary") or ""
         date_value = _latest_thread_ts(row.get("threads")) or row.get("last_summary") or row.get("timestamp") or row.get("date")
 
+        parsed_ts = _parse_iso(_latest_thread_ts(row.get("threads")) or row.get("last_summary") or row.get("timestamp") or row.get("date") or "")
         items.append({
             "id": row.get("id") or f"{row.get('source','unknown')}:{email}",
             "email": email,
@@ -268,8 +329,12 @@ async def api_summaries(limit: int = 20):
             "role_class": ROLE_TO_CLASS.get(role_value, "tag-default"),
             "importance": "",
             "detail_url": _build_detail_url(row.get("id") or f"{row.get('source','unknown')}:{email}"),
+            "sort_ts": parsed_ts,
         })
 
+    items.sort(key=lambda it: it.get("sort_ts", datetime.min.replace(tzinfo=timezone.utc)), reverse=True)
+    for it in items:
+        it.pop("sort_ts", None)
     return {"ok": True, "count": len(items), "items": items}
 
 
@@ -302,14 +367,16 @@ async def contact_detail(contact_id: str):
         if not isinstance(thread, dict):
             continue
         ts = thread.get("last_message_ts") or thread.get("timestamp") or thread.get("date") or thread.get("last_modified") or thread.get("created_at")
+        tid = thread.get("thread_id") or thread.get("id")
         threads.append({
-            "id": thread.get("thread_id") or thread.get("id"),
+            "id": tid,
             "subject": thread.get("subject") or "(No subject)",
             "summary": thread.get("summary") or thread.get("body") or thread.get("preview") or "",
             "importance": thread.get("importance") or "",
             "role": thread.get("role") or "",
             "timestamp": ts,
             "timestamp_display": format_pkt(ts),
+            "detail_url": f"/contact/{quote(contact_id, safe='')}/thread/{quote(tid or '', safe='')}" if tid else None,
         })
 
     threads.sort(key=lambda t: _parse_iso(t.get("timestamp")), reverse=True)
@@ -342,6 +409,51 @@ async def contact_detail(contact_id: str):
         threads=threads,
         pending_drafts=pending_drafts,
         history_drafts=history_drafts,
+    )
+    return HTMLResponse(content=html)
+
+
+@app.get("/contact/{contact_id}/thread/{thread_id}", response_class=HTMLResponse)
+async def thread_detail(contact_id: str, thread_id: str):
+    summaries = _load_cached_summaries()
+    contact_entry = _find_contact_entry(contact_id, summaries)
+
+    contact_email = contact_entry.get("email") or contact_id.split(":", 1)[-1]
+    source = (contact_entry.get("source") or "").lower() or "gmail"
+
+    # Pull thread metadata from cached threads
+    thread_meta = next(
+        (t for t in contact_entry.get("threads", []) if (t.get("thread_id") or t.get("id")) == thread_id),
+        {}
+    )
+    subject = thread_meta.get("subject") or "(No subject)"
+
+    # Fetch full messages for chat-style view
+    messages = []
+    try:
+        if source == "gmail":
+            messages = gmail_client.fetch_threads_by_id(thread_id)
+        elif source == "outlook":
+            messages = outlook_client.fetch_thread_by_id(contact_email, thread_id)
+    except Exception as exc:
+        print(f"[ThreadDetail] Failed to load thread {thread_id}: {exc}")
+        messages = []
+
+    normalized_messages = _format_thread_messages(messages, contact_email)
+
+    template = env.get_template("thread_detail.html")
+    html = template.render(
+        contact={
+            "id": contact_id,
+            "email": contact_email,
+            "source": source,
+            "detail_url": _build_detail_url(contact_id),
+        },
+        thread={
+            "id": thread_id,
+            "subject": subject,
+        },
+        messages=normalized_messages,
     )
     return HTMLResponse(content=html)
 
@@ -648,6 +760,21 @@ async def compose_email(
             OutlookConnector().send_email(to, subject, body, attachments or [])
         else:
             raise HTTPException(status_code=400, detail="Unsupported source")
+        sent_store.record(to, subject, body, source=src)
         return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}
+
+
+@app.get("/sent", response_class=HTMLResponse)
+async def sent_view():
+    sent_items = sent_store.list_sent()
+    template = env.get_template("sent.html")
+    html = template.render(items=sent_items)
+    return HTMLResponse(content=html)
+
+
+@app.get("/api/sent")
+async def api_sent(limit: int = 200):
+    items = sent_store.list_sent(limit=limit)
+    return {"ok": True, "count": len(items), "items": items}

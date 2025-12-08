@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ thread.subject }} • Thread View</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#f6f8fa; color:#111827; }
+    .layout { max-width: 1080px; margin: 0 auto; padding: 24px 18px 60px; }
+    .topbar { display:flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .back { color:#2563eb; text-decoration:none; font-size:14px; display:inline-flex; gap:6px; align-items:center; }
+    .back:hover { text-decoration: underline; }
+    .title { margin:6px 0 2px 0; font-size:24px; }
+    .meta { color:#6b7280; font-size:14px; }
+    .chat-shell { margin-top:22px; background:#fff; border-radius:12px; padding:18px; box-shadow:0 2px 10px #1112; }
+    .bubble-list { display:flex; flex-direction:column; gap:12px; max-height:70vh; overflow:auto; padding-right:6px; }
+    .bubble { max-width: 78%; padding:12px 14px; border-radius:14px; box-shadow:0 1px 4px #0001; line-height:1.5; }
+    .incoming { align-self:flex-start; background:#f1f5f9; border:1px solid #e2e8f0; }
+    .outgoing { align-self:flex-end; background:#dbeafe; border:1px solid #bfdbfe; }
+    .bubble .sender { font-weight:700; font-size:13px; margin-bottom:6px; color:#0f172a; }
+    .bubble .body { }
+    .bubble .time { font-size:12px; color:#6b7280; margin-top:8px; }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <div class="topbar">
+      <a class="back" href="{{ contact.detail_url }}">&larr; Back to contact</a>
+      <a class="back" href="/">Dashboard</a>
+    </div>
+
+    <h1 class="title">{{ thread.subject }}</h1>
+    <div class="meta">{{ contact.email }} • Source: {{ contact.source }}</div>
+
+    <div class="chat-shell">
+      <div class="bubble-list" id="bubble-list">
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="bubble {{ 'outgoing' if msg.is_outgoing else 'incoming' }}">
+              <div class="sender">{{ msg.sender }}</div>
+              <div class="body">{{ msg.body or "(no content)" }}</div>
+              <div class="time">{{ msg.display_ts }}</div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="bubble incoming">
+            <div class="body">No messages found for this thread yet.</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // All reply-related JS removed — leaving only bubble scrolling intact.
+    const bubbleList = document.getElementById('bubble-list');
+    bubbleList.scrollTop = bubbleList.scrollHeight;
+  </script>
+</body>
+</html>

@@ -143,6 +143,11 @@
               </div>
             </div>
             <div class="thread-summary">{{ thread.summary or "No summary available." }}</div>
+            {% if thread.detail_url %}
+            <div style="margin-top:10px;">
+              <a href="{{ thread.detail_url }}" class="reply-btn" style="text-decoration:none; padding:6px 12px;">Open full thread</a>
+            </div>
+            {% endif %}
             <div class="reply-section">
               <button class="reply-btn" onclick="toggleReplyForm('{{ thread.id }}', '{{ contact.id }}', '{{ thread.subject }}')">
                 Reply
