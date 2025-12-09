@@ -2,13 +2,16 @@ from typing import List, Dict, Optional
 import os
 from pathlib import Path
 import gspread
-from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-import pickle
 from datetime import datetime, timezone
 import json
-import gspread
 from google.oauth2.service_account import Credentials
+from dotenv import load_dotenv
+
+# Load environment variables
+# Try .envSecrets first (for local development), then fall back to .env or system env vars
+load_dotenv('.envSecrets')  # Load .envSecrets if it exists
+load_dotenv()  # Also load .env if it exists, and system environment variables override
 
 
 # ---------------------- CONFIG ----------------------
@@ -38,101 +41,150 @@ FALLBACK_CACHE_PATH = Path(os.getenv("SUMMARY_CACHE_PATH", "Summaries/summaries_
 
 # ---------------------- AUTH ----------------------
 def _get_client():
+    """
+    Get Google Sheets client using environment variables.
+    
+    Authentication methods (in order of priority):
+    1. Service Account JSON (base64 encoded in SHEETS_SERVICE_ACCOUNT_JSON) - Recommended for Railway
+    2. OAuth with refresh token (GOOGLE_REFRESH_TOKEN + GOOGLE_CLIENT_ID + GOOGLE_CLIENT_SECRET)
+    
+    Returns:
+        gspread.Client: Authorized Google Sheets client
+        
+    Raises:
+        ValueError: If required environment variables are missing or authentication fails.
+    """
     import base64
+    from google.oauth2.credentials import Credentials as OAuthCredentials
 
+    # Method 1: Service Account (best for Railway/production)
     sa_b64 = os.getenv("SHEETS_SERVICE_ACCOUNT_JSON")
     if sa_b64:
-        sa_json = json.loads(base64.b64decode(sa_b64))
-        creds = Credentials.from_service_account_info(sa_json, scopes=SCOPES)
-        return gspread.authorize(creds)
+        try:
+            print("[Sheets] 🔐 Using Service Account authentication...")
+            sa_json = json.loads(base64.b64decode(sa_b64))
+            creds = Credentials.from_service_account_info(sa_json, scopes=SCOPES)
+            client = gspread.authorize(creds)
+            print("[Sheets] ✅ Service Account authentication successful")
+            return client
+        except json.JSONDecodeError as e:
+            raise ValueError(
+                f"Failed to parse SHEETS_SERVICE_ACCOUNT_JSON (invalid base64 or JSON): {e}. "
+                "Please verify the value is correctly base64-encoded."
+            ) from e
+        except Exception as e:
+            raise ValueError(
+                f"Service Account authentication failed: {e}. "
+                "Please verify SHEETS_SERVICE_ACCOUNT_JSON contains valid service account credentials."
+            ) from e
 
-    creds = None
-    token_file = os.getenv("GOOGLE_SHEETS_TOKEN", "token_gmail_sheets.pkl")
+    # Method 2: OAuth with refresh token (same credentials as Gmail)
+    refresh_token = os.getenv("GOOGLE_REFRESH_TOKEN")
+    client_id = os.getenv("GOOGLE_CLIENT_ID")
+    client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
 
-    print(f"[Sheets] Using environment variables for authentication")
-    print(f"[Sheets] Using spreadsheet: {SPREADSHEET_NAME}")
-    print(f"[Sheets] Using worksheet: {WORKSHEET_NAME}")
-
-    # Create client config from environment variables (same as Gmail)
-    client_config = {
-        "installed": {
-            "client_id": os.getenv("GOOGLE_CLIENT_ID"),
-            "client_secret": os.getenv("GOOGLE_CLIENT_SECRET"),
-            "redirect_uris": ["http://localhost:8081/"],
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://oauth2.googleapis.com/token"
-        }
-    }
-
-    if os.path.exists(token_file):
-        with open(token_file, "rb") as token:
-            creds = pickle.load(token)
-
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            # Create a temporary credentials file
-            import tempfile
-            with tempfile.NamedTemporaryFile(mode='w+', suffix='.json', delete=False) as temp_creds:
-                json.dump(client_config, temp_creds)
-                temp_creds_path = temp_creds.name
+    if refresh_token and client_id and client_secret:
+        try:
+            print("[Sheets] 🔐 Using OAuth authentication with refresh token...")
+            creds = OAuthCredentials(
+                token=None,
+                refresh_token=refresh_token,
+                token_uri="https://oauth2.googleapis.com/token",
+                client_id=client_id,
+                client_secret=client_secret,
+                scopes=SCOPES
+            )
             
-            try:
-                flow = InstalledAppFlow.from_client_secrets_file(temp_creds_path, SCOPES)
-                creds = flow.run_local_server(port=8081)
-                with open(token_file, "wb") as token:
-                    pickle.dump(creds, token)
-            finally:
-                # Clean up the temporary file
-                try:
-                    os.unlink(temp_creds_path)
-                except:
-                    pass
+            # Refresh token if not valid (either expired or never set)
+            # When token=None initially, creds.valid will be False, so we always refresh
+            if not creds.valid:
+                if creds.refresh_token:
+                    try:
+                        print("[Sheets] 🔄 Acquiring/refreshing access token...")
+                        creds.refresh(Request())
+                        print("[Sheets] ✅ Token acquired/refreshed successfully")
+                    except Exception as e:
+                        raise ValueError(
+                            f"Failed to refresh OAuth access token: {e}. "
+                            "Please verify GOOGLE_REFRESH_TOKEN is valid and not revoked. "
+                            f"Error details: {str(e)}"
+                        ) from e
+                else:
+                    raise ValueError(
+                        "OAuth credentials are invalid and cannot be refreshed (no refresh_token). "
+                        "Please verify GOOGLE_REFRESH_TOKEN is set correctly in environment variables."
+                    )
+            
+            client = gspread.authorize(creds)
+            print("[Sheets] ✅ OAuth authentication successful")
+            return client
+        except Exception as e:
+            raise ValueError(
+                f"OAuth authentication failed: {e}. "
+                "Please verify GOOGLE_REFRESH_TOKEN, GOOGLE_CLIENT_ID, and GOOGLE_CLIENT_SECRET are correct."
+            ) from e
 
-    return gspread.authorize(creds)
+    # No valid authentication method found
+    raise ValueError(
+        "Google Sheets authentication failed: No valid credentials found. "
+        "Please set one of the following:\n"
+        "  - SHEETS_SERVICE_ACCOUNT_JSON (base64-encoded service account JSON) - Recommended\n"
+        "  - GOOGLE_REFRESH_TOKEN + GOOGLE_CLIENT_ID + GOOGLE_CLIENT_SECRET (OAuth)\n"
+        "Check your environment variables or .env file."
+    )
 
 
 # ---------------------- SPREADSHEET HELPERS ----------------------
-def _get_or_create_spreadsheet(gc, spreadsheet_name: Optional[str] = None):
-    """Get or create spreadsheet without enumerating the entire drive."""
-    target_name = spreadsheet_name or SPREADSHEET_NAME
+# ---------------------- SPREADSHEET HELPERS (PRODUCTION SAFE) ----------------------
+def _get_or_create_spreadsheet(gc, spreadsheet_name: str):
+    """
+    Get an existing spreadsheet. 
+    In production, always use GOOGLE_SHEETS_ID to avoid creating new files.
+    """
+    # If env variable exists, always use that ID
+    sheet_id = os.getenv("GOOGLE_SHEETS_ID")
+    if sheet_id:
+        try:
+            return gc.open_by_key(sheet_id)
+        except Exception as e:
+            raise RuntimeError(f"[Sheets] Could not open spreadsheet by ID {sheet_id}: {e}")
+
+    # Fallback to opening by name (for dev only)
     try:
-        return gc.open(target_name)
+        return gc.open(spreadsheet_name)
     except gspread.SpreadsheetNotFound:
-        print(f"[Sheets] Creating new spreadsheet: {target_name}")
-        return gc.create(target_name)
+        # In development, allow creating spreadsheet
+        if os.getenv("MODE") != "production":
+            print(f"[Sheets] Spreadsheet '{spreadsheet_name}' not found. Creating a new one...")
+            return gc.create(spreadsheet_name)
+        raise RuntimeError(f"[Sheets] Spreadsheet '{spreadsheet_name}' not found and cannot create in production.")
 
 
 def _get_or_create_worksheet(spreadsheet_name: Optional[str] = None, worksheet_name: Optional[str] = None):
-    """Safely get worksheet — never resets data."""
+    """
+    Safely get a worksheet.
+    - Never creates a new spreadsheet in production
+    - Can create a new worksheet if it doesn’t exist
+    """
     target_spreadsheet = spreadsheet_name or SPREADSHEET_NAME
     target_worksheet = worksheet_name or WORKSHEET_NAME
+
+    gc = _get_client()
+    sh = _get_or_create_spreadsheet(gc, target_spreadsheet)
+
     try:
-        gc = _get_client()
-        sh = _get_or_create_spreadsheet(gc, target_spreadsheet)
-        try:
-            ws = sh.worksheet(target_worksheet)
-            print(f"[Sheets] Found worksheet: {target_worksheet}")
-        except gspread.WorksheetNotFound:
-            ws = sh.add_worksheet(title=target_worksheet, rows=100, cols=len(HEADER))
-            ws.append_row(HEADER)
-            print(f"[Sheets] Created new worksheet: {target_worksheet}")
-            return ws
-
-        # Header check (non-destructive)
-        current_header = [h.strip().lower() for h in ws.row_values(1)]
-        expected_header = [h.lower() for h in HEADER]
-        if current_header != expected_header:
-            print("[Sheets] ⚠ Header mismatch — skipping overwrite to protect data.")
-            print(f"Current header: {current_header}")
-            print(f"Expected header: {expected_header}")
-
+        ws = sh.worksheet(target_worksheet)
+        print(f"[Sheets] Found worksheet: {target_worksheet}")
+        return ws
+    except gspread.WorksheetNotFound:
+        if os.getenv("MODE") == "production":
+            raise RuntimeError(f"[Sheets] Worksheet '{target_worksheet}' not found in production spreadsheet.")
+        # Allow worksheet creation in development
+        ws = sh.add_worksheet(title=target_worksheet, rows=100, cols=len(HEADER))
+        ws.append_row(HEADER)
+        print(f"[Sheets] Created new worksheet: {target_worksheet}")
         return ws
 
-    except Exception as e:
-        print(f"[Sheets] ❌ Error initializing worksheet: {e}")
-        raise
 
 
 # ---------------------- DATE HANDLING ----------------------

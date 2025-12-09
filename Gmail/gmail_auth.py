@@ -1,27 +1,58 @@
 # Gmail/gmail_auth.py
-from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
 import os
-import pickle
-import json
+from dotenv import load_dotenv
+
+# Load environment variables
+# Try .envSecrets first (for local development), then fall back to .env or system env vars
+load_dotenv('.envSecrets')  # Load .envSecrets if it exists
+load_dotenv()  # Also load .env if it exists, and system environment variables override
 
 class GmailAuth:
+    """
+    Gmail Authentication using environment variables.
+    Works on both localhost and Railway without token files.
+    """
     SCOPES = [
         "https://www.googleapis.com/auth/gmail.readonly",
         "https://www.googleapis.com/auth/gmail.modify",
         "https://www.googleapis.com/auth/gmail.send"
     ]
 
+    def __init__(self):
+        """Initialize Gmail authentication using environment variables."""
+        self.creds = None
+        self._load_credentials_from_env()
 
-    def __init__(self, token_file="token_gmail.pkl"):
-        # ONLINE: check for environment variable refresh token
+    def _load_credentials_from_env(self):
+        """
+        Load credentials from environment variables.
+        Requires: GOOGLE_REFRESH_TOKEN, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+        """
         refresh_token = os.getenv("GOOGLE_REFRESH_TOKEN")
         client_id = os.getenv("GOOGLE_CLIENT_ID")
         client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
 
-        if refresh_token and client_id and client_secret:
-            from google.oauth2.credentials import Credentials
+        # Validate required environment variables
+        if not refresh_token:
+            raise ValueError(
+                "GOOGLE_REFRESH_TOKEN environment variable is required. "
+                "Please set it in your environment or .env file."
+            )
+        if not client_id:
+            raise ValueError(
+                "GOOGLE_CLIENT_ID environment variable is required. "
+                "Please set it in your environment or .env file."
+            )
+        if not client_secret:
+            raise ValueError(
+                "GOOGLE_CLIENT_SECRET environment variable is required. "
+                "Please set it in your environment or .env file."
+            )
+
+        try:
             self.creds = Credentials(
                 token=None,
                 refresh_token=refresh_token,
@@ -30,84 +61,57 @@ class GmailAuth:
                 client_secret=client_secret,
                 scopes=self.SCOPES
             )
-
-        self.token_file = token_file
-        self.creds = None
-        
-        # Create a temporary credentials.json in memory
-        self.client_config = {
-            "installed": {
-                "client_id": os.getenv("GOOGLE_CLIENT_ID"),
-                "client_secret": os.getenv("GOOGLE_CLIENT_SECRET"),
-                "redirect_uris": ["http://localhost:8080/"],
-                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                "token_uri": "https://oauth2.googleapis.com/token"
-            }
-        }
-
-        
+            # Credentials created with token=None are not valid until refreshed
+            # This is expected - we'll refresh in authenticate() method
+            print("[GmailAuth] ✅ Credentials loaded from environment variables")
+        except Exception as e:
+            raise ValueError(
+                f"Failed to create Gmail credentials from environment variables: {e}. "
+                "Please verify GOOGLE_REFRESH_TOKEN, GOOGLE_CLIENT_ID, and GOOGLE_CLIENT_SECRET are set correctly."
+            )
 
     def authenticate(self):
         """
-        Authenticate user with Gmail using OAuth 2.0 with automatic browser flow.
+        Authenticate user with Gmail using OAuth 2.0 credentials from environment variables.
+        Automatically refreshes expired tokens.
         
         Returns:
             googleapiclient.discovery.Resource: Authorized Gmail API service instance.
+        
+        Raises:
+            ValueError: If credentials cannot be loaded or refreshed.
+            Exception: If Gmail service creation fails.
         """
-        # Try to load existing credentials
-        if os.path.exists(self.token_file):
-            try:
-                with open(self.token_file, "rb") as token:
-                    self.creds = pickle.load(token)
-            except (EOFError, pickle.UnpicklingError) as e:
-                print(f"Error loading token file: {e}. Starting new authentication.")
-                os.remove(self.token_file)  # Remove corrupted token file
-                self.creds = None
+        if not self.creds:
+            raise ValueError("Gmail credentials not initialized. Check environment variables.")
 
-        # If there are no valid credentials, let the user log in
-        if not self.creds or not self.creds.valid:
-            if self.creds and self.creds.expired and self.creds.refresh_token:
+        # Refresh token if not valid (either expired or never set)
+        # When token=None initially, creds.valid will be False, so we always refresh
+        if not self.creds.valid:
+            if self.creds.refresh_token:
                 try:
+                    print("[GmailAuth] 🔄 Acquiring/refreshing access token...")
                     self.creds.refresh(Request())
+                    print("[GmailAuth] ✅ Token acquired/refreshed successfully")
                 except Exception as e:
-                    print(f"Error refreshing token: {e}")
-                    self.creds = None
-            
-            if not self.creds:
-                # Create an in-memory credentials file
-                import tempfile
-                with tempfile.NamedTemporaryFile(mode='w+', suffix='.json', delete=False) as temp_creds:
-                    json.dump(self.client_config, temp_creds)
-                    temp_creds_path = temp_creds.name
-                
-                try:
-                    # Use the temporary credentials file for the flow
-                    flow = InstalledAppFlow.from_client_secrets_file(
-                        temp_creds_path,
-                        scopes=self.SCOPES
-                    )
-                    
-                    # This will open the browser automatically
-                    self.creds = flow.run_local_server(port=8080)
-                    
-                    # Save the credentials for future use
-                    with open(self.token_file, "wb") as token:
-                        pickle.dump(self.creds, token)
-                        
-                except Exception as e:
-                    print(f"Authentication failed: {e}")
-                    return None
-                finally:
-                    # Clean up the temporary file
-                    try:
-                        os.unlink(temp_creds_path)
-                    except:
-                        pass
+                    raise ValueError(
+                        f"Failed to refresh Gmail access token: {e}. "
+                        "Please verify GOOGLE_REFRESH_TOKEN is valid and not revoked. "
+                        f"Error details: {str(e)}"
+                    ) from e
+            else:
+                raise ValueError(
+                    "Gmail credentials are invalid and cannot be refreshed (no refresh_token). "
+                    "Please verify your GOOGLE_REFRESH_TOKEN is set correctly in environment variables."
+                )
 
         # Build and return the Gmail API service
         try:
             service = build("gmail", "v1", credentials=self.creds)
+            print("[GmailAuth] ✅ Gmail service initialized successfully")
             return service
         except Exception as e:
-            print(f"Failed to create Gmail service: {e}")
-            return None
+            raise Exception(
+                f"Failed to create Gmail service: {e}. "
+                "Please verify your credentials have the required scopes."
+            ) from e

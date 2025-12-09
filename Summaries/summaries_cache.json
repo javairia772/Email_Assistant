@@ -1,32 +1,34 @@
 {
   "seen": {
     "gmail": [
-      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
+      "gmail:sattarrafia@yahoo.com",
       "gmail:Javaria <j66yya@gmail.com>",
-      "gmail:unknown@gmail.com",
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
-      "gmail:n00503033@gmail.com",
-      "gmail:Cursor Team <hi@mail.cursor.com>",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
-      "gmail:noreply@email.openai.com",
-      "gmail:Google <no-reply@accounts.google.com>",
-      "gmail:Nexus <n00503033@gmail.com>",
       "gmail:OpenAI <noreply@email.openai.com>",
       "gmail:Groq <developer@groq.co>",
-      "gmail:Tayyba Aftab <tayybar130@gmail.com>"
+      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
+      "gmail:Tayyba Aftab <tayybar130@gmail.com>",
+      "gmail:noreply@email.openai.com",
+      "gmail:Nexus <n00503033@gmail.com>",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
+      "gmail:Google <no-reply@accounts.google.com>",
+      "gmail:n00503033@gmail.com",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+      "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
+      "gmail:Rafia Sattar <rafiasattar7865@gmail.com>",
+      "gmail:unknown@gmail.com",
+      "gmail:Cursor Team <hi@mail.cursor.com>"
     ],
     "outlook": [
-      "outlook:m365dev@microsoft.com",
-      "outlook:nexus202540@outlook.com",
+      "outlook:MicrosoftRewards@infoemail.microsoft.com",
       "outlook:MSSecurity-noreply@microsoft.com",
       "outlook:j66yya@gmail.com",
-      "outlook:n00503033@gmail.com",
-      "outlook:minahilmy34@gmail.com",
       "outlook:javariasaleem39@gmail.com",
-      "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:MicrosoftRewards@infoemail.microsoft.com",
-      "outlook:no-reply@microsoft.com"
+      "outlook:m365dev@microsoft.com",
+      "outlook:nexus202540@outlook.com",
+      "outlook:n00503033@gmail.com",
+      "outlook:no-reply@microsoft.com",
+      "outlook:minahilmy34@gmail.com",
+      "outlook:account-security-noreply@accountprotection.microsoft.com"
     ]
   },
   "summaries": {
@@ -1131,7 +1133,99 @@
       ],
       "summary": "Rafia Sattar has reached out feeling ignored, but the conversation is vague and hasn't gotten far. We don't have much context or any agreed-upon next steps. It seems like the issue is still unresolved and we need more information to move forward.",
       "timestamp": "2025-12-08T09:56:41.566967Z"
+    },
+    "gmail:sattarrafia@yahoo.com": {
+      "id": "gmail:sattarrafia@yahoo.com",
+      "email": "sattarrafia@yahoo.com",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19b023e0f03afab9",
+          "subject": "Test",
+          "preview": "Test email",
+          "summary": "Sattar Rafia initiated a test email thread with Nexus, who responded to confirm receipt of the message. The conversation appears to be a simple test of email functionality. No meetings or decisions were made, and there are no next steps outlined. Nexus replied on December 9, 2025. The thread is now inactive.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T09:39:28+00:00",
+          "last_message_id": "19b027af1ab45407",
+          "last_subject": "Re: Test",
+          "last_body": "😭 On Tue, 9 Dec 2025, 1:33 pm , wrote: > Test email >"
+        },
+        {
+          "id": "19b023c8b28f14a5",
+          "subject": "Test",
+          "preview": "Test",
+          "summary": "Sattar Rafia initiated a test email conversation, although no specific topic or purpose was discussed. The thread involves only Sattar Rafia and doesn't include any meeting times, decisions, or next steps. The conversation appears to be incomplete, with the content being a simple \"Test\". There's no clear outcome or action item from this exchange. It seems to be a preliminary or incomplete communication.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T08:29:10+00:00",
+          "last_message_id": "19b023c8b28f14a5",
+          "last_subject": "Test",
+          "last_body": "Test"
+        },
+        {
+          "id": "19b023c336def082",
+          "subject": "Testing",
+          "preview": "Testing&nbsp;",
+          "summary": "Sattar Rafia initiated a conversation via email with the subject \"Testing\", but the content is unclear as the body of the email is empty. There are no meeting times, decisions, or next steps discussed. The purpose of the conversation appears to be unclear or potentially a test email. Sattar Rafia is the only person involved in the thread so far. Further clarification is needed to understand the intent behind the email.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T08:27:38+00:00",
+          "last_message_id": "19b023c336def082",
+          "last_subject": "Testing",
+          "last_body": "Testing&nbsp;"
+        },
+        {
+          "id": "19b023c2059af6ab",
+          "subject": "Testing",
+          "preview": "Checking my visibility&nbsp;",
+          "summary": "Sattar Rafia tested the email system and received confirmation that it's working correctly. The test was successful, with no further action required. The email functionality has been verified as operational, with all necessary checks completed, and no meeting or follow-up is needed.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.2,
+          "last_message_ts": "2025-12-09T15:20:20+00:00",
+          "last_message_id": "19b03b2fed455f3d",
+          "last_subject": "",
+          "last_body": "Email functionality appears to be working correctly, as your test message has been received 📧. No further action is required at this time 🕒. The email system is operational, and all necessary checks have been completed 🗹️."
+        }
+      ],
+      "summary": "Sattar Rafia ran a few test emails to ensure the system is working, and it's all good - they received confirmations back, including one from Nexus on December 9. Everything seems to be functioning as it should, and there are no next steps or follow-ups needed.",
+      "timestamp": "2025-12-09T16:41:47.552735Z"
+    },
+    "gmail:Rafia Sattar <rafiasattar7865@gmail.com>": {
+      "id": "gmail:Rafia Sattar <rafiasattar7865@gmail.com>",
+      "email": "Rafia Sattar <rafiasattar7865@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19b023a1399ced85",
+          "subject": "Testing",
+          "preview": "Testing",
+          "summary": "Rafia Sattar initiated an email thread titled \"Testing\" but didn't provide sufficient context. A response was sent requesting more information to understand the purpose and potential next steps. The conversation lacks clarity and a meeting hasn't been scheduled. Further discussion is needed to determine the objective and proceed. Next steps will depend on Rafia's response.",
+          "role": "Admin",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.2,
+          "last_message_ts": "2025-12-09T08:49:39+00:00",
+          "last_message_id": "19b024d4d22225e0",
+          "last_subject": "",
+          "last_body": "I appreciate your email and would like to discuss the purpose and potential next steps. However, the current thread lacks sufficient context and details. Could you please provide more information or clarify the objective of your initial message so I can better understand and respond accordingly?"
+        }
+      ],
+      "summary": "Rafia Sattar started an email thread about \"Testing\" but didn't provide much context, so we're waiting for a clearer response to understand the goal. The conversation is still vague and we haven't scheduled a meeting yet. We need more info from Rafia to determine next steps.",
+      "timestamp": "2025-12-09T16:41:49.073031Z"
     }
   },
-  "last_updated": "2025-12-08T17:19:16.378691+00:00"
+  "last_updated": "2025-12-09T18:00:56.288444+00:00"
 }

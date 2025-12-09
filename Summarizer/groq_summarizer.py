@@ -14,7 +14,10 @@ import requests
 
 
 
-load_dotenv()
+# Load environment variables
+# Try .envSecrets first (for local development), then fall back to .env or system env vars
+load_dotenv('.envSecrets')  # Load .envSecrets if it exists
+load_dotenv()  # Also load .env if it exists, and system environment variables override
 if not sys.stdout.encoding or sys.stdout.encoding.lower() != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="ignore")
 

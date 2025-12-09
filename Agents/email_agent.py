@@ -9,7 +9,10 @@ from datetime import datetime, timezone
 from dotenv import load_dotenv
 from groq import Groq
 
-load_dotenv()
+# Load environment variables
+# Try .envSecrets first (for local development), then fall back to .env or system env vars
+load_dotenv('.envSecrets')  # Load .envSecrets if it exists
+load_dotenv()  # Also load .env if it exists, and system environment variables override
 
 
 class EmailAgent:
