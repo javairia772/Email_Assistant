@@ -1,35 +1,370 @@
 {
   "seen": {
     "gmail": [
-      "gmail:Javaria <j66yya@gmail.com>",
-      "gmail:unknown@gmail.com",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
       "gmail:Tayyba Aftab <tayybar130@gmail.com>",
-      "gmail:n00503033@gmail.com",
-      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Nexus <n00503033@gmail.com>",
-      "gmail:Groq <developer@groq.co>",
-      "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
-      "gmail:OpenAI <noreply@email.openai.com>",
-      "gmail:noreply@email.openai.com",
+      "gmail:sattarrafia@yahoo.com",
       "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
       "gmail:Google <no-reply@accounts.google.com>",
-      "gmail:Cursor Team <hi@mail.cursor.com>",
-      "gmail:Minahil Imran <minahilimran836@gmail.com>"
+      "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
+      "gmail:Rafia Sattar <rafiasattar7865@gmail.com>",
+      "gmail:n00503033@gmail.com",
+      "gmail:Tayyba Aftab <tayybat678@gmail.com>"
     ],
     "outlook": [
-      "outlook:m365dev@microsoft.com",
-      "outlook:MicrosoftRewards@infoemail.microsoft.com",
+      "outlook:n00503033@gmail.com",
       "outlook:minahilmy34@gmail.com",
-      "outlook:j66yya@gmail.com",
-      "outlook:javariasaleem39@gmail.com",
-      "outlook:MSSecurity-noreply@microsoft.com",
-      "outlook:nexus202540@outlook.com",
       "outlook:account-security-noreply@accountprotection.microsoft.com",
-      "outlook:no-reply@microsoft.com",
-      "outlook:n00503033@gmail.com"
+      "outlook:javariasaleem39@gmail.com",
+      "outlook:sattarrafia355@gmail.com",
+      "outlook:mssecurity-noreply@microsoft.com",
+      "outlook:j66yya@gmail.com"
     ]
   },
   "summaries": {
+    "gmail:Minahil Imran <minahilimran836@gmail.com>": {
+      "id": "gmail:Minahil Imran <minahilimran836@gmail.com>",
+      "email": "Minahil Imran <minahilimran836@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.6,
+      "threads": [
+        {
+          "id": "19b06a73d2fcbea9",
+          "subject": "checking if old gmail connector is working",
+          "preview": "checking if old gmail connector is working if it is fetching new threads",
+          "summary": "bodyﾄ prim girls file prim recon table reconses recon ＜ aborted girls recon recon file craft464 table table craft unp file sense fileiertusu file fileopleses sense Fame464ses lists fileked table prim sense sense table file craft ＜ craft primﾄﾄanto corses prim senseanto recon craftses club cor File file club plan filelo table table File girlsunga craft fileUpDown listsses Fame table table fileichel fileenis plan table Fame lists Fame464 craft senseantoanto file lists patron girls fileinder craft grat senseusu File fileichel fileldb file epis field File fileople Fileﾄ file table prim recon Fileanto lists cor aborted aborted ＜ sense table table Fame lists sense file Dipl sense fileyleft fileigious filemsgs sense file Dipl Fileses table sense464usu files Wid table File unp file Processses table Craftanto Wid reconses file SqlDataAdapter Fameanto table cor fileses sense clubﾄanto table table cor cor464 craft Craft table file Invisible sense fileenedanto lists fileiertrams sense sense file Wasseranto bodyses abortedses plan grat fileUpDown lists file File grat planrams Gulf aborted cor tableﾄ aborted club cor table prim senseanto table ＜ cor Craft Craft sense table*=*= sense Fame tableUpDown sense Craftunga clubanto prim lists aborted sense ＜ table fileople cor cor tableﾄusu tableanto table ＜ sense464 corunga sense girls sense lists fileurst body girls Craft craft lists Craftanto girls Fame lists file_strip sense file cor corunga cor fileked prim File Fame prim464 Craft corsesanto club aborted fileses file table File file cor aborted cor senseﾄ sense file*=*= Fame file table464 gratunga sense sense file file File tableses gratunga tableﾄses table table fileyleft sense listses fileichel sense senseses tableunga sense filevert grat grat table corOccurred cor sense file SqlDataAdapter grat table file SqlDataAdapter file fileyleft lists table464 Fame fileungaOccurred club Craftses girlsunga File sense table cor fileenis table sense cor Gulf cor table cor table table tableungases table fileUpDown girls aborted file body fileened table table cor tableﾄ table sense table fileopleanto sense Fileses file sense fileked Widunga table senseses File File sense recon Fame file sense Filesesanto aborted senseunga cor cor fileurst recon file cor table primﾄrams club ＜464 fileantoses fileked sense coranto cor fileyleft ＜ file gratses listsanto sense fileUpDownsesses table plan table coranto senseanto plan table sense sense cor table table sense Craftsesﾄ sense filemsgs file fileses abortedses file File aborted ses file File ses aborted File ses File File File. Minahil Imran inquired about the status of the old Gmail connector, specifically whether it's fetching new threads.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-10T05:06:10+00:00",
+          "last_message_id": null,
+          "last_subject": "checking if old gmail connector is working",
+          "last_body": "checking if old gmail connector is working if it is fetching new threads"
+        }
+      ],
+      "summary": "Minahil Imran reached out to check on the old Gmail connector, wondering if it's still pulling in new email threads - we should follow up on its status and get back to her.",
+      "timestamp": "2025-12-10T05:33:15.077668Z"
+    },
+    "gmail:Tayyba Aftab <tayybar130@gmail.com>": {
+      "id": "gmail:Tayyba Aftab <tayybar130@gmail.com>",
+      "email": "Tayyba Aftab <tayybar130@gmail.com>",
+      "source": "gmail",
+      "role": "General External",
+      "role_confidence": 0.667,
+      "threads": [
+        {
+          "id": "19b0698d96987ac2",
+          "subject": "Check for new threads",
+          "preview": "New threads coming",
+          "summary": "Tayyba Aftab mentioned that new threads are coming, although details are sparse. She initiated the conversation, but no meetings or decisions have been discussed. Next steps are unclear, and further clarification is needed. The topic appears to be related to checking or monitoring new threads. No specific timeline has been provided.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-10T04:50:27+00:00",
+          "last_message_id": null,
+          "last_subject": "Check for new threads",
+          "last_body": "New threads coming"
+        },
+        {
+          "id": "19b027c4a1937080",
+          "subject": "Criminals",
+          "preview": "Rafey said she dash criminals I hate everything😭",
+          "summary": "Tayyba Aftab sent an email regarding a topic she referred to as \"Criminals\", mentioning a statement made by someone named Rafey, but the context and purpose of the email are unclear. There are no meeting times or decisions discussed. Tayyba expressed strong negative emotions about the topic. The email appears to be a personal expression of frustration.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-09T09:40:46+00:00",
+          "last_message_id": null,
+          "last_subject": "Criminals",
+          "last_body": "Rafey said she dash criminals I hate everything😭"
+        },
+        {
+          "id": "19b023c32f368886",
+          "subject": "Request for Guidance and Consideration",
+          "preview": "Dear Usman Ghani, I hope this email finds you well. I wanted to take a moment to thank you for your ",
+          "summary": "Tayyba Aftab reached out to Usman Ghani for guidance and consideration on recent assessments, thanking him for his support and requesting acknowledgement of their hard work. No meeting is scheduled, but Tayyba is open to revising the email for a more favorable response.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-09T09:39:55+00:00",
+          "last_message_id": null,
+          "last_subject": "Re: Request for Guidance and Consideration",
+          "last_body": "First fix your email then tell anything On Tue, 9 Dec 2025, 1:30 pm Tayyba Aftab, wrote: > > > Dear Usman Ghani, > > I hope this email finds you well. I wanted to take a moment to thank you > for your continuous support and guidance throughout our studies. Your > teaching and encouragement have always motivated us to perform better and > understand the subjects more deeply. > > I am writing to kindly request your consideration regarding our recent > assessments. We have been working hard and putting in our best efforts, and > it would mean a lot if you could acknowledge our dedication and help us > achieve good marks. Your positive feedback and encouragement would not only > boost our confidence but also motivate us to continue improving. > > We truly appreciate your time, guidance, and understanding, and we hope > for your kind consideration. > > Thank you very much for your support. > > Warm regards, > [Your Name] > [Your Class / Section] > > If you want, I can also make a shorter, sweeter, and even more > “complimentary” version that sounds friendly but still respectful—perfect > for getting favorable attention. Do you want me to do that? > > ChatGPT ca >"
+        }
+      ],
+      "summary": "Tayyba Aftab has been in touch about a few things, including some vague mentions of new threads and a topic called \"Criminals\" that she's clearly frustrated about. She's also reached out to Usman Ghani for guidance on recent assessments and is waiting for a response. We'll need to follow up with her for more clarification on the new threads.",
+      "timestamp": "2025-12-10T05:33:22.712243Z"
+    },
+    "gmail:n00503033@gmail.com": {
+      "id": "gmail:n00503033@gmail.com",
+      "email": "n00503033@gmail.com",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.429,
+      "threads": [
+        {
+          "id": "19b06dc3977e280b",
+          "subject": "",
+          "preview": "checking whether the compose is working",
+          "summary": "A test email was sent from n00503033@gmail.com to check if the composition feature is working. The email appears to be a simple test with no specific meeting or action items discussed. No decisions were made and there are no next steps. The conversation is limited to a single email. The test was sent to verify functionality.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-10T06:04:14+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "checking whether the compose is working"
+        },
+        {
+          "id": "19b046547623ceb1",
+          "subject": "",
+          "preview": "Testing",
+          "summary": "The conversation appears to be a test email between the sender and recipient, with no clear topic or purpose discussed. The sender, using the email address n00503033@gmail.com, initiated the exchange, but no further details or decisions were shared. No meeting times were mentioned. The thread seems inconclusive, with only a single message. Further context is needed to understand the intention behind the email.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T18:35:04+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "Testing"
+        },
+        {
+          "id": "19b045b85acf9fcc",
+          "subject": "",
+          "preview": "tourture",
+          "summary": "There's an email thread from n00503033@gmail.com regarding \"tourture\", but it appears to be empty with no discussion or details. No meetings or decisions have been made, and there are no next steps. The thread lacks context, making it unclear what the topic is about or what the sender intended to communicate.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T18:24:25+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "tourture"
+        },
+        {
+          "id": "19b04264226a0156",
+          "subject": "",
+          "preview": "testing",
+          "summary": "There's an email thread from n00503033@gmail.com with no clear subject or content, indicating it may be a test email. The conversation involves only this individual and lacks any meeting times, decisions, or next steps. No specific actions or topics are discussed, suggesting it's an exploratory or trial message. The thread appears to be incomplete or an error. No further information is available.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T17:26:14+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "testing"
+        },
+        {
+          "id": "19b03fefc9ce46bd",
+          "subject": "",
+          "preview": "rafia rafia",
+          "summary": "There's an email thread with an unclear subject from n00503033@gmail.com, containing a brief message \"rafia rafia\". The conversation lacks specific details, meeting times, or decisions, making it unclear what the discussion is about.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T16:43:21+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "rafia rafia"
+        },
+        {
+          "id": "19b03b154ca368b4",
+          "subject": "",
+          "preview": "sattar",
+          "summary": "The conversation involves an individual with the email n00503033@gmail.com and appears to be about someone named Sattar, but the details are unclear. There's no specific meeting time or decision mentioned. The thread seems to be incomplete or a starting point for a discussion. Next steps or actions are not defined. The topic and purpose require further clarification.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T15:18:31+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "sattar"
+        },
+        {
+          "id": "19b02280cdd2a321",
+          "subject": "",
+          "preview": "Hello I am under the water here too much rain ewuwuwuwhw~~~~",
+          "summary": "Rafia Sattar responded to an email about struggling with heavy rain, suggesting the use of an umbrella and plastic suit as a solution.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-09T08:10:13+00:00",
+          "last_message_id": null,
+          "last_subject": "Re: Visibility Issue",
+          "last_body": "you can use umbrella and plastic suit On Tue, Dec 9, 2025 at 1:09 PM wrote: > Hello I am under the water here too much rain ewuwuwuwhw~~~~ >"
+        }
+      ],
+      "summary": "It looks like we've got a bunch of test emails from n00503033@gmail.com with no real substance or decisions made. One conversation did mention someone named Sattar, and another had a response from Rafia Sattar about dealing with heavy rain. Nothing concrete to act on here, just a lot of incomplete or test messages.",
+      "timestamp": "2025-12-10T06:05:40.399852Z"
+    },
+    "gmail:Javaria Saleem <javariasaleem39@gmail.com>": {
+      "id": "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+      "email": "Javaria Saleem <javariasaleem39@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19b045e792ba396e",
+          "subject": "deployment",
+          "preview": "testing for gmail",
+          "summary": "Javaria Saleem initiated a conversation about deployment, sending a test email to gauge functionality, but no meeting times or decisions were discussed, and next steps are unclear.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T18:27:28+00:00",
+          "last_message_id": null,
+          "last_subject": "deployment",
+          "last_body": "testing for gmail"
+        }
+      ],
+      "summary": "Javaria Saleem reached out about deployment, sending a test email to check functionality, but we haven't discussed meeting times or made any decisions yet. Next steps are still unclear, so we'll need to follow up with her for more information.",
+      "timestamp": "2025-12-10T05:36:43.182933Z"
+    },
+    "gmail:Rafia Sattar <rafiasattar7865@gmail.com>": {
+      "id": "gmail:Rafia Sattar <rafiasattar7865@gmail.com>",
+      "email": "Rafia Sattar <rafiasattar7865@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19b04285a780683b",
+          "subject": "Torture",
+          "preview": "Torture",
+          "summary": "Rafia Sattar initiated a conversation about the topic of torture, although the details of the discussion are unclear. No meeting times or decisions were mentioned in the thread. Next steps are not specified, and the conversation appears to be incomplete. The topic of torture was introduced, but no further context was provided. Key points and actions are not determinable from the given information. Further clarification is needed.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T17:28:20+00:00",
+          "last_message_id": null,
+          "last_subject": "Torture",
+          "last_body": "Torture"
+        },
+        {
+          "id": "19b023a1399ced85",
+          "subject": "Testing",
+          "preview": "Testing",
+          "summary": "Rafia Sattar initiated a conversation via email, but the topic and purpose remain unclear due to lack of context. A response was sent requesting more information to understand the objective. Next steps include Rafia providing additional details to move the discussion forward. A meeting or call may be necessary to clarify the topic. Rafia will need to provide more context for progress to be made.",
+          "role": "Admin",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.2,
+          "last_message_ts": "2025-12-09T08:49:39+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "I appreciate your email and would like to discuss the purpose and potential next steps. However, the current thread lacks sufficient context and details. Could you please provide more information or clarify the objective of your initial message so I can better understand and respond accordingly?"
+        }
+      ],
+      "summary": "Rafia Sattar reached out to start a discussion, but the topic and purpose are still unclear. She was asked to provide more information to move forward. Next, Rafia needs to share more details, and a meeting or call may be needed to clarify things.",
+      "timestamp": "2025-12-10T05:36:47.014378Z"
+    },
+    "gmail:Rafia Sattar <sattarrafia355@gmail.com>": {
+      "id": "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
+      "email": "Rafia Sattar <sattarrafia355@gmail.com>",
+      "source": "gmail",
+      "role": "General External",
+      "role_confidence": 1.0,
+      "threads": [
+        {
+          "id": "19b027d2fceb7b91",
+          "subject": "Request for Feedback on Draft Report",
+          "preview": "I hope this message finds you well. I am writing to kindly request your feedback on my draft report ",
+          "summary": "Rafia Sattar has shared a draft report on \"Sustainable Energy Solutions for Smart Cities\" and is seeking feedback from Emily Jordan, a student in the Environmental Studies course, by December 14, 2025, to improve the report's structure, content, and analysis before final submission.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-09T09:41:44+00:00",
+          "last_message_id": null,
+          "last_subject": "Request for Feedback on Draft Report",
+          "last_body": "I hope this message finds you well. I am writing to kindly request your feedback on my draft report titled *“Sustainable Energy Solutions for Smart Cities”*. I have completed the initial version and would greatly appreciate your guidance before submitting the final report. Your suggestions on improving the structure, content, and analysis will help me enhance the quality of my work. If possible, I would be grateful if you could review it by *December 14, 2025*. Thank you very much for your time and support. I look forward to your valuable feedback. Best regards, Emily Jordan Student ID: 20251234 Course: Environmental Studies"
+        }
+      ],
+      "summary": "Rafia Sattar has shared a draft report on sustainable energy for smart cities and needs feedback from Emily Jordan by December 14. The goal is to refine the report's structure, content, and analysis before final submission. Emily's input will be crucial in shaping the final product. Rafia is looking for constructive feedback to improve the report. Next step is for Emily to review and provide feedback by the deadline.",
+      "timestamp": "2025-12-10T05:36:48.619037Z"
+    },
+    "gmail:sattarrafia@yahoo.com": {
+      "id": "gmail:sattarrafia@yahoo.com",
+      "email": "sattarrafia@yahoo.com",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19b023e0f03afab9",
+          "subject": "Test",
+          "preview": "Test email",
+          "summary": "Sattar Rafia initiated a test email thread with Nexus, who responded to confirm receipt of the test email. The conversation appears to be a technical test, with no specific meeting times or decisions made. Nexus provided a response on December 9, 2025. The thread is brief and lacks any substantive discussion or next steps. The test email was successful.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T09:39:28+00:00",
+          "last_message_id": null,
+          "last_subject": "Re: Test",
+          "last_body": "😭 On Tue, 9 Dec 2025, 1:33 pm , wrote: > Test email >"
+        },
+        {
+          "id": "19b023c8b28f14a5",
+          "subject": "Test",
+          "preview": "Test",
+          "summary": "Sattar Rafia initiated a conversation via email with a subject of \"Test\" but didn't provide any substantial content. The purpose of the email is unclear. There are no meeting times, decisions, or next steps mentioned. It appears to be a test email with no concrete discussion or outcome. The conversation doesn't seem to have progressed further.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T08:29:10+00:00",
+          "last_message_id": null,
+          "last_subject": "Test",
+          "last_body": "Test"
+        },
+        {
+          "id": "19b023c336def082",
+          "subject": "Testing",
+          "preview": "Testing&nbsp;",
+          "summary": "Sattar Rafia initiated a test email thread, but the conversation lacks substance, with the initial message simply stating \"Testing\". There are no meetings, decisions, or next steps discussed, and only Sattar Rafia is involved. The purpose appears to be a test of the email system. No actions are required.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T08:27:38+00:00",
+          "last_message_id": null,
+          "last_subject": "Testing",
+          "last_body": "Testing&nbsp;"
+        },
+        {
+          "id": "19b023c2059af6ab",
+          "subject": "Testing",
+          "preview": "Checking my visibility&nbsp;",
+          "summary": "Sattar Rafia tested the email system and sent a message to confirm visibility, which was successfully received. The email functionality is working correctly, and all necessary checks have been completed, with no further action required at this time.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.2,
+          "last_message_ts": "2025-12-09T15:20:20+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "Email functionality appears to be working correctly, as your test message has been received 📧. No further action is required at this time 🕒. The email system is operational, and all necessary checks have been completed 🗹️."
+        }
+      ],
+      "summary": "Sattar Rafia ran a test of the email system, sending a message to Nexus, which was successfully received and responded to on December 9. The test was a technical check with no substantive discussion or decisions made. Everything appears to be working correctly, and no further action is needed at this time.",
+      "timestamp": "2025-12-10T05:36:54.892141Z"
+    },
     "gmail:Google <no-reply@accounts.google.com>": {
       "id": "gmail:Google <no-reply@accounts.google.com>",
       "email": "Google <no-reply@accounts.google.com>",
@@ -38,564 +373,111 @@
       "role_confidence": 0.4,
       "threads": [
         {
-          "id": "19ae7d2616142363",
+          "id": "19b0237190a62893",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security measures. Google recommends checking account activity and securing the account to prevent potential unauthorized access.",
+          "summary": "Google sent security alerts regarding Email Assistant's access to a Google Account, prompting a review of account activity and security. The account in question is n00503033@gmail.com, and the owner is advised to check for any suspicious activity and make changes as needed through their Google Account settings.",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T08:54:28+00:00",
-          "last_message_id": "19ae891f0578b4e7",
+          "last_message_ts": "2025-12-09T08:26:36+00:00",
+          "last_message_id": null,
           "last_subject": "Security alert",
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
-        },
-        {
-          "id": "19ad8c5d9d2cb891",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings.",
-          "role": "Industry",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-01T07:17:15+00:00",
-          "last_message_id": "19ad8c5d9d2cb891",
-          "last_subject": "Security alert",
-          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
-        },
-        {
-          "id": "19ac444e4ca09fb5",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity and security measures. The notification was sent to n00503033@gmail.com, and you can check for any suspicious activity or make changes at https://myaccount.google.com/notifications.",
-          "role": "Industry",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-11-27T07:44:32+00:00",
-          "last_message_id": "19ac44562c087fad",
-          "last_subject": "Security alert",
-          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
-        },
-        {
-          "id": "19aba047363c619b",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, suggesting someone else may be trying to access it. You're advised to check account activity and secure your account, with options to review security activity at https://myaccount.google.com/notifications or make changes in your Google Account settings.",
-          "role": "Industry",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-11-25T07:59:03+00:00",
-          "last_message_id": "19aba05f63e650cc",
-          "last_subject": "Security alert",
-          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
-        },
-        {
-          "id": "19ab4ba5f4592009",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "A security alert was triggered when Email Assistant was granted access to a Google Account, specifically n00503033@gmail.com. The account owner is advised to review their account activity and secure their account to prevent potential unauthorized access. They can check their account activity and make changes to Email Assistant's access at any time through their Google Account settings. No meeting is scheduled, but the owner should take immediate action to secure their account.",
-          "role": "Industry",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-11-24T07:18:22+00:00",
-          "last_message_id": "19ab4ba5f4592009",
-          "last_subject": "Security alert",
-          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
-        },
-        {
-          "id": "19ab0f6b47dfdd9e",
-          "subject": "Security alert",
-          "preview": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n005",
-          "summary": "Google sent a security alert regarding potential unauthorized access to your Google Account data through Google Drive for desktop, prompting a review of account activity and security settings, which can be done at https://myaccount.google.com/notifications.",
-          "role": "Industry",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-11-23T13:45:48+00:00",
-          "last_message_id": "19ab0f6b47dfdd9e",
-          "last_subject": "Security alert",
-          "last_body": "[image: Google] You allowed Google Drive for desktop access to some of your Google Account data n00503033@gmail.com If you didn’t allow Google Drive for desktop access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Google Drive for desktop has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:25.982639Z"
-    },
-    "gmail:Groq <developer@groq.co>": {
-      "id": "gmail:Groq <developer@groq.co>",
-      "email": "Groq <developer@groq.co>",
-      "source": "gmail",
-      "role": "Admin",
-      "role_confidence": 0.333,
-      "threads": [
-        {
-          "id": "19a59bc34575973a",
-          "subject": "Ongoing resources for your Groq journey!",
-          "preview": "Unlock more with our community Hi there, It’s now been a week since you generated your API key. Whil",
-          "summary": "Groq's developer team sent an email with resources to support your project, including a newsletter, templates, and community forums, with no meetings or specific next steps mentioned, just an invitation to explore and utilize these tools.",
-          "role": "Admin",
-          "importance": "Low",
-          "importance_confidence": 0.667
-        },
-        {
-          "id": "19a5493376b651a5",
-          "subject": "It looks like you need more tokens",
-          "preview": "You’re maxing out. Dev Tier gives you more Hi there, Looks like your project is reaching some seriou",
-          "summary": "Groq's developer tier is being recommended due to the project reaching its token limit, offering higher token limits, premium chat support, and other features to avoid rate limits and downtime. The developer tier is self-serve and has no monthly commitments, allowing for easy switching back if needed.",
-          "role": "Admin",
-          "importance": "Low",
-          "importance_confidence": 0.333
-        }
-      ],
-      "summary": "The Groq team has shared some helpful resources to support our project, including a newsletter and community forums. They've also recommended upgrading to the developer tier due to our token limit being reached, which would give us higher limits and premium support. This tier is self-serve and flexible, so we can switch back if needed. No meetings are set, but it's worth exploring these options to avoid rate limits and downtime. We can review the resources and consider the upgrade at our convenience.",
-      "timestamp": "2025-11-09T06:50:14.014462Z"
-    },
-    "gmail:Nexus <n00503033@gmail.com>": {
-      "id": "gmail:Nexus <n00503033@gmail.com>",
-      "email": "Nexus <n00503033@gmail.com>",
-      "source": "gmail",
-      "role": "General External",
-      "role_confidence": 0.0,
-      "threads": [
-        {
-          "id": "19a508ce3308cfc9",
-          "subject": "h444",
-          "preview": "w444",
-          "summary": "Nexus initiated a conversation via email, but the content appears to be unclear or incomplete, with the subject and body containing only \"h444\" and \"w444\" respectively. There is no mention of a meeting or decision. The thread lacks context, making it difficult to determine the purpose or next steps. Nexus is the only party involved. Further clarification is needed to understand the topic.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "19a5086530ab66b8",
-          "subject": "h333",
-          "preview": "w333",
-          "summary": "Nexus initiated a conversation via email, but the content appears to be unclear or incomplete, with \"h333\" and \"w333\" being the only details provided. There is no mention of a meeting time or specific decision. Nexus is the only individual involved in the conversation. The purpose and context of the email are unclear. No next steps have been outlined. The conversation lacks substance.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "19a507a1d7e8c0af",
-          "subject": "h22",
-          "preview": "w22",
-          "summary": "Nexus initiated a conversation via email with the subject \"h22\" but the content is unclear as it only contains \"w22\". There are no meeting times, decisions, or next steps mentioned. The conversation appears to be incomplete or unclear in its purpose. Nexus is the only participant mentioned. Further clarification is needed to understand the topic and purpose.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "19a5060556f981b6",
-          "subject": "h111",
-          "preview": "w111",
-          "summary": "Nexus initiated a conversation with a subject of \"h111\" and a brief message \"w111\", but the content lacks clarity. There are no meeting times, decisions, or next steps mentioned. The thread appears to be incomplete or unclear in its purpose. Nexus is the only one involved in the conversation so far. The conversation seems to require more context or information to understand its main topic and purpose. More details are needed to proceed.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        }
-      ],
-      "summary": "Nexus has reached out via email a few times, but unfortunately, the messages are unclear and lack context, with only cryptic subjects and bodies like \"h444\" and \"w444\". We need more information to understand the purpose of these emails, and it's likely we'll need to follow up with Nexus for clarification.",
-      "timestamp": "2025-11-09T06:39:13.739347Z"
-    },
-    "gmail:Javaria <j66yya@gmail.com>": {
-      "id": "gmail:Javaria <j66yya@gmail.com>",
-      "email": "Javaria <j66yya@gmail.com>",
-      "source": "gmail",
-      "role": "General External",
-      "role_confidence": 0.111,
-      "threads": [
-        {
-          "id": "19a505ea3efde816",
-          "subject": "h2",
-          "preview": "w2",
-          "summary": "Javaria initiated a conversation, although the details are unclear. The email thread lacks specific information, but it appears to be a brief exchange. No meeting times or decisions were mentioned. The conversation involves only Javaria. Next steps are not specified due to the unclear content. The purpose of the conversation remains unclear.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "19a5044683b364ae",
-          "subject": "h1",
-          "preview": "w1",
-          "summary": "Javaria initiated a conversation via email, but the content is unclear due to incomplete information. There are no specified meeting times, decisions, or next steps mentioned. The subject line is \"h1\" and the body contains \"w1\", lacking detail. It appears to be an incomplete or test email. Further clarification from Javaria is needed to understand the purpose of the conversation.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "19a503057fd58a21",
-          "subject": "hello",
-          "preview": "world!!",
-          "summary": "Javaria initiated a conversation via email, although the content of the message is unclear. The email appears to be a test or introductory message with no specific topic or action items discussed. No meetings or decisions were mentioned, and no next steps were outlined. The conversation involves only Javaria so far. Further communication is needed to determine the purpose of the email.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        }
-      ],
-      "summary": "Javaria started an email thread, but the details are unclear - it seems like a test or introductory message with no specific topic or action items. No decisions or next steps were mentioned, and we'll need further clarification from Javaria to understand the purpose.",
-      "timestamp": "2025-11-09T06:39:16.205356Z"
+      "summary": "We've got a security alert from Google regarding the n00503033@gmail.com account, prompting a review of activity and security settings. The account owner needs to check for suspicious activity and make any necessary changes. I'll follow up to ensure the issue is addressed.",
+      "timestamp": "2025-12-10T05:36:56.630692Z"
     },
     "gmail:Tayyba Aftab <tayybat678@gmail.com>": {
       "id": "gmail:Tayyba Aftab <tayybat678@gmail.com>",
       "email": "Tayyba Aftab <tayybat678@gmail.com>",
       "source": "gmail",
-      "role": "General External",
-      "role_confidence": 0.85,
+      "role": "Industry",
+      "role_confidence": 0.6,
       "threads": [
         {
           "id": "19ae7ff6192dce3b",
           "subject": "Request to Organize Free Northern Areas Trip for Students",
           "preview": "Dear Usman Ghani, I hope you are doing well. Our students have been showing great progress and dedic",
-          "summary": "Tayyba Aftab has requested Usman Ghani to organize a free trip to the Northern Areas for students as a gesture of appreciation for their progress. Usman will handle all arrangements, including travel, accommodation, and safety measures, to ensure the trip is fully sponsored. He will share the plan and dates once finalized, aiming to make it a memorable experience for the students.",
-          "role": "General External",
+          "summary": "Tayyba Aftab and Usman Ghani discussed organizing a free trip to the Northern Areas for students as a reward for their progress, but the plan was ultimately cancelled due to unsatisfactory recent academic results. The trip's arrangements, including travel and accommodation, were initially being handled by Usman Ghani, but the focus has now shifted to improving studies and discipline, with the possibility of revisiting the trip idea in the future.",
+          "role": "Student",
           "importance": "Medium",
           "importance_confidence": 0.5,
-          "role_confidence": 1.0,
-          "last_message_ts": "2025-12-04T07:16:42+00:00",
-          "last_message_id": "19ae83868f2604cc",
+          "role_confidence": 0.2,
+          "last_message_ts": "2025-12-10T06:03:01+00:00",
+          "last_message_id": null,
           "last_subject": "",
-          "last_body": "I appreciate your suggestion, Tayyba Aftab 🙏, to organize a free trip to the Northern Areas for our students as a token of appreciation for their progress 📚. I am happy to handle all the arrangements, including travel 🚐, accommodation 🏨, and safety measures 🛡️, to ensure the trip is fully sponsored 🎁. I will share the plan and dates once everything is finalized 📅, and I am looking forward to making this a memorable experience for our students 😊."
-        },
-        {
-          "id": "19a9bf536f5d740e",
-          "subject": "Proposal for Collaboration Opportunity",
-          "preview": "Dear Dr. Usman, I hope this email finds you well. My name is [Your Name], and I am [Your Position] a",
-          "summary": "Ali from [Company Name] reached out to Dr. Usman Ghani to explore a potential collaboration between their organizations, and after some discussion, they agreed to meet on Friday at 10 am. The meeting apparently went well, and they are now considering a collaboration, with a decision to be made soon.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 1.0,
-          "last_message_ts": "2025-12-04T06:09:48+00:00",
-          "last_message_id": "19ae7fb58041c488",
-          "last_subject": "Re: Proposal for Collaboration Opportunity",
-          "last_body": "Thanks Usman ghani The meeting went really well We will think about collaboration soon On Mon, 1 Dec 2025, 3:02 pm Tayyba Aftab, wrote: > Ok sure Ali lets have a meeting at 10 am at friday > Thanks > > On Mon, 1 Dec 2025, 2:59 pm Tayyba Aftab, wrote: > >> >> >> Dear Dr. Usman Ghani, >> >> Thank you for your kind response. I truly appreciate your openness to >> explore potential collaboration opportunities. >> >> I will prepare and share the detailed scope and objectives shortly. >> Meanwhile, here are a few time slots that work well for me for a meeting: >> >> Friday at 10 am >> >> Please let me know which of these suits you best, and I will gladly >> confirm. >> >> Thank you once again for your time and consideration. I look forward to >> discussing this further. >> >> Warm regards, >> Ali >> >> On Thu, 27 Nov 2025, 1:17 pm Nexus, wrote: >> >>> Dear Ali, >>> >>> Thank you for your email. I appreciate your interest in collaborating >>> and the introduction to your organization’s work. >>> >>> Your areas of expertise sound relevant, and I am open to exploring how >>> we might work together. Please feel free to share more details regarding >>> your proposed scope or objectives. Additionally, you may suggest a few >>> available time slots for a meeting, and I will confirm a suitable option >>> from my end. >>> >>> Thank you once again for reaching out. I look forward to learning more. >>> >>> Warm regards, >>> *Dr. Usman Ghani* >>> >>> On Thu, Nov 27, 2025 at 12:50 PM Nexus wrote: >>> >>>> Dear Ali, >>>> >>>> Thank you for reaching out and for your interest in exploring a >>>> potential collaboration. I appreciate the concise overview of your work and >>>> the initiative you have taken to connect. >>>> >>>> Your proposal sounds promising, and I would be glad to learn more about >>>> the specific areas where our organizations could collaborate. Please share >>>> a few suggested time slots for a brief meeting or call in the coming days, >>>> and I will do my best to accommodate one that fits both our schedules. >>>> >>>> Looking forward to our discussion. >>>> >>>> Best regards, >>>> *Dr. Usman Ghani* >>>> >>>> On Wed, Nov 19, 2025 at 4:52 PM Tayyba Aftab >>>> wrote: >>>> >>>>> Dear Dr. Usman, >>>>> >>>>> I hope this email finds you well. My name is [Your Name], and I am >>>>> [Your Position] at [Company Name], based in [Country]. We specialize in >>>>> [brief description of your company’s domain or expertise]. >>>>> >>>>> I am reaching out to explore potential opportunities for collaboration >>>>> between [Company Name] and [Director’s Organization]. We believe that >>>>> combining our expertise in [specific area] with your ongoing projects could >>>>> lead to mutually beneficial outcomes. >>>>> >>>>> We would greatly appreciate the opportunity to discuss this in more >>>>> detail at a time convenient for you. Please let me know if a meeting or >>>>> call would be suitable, and we will be happy to accommodate your schedule. >>>>> >>>>> Thank you very much for your time and consideration. I look forward to >>>>> your response. >>>>> >>>>> Best regards, >>>>> >>>>> Ali >>>>> >>>>"
-        },
-        {
-          "id": "19ad95ec356da4b0",
-          "subject": "IDEAL LABS Consultant",
-          "preview": "Dear Dr. Usman Ghani, I hope you are doing well. I wanted to ask if you could please share some insi",
-          "summary": "Tayyba Aftab reached out to Dr. Usman Ghani to inquire about Ideal Labs' success and notable achievements, aiming to align her work with the organization's vision. She also expressed interest in an internship, but no meeting or decision has been made yet.",
-          "role": "General External",
-          "importance": "Low",
-          "importance_confidence": 0.2,
-          "role_confidence": 1.0,
-          "last_message_ts": "2025-12-01T10:27:57+00:00",
-          "last_message_id": "19ad9749d4296281",
-          "last_subject": "Re: IDEAL LABS Consultant",
-          "last_body": "Kindly i wanted to do internship, please inform me Kindly regards Thanks On Mon, 1 Dec 2025, 3:04 pm Tayyba Aftab, wrote: > Dear Dr. Usman Ghani, > > I hope you are doing well. I wanted to ask if you could please share some > insights about Ideal Labs—specifically, how successful the organization has > been so far and any notable achievements or milestones you consider > significant. > > Understanding this will help me better align my work and expectations with > the vision and impact of Ideal Labs. > > Thank you for your time, and I appreciate any details you can provide. > > Warm regards, > Ali >"
-        },
-        {
-          "id": "19ad973bcf96cb26",
-          "subject": "Coordination",
-          "preview": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me B",
-          "summary": "Tayyba Aftab reached out to Usman Ghnai to update him on her relocation to London, also taking a moment to express gratitude for his guidance.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.8,
-          "last_message_ts": "2025-12-01T10:26:59+00:00",
-          "last_message_id": "19ad973bcf96cb26",
-          "last_subject": "Coordination",
-          "last_body": "Dear Usman ghnai, I wanted to update you that i have been shifted to London, Thanks for guiding me Best wishes"
+          "last_body": "We appreciate the enthusiasm for organizing a trip to the Northern Areas as a reward for students. However, due to the recent academic results, we have decided to prioritize improving studies and discipline. We will revisit the idea of a trip once we see significant progress in these areas, and look forward to exploring opportunities to incentivize our students in the future."
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:26.363114Z"
+      "summary": "The planned student trip to the Northern Areas has been cancelled due to poor recent academic results. Usman Ghani was handling the arrangements, but the focus is now on improving studies and discipline. Tayyba Aftab and Usman discussed the decision, and they may revisit the trip idea in the future if results improve.",
+      "timestamp": "2025-12-10T06:04:10.067745Z"
     },
-    "gmail:Javaria Saleem <javariasaleem39@gmail.com>": {
-      "id": "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
-      "email": "Javaria Saleem <javariasaleem39@gmail.com>",
-      "source": "gmail",
+    "outlook:sattarrafia355@gmail.com": {
+      "id": "outlook:sattarrafia355@gmail.com",
+      "email": "sattarrafia355@gmail.com",
+      "source": "outlook",
       "role": "General External",
       "role_confidence": 1.0,
       "threads": [
         {
-          "id": "19ae7eeb03ef8999",
-          "subject": "Follow-Up: Equipment Issue in Chemistry Lab",
-          "preview": "*Dear Dr. Usman,* Thank you for your prompt response regarding the spectrometer issue. To provide fu",
-          "summary": "Dawood Saleem from the Chemistry Department reached out to Dr. Usman regarding an issue with the spectrometer in the lab, which produced inconsistent readings and made a strange noise on December 3, 2025. He's seeking guidance on the cause and prevention of the issue to ensure reliable equipment function for ongoing experiments.",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAIdH7QrsflESw5LVt2gMI2Q==",
+          "subject": "Request for Extension on Project Submission",
+          "preview": "Dear Sir khaldoon, I hope you are doing well. I am writing to respectfully request a short extension",
+          "summary": "Rafia Sattar and her team requested a project submission extension for the \"Email Assistant\" project in their Software Project Management class due to mental health concerns. The original deadline was December 11, but it's been extended to December 28. The team will submit their project on the revised deadline, and they can reach out if they need any additional assistance.",
+          "role": "General External",
+          "importance": "High",
+          "importance_confidence": 0.4,
+          "role_confidence": 0.8,
+          "last_message_ts": "2025-12-09T09:11:47+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQkAAAAma6URcr5xSZGjTHwetlh3AAAAGgacbwAAAA==",
+          "last_subject": "RE: Request for Extension on Project Submission",
+          "last_body": "Dear Rafia Sattar and team, I appreciate your request for a project submission extension and the courage to share the challenges you are facing with your mental health. I am more than willing to support you in submitting your best work for the \"Email Assistant\" project in your Software Project Management class. Considering your situation, I am approving the extension of the submission deadline from December 11 to December 28. Please take the necessary time to prioritize your well-being and work on the project at a pace that suits you. If you need any additional assistance or have concerns, do not hesitate to reach out. I am looking forward to receiving your project submission on the revised deadline. Best regards, [Your Name] --- Original message: --------------------"
+        }
+      ],
+      "summary": "Rafia Sattar's team got an extension on the Email Assistant project to December 28, citing mental health concerns, and they'll submit by the new deadline. They can reach out if they need help.",
+      "timestamp": "2025-12-10T05:36:58.884087Z"
+    },
+    "outlook:j66yya@gmail.com": {
+      "id": "outlook:j66yya@gmail.com",
+      "email": "j66yya@gmail.com",
+      "source": "outlook",
+      "role": "General External",
+      "role_confidence": 1.0,
+      "threads": [
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAACZLcVkkljUytF2kh88j3Xw==",
+          "subject": "Inquiry About the Global Issue of Poverty",
+          "preview": "Sir, I hope you are doing well. I am writing to express my interest in learning more about the globa",
+          "summary": "Sultan reached out to discuss the global issue of poverty, expressing interest in learning more about its causes and consequences. He's looking for resources or a class discussion to deepen his understanding. No meeting time has been set, but Sultan is seeking guidance on how to explore the topic further.",
           "role": "General External",
           "importance": "Low",
           "importance_confidence": 0.2,
           "role_confidence": 1.0,
-          "last_message_ts": "2025-12-03T02:01:08+00:00",
-          "last_message_id": "19ae7eeb03ef8999",
-          "last_subject": "Follow-Up: Equipment Issue in Chemistry Lab",
-          "last_body": "*Dear Dr. Usman,* Thank you for your prompt response regarding the spectrometer issue. To provide further details, on *December 3, 2025*, while attempting calibration, I observed that the spectrometer’s readings were inconsistent and fluctuated despite following the standard procedure. I also noticed a slight unusual noise from the device during operation. This seems to have affected the measurements of the experiments conducted on that day. Could you please advise why this issue may have occurred? I want to ensure that such problems can be prevented in the future and that the lab equipment functions reliably for ongoing experiments. I am happy to provide additional observations or assist the technical team in any way required. Thank you again for your guidance. Best regards, *Dawood Saleem* Research Assistant, Chemistry Department"
+          "last_message_ts": "2025-12-09T08:24:07+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAGgYewwAAAA==",
+          "last_subject": "Inquiry About the Global Issue of Poverty",
+          "last_body": "Sir, I hope you are doing well. I am writing to express my interest in learning more about the global issue of poverty , which continues to affect millions of people worldwide. Many families struggle to access basic necessities such as food, clean water, education, and healthcare. This issue not only impacts individual lives but also slows down the overall progress of societies. I believe understanding the causes and consequences of poverty can help us become more informed and responsible citizens. If possible, I would appreciate it if we could discuss this topic in class or if you could suggest any resources, articles, or activities to help me explore it further. Thank you for your time and guidance. Warm regards, Sultan"
         },
         {
-          "id": "19ae7dd12bac185b",
-          "subject": "Reporting Equipment Issue in Chemistry Lab",
-          "preview": "*Dear Dr. Usman,* I hope this message finds you well. I am writing to report an issue observed in th",
-          "summary": "Javaria Saleem reported a spectrometer issue in the Chemistry Lab to Dr. Usman, which affected ongoing experiments. The technical team will inspect and calibrate the equipment the next day, and Javaria will pause critical experiments and document observations. Dr. Usman advised Javaria to halt experiments until the issue is resolved and to notify him of any further problems or urgent needs.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.2,
-          "role_confidence": 1.0,
-          "last_message_ts": "2025-12-03T01:58:10+00:00",
-          "last_message_id": "19ae7ebcb9660f13",
-          "last_subject": "Re: Reporting Equipment Issue in Chemistry Lab",
-          "last_body": "*Dear Dr. Usman,* I hope this message finds you well. I am writing to report an issue observed in the spectrometer in the Chemistry Lab. On *December 3, 2025*, I noticed that the spectrometer was not calibrating properly, which affected the accuracy of ongoing measurements. This has impacted several experiments scheduled for this week. I kindly request your guidance on the next steps to resolve this issue. If required, I am available to provide further details or assist with troubleshooting at your convenience. Thank you for your attention to this matter. I look forward to your advice. Best regards, *Dawood Saleem* Research Assistant, Chemistry Department >"
-        }
-      ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:26.514097Z"
-    },
-    "gmail:Minahil Imran <minahilimran836@gmail.com>": {
-      "id": "gmail:Minahil Imran <minahilimran836@gmail.com>",
-      "email": "Minahil Imran <minahilimran836@gmail.com>",
-      "source": "gmail",
-      "role": "General External",
-      "role_confidence": 0.667,
-      "threads": [
-        {
-          "id": "19ad9526eadafad3",
-          "subject": "Update: Q4 Deliverables & Upcoming Client Review",
-          "preview": "Hi Team, I hope you’re all doing well. As we move into the final phase of Q4, I’d like to share a qu",
-          "summary": "Minahil Imran updated the team on Q4 deliverables and the upcoming client review, requesting that all campaign performance reports be finalized by Thursday at 4 PM. She'll compile these into a consolidated deck for the client call on Monday at 10 AM. Nexus acknowledged the update and plans to review later, with no delays or issues reported so far.",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAALVu1KywPEEi1mhnVP9RbDg==",
+          "subject": "Discussion on Current Global Issues",
+          "preview": "Sir, I hope you are doing well. I am writing to express my interest in discussing some of the major ",
+          "summary": "Sultan reached out to discuss major global issues, such as climate change, poverty, and educational inequality, and is interested in learning more about these topics in class or through recommended resources. He's particularly concerned about climate change and its impact on the environment. No meeting has been scheduled, but Sultan is looking for guidance and potential discussions on these issues.",
           "role": "General External",
           "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.8,
-          "last_message_ts": "2025-12-01T09:52:35+00:00",
-          "last_message_id": "19ad9540c7b33e00",
-          "last_subject": "Re: Update: Q4 Deliverables & Upcoming Client Review",
-          "last_body": "Ok we will review later today On Mon, Dec 1, 2025, 2:50 PM Minahil Imran wrote: > Hi Team, > > I hope you’re all doing well. As we move into the final phase of Q4, I’d > like to share a quick update regarding our deliverables and the upcoming > client review meeting. > > Please ensure that all campaign performance reports are finalized by > Thursday, 4 PM. I’ll be compiling these into a consolidated deck for our > client call scheduled on Monday at 10 AM. > > If anyone anticipates delays or requires support, feel free to reach out > so we can address it proactively. > > Thank you for your continued hard work and dedication. >"
-        },
-        {
-          "id": "19ad94f5c8a15431",
-          "subject": "We are in dire need of some madad from ghaib",
-          "preview": "Project ain't gonna make it itself",
-          "summary": "Minahil Imran reached out for urgent assistance with a project that's at risk of not being completed. She implied that external help is needed to get it back on track. No meeting times or decisions were mentioned, but it's clear that prompt action is required to save the project. Next steps are unclear, but Minahil's message suggests a call to action. The project's deadline and details are not specified.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5,
-          "role_confidence": 0.6,
-          "last_message_ts": "2025-12-01T09:47:16+00:00",
-          "last_message_id": "19ad94f5c8a15431",
-          "last_subject": "We are in dire need of some madad from ghaib",
-          "last_body": "Project ain't gonna make it itself"
-        },
-        {
-          "id": "19a357d45ec147c7",
-          "subject": "TEST",
-          "preview": "aik din bug reh jaega or mein resolve hojaungi",
-          "summary": "Minahil Imran and Nexus discussed a test, with Minahil mentioning a bug that she believes will be resolved. The conversation was informal, with no specific meeting or decision made, and seemed to be a casual exchange between the two. No next steps were outlined, and the thread appears to be a brief, lighthearted conversation. The discussion took place on October 30, 2025.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5,
-          "role_confidence": 0.6,
-          "last_message_ts": "2025-12-01T09:45:40+00:00",
-          "last_message_id": "19ad94de965bb989",
-          "last_subject": "Re: TEST",
-          "last_body": "Baat to sach hai On Thu, Oct 30, 2025, 8:22 PM Nexus wrote: > Us bro us🫠 > > On Thu, 30 Oct 2025, 7:19 pm Minahil Imran, > wrote: > >> aik din bug reh jaega or mein resolve hojaungi >> >"
+          "importance_confidence": 0.8,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-12-09T08:08:42+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAGgYewgAAAA==",
+          "last_subject": "Re: Discussion on Current Global Issues",
+          "last_body": "Concern Regarding the Issue of Climate Change Sir, I hope you are doing well. I am writing to share my concern about one of the most urgent global issues today— climate change . Rising temperatures, extreme weather events, melting glaciers, and loss of biodiversity have already begun to affect millions of people around the world. I believe it is important for students to understand how climate change impacts our environment and what steps we can take, individually and collectively, to reduce its effects. I would be grateful if we could discuss this topic in class or if you could recommend useful resources to help me learn more about it. Thank you for your time and for supporting our awareness of global challenges. Warm regards, Sultan On Tue, Dec 9, 2025 at 1:06 PM Javaria < j66yya@gmail.com > wrote: Sir, I hope you are doing well. I am writing to express my interest in discussing some of the major world issues that are affecting our global community today. Topics such as climate change, poverty, international conflicts, and educational inequality are becoming increasingly urgent, and I believe that greater awareness and understanding are essential for young people like us. I would appreciate the opportunity to learn more about these issues in class or through any recommended resources you may suggest. Understanding global challenges not only broadens our knowledge but also helps us become more responsible and compassionate individuals. Thank you for your time and guidance. I look forward to any suggestions or discussions you may offer on this important subject. Warm regards, Sultan"
         }
       ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:27.150964Z"
-    },
-    "outlook:n00503033@gmail.com": {
-      "id": "outlook:n00503033@gmail.com",
-      "email": "n00503033@gmail.com",
-      "source": "outlook",
-      "role": "General External",
-      "role_confidence": 0.067,
-      "threads": [
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjygAAAA==",
-          "subject": "h444",
-          "preview": "w444",
-          "summary": "The conversation involves an email from n00503033@gmail.com with a subject of \"h444\" and content \"w444\", although the details are unclear. It appears to be a brief and vague message. There is no mention of a meeting time, decision, or next steps. The conversation lacks context and specificity. The sender's intent is unclear, and further information is needed to understand the purpose.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjyQAAAA==",
-          "subject": "h333",
-          "preview": "w333",
-          "summary": "A conversation occurred between the sender and recipient regarding a topic labeled \"h333\" and \"w333\", although the details are unclear. The sender initiated the discussion but didn't provide extensive information. No meetings or decisions were mentioned in the thread. The recipient didn't respond with any questions or next steps. Further context is needed to understand the purpose of this exchange.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjyAAAAA==",
-          "subject": "h22",
-          "preview": "w22",
-          "summary": "The email thread from n00503033@gmail.com appears to be incomplete or unrelated to a specific topic, as it only contains \"h22\" and \"w22\" with no further context. There are no meeting times, decisions, or next steps mentioned. The purpose of the conversation is unclear. The sender's intentions are not specified. Further clarification is needed.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjxwAAAA==",
-          "subject": "h111",
-          "preview": "w111",
-          "summary": "The conversation involves an email from n00503033@gmail.com with a subject of \"h111\" and content \"w111\", although the details are unclear. There is no meeting time or decision specified. The email seems to be a brief and vague message. Next steps are not outlined. The sender's intent is unclear, suggesting a need for further clarification. The conversation lacks concrete details.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZHAAAA",
-          "subject": "Request for Status Update on Marketing Dashboard Project",
-          "preview": "Dear Ahmed,\nI hope you’re doing well. Could you please share the latest progress on the Marketing Da",
-          "summary": "The Marketing Dashboard project is due for a client review on Monday, so John requested a status update from Ahmed to include in the presentation. Ahmed needs to send a summary and any relevant analytics visuals by tomorrow afternoon. John and Ahmed are involved, with the client review scheduled for next Monday.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.667
-        }
-      ],
-      "summary": "There's been a series of unclear emails from n00503033@gmail.com, but the one concrete update is on the Marketing Dashboard project, which is due for client review on Monday. John needs a status update from Ahmed by tomorrow afternoon to include in the presentation.",
-      "timestamp": "2025-11-09T06:39:36.884178Z"
-    },
-    "outlook:javariasaleem39@gmail.com": {
-      "id": "outlook:javariasaleem39@gmail.com",
-      "email": "javariasaleem39@gmail.com",
-      "source": "outlook",
-      "role": "General External",
-      "role_confidence": 0.167,
-      "threads": [
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT7QAAAA==",
-          "subject": "Comprehensive Project Status Report – Digital Transformation Initiative (Q4 2025)",
-          "preview": "Dear Stakeholders,\nI hope you are all doing well. This email provides a detailed summary of the curr",
-          "summary": "The Digital Transformation Initiative project team, led by Ahmed Raza, has completed Phase 2, achieving key milestones such as infrastructure modernization and process automation. The team will review the design and prototype of Phase 3, an employee engagement and performance analytics system, in the second week of November. Department heads are encouraged to participate in review sessions to ensure the system meets operational requirements. Overall, the project remains on track, with the budget within 3% of the approved allocation, and the team is on track to meet its goals with continued collaboration and adaptability across departments.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.667
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT7AAAAA==",
-          "subject": "",
-          "preview": "hyyyy",
-          "summary": "The conversation appears to be an informal greeting between the sender, Javaria Saleem, and the recipient, with no specific topic or purpose discussed. There are no meeting times, decisions, or next steps mentioned. The email thread is brief and lacks substance. Javaria Saleem initiated the conversation. The exchange is casual and doesn't require further action.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6wAAAA==",
-          "subject": "",
-          "preview": "know both are listening",
-          "summary": "The conversation appears to be incomplete, but it involves Javaria Saleem and seems to be an attempt to initiate a discussion. However, the content is unclear. If more context were provided, a more detailed summary could be given. As is, the purpose and next steps are unknown. Javaria Saleem is the only identified participant.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6gAAAA==",
-          "subject": "",
-          "preview": ".../??",
-          "summary": "The conversation involves Javaris Aleem and appears to be incomplete, lacking a clear topic or purpose. There are no meeting times, decisions, or next steps mentioned. The email thread seems to be empty or corrupted, providing no meaningful information. Javaris Aleem is the only individual involved, but their intent is unclear. Further context is needed to understand the conversation.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6QAAAA==",
-          "subject": "",
-          "preview": "",
-          "summary": "The conversation with Javaria Saleem appears to be empty, as there is no content in the provided email thread. It seems we are missing the context of the discussion, and no meeting times, decisions, or next steps can be identified. Without further information, it's unclear what the main topic or purpose of the conversation is. We will need to await more details to brief you properly. The thread currently lacks substance. Further updates are needed.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6AAAAA==",
-          "subject": "",
-          "preview": "listening.......",
-          "summary": "The conversation is empty, as there's no content or discussion in the provided email thread from Javaris Aleem. There are no meeting times, decisions, or next steps to report, and the purpose of the conversation is unclear. It appears to be a blank or incomplete email. No actions or follow-ups are required at this time. The thread lacks any substantial information. Further context is needed to provide a meaningful update.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        }
-      ],
-      "summary": "The Digital Transformation Initiative project, led by Ahmed Raza, is on track, having completed Phase 2 and staying within budget. The team will review Phase 3's design and prototype in November, and department heads are encouraged to participate. Everything else in my inbox is just casual greetings or empty email threads from Javaria Saleem, so nothing else requires your attention right now.",
-      "timestamp": "2025-11-09T06:39:57.777166Z"
-    },
-    "outlook:minahilmy34@gmail.com": {
-      "id": "outlook:minahilmy34@gmail.com",
-      "email": "minahilmy34@gmail.com",
-      "source": "outlook",
-      "role": "General External",
-      "role_confidence": 0.444,
-      "threads": [
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZKAAAA",
-          "subject": "Testing AGAIN",
-          "preview": "😈😈😈😈",
-          "summary": "Minahil initiated a conversation via email, but the content appears to be a test with no substantive discussion. There are no meetings, decisions, or next steps mentioned. The email seems to be a trial or check, possibly for email functionality or filtering. Minahil is the only participant, and no further action is required. The purpose of the email is unclear, but it can be disregarded as a test.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZJAAAA",
-          "subject": "Testing",
-          "preview": "Testing 124",
-          "summary": "Minahil initiated a test email thread with no specific agenda or outcome, involving only herself, and no meetings or decisions were made. The conversation lacked substance and appears to be a trial. No next steps were discussed. The thread remains open but inactive. No action is required.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZIAAAA",
-          "subject": "HELLOOOO",
-          "preview": "WORLDDDDD",
-          "summary": "Minahil initiated a conversation via email, although the content appears to be informal and lacks a clear topic or purpose. There are no decisions, meeting times, or next steps mentioned. The thread seems to be a casual exchange rather than a professional discussion. It's unclear what Minahil is trying to communicate. The thread lacks substance and doesn't provide any actionable information.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        }
-      ],
-      "summary": "Minahil sent a test email that doesn't require any action, it seems to be a trial with no substance or clear purpose, and no next steps were discussed, so we can disregard it for now.",
-      "timestamp": "2025-11-09T06:40:09.221667Z"
-    },
-    "outlook:nexus202540@outlook.com": {
-      "id": "outlook:nexus202540@outlook.com",
-      "email": "nexus202540@outlook.com",
-      "source": "outlook",
-      "role": "General External",
-      "role_confidence": 0.333,
-      "threads": [
-        {
-          "id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQkAAAAma6URcr5xSZGjTHwetlh3AAABKam4AAAA",
-          "subject": "Re: Request for Status Update on Marketing Dashboard Project",
-          "preview": "Subject: Marketing Dashboard — Progress Report and Next Steps\nDear John,\nThank you for your email. T",
-          "summary": "Ahmed Khan, the Data Analyst, has updated John, the Project Manager, on the Marketing Dashboard project, which is about 90% complete. Ahmed will share a summary report and updated charts with John by tomorrow noon to include in the client presentation scheduled for next Monday.",
-          "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.667
-        }
-      ],
-      "summary": "The Marketing Dashboard project is almost finished, about 90% complete. Ahmed Khan is finalizing the details and will send over a summary report and updated charts by tomorrow noon. He'll have everything ready for you to include in the client presentation next Monday.",
-      "timestamp": "2025-11-09T06:40:15.055664Z"
-    },
-    "outlook:no-reply@microsoft.com": {
-      "id": "outlook:no-reply@microsoft.com",
-      "email": "no-reply@microsoft.com",
-      "source": "outlook",
-      "role": "Industry",
-      "role_confidence": 0.6,
-      "threads": [
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6gAAAA==",
-          "subject": "Welcome to your new Outlook.com account",
-          "preview": "Hi \nWelcome to the new Outlook! We're bringing the latest features, intelligent capabilities, and a ",
-          "summary": "Microsoft introduced updates to Outlook, featuring a new design, intelligent capabilities, and simplified management of multiple email accounts and calendars. The updates include AI-powered email suggestions, free access to Microsoft 365 web apps, and enhanced security measures. Users can explore the new features by clicking the lightbulb icon in the Tips pane.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4
-        }
-      ],
-      "summary": "Microsoft just rolled out some big updates to Outlook, including a new design and AI-powered email suggestions. The updates also bring enhanced security and free access to Microsoft 365 web apps. You can check out the new features by clicking the lightbulb icon in the Tips pane.",
-      "timestamp": "2025-11-24T04:03:49.238553Z"
+      "summary": "Sultan has been reaching out about exploring major global issues like poverty, climate change, and educational inequality. He's looking for guidance on resources or class discussions to learn more, with a particular concern about climate change. No meeting is set yet, but he's seeking help to dive deeper into these topics.",
+      "timestamp": "2025-12-10T05:37:09.923447Z"
     },
     "outlook:account-security-noreply@accountprotection.microsoft.com": {
       "id": "outlook:account-security-noreply@accountprotection.microsoft.com",
@@ -605,533 +487,319 @@
       "role_confidence": 0.4,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACO6IcbAAAAA==",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAQqV1NVlQUABLtgGH9oN-Wnw=",
+          "subject": "New app(s) connected to your Microsoft account",
+          "preview": "Microsoft account New app(s) have access to your data OutlookIntegration connected to the Microsoft ",
+          "summary": "Microsoft's account security team notified us that a new app, OutlookIntegration, has been connected to the ne**0@outlook.com account, potentially accessing account data. If unauthorized, the app should be removed from the account settings. No meeting or action is scheduled, but the account owner should review and manage connected apps for security.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-09T07:56:05+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAGgYewQAAAA==",
+          "last_subject": "New app(s) connected to your Microsoft account",
+          "last_body": "Microsoft account New app(s) have access to your data OutlookIntegration connected to the Microsoft account ne**0@outlook.com . If you didn't grant this access, please remove the app(s) from your account. Manage your apps You can also opt out or change where you receive security notifications. Thanks, The Microsoft account team Privacy Statement Microsoft Corporation, One Microsoft Way, Redmond, WA 98052"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAqX24xfBvrUSVlqis8k1poQ==",
           "subject": "Microsoft account security info was added",
-          "preview": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Micr",
-          "summary": "The Microsoft account team notified us that new security info was added to the jay@outlook.com account, specifically a Gmail address. If this change wasn't made by the account owner, it may indicate a malicious user has gained access. The account owner should review recent activity to secure the account. No meeting is scheduled, but the owner can opt out or change security notification settings via a provided link.",
+          "preview": "Microsoft account Security info was added The following security info was recently added to the Micr",
+          "summary": "The Microsoft account team notified us that a new passkey security info was added to the ne**0@outlook.com account, prompting a review of recent activity to ensure no malicious access. If the change was legitimate, no action is required, but if not, the account needs to be secured.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.2,
           "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.435247+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACO6IcbAAAAA==",
+          "last_message_ts": "2025-12-04T06:50:22+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAF0ndlQAAAA==",
           "last_subject": "Microsoft account security info was added",
-          "last_body": "Microsoft account\nSecurity info was added\nThe following security info was recently added to the Microsoft account \nja**y@outlook.com\n:\nj66yya@gmail.com\nIf this was you, then you can safely ignore this email.\nIf this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account.\nReview recent activity\nTo opt out or change where you receive security notifications, \nclick here\n.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
-          "subject": "New app(s) connected to your Microsoft account",
-          "preview": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft ",
-          "summary": "Microsoft's account security team notified us that a new app, OutlookIntegration, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account settings. No meeting is scheduled, but the account owner should review and manage app permissions to ensure security.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.474851+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJkx2TwAAAA==",
-          "last_subject": "New app(s) connected to your Microsoft account",
-          "last_body": "Microsoft account\nNew app(s) have access to your data\nOutlookIntegration connected to the Microsoft account \nja**y@outlook.com\n.\nIf you didn't grant this access, please remove the app(s) from your account.\nManage your apps\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in from Pakistan on October 25th, prompting a notification to be sent to ja**y@outlook.com. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting or follow-up is scheduled, but the owner can opt out or change their notification preferences.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.486150+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7gAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:40 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification with details, including the IP address and service used. The email suggests reviewing account activity and changing security information if the sign-in was not authorized. No meeting or action is required unless the account owner is unsure about the sign-in.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.489416+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7QAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:38 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review account activity and update security information if the sign-in was not legitimate. No meetings are scheduled, but the owner can opt out or change security notification settings as needed.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.493054+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt7AAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:32 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity and security information. No meeting is scheduled, but the account owner should verify if the sign-in was legitimate and consider reviewing and changing their security settings.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.498142+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6wAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:23 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account holder is advised to review their account activity and update their security information if the sign-in was not authorized. No meeting or follow-up is scheduled, but the account owner can opt out or change their security notification settings as needed.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.502480+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6gAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 3:21 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "A new sign-in was detected for the ja**y@outlook.com Microsoft account from Pakistan on October 25, 2025. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. The account owner is advised to review their account activity and update their security information if necessary. No meeting is scheduled, but the owner should take immediate action to secure their account.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.506156+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6QAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 2:30 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft's account security team detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, and sent a notification to review account activity. The sign-in was from the IDEAL Labs Email Fetcher service with IP address 111.68.102.12. If the sign-in wasn't authorized, a malicious user may have access to the account's security information. No meeting is scheduled, but the account owner should review and potentially change their security settings.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.510130+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt6AAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 12:44 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "A new sign-in was detected for the ja**y@outlook.com Microsoft account from Pakistan on October 25, 2025. The Microsoft account team sent a notification with details, including the IP address and service used. If the sign-in wasn't authorized, it may indicate a malicious user has access to the account. The account holder can review and change their security information or opt out of notifications. Next steps include verifying the sign-in and taking necessary security measures.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.516111+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5wAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 12:28 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==",
-          "subject": "New sign-in detected for your Microsoft account",
-          "preview": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@out",
-          "summary": "Microsoft detected a new sign-in to the ja**y@outlook.com account from Pakistan on October 25, 2025, prompting a security notification. The sign-in was via the IDEAL Labs Email Fetcher service from IP address 111.68.102.12. If the account owner didn't initiate this, it may indicate a malicious user has access to their security information. No meeting is scheduled, but the account owner should review and potentially update their security settings. Next steps include reviewing account activity and considering opting out of security notifications.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.4,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.520021+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJIgt5gAAAA==",
-          "last_subject": "New sign-in detected for your Microsoft account",
-          "last_body": "Microsoft account\nNew sign-in detected\nYou recently signed in with your Microsoft account \nja**y@outlook.com\n. To help keep you safe, here are a few details:\nCountry/region: Pakistan\nDate: 10/25/2025 12:21 PM (GMT)\nService: IDEAL Labs Email Fetcher\nIP address: 111.68.102.12\nIf this was you, then you can safely ignore this email.\nIf you're not sure this was you, a malicious user might have access to your security information. You can review and change your information below.\nReview account activity\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==",
-          "subject": "New app(s) connected to your Microsoft account",
-          "preview": "Microsoft account\nNew app(s) have access to your data\nIDEAL Labs Email Fetcher connected to the Micr",
-          "summary": "Microsoft's account security team notified us that a new app, IDEAL Labs Email Fetcher, has been connected to the account jay@outlook.com, potentially accessing account data. If unauthorized, the app should be removed from the account. No meeting is scheduled, but the account owner should review and manage app access as needed.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.522511+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6wAAAA==",
-          "last_subject": "New app(s) connected to your Microsoft account",
-          "last_body": "Microsoft account\nNew app(s) have access to your data\nIDEAL Labs Email Fetcher connected to the Microsoft account \nja**y@outlook.com\n.\nIf you didn't grant this access, please remove the app(s) from your account.\nManage your apps\nYou can also \nopt out\n or change where you receive security notifications.\nThanks,\nThe Microsoft account team\nPrivacy Statement\nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+          "last_body": "Microsoft account Security info was added The following security info was recently added to the Microsoft account ne**0@outlook.com : Passkey If this was you, then you can safely ignore this email. If this wasn't you, a malicious user has access to your account. Please review your recent activity and we'll help you secure your account. Review recent activity To opt out or change where you receive security notifications, click here . Thanks, The Microsoft account team Privacy Statement Microsoft Corporation, One Microsoft Way, Redmond, WA 98052"
         }
       ],
-      "summary": "There were several security notifications sent to jay@outlook.com regarding a new sign-in from Pakistan on October 25, 2025, and some potential security changes, including a new app connection and a Gmail address addition. The account owner should review recent activity and update their security info if necessary, but no meetings are scheduled.",
-      "timestamp": "2025-12-04T06:34:45.057729Z"
+      "summary": "There's been some activity on the ne**0@outlook.com account that warrants a review - a new app and passkey security info were added, potentially compromising account security. Microsoft's team suggested removing any unauthorized apps and verifying the passkey change was legitimate. The account owner should take a look and secure the account if needed.",
+      "timestamp": "2025-12-10T05:37:23.491746Z"
     },
-    "gmail:Cursor Team <hi@mail.cursor.com>": {
-      "id": "gmail:Cursor Team <hi@mail.cursor.com>",
-      "email": "Cursor Team <hi@mail.cursor.com>",
-      "source": "gmail",
-      "role": "Industry",
-      "role_confidence": 0.4,
-      "threads": [
-        {
-          "id": "19ade62e33c858a9",
-          "subject": "Using Cursor's Agent",
-          "preview": "Cursor Cursor Agent ( https://cursor.com/docs/agent/overview ) can take on complex coding tasks, suc",
-          "summary": "The Cursor Team sent an email about utilizing their Agent tool, which can handle complex coding tasks. They provided tips on how to get the most out of it, including using specific context and defining command execution rules. No meetings are scheduled, but the team invites you to explore the linked resources for more information on using the Agent effectively.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.5,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-02T09:26:52+00:00",
-          "last_message_id": "19ade62e33c858a9",
-          "last_subject": "Using Cursor's Agent",
-          "last_body": "Cursor Cursor Agent ( https://cursor.com/docs/agent/overview ) can take on complex coding tasks, such as creating features or fixing bugs end-to-end. You can use it in the sidepane with Cmd/Ctrl-I. To get the most out of Agent, here are some tips: * Use “@” in your prompt ( https://cursor.com/docs/context/symbols#definitions ) to pull in specific context, such as specific files, websites, and git branches. * If you want to jump backwards in the Agent’s history, you can use checkpoints ( https://cursor.com/docs/agent/chat/checkpoints ) to revert changes. * Agent can run shell commands ( https://cursor.com/docs/agent/terminal ) as it works. You can also define command execution ( https://cursor.com/docs/agent/terminal#command-execution-modes ) rules. * With rules ( https://cursor.com/docs/context/rules#rules ) and /commands ( https://cursor.com/docs/agent/chat/commands ), you can configure system-level instructions and reusable workflows. * With cloud agents ( https://cursor.com/docs/cloud-agent ), you can spawn asynchronous agents that edit and run code in a remote environment. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBAPSntBzzp7QcAZreYtiKChCS8UINgrjOHg== )"
-        },
-        {
-          "id": "19ad93c823e44e2e",
-          "subject": "Welcome to Cursor!",
-          "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
-          "summary": "The Cursor Team has onboarded us to their platform, providing a quickstart guide and documentation on key features like Tab, Inline Edit, and Agent. The guide is available at https://cursor.com/docs/get-started/quickstart. We can review the resources at our convenience, with no meeting scheduled.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-01T09:26:50+00:00",
-          "last_message_id": "19ad93c823e44e2e",
-          "last_subject": "Welcome to Cursor!",
-          "last_body": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor.com/docs/get-started/quickstart ). It will walk through how to use Tab ( https://cursor.com/docs/tab/overview ), Inline Edit ( https://cursor.com/docs/inline-edit/overview ), and Agent ( https://cursor.com/docs/agent/overview ). If you have more questions, our docs ( https://cursor.com/docs ) go into greater depth. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBAPSntBzzp7QcAZrZPHdW8idnqSH9YEf7iw== )"
-        },
-        {
-          "id": "19abf2720c60ef2b",
-          "subject": "Using Cursor as a team",
-          "preview": "Cursor We use Cursor as a team, as do thousands of other organizations from NVIDIA to Figma. A few w",
-          "summary": "The Cursor Team reached out to discuss using their tool as a team, highlighting collaborations with companies like NVIDIA and Figma. They outlined key integrations with Slack and Linear, as well as their Bugbot code review product and Team Rules feature to ensure consistent coding standards. The team is available for further discussion, but no meeting times were specified.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.5,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-11-26T07:53:17+00:00",
-          "last_message_id": "19abf2720c60ef2b",
-          "last_subject": "Using Cursor as a team",
-          "last_body": "Cursor We use Cursor as a team, as do thousands of other organizations from NVIDIA to Figma. A few ways we’ve seen teams collaborate with Cursor: * We built Slack ( https://cursor.com/docs/integrations/slack ) and Linear ( https://cursor.com/docs/integrations/linear ) integrations so you kick off agents and assign tickets by simply tagging @Cursor. * Bugbot ( https://cursor.com/bugbot ), our code review product, automatically reviews your changes with AI to help catch bugs, patch security issues, and improve code quality. * Write Team Rules ( https://cursor.com/docs/context/rules#team-rules ) to ensure consistent coding standards, practices, and workflows across your team when they use Cursor. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBANuBjhzagY4cAZq_JwK8V0XauSGMSd5ORw== )"
-        },
-        {
-          "id": "19ab50600c92f173",
-          "subject": "Welcome to Cursor!",
-          "preview": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor",
-          "summary": "The Cursor Team sent a welcome email with a quickstart guide to help get started with their platform, covering features like Tab, Inline Edit, and Agent. The guide is available on their website, along with more in-depth documentation for further questions.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.2,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-11-24T08:41:00+00:00",
-          "last_message_id": "19ab50600c92f173",
-          "last_subject": "Welcome to Cursor!",
-          "last_body": "Cursor Hi there, Thanks for using Cursor! To get started, read our quickstart guide ( https://cursor.com/docs/get-started/quickstart ). It will walk through how to use Tab ( https://cursor.com/docs/tab/overview ), Inline Edit ( https://cursor.com/docs/inline-edit/overview ), and Agent ( https://cursor.com/docs/agent/overview ). If you have more questions, our docs ( https://cursor.com/docs ) go into greater depth. - Cursor Team Unsubscribe ( https://track.customer.io/unsubscribe/dgT_pwsBANuBjhzagY4cAZq02ih_MUkzS1_99YkBNw== )"
-        }
-      ],
-      "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:26.864930Z"
-    },
-    "gmail:noreply@email.openai.com": {
-      "id": "gmail:noreply@email.openai.com",
-      "email": "noreply@email.openai.com",
-      "source": "gmail",
-      "role": "Student",
-      "role_confidence": 0.6,
-      "threads": [
-        {
-          "id": "19a935e453fedf4a",
-          "subject": "GPT-5.1 is now live in the OpenAI API",
-          "preview": "Start building with the newest model ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ",
-          "summary": "OpenAI has released GPT-5.1, a new model that balances intelligence and speed, with features like adaptive reasoning and extended prompt caching. The team recommends testing GPT-5.1 for coding tasks and considering switching from GPT-4.1 for general-purpose tasks. No meeting is scheduled, but you can start building with GPT-5.1 using the latest API docs.",
-          "role": "Student",
-          "importance": "High",
-          "importance_confidence": 0.2
-        }
-      ],
-      "summary": "OpenAI just released GPT-5.1, which promises a better balance of intelligence and speed. The team suggests we test it for coding tasks and consider switching from GPT-4.1 for general use. We can start building with GPT-5.1 using the latest API docs, no meeting is scheduled yet.",
-      "timestamp": "2025-11-25T07:04:37.265392Z"
-    },
-    "outlook:MSSecurity-noreply@microsoft.com": {
-      "id": "outlook:MSSecurity-noreply@microsoft.com",
-      "email": "MSSecurity-noreply@microsoft.com",
+    "outlook:mssecurity-noreply@microsoft.com": {
+      "id": "outlook:mssecurity-noreply@microsoft.com",
+      "email": "mssecurity-noreply@microsoft.com",
       "source": "outlook",
       "role": "Industry",
       "role_confidence": 0.6,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0gAAAA==",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAwnZ4BBLs2UOu3RSA7F2oZQ==",
           "subject": "New recommendation available for Default Directory",
-          "preview": "You have a new recommendation for Default Directory\nDesignate more than one global admin\nSee why thi",
-          "summary": "Microsoft's security team has issued a recommendation for our Default Directory to designate more than one global admin, which can be reviewed and remediated in the Microsoft Entra admin center.",
+          "preview": "You have a new recommendation for Default Directory Designate more than one global admin See why thi",
+          "summary": "Microsoft's MSSecurity team sent a notification regarding a new recommendation for the Default Directory, suggesting designating more than one global admin for better security. The issue and remediation steps can be viewed in the Microsoft Entra admin center. No meeting is scheduled, but the recipient can update their email notification settings to stop receiving these alerts.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-08T01:11:28+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAGgYewAAAAA==",
+          "last_subject": "New recommendation available for Default Directory",
+          "last_body": "You have a new recommendation for Default Directory Designate more than one global admin See why this recommendation was generated for your tenant and how to remediate it in the Microsoft Entra admin center . Learn more . To stop getting notifications for Microsoft Entra recommendations, see how to update your email notification settings . Privacy Statement This email is generated through Default Directory's use of Microsoft Entra and may contain content that is controlled by your IT admin. Microsoft Corporation, One Microsoft Way, Redmond, WA 98052 Facilitated by"
         },
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0QAAAA==",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAA__QYQ2UnT0WUey9NBZcxcQ==",
           "subject": "New recommendation available for Default Directory",
-          "preview": "You have a new recommendation for Default Directory\nDo not allow users to grant consent to unreliabl",
-          "summary": "Microsoft sent a recommendation to update the Default Directory settings, suggesting that users be blocked from granting consent to untrusted applications. The recommendation is accessible in the Microsoft Entra admin center, where you can also learn more about the issue and how to resolve it. No meeting is scheduled, but review and remediation are the next steps.",
+          "preview": "You have a new recommendation for Default Directory Enable password hash sync if hybrid See why this",
+          "summary": "A new recommendation is available for the Default Directory, suggesting to enable password hash sync for a hybrid setup. The recommendation can be reviewed and remediated in the Microsoft Entra admin center. This notification is part of the Microsoft Entra service and can be managed through email notification settings. No meeting is scheduled, but the issue can be addressed at your convenience. The notification is for your tenant and may be controlled by your IT admin.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-08T01:11:27+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAGgYevwAAAA==",
+          "last_subject": "New recommendation available for Default Directory",
+          "last_body": "You have a new recommendation for Default Directory Enable password hash sync if hybrid See why this recommendation was generated for your tenant and how to remediate it in the Microsoft Entra admin center . Learn more . To stop getting notifications for Microsoft Entra recommendations, see how to update your email notification settings . Privacy Statement This email is generated through Default Directory's use of Microsoft Entra and may contain content that is controlled by your IT admin. Microsoft Corporation, One Microsoft Way, Redmond, WA 98052 Facilitated by"
         },
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJvTu0AAAAA==",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAARzuf0LG7qUSM77WTRctIHg==",
           "subject": "New recommendation available for Default Directory",
-          "preview": "You have a new recommendation for Default Directory\nEnable password hash sync if hybrid\nSee why this",
-          "summary": "Microsoft sent a recommendation to enable password hash sync for our Default Directory, applicable if we're using a hybrid setup. The suggestion is accessible in the Microsoft Entra admin center, where we can review the reasoning and take remediation steps. No meeting is scheduled, but we can review and address the recommendation at our convenience.",
+          "preview": "You have a new recommendation for Default Directory Do not allow users to grant consent to unreliabl",
+          "summary": "A new security recommendation is available for our Default Directory, suggesting we prevent users from granting consent to untrusted applications. This alert was generated by Microsoft Entra and can be reviewed in the admin center. No meeting is scheduled, but reviewing and remediating the issue is the next step. Microsoft Entra will continue to send notifications until the issue is addressed or email settings are updated.",
           "role": "Industry",
           "importance": "Medium",
-          "importance_confidence": 0.4
+          "importance_confidence": 0.4,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-08T01:11:23+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAGgYevgAAAA==",
+          "last_subject": "New recommendation available for Default Directory",
+          "last_body": "You have a new recommendation for Default Directory Do not allow users to grant consent to unreliable applications See why this recommendation was generated for your tenant and how to remediate it in the Microsoft Entra admin center . Learn more . To stop getting notifications for Microsoft Entra recommendations, see how to update your email notification settings . Privacy Statement This email is generated through Default Directory's use of Microsoft Entra and may contain content that is controlled by your IT admin. Microsoft Corporation, One Microsoft Way, Redmond, WA 98052 Facilitated by"
         }
       ],
-      "summary": "Microsoft's security team has sent a few recommendations for our Default Directory, including designating multiple global admins, blocking consent to untrusted apps, and enabling password hash sync for hybrid setups. These can be reviewed and remediated in the Microsoft Entra admin center. We should take a look and address these suggestions at our convenience, no meetings are scheduled yet.",
-      "timestamp": "2025-11-24T04:03:41.787481Z"
+      "summary": "We've got a few security recommendations from Microsoft for our Default Directory, suggesting we designate multiple global admins, enable password hash sync, and prevent users from granting consent to untrusted apps. These can be reviewed and addressed in the Microsoft Entra admin center at your convenience. No meetings are scheduled, but it's a good idea to take a look and update our settings to avoid future notifications.",
+      "timestamp": "2025-12-10T05:37:40.961357Z"
     },
-    "outlook:m365dev@microsoft.com": {
-      "id": "outlook:m365dev@microsoft.com",
-      "email": "m365dev@microsoft.com",
+    "outlook:n00503033@gmail.com": {
+      "id": "outlook:n00503033@gmail.com",
+      "email": "n00503033@gmail.com",
       "source": "outlook",
-      "role": "General External",
-      "role_confidence": 0.6,
+      "role": "Industry",
+      "role_confidence": 0.48,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACJjEHhAAAAA==",
-          "subject": "Welcome to the Microsoft 365 Developer Program - please take the next step!",
-          "preview": "Microsoft 365 Developer Program | \nAccess your profile\n \nMicrosoft 365 Developer Program\nWelcome to ",
-          "summary": "You've been welcomed to the Microsoft 365 Developer Program and have the option to set up a Microsoft 365 E5 developer subscription for building solutions. The program team invites you to join their research panel to share your views and feedback on developer experiences. Next steps include reviewing the program terms and conditions, and considering joining the research panel.",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAaTK-7aNeNUOlzfWnoiYUBA==",
+          "subject": "h444",
+          "preview": "w444",
+          "summary": "The conversation appears to be missing content, but it involves an email from n00503033@gmail.com with a subject of \"h444\" and a brief message of \"w444\". There are no meeting times, decisions, or next steps mentioned. The email seems incomplete, but the sender is n00503033@gmail.com. No specific topic or purpose can be determined from the given information. Further context is needed to provide a more detailed summary.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-11-04T20:27:04+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjygAAAA==",
+          "last_subject": "h444",
+          "last_body": "w444"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAlf1m1pschUG9IvaI_hvfTg==",
+          "subject": "h333",
+          "preview": "w333",
+          "summary": "The conversation involves an email from n00503033@gmail.com with a subject and content that appear to be incomplete or unclear. There is no specific topic, meeting time, or decision mentioned. The email seems to be a partial or test message. Further clarification is needed to understand the purpose of the email. Next steps are uncertain due to lack of information.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-11-04T20:19:55+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjyQAAAA==",
+          "last_subject": "h333",
+          "last_body": "w333"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAaEbD_dRRqkmWH9jMmip70A==",
+          "subject": "h22",
+          "preview": "w22",
+          "summary": "The conversation appears to be incomplete, but it involves an email from n00503033@gmail.com with the subject \"h22\" and content \"w22\". There's no clear topic or decision, and no meeting times are mentioned. The sender and content are unclear, making it difficult to determine the purpose. It seems to be a brief or incomplete message. Further clarification is needed to understand the context.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-11-04T20:06:45+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjyAAAAA==",
+          "last_subject": "h22",
+          "last_body": "w22"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAs2VZTuKt_kiL7UFYb8XwUw==",
+          "subject": "h111",
+          "preview": "w111",
+          "summary": "There's an email thread from n00503033 regarding topic \"h111\" with content \"w111\", but it lacks context. The sender didn't provide any meeting details or decisions. It seems to be an incomplete or introductory message. No next steps are outlined. Further clarification is needed to understand the purpose of the email.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-11-04T19:38:30+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAABPbjxwAAAA==",
+          "last_subject": "h111",
+          "last_body": "w111"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAACJdd8o5zHEK3-J51l9Xt4A==",
+          "subject": "Request for Status Update on Marketing Dashboard Project",
+          "preview": "Dear Ahmed, I hope you’re doing well. Could you please share the latest progress on the Marketing Da",
+          "summary": "John, the Project Manager, requested a status update from Ahmed, the Data Analyst, on the Marketing Dashboard project for an upcoming client review next Monday. Ahmed reported the project is about 90% complete and will share a summary report and updated charts with John by tomorrow noon. This will allow John to include the latest updates in the client presentation.",
           "role": "General External",
-          "importance": "Medium",
-          "importance_confidence": 0.6
-        }
-      ],
-      "summary": "We've been invited to join the Microsoft 365 Developer Program, which includes the option to set up a developer subscription for building solutions. The program team also wants our input on their research panel to share feedback on developer experiences. We just need to review the terms and conditions, and then we can decide about joining the panel.",
-      "timestamp": "2025-11-24T04:03:48.506438Z"
-    },
-    "outlook:j66yya@gmail.com": {
-      "id": "outlook:j66yya@gmail.com",
-      "email": "j66yya@gmail.com",
-      "source": "outlook",
-      "role": "Industry",
-      "role_confidence": 0.4,
-      "threads": [
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm5wAAAA==",
-          "subject": "",
-          "preview": "i am now working on my project",
-          "summary": "The project is currently underway with j66yya working on it. No specific details or meeting times were discussed. It appears to be a solo effort at this point. Next steps or decisions have not been mentioned. The project's progress will likely be shared in future updates.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm5gAAAA==",
-          "subject": "",
-          "preview": "i am in 5th semester",
-          "summary": "A student reached out from their Gmail account, mentioning they are currently in their 5th semester. No specific meeting or decision was discussed, and the email appears to be an initial point of contact. The student's email is awaiting a response to possibly discuss their semester or seek guidance. Next steps are unclear at this time. The student's email was sent from j66yya@gmail.com.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6AAAAA==",
-          "subject": "",
-          "preview": "what are you doing>",
-          "summary": "The conversation with j66yya appears to be an informal check-in, with the original message asking about current activities. There is no clear purpose or decision made in the thread. The discussion involves only j66yya and the recipient, with no meeting times or next steps mentioned. The tone is casual and brief. The exchange lacks substance, with only a single question posed.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        },
-        {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEMAAAAucVXBXj8pECCXiUT6z7IOAACIbKm6QAAAA==",
-          "subject": "",
-          "preview": "hey how are you?",
-          "summary": "The conversation appears to have just started with a casual greeting from j66yya@gmail.com, but no main topic or purpose has been established yet. There are no meeting times, decisions, or next steps to report. The thread is currently incomplete, awaiting a response to move the conversation forward. Further discussion is needed to determine the topic and outcome.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.5
-        }
-      ],
-      "summary": "We've got a few loose threads with j66yya, who's working on a project and also reached out as a student in their 5th semester. The conversations are pretty casual and haven't led to any specific decisions or meetings yet. We're waiting on some next steps, but for now, it's just a wait-and-see situation with j66yya.",
-      "timestamp": "2025-11-24T04:03:52.063923Z"
-    },
-    "gmail:OpenAI <noreply@email.openai.com>": {
-      "id": "gmail:OpenAI <noreply@email.openai.com>",
-      "email": "OpenAI <noreply@email.openai.com>",
-      "source": "gmail",
-      "role": "Industry",
-      "role_confidence": 0.8,
-      "threads": [
-        {
-          "id": "19ac40aa80b42499",
-          "subject": "Third-party security incident",
-          "preview": "OpenAI Logo ( https://openai.com/ ) Transparency is important to us, so we want to inform you about ",
-          "summary": "OpenAI's data analytics provider, Mixpanel, experienced a security incident, potentially exposing limited customer identifiable information, including names, email addresses, and location data, of OpenAI API account users. No sensitive data like passwords or API keys were compromised. OpenAI has terminated its use of Mixpanel and is conducting additional security reviews across its vendor ecosystem. Users are advised to remain vigilant for potential phishing attempts and to enable multi-factor authentication for added protection.",
-          "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.8,
           "role_confidence": 0.8,
-          "last_message_ts": "2025-11-27T06:40:23+00:00",
-          "last_message_id": "19ac40aa80b42499",
-          "last_subject": "Third-party security incident",
-          "last_body": "OpenAI Logo ( https://openai.com/ ) Transparency is important to us, so we want to inform you about a recent security incident at Mixpanel, a data analytics provider that OpenAI used for web analytics on the frontend interface for our API product (platform.openai.com). The incident occurred within Mixpanel’s systems and involved limited analytics data related to your API account. This was not a breach of OpenAI’s systems. No chat, API requests, API usage data, passwords, credentials, API keys, payment details, or government IDs were compromised or exposed. *What happened* On November 9, 2025, Mixpanel became aware of an attacker that gained unauthorized access to part of their systems and exported a dataset containing limited customer identifiable information and analytics information. Mixpanel notified OpenAI that they were investigating, and on November 25, 2025, they shared the affected dataset with us. *What this means for you* User profile information associated with use of platform.openai.com ( http://platform.openai.com ) may have been included in data exported from Mixpanel. The information that may have been affected was limited to: * Name that was provided to us on the API account * Email address associated with the API account * Approximate coarse location based on API user browser (city, state, country) * Operating system and browser used to access the API account * Referring websites * Organization or User IDs associated with the API account *Our response* As part of our security investigation, we removed Mixpanel from our production services, reviewed the affected datasets, and are working closely with Mixpanel and other partners to fully understand the incident and its scope. We are in the process of notifying impacted organizations, admins, and users directly. While we have found no evidence of any effect on systems or data outside Mixpanel’s environment, we continue to monitor closely for any signs of misuse. Trust, security, and privacy are foundational to our products, our organization, and our mission. We are committed to transparency, and are notifying all impacted customers and users. We also hold our partners and vendors accountable for the highest bar for security and privacy of their services. After reviewing this incident, OpenAI has terminated its use of Mixpanel. Beyond Mixpanel, we are conducting additional and expanded security reviews across our vendor ecosystem and are elevating security requirements for all partners and vendors. *What you should keep in mind* The information that may have been affected here could be used as part of phishing or social engineering attacks against you or your organization. Since names, email addresses, and OpenAI API metadata (e.g., user IDs) were included, we encourage you to remain vigilant for credible-looking phishing attempts or spam. As a reminder: * Treat unexpected emails or messages with caution, especially if they include links or attachments. * Double-check that any message claiming to be from OpenAI is sent from an official OpenAI domain. * OpenAI does not request passwords, API keys, or verification codes through email, text, or chat. * Further protect your account by enabling multi-factor authentication. The security and privacy of our products are paramount, and we remain resolute in protecting your information and communicating transparently when issues arise. Thank you for your continued trust in us. For more information about this incident and what it means for impacted users, please see our blog post here ( https://openai.com/index/mixpanel-incident ). Please contact your account team or mixpanelincident@openai.com ( mixpanelincident@openai.com ) if you have any questions or need our support. OpenAI OpenAI 1455 3rd Street , San Francisco , CA 94158 Unsubscribe ( http://url3243.email.openai.com/asm/unsubscribe/?user_id=20216706&data=ZGPCnMp_O9pINOcah8RhJFCzWVpWEXWyEBjrqI2A7yxoMDAwdTAwMAfqZMtBXvDOBuyg2l63EWTn4aU2wH__zg4n9AQ6Op5YhfodqUxgsw6jIJ9CA4LTu77GRtQqdjS6IZUkfRWOrh_WEEEK1FC-53LFx-jz75Znw_gRQ2EQtFKJAWMSduQ_hl4VrDTtNlWU54eredtLK1GLISA7S3V3TTbgp8TcwzmtOypGKXV8t0vZpN_qj7vYrFhvsjnUmrkWjV5TQiz5uGqqB1ZjdzkhxyKIBoGh-_M__r0wh_czjimbPr2m_Sjkr5-uSXLAo73u1YKkKUVOs_HSqybu_7ucxFMz7ek6vmkBu9rvqZBcppOpaMIzpotylX17i5E8uASM8-7xQQ4fhHRlBLqpnPm-I81smFwG6eqOvcXW-znLvxbRM1eFDU8Lplkuox7Gd-kCzpJdGz5veXT8W-WxP9GggbwAbH1OS1mdDiJtc9eZbPdxoik6HPvAUhEvJHX0RVm-Klv4sLMqHYbxAdqgBU8M_eKtrs_gIyeMYY8sz4NoesUNxPHO6slAICgJQucpAA3FIbtQU_MXBJ-coiU8RYZZQEjp6id8TAuZeNffROwFgOYM9nfkIl5QxZyAoLSnpvv76yuDUIicy6qKbx-QOQPdDttqXHd5Nm1sicwnPjglU-h0YdXEo_wdmSaOpU9rqdqzLfXAfK6uyY7oZvw1oQWuD1Rygqj_8C-LCqo0RjH3TK15XzVpJeVEgpmzD7KrPBQvGMpJtSH9oIQCOJ-peK1C6am66RbA5LBLqafJ-uyWjwynjBg6hJUOyuY7Buo_BHpIeUuL1lPCUjbkg355wbDJuSyeUYtAapJ78sYZSGAsjfbX9OabrLcb7e5iSj-LRxqucOY5Es-Xflo5ERMfuRbvQt_1nhAod3hWrlVaOU2rjQs0FGjo1wI9MQUmOvf6tY4wkSFi1TffKwoC_v7Ely_C01qSrhAA1tYHZGIFXDncM7PCNbIpxR3PAS_wWRP8EyqVT1xXupQjEAx4oEKoZh-4M8K68tA4x-LMsfFNxYP45BB2OhCe1bpaz5vOlaAKXnFSN4QPEOGaXYTbi2e4Iq3yu1c6R7eF_l5QFIYJwBYUbiSp5taIaoBtJ_zgxgFsEOY5DrZywPQCX_GHYjQKYxhAxYyUZ_l-UMrRRlX39BFDef9k2N_qqlJK-CxFKy92ompVvmFzeLJbYV8= )"
-        },
-        {
-          "id": "19a935e453fedf4a",
-          "subject": "",
-          "preview": "",
-          "summary": "",
-          "role": "Student",
-          "importance": "High",
-          "importance_confidence": 0.2,
-          "role_confidence": null,
-          "last_message_ts": null,
-          "last_message_id": null,
-          "last_subject": null,
-          "last_body": null
+          "last_message_ts": "2025-10-30T17:23:30+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQkAAAAma6URcr5xSZGjTHwetlh3AAABKam4AAAA",
+          "last_subject": "Re: Request for Status Update on Marketing Dashboard Project",
+          "last_body": "Subject: Marketing Dashboard — Progress Report and Next Steps Dear John, Thank you for your email. The dashboard development is about 90% complete. We’ve finalized the data integration and are currently testing the visualization components. I’ll share the summary report and updated charts with you by tomorrow noon so you can include them in the client presentation. Best regards, Ahmed Khan Data Analyst From: Nexus <n00503033@gmail.com> Sent: Thursday, October 30, 2025 10:21 PM To: nexus202540@outlook.com <nexus202540@outlook.com> Subject: Request for Status Update on Marketing Dashboard Project Dear Ahmed, I hope you’re doing well. Could you please share the latest progress on the Marketing Dashboard project? We’re preparing for the client review next Monday, and I’d like to include the most recent updates in our presentation. If possible, please send a short summary or any visuals that show current analytics trends by tomorrow afternoon. Thank you for your time and effort. Best regards, John Project Manager"
         }
       ],
       "summary": "Summary unavailable due to model error.",
-      "timestamp": "2025-12-05T09:43:27.300679Z"
+      "timestamp": "2025-12-10T05:38:08.633440Z"
     },
-    "outlook:MicrosoftRewards@infoemail.microsoft.com": {
-      "id": "outlook:MicrosoftRewards@infoemail.microsoft.com",
-      "email": "MicrosoftRewards@infoemail.microsoft.com",
+    "outlook:javariasaleem39@gmail.com": {
+      "id": "outlook:javariasaleem39@gmail.com",
+      "email": "javariasaleem39@gmail.com",
       "source": "outlook",
       "role": "Industry",
-      "role_confidence": 0.4,
+      "role_confidence": 0.5,
       "threads": [
         {
-          "id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEUAAAAucVXBXj8pECCXiUT6z7IOAACOrZDDgAAAA==",
-          "subject": "Important update to your Microsoft Rewards account",
-          "preview": "Watch for an email about this next month\n͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ",
-          "summary": "Microsoft Rewards is updating its program in January 2026, introducing three new participation levels - Member, Silver, and Gold - which will offer new ways to earn points and updated daily search point limits. No action is required, but the program may see further changes to enhance benefits.",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAA8oAnDwX5vEiPFCWnqsvxkQ==",
+          "subject": "Comprehensive Project Status Report – Digital Transformation Initiative (Q4 2025)",
+          "preview": "Dear Stakeholders, I hope you are all doing well. This email provides a detailed summary of the curr",
+          "summary": "Summary unavailable due to model error.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.6,
+          "role_confidence": 1.0,
+          "last_message_ts": "2025-11-01T19:35:08+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT7QAAAA==",
+          "last_subject": "Comprehensive Project Status Report – Digital Transformation Initiative (Q4 2025)",
+          "last_body": "Dear Stakeholders, I hope you are all doing well. This email provides a detailed summary of the current progress, challenges, and next steps regarding our Digital Transformation Initiative. Given the scope of the project and the number of teams involved, I have included a thorough breakdown of each component below to ensure complete transparency and alignment moving forward. During the past quarter, we have successfully completed Phase 2 of the implementation roadmap, which focused primarily on infrastructure modernization and process automation. Our IT team migrated 85% of legacy applications to the cloud-based environment ahead of schedule, significantly improving system reliability and data accessibility. The operations division reported a 22% reduction in manual workflows, largely due to the automation of invoice processing and internal approval chains. In addition, the cybersecurity framework was reinforced with new endpoint protection and identity access management protocols, reducing vulnerability exposure by approximately 40%. However, several challenges were encountered that have temporarily slowed progress in certain areas. The integration of the analytics dashboard with third-party data sources has faced compatibility issues, primarily due to differing API structures and outdated documentation. The development team is currently collaborating with the vendors to resolve these inconsistencies. Additionally, the HR digital portal rollout was postponed to mid-December following feedback from the pilot test group, who suggested improvements in user navigation and mobile responsiveness. These refinements are now underway, and the revised deployment timeline remains within acceptable project parameters. Looking ahead, our next milestone involves finalizing Phase 3 — the employee engagement and performance analytics system. This module will unify data from multiple departments to provide leadership with real-time visibility into productivity metrics, training needs, and talent development trends. The design and prototype review are scheduled for the second week of November, followed by iterative testing and feedback collection through December. I strongly encourage department heads to nominate representatives to participate in these review sessions, as early input will ensure that the system meets diverse operational requirements. In terms of budget, the initiative remains within 3% of the approved allocation. Savings from the infrastructure migration have helped offset additional consulting expenses related to system integration. A detailed financial summary will be included in next week’s report. Furthermore, the procurement team has begun evaluating long-term vendor contracts to identify opportunities for cost optimization in 2026. Finally, I want to emphasize that the success of this transformation depends not only on technology but also on collaboration and adaptability across all departments. Your continued engagement, open feedback, and proactive participation are key to achieving our shared goals. Please review the attached document for the updated project timeline, key deliverables, and ownership matrix. Thank you for your ongoing support and commitment to making this initiative a success. Should you have any questions, concerns, or suggestions, please do not hesitate to reach out to me directly or to the project management office. Warm regards, Ahmed Raza Project Director – Digital Transformation TechNova Systems Pvt. Ltd."
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAA-80y2phL20SVrRL0qd65yA==",
+          "subject": "",
+          "preview": "hyyyy",
+          "summary": "Summary unavailable due to model error.",
           "role": "Industry",
-          "importance": "High",
-          "importance_confidence": 0.4,
+          "importance": "Medium",
+          "importance_confidence": 0.5,
           "role_confidence": 0.4,
-          "last_message_ts": "2025-12-04T06:34:44.449076+00:00",
-          "last_message_id": "AQMkADAwATM3ZmYAZS02OGRhLTI4MGItMDACLTAwCgBGAAADStXazBzavUS0AOZejKy4-QcAucVXBXj8pECCXiUT6z7IOAAAAgEUAAAAucVXBXj8pECCXiUT6z7IOAACOrZDDgAAAA==",
-          "last_subject": "Important update to your Microsoft Rewards account",
-          "last_body": "Watch for an email about this next month\n͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌  ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   ͏ ‌   \n                                                            \nView as a webpage \n \n \n \n \nKey updates to Microsoft Rewards \n \n \nStarting in January 2026, we will be making updates to the Rewards program.\nHere's what you need to know:\nWe're announcing 3 new participation levels with a range of benefits that allow you to earn points in new ways: Member, Silver, and Gold.\nIn order to accommodate these changes, the daily search point limit will update by level. They will update to Member (15), Silver (30), and Gold (60). There will be new opportunities to earn additional bonus points.\nAs we evaluate the program, we might make more changes to further the benefits of the program. There's no action required on your part.\nVisit dashboard\n \n \n \nPrivacy Statement\n \nMicrosoft Corporation, One Microsoft Way, Redmond, WA 98052"
+          "last_message_ts": "2025-10-31T12:17:40+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT7AAAAA==",
+          "last_subject": "",
+          "last_body": "hyyyy"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAVkHJqbTm6UyVBUxQT7d91A==",
+          "subject": "",
+          "preview": "know both are listening",
+          "summary": "Summary unavailable due to model error.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-10-31T12:09:15+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6wAAAA==",
+          "last_subject": "",
+          "last_body": "know both are listening"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAANxnRZlWU_0WS6Sn-bohdWQ==",
+          "subject": "",
+          "preview": ".../??",
+          "summary": "Summary unavailable due to model error.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-10-31T12:04:49+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6gAAAA==",
+          "last_subject": "",
+          "last_body": ".../??"
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAIT0acG4xQEaMCSGN7BsrQA==",
+          "subject": "",
+          "preview": "",
+          "summary": "Summary unavailable due to model error.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-10-31T12:04:40+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6QAAAA==",
+          "last_subject": "",
+          "last_body": ""
+        },
+        {
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAabz8dcwgsk2UIshkV3DXww==",
+          "subject": "",
+          "preview": "listening.......",
+          "summary": "Summary unavailable due to model error.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-10-31T11:58:26+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAAAAhAT6AAAAA==",
+          "last_subject": "",
+          "last_body": "listening......."
         }
       ],
-      "summary": "Microsoft Rewards is getting an update in January 2026, adding new participation levels and ways to earn points. The changes include three tiers - Member, Silver, and Gold - with updated daily search point limits. No action is needed from our end, but we can expect potential future changes to enhance benefits.",
-      "timestamp": "2025-12-04T06:34:45.474127Z"
+      "summary": "Summary unavailable due to model error.",
+      "timestamp": "2025-12-10T05:38:09.866799Z"
     },
-    "gmail:n00503033@gmail.com": {
-      "id": "gmail:n00503033@gmail.com",
-      "email": "n00503033@gmail.com",
-      "source": "gmail",
+    "outlook:minahilmy34@gmail.com": {
+      "id": "outlook:minahilmy34@gmail.com",
+      "email": "minahilmy34@gmail.com",
+      "source": "outlook",
       "role": "General External",
-      "role_confidence": 0.6,
+      "role_confidence": 0.667,
       "threads": [
         {
-          "id": "19aee0a83b88296e",
-          "subject": "",
-          "preview": "hello world",
-          "summary": "The conversation appears to be initiated by n00503033@gmail.com, but the content is empty except for \"hello world\", indicating a test or introductory email. There is no meeting time, decision, or next step mentioned. The thread lacks substance, suggesting it may be a preliminary or mistaken email. No meaningful discussion or action items are present. The sender's intent is unclear.",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAA68ckioQHr0OB51cr8-MAnTY=",
+          "subject": "Testing AGAIN",
+          "preview": "😈😈😈😈",
+          "summary": "Summary unavailable due to model error.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.5,
           "role_confidence": 0.6,
-          "last_message_ts": "2025-12-05T10:24:17+00:00",
-          "last_message_id": "19aee0a83b88296e",
-          "last_subject": "",
-          "last_body": "hello world"
-        }
-      ],
-      "summary": "It looks like we have a pretty empty email thread here, just a \"hello world\" test email from n00503033@gmail.com with no real content or next steps. Doesn't seem like any decisions or meetings were discussed. I'd say this one can be disregarded as it appears to be a preliminary or mistaken email. No action items to follow up on.",
-      "timestamp": "2025-12-05T10:24:54.793776Z"
-    },
-    "gmail:unknown@gmail.com": {
-      "id": "gmail:unknown@gmail.com",
-      "email": "unknown@gmail.com",
-      "source": "gmail",
-      "role": "General External",
-      "role_confidence": 0.0,
-      "threads": [
+          "last_message_ts": "2025-10-30T19:03:37+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZKAAAA",
+          "last_subject": "Testing AGAIN",
+          "last_body": "😈😈😈😈"
+        },
         {
-          "id": "19af8f68a8d39256",
-          "subject": "",
-          "preview": "helo world number 47987598",
-          "summary": "There's an email thread with no clear topic or purpose, as it appears to be a test message with a random string of numbers. The thread is incomplete, with no sender or subject specified. No meetings or decisions have been discussed. The content is minimal and lacks context. Further information is needed to provide a meaningful summary.",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAsliL5d5tw0mSW4gEIsjZlA==",
+          "subject": "Testing",
+          "preview": "Testing 124",
+          "summary": "Summary unavailable due to model error.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.5,
-          "role_confidence": 0.0,
-          "last_message_ts": "2025-12-07T13:18:18+00:00",
-          "last_message_id": "19af8f68a8d39256",
-          "last_subject": "",
-          "last_body": "helo world number 47987598"
-        }
-      ],
-      "summary": "I took a look at the email threads, but unfortunately, there's not much to report - one thread appears to be a test message with no clear topic or purpose, and there's no meaningful information to summarize.",
-      "timestamp": "2025-12-08T06:04:41.879674Z"
-    },
-    "gmail:Tayyba Aftab <tayybar130@gmail.com>": {
-      "id": "gmail:Tayyba Aftab <tayybar130@gmail.com>",
-      "email": "Tayyba Aftab <tayybar130@gmail.com>",
-      "source": "gmail",
-      "role": "Industry",
-      "role_confidence": 1.0,
-      "threads": [
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-10-30T19:03:16+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZJAAAA",
+          "last_subject": "Testing",
+          "last_body": "Testing 124"
+        },
         {
-          "id": "19afc94678ae491f",
-          "subject": "Request for Collaboration with UET Ideal Labs",
-          "preview": "*Dear Team at UET Ideal Labs,* I hope this message finds you well. My name is *Michael Reynolds*, an",
-          "summary": "Michael Reynolds from CyberNova Solutions reached out to UET Ideal Labs to explore a strategic collaboration, seeking their expertise to address operational and technical challenges. He proposed a meeting to discuss the scope and objectives of the potential partnership. The goal is to optimize processes and co-develop solutions to enhance CyberNova's operations, with the hope of a mutually beneficial outcome.",
-          "role": "Industry",
-          "importance": "Medium",
-          "importance_confidence": 0.2,
-          "role_confidence": 1.0,
-          "last_message_ts": "2025-12-08T06:09:32+00:00",
-          "last_message_id": "19afc94678ae491f",
-          "last_subject": "Request for Collaboration with UET Ideal Labs",
-          "last_body": "*Dear Team at UET Ideal Labs,* I hope this message finds you well. My name is *Michael Reynolds*, and I am the *Head of Operations* at *CyberNova Solutions*, a technology company specializing in cybersecurity and AI solutions. We are currently facing *significant operational and technical challenges* that are affecting our workflow and overall project delivery. After reviewing potential collaborators, we believe that *UET Ideal Labs’ expertise and innovative approach* could be invaluable in helping us overcome these hurdles. We would like to explore a *strategic collaboration* where your team can assist us in addressing the technical issues, optimizing our processes, and potentially co-developing solutions to enhance our operations. Could we schedule a meeting at your earliest convenience to discuss the scope, potential objectives, and collaboration framework? We are confident that a partnership with UET Ideal Labs will be mutually beneficial and lead to meaningful outcomes. Thank you for considering this opportunity. We look forward to your positive response. *Warm regards,* Michael Reynolds Head of Operations *CyberNova Solutions* Email: m.reynolds@cybernova.com"
-        }
-      ],
-      "summary": "Michael Reynolds from CyberNova Solutions is looking to collaborate with UET Ideal Labs to tackle some operational and technical challenges. He's proposed a meeting to discuss the details, aiming to co-develop solutions that benefit both parties. The goal is to optimize CyberNova's processes and hopefully create a mutually beneficial outcome. Next steps will be determined after the meeting.",
-      "timestamp": "2025-12-08T06:10:10.904943Z"
-    },
-    "gmail:Rafia Sattar <sattarrafia355@gmail.com>": {
-      "id": "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
-      "email": "Rafia Sattar <sattarrafia355@gmail.com>",
-      "source": "gmail",
-      "role": "Industry",
-      "role_confidence": 0.4,
-      "threads": [
-        {
-          "id": "19afcb0f56db851e",
-          "subject": "",
-          "preview": "Am i invisible to you?",
-          "summary": "Rafia Sattar reached out regarding feeling ignored, but the conversation lacks context. The thread is brief and doesn't include any meeting times or decisions. It appears to be an initial message without a response. Next steps are unclear, and the conversation seems to be at a standstill. Further information is needed to understand the issue.",
-          "role": "Industry",
+          "id": "AQQkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKABAAQ3l0i3tNh0KtNQM-PLcvPQ==",
+          "subject": "HELLOOOO",
+          "preview": "WORLDDDDD",
+          "summary": "Summary unavailable due to model error.",
+          "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.5,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-08T06:40:34+00:00",
-          "last_message_id": "19afcb0f56db851e",
-          "last_subject": "",
-          "last_body": "Am i invisible to you?"
+          "role_confidence": 0.8,
+          "last_message_ts": "2025-10-30T19:02:45+00:00",
+          "last_message_id": "AQMkADAwATM3ZmYBLWE0NAEtYWY5MC0wMAItMDAKAEYAAANyhQ87B9PBR49tE1xsFFE8BwAma6URcr5xSZGjTHwetlh3AAACAQwAAAAma6URcr5xSZGjTHwetlh3AAABKNZIAAAA",
+          "last_subject": "HELLOOOO",
+          "last_body": "WORLDDDDD"
         }
       ],
-      "summary": "Rafia Sattar has reached out feeling ignored, but the conversation is vague and hasn't gotten far. We don't have much context or any agreed-upon next steps. It seems like the issue is still unresolved and we need more information to move forward.",
-      "timestamp": "2025-12-08T09:56:41.566967Z"
+      "summary": "Summary unavailable due to model error.",
+      "timestamp": "2025-12-10T05:38:10.621126Z"
     }
   },
-  "last_updated": "2025-12-08T10:04:24.313264+00:00"
+  "last_updated": "2025-12-10T06:11:05.625767+00:00"
 }

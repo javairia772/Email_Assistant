@@ -362,12 +362,45 @@ async def contact_detail(contact_id: str):
     top_summary = contact_entry.get("contact_summary") or contact_entry.get("summary") or ""
     last_summary = contact_entry.get("last_summary") or contact_entry.get("timestamp") or contact_entry.get("date") or ""
 
+    # Merge threads from the contact entry with any raw threads present in the cache file
     threads = []
-    for thread in contact_entry.get("threads", []):
-        if not isinstance(thread, dict):
-            continue
+    # Load raw cache to ensure we include any previously-stored threads
+    raw_threads = []
+    try:
+        if SUMMARY_CACHE_PATH.exists():
+            with SUMMARY_CACHE_PATH.open("r", encoding="utf-8") as f:
+                raw_cache = json.load(f)
+            raw_summaries = raw_cache.get("summaries", raw_cache)
+            # Try match by normalized id, or by source:email key
+            raw_entry = None
+            # direct id match
+            raw_entry = raw_summaries.get(contact_entry.get("id")) if isinstance(raw_summaries, dict) else None
+            if not raw_entry:
+                # try source:email key
+                key = f"{contact_entry.get('source')}:{contact_entry.get('email')}"
+                raw_entry = raw_summaries.get(key) if isinstance(raw_summaries, dict) else None
+            if raw_entry and isinstance(raw_entry.get("threads"), list):
+                raw_threads = [t for t in raw_entry.get("threads") if isinstance(t, dict)]
+    except Exception:
+        raw_threads = []
+
+    # Build a dict of threads by id, preferring the most recent info from contact_entry
+    threads_by_id = {}
+    def _add_thread_obj(t):
+        if not isinstance(t, dict):
+            return
+        tid = t.get("thread_id") or t.get("id")
+        if not tid:
+            return
+        threads_by_id[str(tid)] = t
+
+    for t in raw_threads:
+        _add_thread_obj(t)
+    for t in contact_entry.get("threads", []):
+        _add_thread_obj(t)
+
+    for tid, thread in threads_by_id.items():
         ts = thread.get("last_message_ts") or thread.get("timestamp") or thread.get("date") or thread.get("last_modified") or thread.get("created_at")
-        tid = thread.get("thread_id") or thread.get("id")
         threads.append({
             "id": tid,
             "subject": thread.get("subject") or "(No subject)",

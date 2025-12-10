@@ -65,7 +65,9 @@ class OutlookConnector:
         self.ensure_authenticated()
         url = (
             f"https://graph.microsoft.com/v1.0/me/messages"
-            f"?$top={top}&$select=id,subject,from,toRecipients,body,bodyPreview,receivedDateTime"
+            f"?$top={top}"
+            f"&$orderby=receivedDateTime desc"
+            f"&$select=id,conversationId,subject,from,toRecipients,body,bodyPreview,receivedDateTime"
         )
 
         response = requests.get(url, headers=self._headers())
@@ -86,16 +88,17 @@ class OutlookConnector:
     # ------------------------------------------------------
     def fetch_threads(self, contact_email=None, top=50, auto=True):
         """
-        Fetch messages grouped by conversationId.
-        If contact_email is None, automatically uses logged-in mailbox for filtering.
+        Fetch messages grouped by conversationId for a contact.
+        Avoids InefficientFilter by sorting locally.
         """
         self.ensure_authenticated()
         contact_email = contact_email or self.user_email
 
+        # Fetch the latest 'top' messages from mailbox
         url = (
-            "https://graph.microsoft.com/v1.0/me/messages"
-            f"?$select=id,conversationId,subject,from,toRecipients,body,bodyPreview,receivedDateTime"
-            f"&$top={top}"
+            f"https://graph.microsoft.com/v1.0/me/messages"
+            f"?$top={top}"
+            f"&$select=id,conversationId,subject,from,toRecipients,body,bodyPreview,receivedDateTime"
         )
         response = requests.get(url, headers=self._headers())
 
@@ -105,28 +108,38 @@ class OutlookConnector:
         data = response.json()
         messages = data.get("value", [])
 
-        threads = {}
+        # Filter messages involving the contact
+        contact_messages = []
         for msg in messages:
-            sender = msg.get("from", {}).get("emailAddress", {}).get("address", "")
+            sender = msg.get("from", {}).get("emailAddress", {}).get("address", "").lower()
             recipients = [
-                r.get("emailAddress", {}).get("address", "")
+                r.get("emailAddress", {}).get("address", "").lower()
                 for r in msg.get("toRecipients", [])
             ]
 
-            if (
-                contact_email.lower() == sender.lower()
-                or contact_email.lower() in [r.lower() for r in recipients]
-            ):
-                thread_id = msg.get("conversationId", "unknown")
-                threads.setdefault(thread_id, []).append({
-                    "id": msg.get("id"),
-                    "sender": sender,
-                    "subject": msg.get("subject", ""),
-                    "body": msg.get("body", {}).get("content", msg.get("bodyPreview", "")),
-                    "date": msg.get("receivedDateTime", "")
-                })
+            if contact_email.lower() == sender or contact_email.lower() in recipients:
+                contact_messages.append(msg)
 
-        # ✅ Summarization integration
+        # Group by conversationId
+        threads = {}
+        for msg in contact_messages:
+            thread_id = msg.get("conversationId", "unknown")
+            threads.setdefault(thread_id, []).append({
+                "id": msg.get("id"),
+                "sender": msg.get("from", {}).get("emailAddress", {}).get("address", ""),
+                "subject": msg.get("subject", ""),
+                "body": msg.get("body", {}).get("content", msg.get("bodyPreview", "")),
+                "date": msg.get("receivedDateTime", "")
+            })
+
+        # Sort messages in each thread by date
+        for thread_id in threads:
+            threads[thread_id] = sorted(
+                threads[thread_id],
+                key=lambda x: x["date"]
+            )
+
+        # ✅ Integrate summarization
         from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
 
         for thread_id, msgs in threads.items():
@@ -140,17 +153,18 @@ class OutlookConnector:
         print(f"📨 Fetched {len(threads)} Outlook threads for {contact_email}")
         return list(threads.values())
 
+
     def fetch_thread_by_id(self, contact_email: str, conversation_id: str, top: int = 50):
         """
         Fetch a specific conversation (thread) by conversationId for a contact.
-        Does not trigger summarization to keep this lightweight for the UI.
+        Avoids InefficientFilter by removing $orderby and sorting locally.
         """
         self.ensure_authenticated()
         contact_email = contact_email or self.user_email
+
         url = (
-            "https://graph.microsoft.com/v1.0/me/messages"
+            f"https://graph.microsoft.com/v1.0/me/messages"
             f"?$filter=conversationId eq '{conversation_id}'"
-            f"&$orderby=receivedDateTime asc"
             f"&$top={top}"
             f"&$select=id,conversationId,subject,from,toRecipients,body,bodyPreview,receivedDateTime"
         )
@@ -164,6 +178,10 @@ class OutlookConnector:
 
         data = response.json()
         messages = data.get("value", [])
+
+        # Sort messages locally by date
+        messages = sorted(messages, key=lambda x: x["receivedDateTime"])
+
         parsed = []
         for msg in messages:
             parsed.append({
@@ -189,10 +207,12 @@ class OutlookConnector:
 
         return {
             "id": msg.get("id", ""),
+            "conversationId": msg.get("conversationId", ""),
             "sender": sender,
             "subject": msg.get("subject", ""),
             "body": body_content,
             "date": msg.get("receivedDateTime", ""),
+            "to": [r.get("emailAddress", {}).get("address") for r in msg.get("toRecipients", []) if isinstance(r, dict)],
         }
 
 

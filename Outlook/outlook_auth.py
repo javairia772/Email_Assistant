@@ -23,16 +23,12 @@ class OutlookAuth:
         self.token_cache_file = token_cache_file
 
         self.authority = f"https://login.microsoftonline.com/{self.tenant_id}"
+        # Keep the initial requested scopes minimal. If your Azure App registration
+        # doesn't include these delegated permissions, you'll get an `invalid_scope` error.
         self.scope = [
             "User.Read",
             "Mail.Read",
             "Mail.Send",
-            "Mail.ReadWrite",
-            "Mail.ReadWrite.All",
-            "Mail.Send.All",
-            "offline_access",
-            "openid",
-            "profile",
         ]
 
         # Initialize token cache (persistent)
@@ -77,7 +73,19 @@ class OutlookAuth:
                     return self.token
 
         # Fallback to interactive browser-based login
-        result = self.app.acquire_token_interactive(scopes=self.scope)
+        try:
+            result = self.app.acquire_token_interactive(scopes=self.scope)
+        except Exception as exc:
+            msg = str(exc)
+            print(f"[OutlookAuth] Interactive auth failed: {msg}")
+            # Common cause: requested scopes are not registered for this app.
+            if "invalid_scope" in msg or "The provided value for the input parameter 'scope' is not valid" in msg:
+                print("[OutlookAuth] The requested scopes are not configured for your Azure AD app registration.")
+                print("Action: open the Azure Portal → App registrations → <your app> → API permissions and add these delegated permissions:")
+                print("  - User.Read\n  - Mail.Read\n  - Mail.Send")
+                print("Then click 'Grant admin consent' (or ask an admin to consent) and retry the flow.")
+            raise
+
         if "access_token" in result:
             self.token = result["access_token"]
             self._save_cache()

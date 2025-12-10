@@ -3,6 +3,11 @@ from Gmail.gmail_auth import GmailAuth
 import base64
 from email.mime.text import MIMEText
 from googleapiclient.errors import HttpError
+from email.header import decode_header
+import re
+import json
+from pathlib import Path
+from datetime import datetime, timezone
 # Import summarization logic (Groq + caching)
 from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
 
@@ -186,8 +191,7 @@ class GmailConnector:
                 "sender": sender,
                 "subject": subject,
                 "body": body.strip(),
-                "date": date,
-                "message_id": msg.get("id")
+                "date": date
             })
         return parsed
 
@@ -202,6 +206,35 @@ class GmailConnector:
             return ""
 
     # ------------------------------------------------------
+    # Optional: plain text joiner for summarization
+    # ------------------------------------------------------
+    def get_thread_text(self, thread_id):
+        """Return a thread’s combined text for summarization."""
+        messages = self.get_message(thread_id)
+        if isinstance(messages, dict) and "error" in messages:
+            return messages["error"]
+
+        combined = []
+        for msg in messages:
+            combined.append(
+                f"From: {msg['sender']}\nSubject: {msg['subject']}\n\n{msg['body']}\n"
+            )
+        return "\n---\n".join(combined)
+
+    def fetch_threads_by_id(self, thread_id):
+        """
+        Return a parsed Gmail thread as list[dict] for summarization.
+        Each dict contains sender, subject, body, date.
+        """
+        try:
+            thread = self.service.users().threads().get(userId="me", id=thread_id).execute()
+            parsed_messages = self._parse_thread(thread)
+            return parsed_messages
+        except HttpError as e:
+            return {"error": f"Gmail API error: {e}"}
+
+
+       # ------------------------------------------------------
     # SEND REPLY
     # ------------------------------------------------------
     def send_reply(self, thread_id, to_email, subject, reply_body, in_reply_to=None, references=None):
@@ -268,17 +301,3 @@ class GmailConnector:
                 f"From: {msg['sender']}\nSubject: {msg['subject']}\n\n{msg['body']}\n"
             )
         return "\n---\n".join(combined)
-
-    def fetch_threads_by_id(self, thread_id):
-        """
-        Return a parsed Gmail thread as list[dict] for summarization.
-        Each dict contains sender, subject, body, date.
-        """
-        try:
-            thread = self.service.users().threads().get(userId="me", id=thread_id).execute()
-            parsed_messages = self._parse_thread(thread)
-            return parsed_messages
-        except HttpError as e:
-            return {"error": f"Gmail API error: {e}"}
-
-

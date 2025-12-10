@@ -57,18 +57,31 @@ class McpSummariesProvider:
     def _threads_changed(self, contact: Dict, existing_contact: Dict) -> bool:
         if not existing_contact:
             return True
+        new_threads = contact.get("threads", []) or []
         existing_threads = {
-            t.get("id"): t.get("last_message_ts") or t.get("timestamp")
-            for t in existing_contact.get("threads", [])
+            t.get("id"): t for t in existing_contact.get("threads", []) or [] if t.get("id")
         }
-        for thread in contact.get("threads", []):
+
+        for thread in new_threads:
             tid = thread.get("id")
-            new_ts = thread.get("last_message_ts")
+            if not tid:
+                continue
+
             if tid not in existing_threads:
                 return True
-            old_ts = existing_threads.get(tid)
-            if new_ts and old_ts and new_ts > old_ts:
+
+            old_thread = existing_threads[tid]
+            new_ts = _parse_iso(thread.get("last_message_ts") or thread.get("timestamp") or "")
+            old_ts = _parse_iso(old_thread.get("last_message_ts") or old_thread.get("timestamp") or "")
+            new_msg_id = thread.get("last_message_id")
+            old_msg_id = old_thread.get("last_message_id")
+
+            if new_ts > old_ts:
                 return True
+
+            if new_msg_id and old_msg_id and new_msg_id != old_msg_id and new_ts == old_ts:
+                return True
+
         return False
 
     def _should_generate_draft(self, classification: Dict) -> bool:
@@ -149,70 +162,87 @@ Write the reply in first person plural ("we") unless the context clearly require
     # OUTLOOK EMAILS
     # -----------------------------------------------------------------
     def _from_outlook(self, limit: int):
+        """
+        Fetch Outlook conversations grouped by contact email (other party) using conversationId.
+        Ensures we keep every thread for a contact, not just the most recent message.
+        """
         contacts_by_email = {}
 
         try:
-            messages = self.outlook.list_messages(limit)
-            print("[DEBUG] Outlook messages sample:", messages[:2])
+            self.outlook.ensure_authenticated()
+            user_email = (self.outlook.user_email or "").lower()
 
-            for msg in messages:
-                # skip anything that's not a dict
+            # Pull a seed set of messages to discover conversationIds
+            seed_messages = self.outlook.list_messages(max(limit, 25))
+
+            # Group by contact + conversation id
+            for msg in seed_messages:
                 if not isinstance(msg, dict):
                     print("[WARN] Skipping malformed Outlook message:", msg)
                     continue
 
-                # --- Sender ---
-                sender = (
-                    msg.get("sender")
-                    if isinstance(msg.get("sender"), str) else
-                    msg.get("sender", {}).get("emailAddress", {}).get("address")
-                ) or (
-                    msg.get("from", {}).get("emailAddress", {}).get("address")
-                    if isinstance(msg.get("from"), dict) else msg.get("from")
-                ) or "unknown@outlook.com"
+                sender = (msg.get("sender") or "").lower()
+                recipients = [r.lower() for r in (msg.get("to", []) or []) if r]
+                conversation_id = msg.get("conversationId") or msg.get("conversation_id")
+                if not conversation_id:
+                    continue
 
-                # --- Subject ---
-                subject = msg.get("subject", "")
-
-                # --- Body / preview ---
-                body_html = msg.get("body") or msg.get("bodyPreview") or ""
-                
-                # Strip HTML tags for readable preview
-                if "<" in body_html and ">" in body_html:
-                    try:
-                        # BeautifulSoup method (robust)
-                        from bs4 import BeautifulSoup
-                        body_text = BeautifulSoup(body_html, "html.parser").get_text(separator="\n")
-                    except Exception:
-                        # Fallback regex (simple)
-                        body_text = re.sub(r"<[^>]+>", "", body_html)
+                # Decide the contact (the other party in the conversation)
+                if sender and sender != user_email:
+                    contact_email = sender
                 else:
-                    body_text = body_html
+                    contact_email = next((r for r in recipients if r != user_email), None) or sender or "unknown@outlook.com"
 
-                msg_id = msg.get("id")
-
-                # --- Build contact grouping ---
-                if sender not in contacts_by_email:
-                    contacts_by_email[sender] = {
-                        "email": sender,
-                        "threads": [],
-                        "source": "outlook"
-                    }
-
-                contacts_by_email[sender]["threads"].append({
-                    "id": msg_id,
-                    "messages": [{
-                        "sender": sender,
-                        "subject": subject,
-                        "body": body_text.strip(),
-                        "date": msg.get("receivedDateTime", ""),
-                        "message_id": msg_id
-                    }],
-                    "last_message_ts": self._normalize_timestamp(msg.get("receivedDateTime", "")),
-                    "last_message_id": msg_id,
-                    "last_subject": subject,
-                    "last_body": body_text.strip()
+                contact_entry = contacts_by_email.setdefault(contact_email, {
+                    "email": contact_email,
+                    "threads": [],
+                    "source": "outlook",
+                    "_thread_map": {}
                 })
+                contact_entry["_thread_map"].setdefault(conversation_id, True)
+
+            # Expand each conversation into full message lists
+            for contact_email, contact_data in contacts_by_email.items():
+                thread_ids = list(contact_data.get("_thread_map", {}).keys())
+                for tid in thread_ids:
+                    try:
+                        full_thread = self.outlook.fetch_thread_by_id(contact_email, tid, top=100)
+                    except Exception as exc:
+                        print(f"[MCP] Failed to fetch Outlook thread {tid} for {contact_email}: {exc}")
+                        continue
+
+                    normalized_messages = []
+                    for msg in full_thread:
+                        body = msg.get("body", "") or ""
+                        if "<" in body and ">" in body:
+                            try:
+                                body = BeautifulSoup(body, "html.parser").get_text(separator="\n")
+                            except Exception:
+                                body = re.sub(r"<[^>]+>", "", body)
+                        body = re.sub(r"\s+", " ", body).strip()
+
+                        normalized_messages.append({
+                            "sender": msg.get("sender", ""),
+                            "subject": msg.get("subject", ""),
+                            "body": body,
+                            "date": msg.get("date", ""),
+                            "message_id": msg.get("id")
+                        })
+
+                    if not normalized_messages:
+                        continue
+
+                    latest_msg = normalized_messages[-1]
+                    contact_data["threads"].append({
+                        "id": tid,
+                        "messages": normalized_messages,
+                        "last_message_ts": self._normalize_timestamp(latest_msg.get("date", "")),
+                        "last_message_id": latest_msg.get("message_id"),
+                        "last_subject": latest_msg.get("subject", ""),
+                        "last_body": latest_msg.get("body", ""),
+                    })
+
+                contact_data.pop("_thread_map", None)
 
             return list(contacts_by_email.values())
 
@@ -434,48 +464,40 @@ Write the reply in first person plural ("we") unless the context clearly require
                 existing_summaries_dict[cache_key] = summary
 
         merged_summaries = []
-        processed_emails = set()
-        
-        # First process all existing summaries to include them in the output
-        for cache_key, summary in existing_summaries_dict.items():
-            email = summary.get("email")
-            if email and email not in processed_emails:
-                processed_emails.add(email)
-                merged_summaries.append(summary)
-                print(f"⚡ Using cached summary for {email}")
+        processed_keys = set()
 
-        # Now process new/updated contacts
+        # Process new/updated contacts first so cache never suppresses fresh data
         for contact in all_data:
             contact_email = contact.get("email")
             if not contact_email:
                 continue
-                
+
             source = contact.get("source", "unknown")
             cache_key = f"{source}:{contact_email}"
-            
-            # Skip if we've already processed this email
-            if contact_email in processed_emails:
-                continue
-                
-            # Check if this contact is already in cache
             existing_contact = existing_summaries_dict.get(cache_key)
-            if existing_contact and not self._threads_changed(contact, existing_contact):
+
+            needs_refresh = self._threads_changed(contact, existing_contact)
+            if not needs_refresh:
                 print(f"⚡ Using cached summary for {contact_email} (no updates)")
-                merged_summaries.append(existing_contact)
-                processed_emails.add(contact_email)
-                continue
+                contact_summary = existing_contact
             else:
                 if existing_contact:
                     print(f"🔄 Changes detected for {contact_email}, re-summarizing...")
-            
-            # Summarize contact (new or updated)
-            try:
-                contact_summary = self._summarize_contact_threads(contact, existing_contact)
-                if contact_summary and "email" in contact_summary:
-                    merged_summaries.append(contact_summary)
-                    processed_emails.add(contact_summary["email"])
-            except Exception as e:
-                print(f"[ERROR] Failed to summarize {contact_email}: {str(e)}")
+                try:
+                    contact_summary = self._summarize_contact_threads(contact, existing_contact)
+                except Exception as e:
+                    print(f"[ERROR] Failed to summarize {contact_email}: {str(e)}")
+                    contact_summary = None
+
+            if contact_summary and "email" in contact_summary:
+                merged_summaries.append(contact_summary)
+                processed_keys.add(cache_key)
+
+        # Preserve cached contacts that were not present in the latest fetch
+        for cache_key, summary in existing_summaries_dict.items():
+            if cache_key in processed_keys:
+                continue
+            merged_summaries.append(summary)
 
         # --- Build final cache JSON ---
         # Create a dictionary of summaries for the cache
