@@ -14,8 +14,10 @@ from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
 from providers.reply_queue import ReplyQueue
 from providers.sent_store import SentStore
+from urllib.parse import unquote
 from providers.utils import extract_email, normalize_contact_id, expand_possible_ids
 SUMMARY_CACHE_PATH = Path("Summaries/summaries_cache.json")
+
 
 
 app = FastAPI(title="Email Assistant Dashboard")
@@ -40,6 +42,45 @@ ROLE_TO_CLASS = {
     "Researcher": "tag-researcher",
     "Admin": "tag-admin",
     "Uncategorized": "tag-default",
+}
+
+COMPOSE_TEMPLATES = {
+    "employee": """Dear [Name],
+
+Thank you for your message. I wanted to provide a quick update and next steps. Please let me know if you need anything else.
+
+Best regards,
+[Your Name]""",
+    "faculty": """Dear Professor [Last Name],
+
+I hope you are well. I am writing regarding [course/project/topic] and wanted to share the latest details below.
+
+Sincerely,
+[Your Name]""",
+    "student": """Hi [Name],
+
+Thanks for reaching out. I have noted your request and included the information below. Let me know if you have any questions.
+
+Best,
+[Your Name]""",
+    "industry": """Hello [Name],
+
+I appreciate your interest. Please find the requested details and proposed next steps below. Happy to schedule a follow-up call.
+
+Kind regards,
+[Your Name]""",
+    "general": """Hello [Name],
+
+Thank you for your email. I have included the relevant information and next steps below.
+
+Regards,
+[Your Name]""",
+    "international": """Dear [Name],
+
+I hope you are doing well. I am sharing the requested information and next actions below. Please let me know if you prefer a meeting time.
+
+Warm regards,
+[Your Name]""",
 }
 
 
@@ -220,7 +261,7 @@ def _decorate_draft(draft: Dict) -> Dict:
 
 def _send_email(source: str, thread_id: str, contact_email: str, subject: str, reply_text: str, message_id: str = None):
     """Send an email reply, maintaining thread context.
-    
+
     Args:
         source: The email source ('gmail' or 'outlook')
         thread_id: The ID of the conversation thread
@@ -230,35 +271,32 @@ def _send_email(source: str, thread_id: str, contact_email: str, subject: str, r
         message_id: The ID of the message being replied to (for threading)
     """
     source_lower = (source or "").lower()
-    
-    # Format message_id for Gmail if needed
-    if source_lower == "gmail" and message_id:
-        # Ensure message_id is properly formatted with angle brackets if it's not already
-        if not message_id.startswith('<'):
-            message_id = f'<{message_id}'
-        if not message_id.endswith('>'):
-            message_id = f'{message_id}>'
-    
+
     try:
         if source_lower == "gmail":
+            # Gmail threading requires both thread_id and the latest message_id
             gmail_client.send_reply(
                 thread_id=thread_id,
                 to_email=contact_email,
                 subject=subject,
                 reply_body=reply_text,
-                in_reply_to=message_id,
-                references=message_id  # For Gmail, we can use the same message ID for both
+                in_reply_to=message_id,  # raw message ID, do NOT wrap in <>
+                references=message_id
             )
         elif source_lower == "outlook":
+            # Outlook reply needs the specific message ID to reply correctly
             outlook_client.send_reply(
                 message_id=message_id,
                 to_email=contact_email,
                 subject=subject,
                 reply_body=reply_text,
-                thread_id=thread_id  # Pass thread_id for logging purposes
+                thread_id=thread_id  # just for logging
             )
         else:
             raise HTTPException(status_code=400, detail=f"Unknown source for sending reply: {source}")
+
+        print(f"[INFO] ✅ Email sent via {source_lower} to {contact_email}")
+
     except Exception as e:
         print(f"[ERROR] Failed to send email via {source_lower}: {str(e)}")
         raise
@@ -630,10 +668,14 @@ async def reject_draft(draft_id: str = Body(...), reason: str = Body(default="Re
 
 
 @app.post("/api/drafts/send")
-async def send_draft(draft_id: str = Body(...)):
+async def send_draft(payload: dict = Body(...)):
+    draft_id = payload.get("draft_id", "").strip()
+    if not draft_id:
+        raise HTTPException(status_code=400, detail="Draft ID not provided")
+
     draft = reply_queue.get_draft(draft_id)
     if not draft:
-        raise HTTPException(status_code=404, detail="Draft not found")
+        raise HTTPException(status_code=404, detail=f"Draft not found: {draft_id}")
 
     reply_text = draft.get("generated_reply", "").strip()
     if not reply_text:
@@ -647,6 +689,7 @@ async def send_draft(draft_id: str = Body(...)):
         reply_text,
         message_id=draft.get("last_message_id"),
     )
+
     reply_queue.update_draft(
         draft_id,
         status="sent",
@@ -657,6 +700,7 @@ async def send_draft(draft_id: str = Body(...)):
         },
         sent_at=datetime.now(timezone.utc).isoformat(),
     )
+
     print(f"[DraftQueue] ✅ Draft {draft_id} sent")
     return {"ok": True}
 
@@ -669,100 +713,110 @@ async def send_reply(
     subject: str = Body(...),
     draft_id: str = Body(default=None)
 ):
-    """Send a reply to a thread via Gmail or Outlook."""
+    """
+    Send a reply to the latest message in a thread via Gmail or Outlook.
+    Properly threads the reply instead of just using Re: subject.
+    """
     try:
-        from urllib.parse import unquote
-        
         # Decode URL-encoded contact_id
         decoded_contact_id = unquote(contact_id)
-        
         summaries = _load_cached_summaries()
-        
-        # First try with the exact ID from the URL
+
+        # Find contact entry
         contact_entry = summaries.get(decoded_contact_id)
-        
-        # If not found, try to find a matching contact by normalizing the ID
-        if not contact_entry and ':' in decoded_contact_id:
-            source_part, email_part = decoded_contact_id.split(':', 1)
-            
-            # Try different variations of the contact ID
-            variations = [
-                decoded_contact_id,  # Original format
-                f"{source_part}:{email_part.split('<')[0].strip()}",  # Without angle brackets
-                f"{source_part}:{email_part.split('<')[-1].split('>')[0].strip()}"  # Just email part
-            ]
-            
-            # Try each variation until we find a match
-            for variation in variations:
-                contact_entry = summaries.get(variation)
-                if contact_entry:
-                    break
-        
-        # As a last resort, try to find by email only (without source prefix)
-        if not contact_entry and ':' in decoded_contact_id:
-            _, email_part = decoded_contact_id.split(':', 1)
-            # Extract just the email if it's in <email> format
-            if '<' in email_part and '>' in email_part:
-                email = email_part.split('<')[-1].split('>')[0].strip()
-            else:
-                email = email_part.strip()
-                
-            # Search through all summaries for a matching email
-            for key, entry in summaries.items():
-                entry_email = None
-                # Extract email from the key if it's in the format "source:name <email>"
-                if ':' in key and '<' in key and '>' in key:
-                    entry_email = key.split('<')[-1].split('>')[0].strip()
-                # Or if it's just "source:email"
-                elif ':' in key and '@' in key.split(':')[1]:
-                    entry_email = key.split(':', 1)[1].strip()
-                
-                # Check if emails match
-                if entry_email and entry_email.lower() == email.lower():
-                    contact_entry = entry
-                    break
-        
+        if not contact_entry:
+            # Try fallback variations
+            if ':' in decoded_contact_id:
+                source_part, email_part = decoded_contact_id.split(':', 1)
+                variations = [
+                    decoded_contact_id,
+                    f"{source_part}:{email_part.split('<')[0].strip()}",
+                    f"{source_part}:{email_part.split('<')[-1].split('>')[0].strip()}"
+                ]
+                for var in variations:
+                    contact_entry = summaries.get(var)
+                    if contact_entry:
+                        break
+            # Last resort: search by email only
+            if not contact_entry and ':' in decoded_contact_id:
+                _, email_part = decoded_contact_id.split(':', 1)
+                email = email_part.split('<')[-1].split('>')[0].strip() if '<' in email_part else email_part
+                for key, entry in summaries.items():
+                    entry_email = None
+                    if '<' in key and '>' in key:
+                        entry_email = key.split('<')[-1].split('>')[0].strip()
+                    elif ':' in key and '@' in key.split(':')[1]:
+                        entry_email = key.split(':', 1)[1].strip()
+                    if entry_email and entry_email.lower() == email.lower():
+                        contact_entry = entry
+                        break
+
         if not contact_entry:
             raise HTTPException(status_code=404, detail=f"Contact not found: {decoded_contact_id}")
-        
+
         source = contact_entry.get("source", "").lower()
         contact_email = contact_entry.get("email")
-        
-        # Find the thread and get the last message ID for threading
+
+        # Find the thread and latest message
         thread = None
-        message_id = None
-        
-        # First try to find the thread in the contact's threads
+        latest_message_id = None
+        latest_subject = subject or "(no subject)"
         for t in contact_entry.get("threads", []):
             if (t.get("thread_id") or t.get("id")) == thread_id:
                 thread = t
-                # Try to get the message ID from different possible fields
-                message_id = t.get("last_message_id") or t.get("message_id") or t.get("id")
+                latest_subject = t.get("subject") or latest_subject
+                # Check last_message_id field first
+                if t.get("last_message_id"):
+                    latest_message_id = t["last_message_id"]
+                # Or check messages array
+                elif t.get("messages") and len(t["messages"]) > 0:
+                    latest_message_id = t["messages"][-1].get("id")
+                # Or fallback to thread id itself (not ideal)
+                elif t.get("id"):
+                    latest_message_id = t.get("id")
                 break
-        
-        # If we still don't have a message ID, try to get it from the thread details
-        if not message_id and source_lower == "gmail":
-            try:
-                # Fetch the thread to get the latest message ID
+
+        # If still not found, fetch thread details from provider
+        if not latest_message_id:
+            if source == "gmail":
                 thread_details = gmail_client.service.users().threads().get(
                     userId="me", id=thread_id
                 ).execute()
                 if thread_details and 'messages' in thread_details and thread_details['messages']:
-                    # Get the ID of the most recent message in the thread
-                    message_id = thread_details['messages'][-1]['id']
-            except Exception as e:
-                print(f"[ERROR] Failed to fetch thread details: {str(e)}")
-        
-        print(f"[DEBUG] Sending reply with thread_id={thread_id}, message_id={message_id}")
-        _send_email(source, thread_id, contact_email, subject, reply_text, message_id=message_id)
+                    latest_message_id = thread_details['messages'][-1]['id']
+            elif source == "outlook":
+                outlook_connector = OutlookConnector()
+                messages = outlook_connector.fetch_thread_by_id(contact_email, thread_id)
+                if messages:
+                    latest_message_id = messages[-1]['id']
 
+        if not latest_message_id:
+            raise HTTPException(status_code=404, detail="Could not find latest message in thread")
+
+        print(f"[DEBUG] Sending reply to thread {thread_id}, message {latest_message_id}")
+
+        # Send the reply
+        _send_email(
+            source,
+            thread_id,
+            contact_email,
+            latest_subject,
+            reply_text,
+            message_id=latest_message_id
+        )
+
+        # Update draft if applicable
         if draft_id:
             note = "Sent via manual review"
             reply_queue.update_draft(
                 draft_id,
                 status="sent",
                 generated_reply=reply_text,
-                history={"event": "sent", "timestamp": datetime.now(timezone.utc).isoformat(), "note": note},
+                history={
+                    "event": "sent",
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "note": note
+                },
                 sent_at=datetime.now(timezone.utc).isoformat(),
             )
             print(f"[DraftQueue] 📬 Draft {draft_id} sent and marked as completed.")
@@ -770,8 +824,10 @@ async def send_reply(
         return {
             "ok": True,
             "message": "Reply sent successfully",
-            "thread_id": thread_id
+            "thread_id": thread_id,
+            "message_id": latest_message_id
         }
+
     except Exception as e:
         return {"ok": False, "error": str(e)}
 
@@ -797,6 +853,63 @@ async def compose_email(
         return {"ok": True}
     except Exception as e:
         return {"ok": False, "error": str(e)}
+
+
+@app.post("/api/compose-email/generate")
+async def compose_email_generate(
+    body: str = Body(..., embed=True),
+    prompt: str = Body(default="", embed=True),
+    template: str = Body(default=None, embed=True),
+):
+    """
+    Regenerate an email body based on a short prompt and optional template.
+    """
+    base_body = (body or "").strip()
+    prompt = (prompt or "").strip()
+    template_key = (template or "").lower().strip()
+    template_text = COMPOSE_TEMPLATES.get(template_key)
+
+    if not base_body and not template_text:
+        raise HTTPException(status_code=400, detail="Provide a body or choose a template.")
+
+    # Use template as the starting body when none provided.
+    if not base_body and template_text:
+        base_body = template_text
+
+    # No prompt means just return the selected/template body.
+    if not prompt:
+        return {
+            "ok": True,
+            "generated_body": base_body,
+            "used_template": bool(template_text),
+        }
+
+    instruction_prompt = f"""You are refining an email draft.
+
+Template to respect (if provided):
+{template_text or "None"}
+
+Existing body:
+{base_body}
+
+Short instruction from user:
+{prompt}
+
+Rewrite the email body clearly and concisely. Keep it ready to send."""
+
+    try:
+        regenerated = groq_client._run_groq_model(instruction_prompt)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Generation failed: {exc}")
+
+    if not regenerated:
+        raise HTTPException(status_code=500, detail="Model did not return content.")
+
+    return {
+        "ok": True,
+        "generated_body": regenerated.strip(),
+        "used_template": bool(template_text),
+    }
 
 
 @app.get("/sent", response_class=HTMLResponse)

@@ -143,8 +143,22 @@
       <input id="compose-to" type="email" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="recipient@example.com" />
       <label>Subject</label>
       <input id="compose-subject" type="text" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="Subject" />
-      <label>Body</label>
+      <label style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <span>Body</span>
+        <select id="compose-template" style="padding:6px; border:1px solid #d1d5db; border-radius:6px; font-size:14px;">
+          <option value="">No template</option>
+          <option value="employee">Employee</option>
+          <option value="faculty">Faculty</option>
+          <option value="student">Student</option>
+          <option value="industry">Industry</option>
+          <option value="general">General</option>
+          <option value="international">International</option>
+        </select>
+      </label>
       <textarea id="compose-body" style="width:100%; min-height:140px; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;"></textarea>
+      <label>Prompt (one-liner to rewrite body)</label>
+      <input id="compose-prompt" type="text" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="e.g., make it shorter and more formal" />
+      <button class="btn" style="width:100%; background:#1f2937; margin-bottom:8px;" onclick="regenerateBody()">Apply prompt to regenerate body</button>
       <label>Attachments (base64 JSON array)</label>
       <textarea id="compose-attachments" placeholder='[{"filename":"file.txt","content_base64":"..."}]' style="width:100%; min-height:80px; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;"></textarea>
       <div id="compose-status" style="margin-top:6px; color:#6b7280; font-size:14px;"></div>
@@ -159,6 +173,28 @@
     function escapeHTML(s) {
       return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     }
+
+    const composeTemplates = {
+      employee: "Dear [Name],\n\nThank you for your message. I wanted to provide a quick update and next steps. Please let me know if you need anything else.\n\nBest regards,\n[Your Name]",
+      faculty: "Dear Professor [Last Name],\n\nI hope you are well. I am writing regarding [course/project/topic] and wanted to share the latest details below.\n\nSincerely,\n[Your Name]",
+      student: "Hi [Name],\n\nThanks for reaching out. I have noted your request and included the information below. Let me know if you have any questions.\n\nBest,\n[Your Name]",
+      industry: "Hello [Name],\n\nI appreciate your interest. Please find the requested details and proposed next steps below. Happy to schedule a follow-up call.\n\nKind regards,\n[Your Name]",
+      general: "Hello [Name],\n\nThank you for your email. I have included the relevant information and next steps below.\n\nRegards,\n[Your Name]",
+      international: "Dear [Name],\n\nI hope you are doing well. I am sharing the requested information and next actions below. Please let me know if you prefer a meeting time.\n\nWarm regards,\n[Your Name]"
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const templateSelect = document.getElementById('compose-template');
+      const bodyEl = document.getElementById('compose-body');
+      if (templateSelect && bodyEl) {
+        templateSelect.addEventListener('change', () => {
+          const choice = templateSelect.value;
+          if (choice && composeTemplates[choice]) {
+            bodyEl.value = composeTemplates[choice];
+          }
+        });
+      }
+    });
 
     function toPKT(dateStr) {
       if (!dateStr) return '';
@@ -228,6 +264,40 @@
     }
     function closeCompose() {
       document.getElementById('compose-modal').style.display = 'none';
+    }
+    async function regenerateBody() {
+      const body = document.getElementById('compose-body').value.trim();
+      const prompt = document.getElementById('compose-prompt').value.trim();
+      const template = document.getElementById('compose-template').value;
+      const statusEl = document.getElementById('compose-status');
+
+      if (!body && !template) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = 'Provide a body or select a template first.';
+        return;
+      }
+
+      statusEl.style.color = '#6b7280';
+      statusEl.textContent = 'Generating...';
+      try {
+        const resp = await fetch('/api/compose-email/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ body, prompt, template })
+        });
+        const data = await resp.json();
+        if (data.ok) {
+          document.getElementById('compose-body').value = data.generated_body || body;
+          statusEl.style.color = '#10b981';
+          statusEl.textContent = 'Body updated.';
+        } else {
+          statusEl.style.color = '#dc2626';
+          statusEl.textContent = data.detail || data.error || 'Generation failed.';
+        }
+      } catch (err) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = 'Generation failed.';
+      }
     }
     async function sendCompose() {
       const to = document.getElementById('compose-to').value.trim();

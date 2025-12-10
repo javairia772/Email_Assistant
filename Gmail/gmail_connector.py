@@ -301,3 +301,16 @@ class GmailConnector:
                 f"From: {msg['sender']}\nSubject: {msg['subject']}\n\n{msg['body']}\n"
             )
         return "\n---\n".join(combined)
+
+    def get_latest_message_id(thread_id: str) -> str:
+        """Return the ID of the latest message in a Gmail thread."""
+        try:
+            thread = gmail_client.service.users().threads().get(userId="me", id=thread_id).execute()
+            if thread and 'messages' in thread and thread['messages']:
+                # Messages are usually ordered oldest → newest
+                return thread['messages'][-1]['id']
+            else:
+                raise Exception(f"No messages found in thread {thread_id}")
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch latest message ID for thread {thread_id}: {str(e)}")
+            raise
