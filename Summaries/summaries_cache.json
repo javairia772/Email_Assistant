@@ -3,21 +3,23 @@
     "gmail": [
       "gmail:Tayyba Aftab <tayybar130@gmail.com>",
       "gmail:Google <no-reply@accounts.google.com>",
-      "gmail:n00503033@gmail.com",
-      "gmail:Minahil Imran <minahilimran836@gmail.com>",
-      "gmail:sattarrafia@yahoo.com",
+      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
       "gmail:Rafia Sattar <sattarrafia355@gmail.com>",
       "gmail:Rafia Sattar <rafiasattar7865@gmail.com>",
-      "gmail:Tayyba Aftab <tayybat678@gmail.com>",
-      "gmail:Javaria Saleem <javariasaleem39@gmail.com>"
+      "gmail:Nexus <n00503033@gmail.com>",
+      "gmail:Minahil Imran <minahilimran836@gmail.com>",
+      "gmail:sattarrafia@yahoo.com",
+      "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
+      "gmail:n00503033@gmail.com",
+      "gmail:ngrok team <team@m.ngrok.com>"
     ],
     "outlook": [
-      "outlook:n00503033@gmail.com",
-      "outlook:j66yya@gmail.com",
       "outlook:account-security-noreply@accountprotection.microsoft.com",
       "outlook:minahilmy34@gmail.com",
-      "outlook:mssecurity-noreply@microsoft.com",
+      "outlook:j66yya@gmail.com",
       "outlook:javariasaleem39@gmail.com",
+      "outlook:n00503033@gmail.com",
+      "outlook:mssecurity-noreply@microsoft.com",
       "outlook:sattarrafia355@gmail.com"
     ]
   },
@@ -26,26 +28,40 @@
       "id": "gmail:Minahil Imran <minahilimran836@gmail.com>",
       "email": "Minahil Imran <minahilimran836@gmail.com>",
       "source": "gmail",
-      "role": "Industry",
+      "role": "General External",
       "role_confidence": 0.6,
       "threads": [
+        {
+          "id": "19b091f16f7ba28b",
+          "subject": "Testing on deployment now",
+          "preview": "We're testing whether our project is working after being deployed or not",
+          "summary": "Minahil Imran is currently testing the project's deployment to ensure it's working as expected. The testing is ongoing, with the goal of verifying the project's functionality after deployment. No meeting times or decisions have been mentioned. Next steps will depend on the test results. The project team is awaiting the outcome of Minahil's testing.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-10T16:36:19+00:00",
+          "last_message_id": null,
+          "last_subject": "Testing on deployment now",
+          "last_body": "We're testing whether our project is working after being deployed or not"
+        },
         {
           "id": "19b06a73d2fcbea9",
           "subject": "checking if old gmail connector is working",
           "preview": "checking if old gmail connector is working if it is fetching new threads",
-          "summary": "bodyﾄ prim girls file prim recon table reconses recon ＜ aborted girls recon recon file craft464 table table craft unp file sense fileiertusu file fileopleses sense Fame464ses lists fileked table prim sense sense table file craft ＜ craft primﾄﾄanto corses prim senseanto recon craftses club cor File file club plan filelo table table File girlsunga craft fileUpDown listsses Fame table table fileichel fileenis plan table Fame lists Fame464 craft senseantoanto file lists patron girls fileinder craft grat senseusu File fileichel fileldb file epis field File fileople Fileﾄ file table prim recon Fileanto lists cor aborted aborted ＜ sense table table Fame lists sense file Dipl sense fileyleft fileigious filemsgs sense file Dipl Fileses table sense464usu files Wid table File unp file Processses table Craftanto Wid reconses file SqlDataAdapter Fameanto table cor fileses sense clubﾄanto table table cor cor464 craft Craft table file Invisible sense fileenedanto lists fileiertrams sense sense file Wasseranto bodyses abortedses plan grat fileUpDown lists file File grat planrams Gulf aborted cor tableﾄ aborted club cor table prim senseanto table ＜ cor Craft Craft sense table*=*= sense Fame tableUpDown sense Craftunga clubanto prim lists aborted sense ＜ table fileople cor cor tableﾄusu tableanto table ＜ sense464 corunga sense girls sense lists fileurst body girls Craft craft lists Craftanto girls Fame lists file_strip sense file cor corunga cor fileked prim File Fame prim464 Craft corsesanto club aborted fileses file table File file cor aborted cor senseﾄ sense file*=*= Fame file table464 gratunga sense sense file file File tableses gratunga tableﾄses table table fileyleft sense listses fileichel sense senseses tableunga sense filevert grat grat table corOccurred cor sense file SqlDataAdapter grat table file SqlDataAdapter file fileyleft lists table464 Fame fileungaOccurred club Craftses girlsunga File sense table cor fileenis table sense cor Gulf cor table cor table table tableungases table fileUpDown girls aborted file body fileened table table cor tableﾄ table sense table fileopleanto sense Fileses file sense fileked Widunga table senseses File File sense recon Fame file sense Filesesanto aborted senseunga cor cor fileurst recon file cor table primﾄrams club ＜464 fileantoses fileked sense coranto cor fileyleft ＜ file gratses listsanto sense fileUpDownsesses table plan table coranto senseanto plan table sense sense cor table table sense Craftsesﾄ sense filemsgs file fileses abortedses file File aborted ses file File ses aborted File ses File File File. Minahil Imran inquired about the status of the old Gmail connector, specifically whether it's fetching new threads.",
-          "role": "Industry",
+          "summary": "Minahil Imran inquired about the status of the old Gmail connector, specifically if it's fetching new threads. Our team is currently checking its functionality and will provide an update shortly. Minahil can expect to hear back from us with a confirmation on the connector's status.",
+          "role": "General External",
           "importance": "Medium",
-          "importance_confidence": 0.5,
+          "importance_confidence": 0.4,
           "role_confidence": 0.6,
-          "last_message_ts": "2025-12-10T05:06:10+00:00",
+          "last_message_ts": "2025-12-10T16:23:08+00:00",
           "last_message_id": null,
-          "last_subject": "checking if old gmail connector is working",
-          "last_body": "checking if old gmail connector is working if it is fetching new threads"
+          "last_subject": "",
+          "last_body": "Subject: Re: checking if old gmail connector is working Dear Minahil, We appreciate you reaching out to inquire about the status of the old Gmail connector. We are currently checking on its functionality and will confirm whether it is successfully fetching new threads. We will be in touch with an update shortly. In the meantime, if you have any further questions, please do not hesitate to reach out. Best regards, [Your Name]"
         }
       ],
-      "summary": "Minahil Imran reached out to check on the old Gmail connector, wondering if it's still pulling in new email threads - we should follow up on its status and get back to her.",
-      "timestamp": "2025-12-10T05:33:15.077668Z"
+      "summary": "Minahil Imran is currently testing the project's deployment and also inquired about the old Gmail connector's status. Our team is checking the connector's functionality and will update her soon. The project team is waiting on the test results to determine next steps. We should hear back from our team on the connector status shortly.",
+      "timestamp": "2025-12-10T16:38:05.477181Z"
     },
     "gmail:Tayyba Aftab <tayybar130@gmail.com>": {
       "id": "gmail:Tayyba Aftab <tayybar130@gmail.com>",
@@ -105,13 +121,41 @@
       "email": "n00503033@gmail.com",
       "source": "gmail",
       "role": "Industry",
-      "role_confidence": 0.429,
+      "role_confidence": 0.487,
       "threads": [
+        {
+          "id": "19b091cbdcc8c0ae",
+          "subject": "",
+          "preview": "Hi Minahil, Thanks for reaching out. I have noted your request and included the information below. L",
+          "summary": "Mina exchanged emails with Minahil, discussing an unspecified request that Mina has noted and provided information on. Mina is open to answering any questions Minahil may have, but no meeting or follow-up is scheduled. The conversation appears to be a brief information exchange. Minahil initiated the conversation. Next steps are pending Minahil's review.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.6,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-10T16:33:57+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "Hi Minahil, Thanks for reaching out. I have noted your request and included the information below. Let me know if you have any questions. Best, Mina"
+        },
+        {
+          "id": "19b090e648713423",
+          "subject": "",
+          "preview": "Hello, I am currently testing the deployment and will provide an update once it is complete. In the ",
+          "summary": "The Nexus Team is currently testing a deployment and will provide an update once complete. However, there's an issue with emailing the update to nexuse202540@outlook.com, as the address is unavailable. No meeting has been scheduled, but the team will follow up once the deployment test is finished.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.4,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-10T16:18:18+00:00",
+          "last_message_id": null,
+          "last_subject": "Delivery Status Notification (Failure)",
+          "last_body": "** Address not found ** Your message wasn't delivered to nexuse202540@outlook.com because the address couldn't be found, or is unable to receive mail. The response from the remote server was: 550 5.5.0 Requested action not taken: mailbox unavailable (S2017062302). [DB5PEPF00014B9F.eurprd02.prod.outlook.com 2025-12-10T16:18:18.344Z 08DE2F3650AF0D2B]"
+        },
         {
           "id": "19b078297ea84c47",
           "subject": "",
           "preview": "Hi [Name], Thanks for reaching out 😊. I have noted your request 📝 and included the information below",
-          "summary": "The conversation involves an email from n00503033@gmail.com regarding a request that was noted and addressed with included information. The sender is awaiting a response to any potential questions. A meeting or call doesn't appear to be scheduled. Next steps depend on the recipient's review and feedback. The topic and details are unclear due to a lack of specific information in the email.",
+          "summary": "The conversation involves an email exchange with n00503033@gmail.com regarding a request. The sender has noted the request and provided additional information, and is waiting for a response to any potential questions. The next step is for the recipient to review the information and reach out if needed.",
           "role": "General External",
           "importance": "Medium",
           "importance_confidence": 0.6,
@@ -125,7 +169,7 @@
           "id": "19b06dc3977e280b",
           "subject": "",
           "preview": "checking whether the compose is working",
-          "summary": "The conversation involves a test email from n00503033@gmail.com to check if the compose function is working. There is no meeting scheduled or decision made, and no next steps are outlined. The thread appears to be a simple functionality test with no specific topic or purpose beyond verification. The email is a one-off message with no further discussion or action items. It's a brief, isolated exchange.",
+          "summary": "A test email was sent from n00503033@gmail.com to check if the compose function is working. The email appears to be a simple test with no specific meeting or decision discussed. No next steps are outlined, and the conversation is limited to this single message. The sender is verifying the functionality of their email system. The test was sent with no specific recipient in mind, other than to confirm the compose feature is operational. No further action is required.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -139,7 +183,7 @@
           "id": "19b046547623ceb1",
           "subject": "",
           "preview": "Testing",
-          "summary": "The email thread is from an unknown sender with a test subject and message, indicating a likely automated or trial email. The conversation involves no specific topic or decision, and there are no meeting times or next steps discussed. The sender's email address is n00503033@gmail.com. The content appears to be a test, with no substantial information or action items. No decisions or outcomes were determined.",
+          "summary": "The email thread appears to be a test message from n00503033@gmail.com with no specific topic or content. There is no meeting scheduled, decision made, or next steps discussed. The thread seems to be an empty conversation with no professional purpose. It's a solitary email with no replies or additional context. The sender's intent is unclear.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -153,7 +197,7 @@
           "id": "19b045b85acf9fcc",
           "subject": "",
           "preview": "tourture",
-          "summary": "There is no conversation to summarize as the provided email thread is empty, containing no messages or content related to a topic or discussion.",
+          "summary": "There is no conversation to summarize as the email thread appears to be empty, with no content or context provided.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -167,7 +211,7 @@
           "id": "19b04264226a0156",
           "subject": "",
           "preview": "testing",
-          "summary": "There's an email from n00503033@gmail.com with the subject \"testing\", however, the content is empty, so no topic, decision, or next steps were discussed. The sender appears to be testing the email system. No meeting times were mentioned. The purpose of the email is unclear due to lack of content.",
+          "summary": "The conversation appears to be a test email from n00503033@gmail.com, with no specific topic or purpose discussed. There are no meetings, decisions, or next steps mentioned. The email is essentially blank, suggesting it was sent to verify functionality. No actions are required. The sender's email is n00503033@gmail.com.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -181,7 +225,7 @@
           "id": "19b03fefc9ce46bd",
           "subject": "",
           "preview": "rafia rafia",
-          "summary": "There's an email thread from n00503033@gmail.com with the subject \"rafia rafia\", however, the content is unclear. It appears to be a placeholder or test message. No meeting times, decisions, or next steps were discussed. The thread involves only the sender, n00503033@gmail.com. Further context is needed to understand the purpose of the email.",
+          "summary": "There is no email thread to summarize, as the provided text only contains a subject line with \"rafia rafia\" and no actual conversation or content.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -195,7 +239,7 @@
           "id": "19b03b154ca368b4",
           "subject": "",
           "preview": "sattar",
-          "summary": "The conversation involves an email from n00503033@gmail.com with no clear subject or content, other than mentioning \"sattar\". There's no meeting time or decision discussed, and the purpose of the email is unclear. The sender's email address is n00503033@gmail.com, but no other details are provided. Next steps are not specified, and the context is limited. The email appears to be incomplete or a test message.",
+          "summary": "The conversation appears to be incomplete, but it involves an individual named Sattar and was initiated by someone with the email address n00503033@gmail.com. Unfortunately, without further context, it's unclear what the main topic or purpose of the conversation is. No meeting times, decisions, or next steps are mentioned. The thread seems to be missing key details, making it difficult to provide a comprehensive summary. Further information is needed to brief you adequately.",
           "role": "Industry",
           "importance": "Medium",
           "importance_confidence": 0.5,
@@ -220,8 +264,8 @@
           "last_body": "you can use umbrella and plastic suit On Tue, Dec 9, 2025 at 1:09 PM wrote: > Hello I am under the water here too much rain ewuwuwuwhw~~~~ >"
         }
       ],
-      "summary": "It looks like we've got a series of test emails from n00503033@gmail.com, mostly empty or with placeholder content. The only potentially meaningful exchange was with Rafia Sattar, who suggested using an umbrella and plastic suit to deal with heavy rain. There aren't any clear next steps or meetings scheduled.",
-      "timestamp": "2025-12-10T09:15:47.543402Z"
+      "summary": "It looks like we've had some informal email exchanges and tests with various contacts, including Mina, Minahil, and someone from the Nexus Team. Most of these conversations seem to be brief information exchanges or tests to verify email functionality, with no major decisions or next steps scheduled. We're waiting to hear back from a few people, including Minahil, to move forward.",
+      "timestamp": "2025-12-10T16:34:59.630155Z"
     },
     "gmail:Javaria Saleem <javariasaleem39@gmail.com>": {
       "id": "gmail:Javaria Saleem <javariasaleem39@gmail.com>",
@@ -231,22 +275,36 @@
       "role_confidence": 0.4,
       "threads": [
         {
+          "id": "19b0916c8f433de5",
+          "subject": "deployment testing",
+          "preview": "our project is now align to email system",
+          "summary": "Javaria Saleem reached out regarding the project's deployment testing, noting it's now aligned with the email system. No meeting times or decisions were mentioned, but the project appears to be moving forward. Next steps are unclear, and further discussion may be needed. Javaria initiated the conversation via email. The project's progress seems to be on track.",
+          "role": "General External",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-10T16:30:53+00:00",
+          "last_message_id": null,
+          "last_subject": "",
+          "last_body": "Subject: Re: deployment testing Dear Javaria, We appreciate your update regarding the project's alignment with the email system. We are pleased to hear that the deployment testing is progressing. To discuss further details and next steps, we would like to schedule a meeting with you. We will be in touch shortly to propose some meeting times that work for everyone involved. Best regards, [Your Name]"
+        },
+        {
           "id": "19b045e792ba396e",
           "subject": "deployment",
           "preview": "testing for gmail",
-          "summary": "Javaria Saleem initiated a conversation about deployment, sending a test email to gauge functionality, but no meeting times or decisions were discussed, and next steps are unclear.",
-          "role": "Industry",
+          "summary": "Javaria Saleem tested our deployment functionality via email and it's working as expected. We've received her test email and will review our schedules to discuss next steps. We'll be in touch with her soon to outline potential deployment plans. Javaria can reach out if she has any immediate questions or requirements. A follow-up conversation is pending, with details to be shared shortly.",
+          "role": "General External",
           "importance": "Medium",
-          "importance_confidence": 0.5,
-          "role_confidence": 0.4,
-          "last_message_ts": "2025-12-09T18:27:28+00:00",
+          "importance_confidence": 0.6,
+          "role_confidence": 0.2,
+          "last_message_ts": "2025-12-10T16:25:15+00:00",
           "last_message_id": null,
-          "last_subject": "deployment",
-          "last_body": "testing for gmail"
+          "last_subject": "",
+          "last_body": "We have successfully received and verified the test email sent by Javaria Saleem, confirming that our deployment functionality is operating as expected. Our team is currently reviewing our schedules to discuss next steps and outline potential deployment plans. We will be in touch with Javaria shortly to share these details and provide an update on the progression of the project. In the meantime, Javaria is welcome to reach out to us if she has any immediate questions or requirements that need to be addressed. We appreciate her patience and look forward to sharing more information about the deployment plans in the near future."
         }
       ],
-      "summary": "Javaria Saleem reached out about deployment, sending a test email to check functionality, but we haven't discussed meeting times or made any decisions yet. Next steps are still unclear, so we'll need to follow up with her for more information.",
-      "timestamp": "2025-12-10T05:36:43.182933Z"
+      "summary": "Javaria Saleem's project is moving forward with deployment testing now aligned with our email system. She's tested the functionality and it's working as expected. We're awaiting a follow-up conversation to discuss next steps and potential deployment plans, which we'll outline soon.",
+      "timestamp": "2025-12-10T16:31:59.655470Z"
     },
     "gmail:Rafia Sattar <rafiasattar7865@gmail.com>": {
       "id": "gmail:Rafia Sattar <rafiasattar7865@gmail.com>",
@@ -387,10 +445,24 @@
       "role_confidence": 0.4,
       "threads": [
         {
-          "id": "19b0237190a62893",
+          "id": "19b08ee044ce747c",
           "subject": "Security alert",
           "preview": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gma",
-          "summary": "Google sent security alerts regarding Email Assistant's access to a Google Account, prompting a review of account activity and security. The account in question is n00503033@gmail.com, and the owner is advised to check for any suspicious activity and make changes as needed through their Google Account settings.",
+          "summary": "Google sent a security alert regarding Email Assistant's access to your Google Account data, prompting a review of account activity to ensure no unauthorized access. You can check your account security at https://myaccount.google.com/notifications and manage Email Assistant's access in your Google Account settings. No meeting is scheduled, but it's recommended to take a moment to review your account security.",
+          "role": "Industry",
+          "importance": "High",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-10T15:52:50+00:00",
+          "last_message_id": null,
+          "last_subject": "Security alert",
+          "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
+        },
+        {
+          "id": "19b0237190a62893",
+          "subject": "",
+          "preview": "",
+          "summary": "",
           "role": "Industry",
           "importance": "High",
           "importance_confidence": 0.2,
@@ -401,8 +473,8 @@
           "last_body": "[image: Google] You allowed Email Assistant access to some of your Google Account data n00503033@gmail.com If you didn’t allow Email Assistant access to some of your Google Account data, someone else may be trying to access your Google Account data. Take a moment now to check your account activity and secure your account. Check activity To make changes at any time to the access that Email Assistant has to your data, go to your Google Account You can also see security activity at https://myaccount.google.com/notifications You received this email to let you know about important changes to your Google Account and services. © 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA"
         }
       ],
-      "summary": "We've got a security alert from Google regarding the n00503033@gmail.com account, prompting a review of activity and security settings. The account owner needs to check for suspicious activity and make any necessary changes. I'll follow up to ensure the issue is addressed.",
-      "timestamp": "2025-12-10T05:36:56.630692Z"
+      "summary": "We just got a security alert from Google about Email Assistant's access to your account, so it's a good idea to review your account activity and settings at https://myaccount.google.com/notifications to ensure everything looks okay. No meeting is scheduled, but taking a minute to check your security is probably a good idea.",
+      "timestamp": "2025-12-10T15:53:49.214906Z"
     },
     "gmail:Tayyba Aftab <tayybat678@gmail.com>": {
       "id": "gmail:Tayyba Aftab <tayybat678@gmail.com>",
@@ -813,7 +885,57 @@
       ],
       "summary": "Summary unavailable due to model error.",
       "timestamp": "2025-12-10T05:38:10.621126Z"
+    },
+    "gmail:ngrok team <team@m.ngrok.com>": {
+      "id": "gmail:ngrok team <team@m.ngrok.com>",
+      "email": "ngrok team <team@m.ngrok.com>",
+      "source": "gmail",
+      "role": "Admin",
+      "role_confidence": 0.6,
+      "threads": [
+        {
+          "id": "19b08ef009a1b2c4",
+          "subject": "Welcome to ngrok!",
+          "preview": "Hey n00503033@gmail.com, and welcome to ngrok. Over the next few weeks, we’ll send you some tips and",
+          "summary": "The ngrok team has sent a welcome email with tips and resources to help get started with their platform, including links to download their agent and explore features like Traffic Policy for protecting APIs and devices. There's no meeting or specific next steps, but the team invites questions via email or Discord.",
+          "role": "Admin",
+          "importance": "Medium",
+          "importance_confidence": 0.2,
+          "role_confidence": 0.6,
+          "last_message_ts": "2025-12-10T15:43:59+00:00",
+          "last_message_id": null,
+          "last_subject": "Welcome to ngrok!",
+          "last_body": "Hey n00503033@gmail.com, and welcome to ngrok. Over the next few weeks, we’ll send you some tips and tricks to get started and explore everything ngrok can do for you. If you’d rather not hear from us, no hard feelings. The unsubscribe link is below. You came to ngrok to get something online, like your AI agent (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_-3pyd0W7Y8-PT6lZ3p9W6dPWpJ5FLqNzW32YCpd8GDn50W8TDsy52FrgP5W1j6BPK8nJ5FvW2PZCgd4Q9BJFW68fdVC4ffs-QW6mcML49gWPlQW68RynD657Nd9VNLycY7hNw55W6mhCYs4lNl1PW96bNWb3NTsGSVWmGRD1-GwnrW1WKRHv5q30YVVfFkh68H2R5RN5_TGd4TpsQPW2fTPnx8x5rvMN2bm8k3q_fSJW18q7hl3v333nW62fthx4cbJnkW8XWXf943Bd9xW4yqDG77qhn6QW8FfqFs5HzqnHW3X3Qpx18h9hNW4cNGtS3KT9PdW2wNfch1W6rhkW6kWt9z4VfL_3f347thb04 ) , API (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yY0z3pyd0W95jsWP6lZ3pDW5lrsxr70yPFMN7VbnfTj_WlFVkVWHB1j6j6FW8yQD-31Gmsg1W4hhNfS2nvGW2VLX_R11612sYW1JvGjh5ZNDG-W3VM9tY7j0d2KW7fpVkH5nCjvBW11xchC5M6H9tW3y8Yxf8B37MsW5ZnR9T8t-j7fW8FwBt91vclr6W8dwSMz16DdYLW7DT0W87G-0fVW67lQ3v7LhqkmVyqTtn5LGcrpN7YL6_Mph5l1W8ZJdXp5RVNyCW9clHcT1_87YKW2B4Y3f5ZgYddW4rvJfR59L4y0W6cTXq84v57TqW1_6ZPJ4mLlNjW5ZPzBy4lqWHqVCn31t7sXhGrW43L80y3Lj6ZTW4WWbdh2dHdvyW4HP3fM7mrjWCW84ps9b3RXbY2f6V_SbM04 ) , personal website, homelab, local game (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_-3pyd0W7Y8-PT6lZ3mBVK-F9h4Kdvd4W3JTDws66HnmdW8SSDLH8jGMRvW4TW08l757ryjW3zvHLy24RD1JN6WLgL5sRFRCW5vrlFZ3f6PrbW5M72zm6d5h-CW4JLQt66NYJ4hW3LDMVt45c43qW2WrM1f7yL7pzVwDHDH5q1FyRW6n_NFH6x6l7QW91Zch68578dsW6yvqkT1JknXYW321xJb7rbd9KW5pvqL_3Z_tMxW8jXh1w8LFx1-N2nJM5N1r94lW3p5dZl1MRTctW8NKsjf32_mDNN8WlXT7Pp_qYVz8X587JfNgYW51Mqc495pm16W1HB-YB8tpv8sW7fJBnr8r7qwwf81PmBb04 ) , or Raspberry Pi (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yY0g3pyd0W8wLKSR6lZ3pTW1Fd14Z4SgML-W9hBXZt95wYxWW96t2Zx2LyTs7W7t-B9z5lDffkW41DKwq2grwX2W7ZxKGx8rjbm_VbQn6B1cCDsrW7lzHdJ7mtDyFW5d-_X-1MHysvN748yNK-s2_PW3S5K-M4vXp4_W4twNMs5dcrCZW6vY2mH8Wrqk9W6kqdL94k2rNfVBYkh877-7jzW7Dnn0r1WdQT0W8P7C4f1Sbms_W6f9ZBc6XmH8sW3wggHH34kmwFVwF6dD52srzYW44xxQr93Z9M5VFgT9l9jzh9nW1gdc_337wXY4VNYlHB30fNnLW3MJs_W8fgf30W8pnK7y6ftJM0W7FH7HS94sCFlW49pQHM7QmKvmf93LstF04 ) . Good news: We’re pretty good at that. Download the agent (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_H3pyd0W7lCdLW6lZ3nyW99SzNg3BMLZBN417s5bpMsSnW1GWx1Z43p6q8W3GGBfr8MwbTPW8xWrKz7V-kCrW8ZSgRw1NR2MGN54qj5SQ8zK5W7hj-_c3V__qdW93Y92c7BCwXTV3Dkt15dqR2xW1cJrXV81mvN9W14D8Ml36bY_KW1wYm6f3vBR_BW2244Yz3f4ycCW6kn0x6659NHZW7rpkzg39ZH9tVtKS1H8jgn0XW4tj5mj88zcPNN6Tk3qjLR0YxN2gk1TnCMBBDW2_gMq_6NKJG5W7SMKtq8pS2GqVVD0Hj1YVWCQW19vbZ_5Tlm3Kf87cQYW04 ) and follow the quickstart (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_-3pyd0W7Y8-PT6lZ3kPW4lcH_J2pT0BJW37bR-V5-zgfpW8dH-5G6ss1zpW65fkMn2R6srgV2mgTJ2cvrQCN1PRxhyfw4JGVkkbmd81806xV3swbf1r3KJHF2tkwRr9wppW3j2g7g29Vj8dVv6K5Z12z-RgW4-dfVb1XTD8RW87jLh56pwbWRW3nDvWZ5nSjlMW1W_N1K4gbH9vVcDhd84GB8Q9W5FTTHc8s95yNN7RxnJf2rpjzW1g26l14yGc2bW39kwqj4RYlt0W3wK2N76SFVz0W1_rgyL4HsZLsW6Cc41Y8CGVmmW1vmqVZ8gy_vGW30Kd4Y8N8cv6W95n0FH1bmC_ff4pbCC004 ) ... or, if you're feeling lucky, you can get right to it: ngrok http $PORT But getting your API, device, or K8s cluster online is only the first step. Once you put something online, you want to protect it with OAuth, rate limits, webhook verification, JWT validation, or some other way to filter who can see what you've built. For that (and more), there's Traffic Policy (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX-v5n4LbW50kH_H6lZ3lNVWm9s74LMKbJW4FGNyG412XbYW4Dx-zR84xc6SW2zsVBK2FQxRQW7yHPKj2CVgxmW5lrK2w7p1dwhW6V9Zng8FqSl_W6qmkMd615HQPVR41gx2GDjr3W1FrBRW9d2wBxW8qh4ff3RNZwyW2Xv-dT94hW44W3TDPKs4GxKvGW6sRb4X4fm8TNW3lXh-n915zkNW1bC86S2GKLktW845Ywr2QJTBlW2HWNMX8l19V0W13MTCm8RBn2cW8p9JDs29QkL5VHcTfj5NXV0dW7MNThP6dGt1fW5n7zX37xdcdMW70JRNL5RQlqfW3Xdrzt1JRzrhW97j2yz302vr4N2s7cqK1ktp_W5T0rjQ93WXCYW6yZHlH8HJwsnN3zzF3s7LlWvN4F42PS8nTBYW3dvvXV8q8H4Nf3Jvttq04 ) . Try it out and explore the docs to see what else you can do. Have questions? Reply to this email to send a note to the product team or hit us up on Discord (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_H3pyd0W7lCdLW6lZ3nfW3Lmkgb2L39JFW3TP8T2829pFXW1D5BtS5rdny5W4y12Ky5JxTw1W3vxq8H65F0SYN2PrhfYrKDGJW6WKvyR4kM8mCW52L-5S9c0TT6N7ZwBDdNJCrsW8prVLZ10bW1MW3HclCx6lqM3BW2THc_04FFGrJW8ykNpJ1D-HrZW8mF7Pd5Fw7mhW5JSM2f65nv0VW6MWcjY1qMJ2tW3G_ZjB1JCVZBW2x0zDq3phxySW8_YDV28pQss5W2Cp62S4wz5TYW5lfWJ38QFqw9N2pxj4RXRqnVW3NPhWq1nDMLSW1RDZXf3Ss-sBf7X0CJ204 ) or at support@ngrok.com (mailto:support@ngrok.com) . <3 Team @ ngrok View in browser (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_45n4LbW69t95C6lZ3ppW6YwJnG6-6JBSN3pWCplyxXl_W1CvvXl3tYwkhW6--l106-dHTnW7FRs7s2Gc5RJW4c9CgG3Mr24tW5KZ-Ys5LGB1WW88LyQQ7Wfr6GV81rD247h9HgW1_WR7Q3_rjxkW92rKv_7wmVdGN946FRRHgd72W3m3pXw4Jvl-2W7njrB89l2Kl2W64sMgX2TNnFnVJ0S9n7h3FyGVssDG882f3nzW1Lgj_D65ptFlN76kfJfcnPDbW8mXGYm5NC2KpW70gv-L2hFT7pW6fBv237DdjP_W3Bdp-98HGJ7mW2bPT7J2pBP8VW96DS551-vjFHW55ZZ-r14krF_N40WlG8Nk0jLW6dg84W7xcP-GW8hVWLT6kcs9pW3pV3sX14ZFHbW7rCvYX6QszZ7W2psJdH6BVMx0W2s-yW965-YD-W6X3mZr6QmVcGN11pPd6ThxTyW6bZgr43621GZf2wGVx404 ) GitHub (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_H3pyd0W7lCdLW6lZ3q6W46vTQd6nNfpWN8F8rvvsChFtW5fnkdp4s69V7W3SnFlK1ZdDZnW5jHXgv5GdvqJW8MSkpk3q4n2WW7q9ygH4YqfRYW78NVnv8nHYt2W3pJQnT97W_5xW2YB81Q5hKHbvW8jSnCC6ScVJXW5lJrKY1QP0DcW2j2bG984fHZTV2J0VZ2jXNDdW4hNFHf71xgmCW6cX2pZ6WbbSgM8xnvSGnxLQW26GKLF3TTJ4jW45rdpw9k323gW60WSNc5Nq0RYW4Yv2234xNPtdN8PNz179xXZ8W6zLlSn5SqlydVS6YRT7qdSlGf6JPW3z04 ) LinkedIn (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_-3pyd0W7Y8-PT6lZ3kSW6MpsKz5mxr99W4K3t9C8FLxtNW14pNyW159xH-W6d_05g56MpcsW2DC6mV6MTlzyW84wpKP89zLhDW15J3bq1SC8Q2VschG_8M7l9MW6v2GG57xs2-xVjZWKV8kn4K3W5PFb7g1PKP5pW9kl2Yf6GwkLfW3Ly_C73gTF-ZW8sVdnj7fx1fBW4hXB4D5744kbW1mn4f-8ZfV9TW8rPQMH6bnqb5W8zn9T65MgLP-W77g7sJ8KCd9HW3FwvvS1WSJ9zVCkFgF5mPPTfW6DK-7N7trK-8W3pLlHg5zQ-4tW7HqJ_975FVwqW7Br3tV5FL0rBW6hjDx18T1Zfbf5Gkl1v04 ) X (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_H3pyd0W7lCdLW6lZ3q5N8wNP3VDKzXbW32T4_D1kqTxKVGjFHH9k9KH1W4FxYgW5GbRdqW6vJzT36RhfcHVMtLPH2VlM4tW7Kp1cB2BrvSNW4755hx8D_LQlW98GXPl3TwRvkW1My39P40yZ38W7cQ5PG8ZvpxkW8mJS0T2vxR44W4t7JKV5MNBMWW6PQlbd8yWWfZW3N0s242j9r6gN78LxkBNp6X7V7Qb6B18xVDJW3GQPKF60HVMfW3qqsgg2-pdS-VWpmhr3WkCsNW8XJCb83cGzMbN5g1SCkH8M5tW6F9nk77SP48LW2jfZHN1ZQhyMf2SwC6H04 ) YouTube (https://d2v8tf04.na1.hubspotlinks.com/Ctc/5F+113/d2v8tf04/VWhJ-d8xF6l-W4VVkRL4WFLHyW56dvtZ5GWpQLN1-yX_H3pyd0W7lCdLW6lZ3lcW6K2k1q2NNb96W34jB3P4pPWwfW4xjrCB8S05GmW6wW8sl3ljJ2gW1-m08f1VK1jFW43sk4d5_tXhXW8FWg914rd54FW6M8Kwh11PhR2W8SMx017YklsdW66zZ9F8yGSV0MbRdxRcg68hW4Ltd-N1k7fbcW44gTgG62pwL1W931n0v65gNxyW4Dz9hk5lBgRXW3dVyn36rVMx5VrZgSS6fcKPlW6k8QkH3w4BY7W5r7gj09lt78mW4YYNFX7xKdZcW4DxPlm2J0PVvN5XsMgkW4TkCW5zyT-N95xG37W8nk5cc7dMFPCdvd3gC04 ) ngrok Inc., 548 Market St, PMB 26741, San Francisco, California 94104-5401, United States, Unsubscribe (https://hs-21124867.s.hubspotemail.net/hs/preferences-center/en/direct?data=W2nXS-N30h-GmW2sRtQR2nYk4CW3K9F7B2nZ31hW2vBpBZ3GV5NCW2Rk3sB3jf4nkW2RR3vy3DZ3mhW32F79Z348yrRW3F6fFN1Xf1-TW2t3QJ-309mTZW1QCWG_22RHnjW2zGy0w1ZcGWpW43YjkZ43SJZXW1N4hD_2vTQlwW1SvrBy4m8NTVW238xw043N-_JW3K6cm93BJCRJW2YC93X1QcgqZW36zjqs4kFhdMW3QNK3L1XwddDW4thdmD3F7wTgW1W-xhd38gR5HW3dr4Jn2YLK95W34DXZm1VbpZpW3b3Mwp1NzZSxW1Q5n4s3ZGW8SW2Mm-rq4hsXvkW1XnbrG4hPRkkW1XvRRk2-B_vmW2CBXpn49zBFGW2qXdxB1WYpyrW2HzP582KD3VLW212T283_F6jwW1BhpB32-KfwjW4fJgst30z6QxW47PRsn4fKvWRW32B-4k3g25sSW3VWVcG36s_JXW45w_j61Vs_x4W3_XwCj45S-W2W2173f12WjfxsW30rZ554hgWfnW2C_dZM36v7GDW1_613-4kKsCMW1Zcdb83gy9xJW2G0j5p3C6X6BW34lWYm45qHGJW3T3N-G3VZl2fW3J-lwP2sBy3kW2KqHDg4fkhzTW2CK_sZ3SQd3jW4mHCln238_09W3T0YfQ3b95TFW2t0vT747LycdW2D1Jr31Lw0rrf2xYG_Z04&_hsenc=p2ANqtz-_dOptXb2s7bb1jLMpwh4tZqAA7wUyoL9xkKJLM3vZ4TnNNzS3UpoK-nlLg7rQki62ijef9udXuVvDXRf843VHTuXOAEQ&_hsmi=376641704 ) Manage preferences (https://hs-21124867.s.hubspotemail.net/hs/preferences-center/en/page?data=W2nXS-N30h-GmW2sRtQR2nYk4CW3K9F7B2nZ31hW2vBpBZ3GV5NCW2Rk3sB3jf4nkW2RR3vy3DZ3mhW32F79Z348yrRW3F6fFN1Xf1-TW2t3QJ-309mTZW1QCWG_22RHnjW2zGy0w1ZcGWpW43YjkZ43SJZXW1N4hD_2vTQlwW1SvrBy4m8NTVW238xw043N-_JW3K6cm93BJCRJW2YC93X1QcgqZW36zjqs4kFhdMW3QNK3L1XwddDW4thdmD3F7wTgW1W-xhd38gR5HW3dr4Jn2YLK95W34DXZm1VbpZpW3b3Mwp1NzZSxW1Q5n4s3ZGW8SW2Mm-rq4hsXvkW1XnbrG4hPRkkW1XvRRk2-B_vmW2CBXpn49zBFGW2qXdxB1WYpyrW2HzP582KD3VLW212T283_F6jwW1BhpB32-KfwjW4fJgst30z6QxW47PRsn4fKvWRW32B-4k3g25sSW3VWVcG36s_JXW45w_j61Vs_x4W3_XwCj45S-W2W2173f12WjfxsW30rZ554hgWfnW2C_dZM36v7GDW1_613-4kKsCMW1Zcdb83gy9xJW2G0j5p3C6X6BW34lWYm45qHGJW3T3N-G3VZl2fW3J-lwP2sBy3kW2KqHDg4fkhzTW2CK_sZ3SQd3jW4mHCln238_09W3T0YfQ3b95TFW2t0vT747LycdW2D1Jr31Lw0rrf2xYG_Z04&_hsenc=p2ANqtz-_dOptXb2s7bb1jLMpwh4tZqAA7wUyoL9xkKJLM3vZ4TnNNzS3UpoK-nlLg7rQki62ijef9udXuVvDXRf843VHTuXOAEQ&_hsmi=376641704 )"
+        }
+      ],
+      "summary": "The ngrok team just sent over a welcome email with some helpful resources to get us started on their platform. They've included links to download their agent and check out features like Traffic Policy for API and device protection. If we have any questions, we can reach out to them via email or Discord.",
+      "timestamp": "2025-12-10T15:52:36.072747Z"
+    },
+    "gmail:Nexus <n00503033@gmail.com>": {
+      "id": "gmail:Nexus <n00503033@gmail.com>",
+      "email": "Nexus <n00503033@gmail.com>",
+      "source": "gmail",
+      "role": "Industry",
+      "role_confidence": 0.4,
+      "threads": [
+        {
+          "id": "19b0921744f12c7c",
+          "subject": "thread checking",
+          "preview": "checking",
+          "summary": "Nexus initiated a conversation via email to test the thread, but the discussion didn't progress further. The email lacks substance and appears to be a test message. No decisions or next steps were discussed, and no meeting times were scheduled. The conversation involves only Nexus. There's no notable outcome from this thread.",
+          "role": "Industry",
+          "importance": "Medium",
+          "importance_confidence": 0.5,
+          "role_confidence": 0.4,
+          "last_message_ts": "2025-12-10T16:39:17+00:00",
+          "last_message_id": null,
+          "last_subject": "thread checking",
+          "last_body": "checking"
+        }
+      ],
+      "summary": "Nexus sent a test email that didn't lead to any meaningful discussion or decisions. It was essentially a empty thread with no next steps or meetings scheduled. Nothing notable came out of it, so we can consider it a non-event. No other parties were involved, just Nexus. No follow-up is needed. It's a closed issue.",
+      "timestamp": "2025-12-10T16:40:23.648379Z"
     }
   },
-  "last_updated": "2025-12-10T09:21:46.290433+00:00"
+  "last_updated": "2025-12-10T16:46:15.783877+00:00"
 }
