@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Assistant Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; color: #1f2937; background: #f6f8fa; }
+    .layout-root { display: flex; min-height: 100vh; }
+    .sidebar { width: 220px; padding: 30px 22px 0 24px; background: #21293a; color: #dbeafe; border-right: 1.5px solid #e5e7eb; }
+    .sidebar h2 { color: #60a5fa; font-size: 19px; margin-bottom: 16px; }
+    .sidebar ul { margin: 0; padding: 0; list-style: none; }
+    .sidebar .nav-section { font-size: 13px; color: #9ca3af; text-transform: uppercase; margin-top: 40px; }
+    .sidebar .coming-soon { font-size: 12.5px; color: #94a3b8; margin-top: 30px; }
+    .main { flex: 1; padding: 36px 44px 24px 44px; min-width: 0; }
+    .title-row { display: flex; align-items: flex-baseline; gap: 20px; }
+    h1 { font-size: 26px; margin: 0; font-weight: 700; color: #292524; }
+    .subtitle { color: #64748b; font-size: 15.2px; margin: 6px 0 20px 0; }
+    .statsbar { margin-top: 18px; margin-bottom: 24px; display: flex; gap: 32px; padding: 0 5px; }
+    .stat { display: flex; flex-direction: column; align-items: flex-start; background: #fff; border-radius: 9px; padding: 18px 27px 14px 18px; box-shadow: 0 1.5px 8px 0 #1111; }
+    .stat-label { color: #64748b; font-size: 13px; letter-spacing: .06em; margin-bottom: 5px; }
+    .stat-value { color: #111827; font-size: 23px; font-weight: 600; }
+    
+    .filter-bar {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px #0001;
+      margin-bottom: 20px;
+    }
+    .filter-bar select, .filter-bar button {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+    .filter-bar button {
+      background: #2563eb;
+      color: #fff;
+      cursor: pointer;
+    }
+    .filter-bar button:hover { background: #1e40af; }
+
+    .email-data-card { margin-top: 36px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px 0 #1112; }
+    th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e5e7eb; }
+    th { background: #f3f7fb; font-weight: 600; color: #374151; font-size: 15px; }
+    tr:last-child td { border-bottom: 0; }
+    td.summary { color: #374151; max-width: 425px; }
+    .tag { display: inline-block; padding: 2.5px 9px; border-radius: 999px; font-size: 12.7px; font-weight: 620; border: 1px solid transparent; }
+    .tag-student { background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe; }
+    .tag-faculty { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+    .tag-vendor { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+    .tag-researcher { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+    .tag-admin { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
+    .tag-default { background: #e5e7eb; color: #374151; border-color: #d1d5db; }
+    .clickable-row { cursor: pointer; transition: background-color 0.12s ease; }
+    .clickable-row:hover { background: #f8fafc; }
+    .email-link { color: inherit; text-decoration: none; }
+    .email-link:hover { text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <div class="layout-root">
+    <aside class="sidebar">
+      <h2>Email Assistant</h2>
+      <div class="nav-section">NAVIGATION <span style="font-size:11px; color:#64748b;"></span></div>
+      <ul>
+        <li style="color:#bae6fd; margin: 19px 0 7px 0; font-weight:560;">Dashboard</li>
+      </ul>
+      <div style="margin-top:26px;">
+        <button class="btn" style="width:100%; text-align:center; padding:10px 12px;" onclick="openCompose()">Compose Email</button>
+        <button class="btn" style="width:100%; text-align:center; padding:10px 12px; margin-top:10px; background:#0ea5e9;" onclick="window.location='/sent'">Sent</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="title-row">
+        <h1>Email Assistant Dashboard</h1>
+      </div>
+      <div class="subtitle">Monitor, organize, and analyze your multi-source institutional email conversations.</div>
+
+      <div class="statsbar">
+        <div class="stat"><span class="stat-label">Unique Contacts</span><span class="stat-value" id="contact-count">{{ unique_contacts }}</span></div>
+        <div class="stat"><span class="stat-label">Total Summaries</span><span class="stat-value" id="summary-count">{{ summary_count }}</span></div>
+      </div>
+
+      <!-- 🔽 Filter bar -->
+      <div class="filter-bar">
+        <label for="roleFilter">Role:</label>
+        <select id="roleFilter">
+          <option value="">All Roles</option>
+          <option value="Student">Student</option>
+          <option value="Faculty">Faculty</option>
+          <option value="Vendor">Vendor</option>
+          <option value="Researcher">Researcher</option>
+          <option value="Admin">Admin</option>
+          <option value="Uncategorized">Uncategorized</option>
+        </select>
+
+        <button onclick="clearFilters()">Clear Filters</button>
+      </div>
+
+      <div class="email-data-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Summary</th>
+              <th>Date</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="rows-tbody">
+            {% for it in items %}
+            <tr class="clickable-row" data-role="{{ it.role }}" onclick="window.location='{{ it.detail_url }}'">
+              <td>{{ it.id }}</td>
+              <td><a class="email-link" href="{{ it.detail_url }}">{{ it.email }}</a></td>
+              <td><span class="tag {{ it.role_class }}">{{ it.role }}</span></td>
+              <td class="summary">{{ it.summary }}</td>
+              <td>{{ it.date }}</td>
+              <td>{{ it.source }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Compose Modal -->
+  <div id="compose-modal" style="display:none; position:fixed; inset:0; background:#0006; align-items:center; justify-content:center; z-index:9999;">
+    <div style="background:#fff; padding:20px; border-radius:8px; width:520px; max-width:95%; box-shadow:0 8px 24px #0003;">
+      <h3 style="margin-top:0;">Compose Email</h3>
+      <label>To</label>
+      <input id="compose-to" type="email" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="recipient@example.com" />
+      <label>Subject</label>
+      <input id="compose-subject" type="text" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="Subject" />
+      <label style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <span>Body</span>
+        <select id="compose-template" style="padding:6px; border:1px solid #d1d5db; border-radius:6px; font-size:14px;">
+          <option value="">No template</option>
+          <option value="employee">Employee</option>
+          <option value="faculty">Faculty</option>
+          <option value="student">Student</option>
+          <option value="industry">Industry</option>
+          <option value="general">General</option>
+          <option value="international">International</option>
+        </select>
+      </label>
+      <textarea id="compose-body" style="width:100%; min-height:140px; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;"></textarea>
+      <label>Prompt (one-liner to rewrite body)</label>
+      <input id="compose-prompt" type="text" style="width:100%; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;" placeholder="e.g., make it shorter and more formal" />
+      <button class="btn" style="width:100%; background:#1f2937; margin-bottom:8px;" onclick="regenerateBody()">Apply prompt to regenerate body</button>
+      <label>Attachments (base64 JSON array)</label>
+      <textarea id="compose-attachments" placeholder='[{"filename":"file.txt","content_base64":"..."}]' style="width:100%; min-height:80px; padding:8px; margin:6px 0 10px 0; border:1px solid #d1d5db; border-radius:6px;"></textarea>
+      <div id="compose-status" style="margin-top:6px; color:#6b7280; font-size:14px;"></div>
+      <div style="margin-top:12px; display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn" style="background:#6b7280;" onclick="closeCompose()">Cancel</button>
+        <button class="btn" onclick="sendCompose()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function escapeHTML(s) {
+      return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    }
+
+    const composeTemplates = {
+      employee: "Dear [Name],\n\nThank you for your message. I wanted to provide a quick update and next steps. Please let me know if you need anything else.\n\nBest regards,\n[Your Name]",
+      faculty: "Dear Professor [Last Name],\n\nI hope you are well. I am writing regarding [course/project/topic] and wanted to share the latest details below.\n\nSincerely,\n[Your Name]",
+      student: "Hi [Name],\n\nThanks for reaching out. I have noted your request and included the information below. Let me know if you have any questions.\n\nBest,\n[Your Name]",
+      industry: "Hello [Name],\n\nI appreciate your interest. Please find the requested details and proposed next steps below. Happy to schedule a follow-up call.\n\nKind regards,\n[Your Name]",
+      general: "Hello [Name],\n\nThank you for your email. I have included the relevant information and next steps below.\n\nRegards,\n[Your Name]",
+      international: "Dear [Name],\n\nI hope you are doing well. I am sharing the requested information and next actions below. Please let me know if you prefer a meeting time.\n\nWarm regards,\n[Your Name]"
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const templateSelect = document.getElementById('compose-template');
+      const bodyEl = document.getElementById('compose-body');
+      if (templateSelect && bodyEl) {
+        templateSelect.addEventListener('change', () => {
+          const choice = templateSelect.value;
+          if (choice && composeTemplates[choice]) {
+            bodyEl.value = composeTemplates[choice];
+          }
+        });
+      }
+    });
+
+    function toPKT(dateStr) {
+      if (!dateStr) return '';
+      try {
+        let asISO = dateStr.match(/Z|[+-]\d{2}:?\d{2}$/) ? dateStr : dateStr + 'Z';
+        let d = new Date(asISO);
+        let utc = d.getTime() + d.getTimezoneOffset() * 60000;
+        let pkt = new Date(utc + 5 * 60 * 60 * 1000);
+        let yr = pkt.getUTCFullYear();
+        let mo = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][pkt.getUTCMonth()];
+        let day = pkt.getUTCDate().toString().padStart(2,'0');
+        let h24 = pkt.getUTCHours();
+        let mn = pkt.getUTCMinutes().toString().padStart(2,'0');
+        let ampm = h24 >= 12 ? 'PM' : 'AM';
+        let h12 = h24 % 12; if (h12 === 0) h12 = 12;
+        let hr = h12.toString().padStart(2, '0');
+        return `${day} ${mo} ${yr}, ${hr}:${mn} ${ampm} (PKT)`;
+      } catch {
+        return escapeHTML(dateStr);
+      }
+    }
+
+    function makeRow(it) {
+      const detailUrl = it.detail_url || `/contact/${encodeURIComponent(it.id || '')}`;
+      return `<tr class="clickable-row" data-role="${it.role || ''}" onclick="window.location='${detailUrl}'">
+        <td>${escapeHTML(it.id || '')}</td>
+        <td><a class="email-link" href="${detailUrl}">${escapeHTML(it.email || '')}</a></td>
+        <td><span class="tag ${it.role_class || 'tag-default'}">${escapeHTML(it.role || '')}</span></td>
+        <td class="summary">${escapeHTML(it.summary || '')}</td>
+        <td>${toPKT(it.date || '')}</td>
+        <td>${escapeHTML(it.source || '')}</td>
+      </tr>`;
+    }
+
+    async function updateTable() {
+      const resp = await fetch('/api/summaries');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      const rows = data.items || [];
+      document.getElementById('rows-tbody').innerHTML = rows.map(makeRow).join('');
+      document.getElementById('contact-count').textContent = rows.length;
+      document.getElementById('summary-count').textContent = (data.count || rows.length);
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const role = document.getElementById('roleFilter').value;
+      const rows = document.querySelectorAll('#rows-tbody tr');
+      rows.forEach(r => {
+        const matchesRole = !role || r.dataset.role === role;
+        r.style.display = (matchesRole) ? '' : 'none';
+      });
+    }
+
+    function clearFilters() {
+      document.getElementById('roleFilter').value = '';
+      applyFilters();
+    }
+
+    document.getElementById('roleFilter').addEventListener('change', applyFilters);
+    setInterval(updateTable, 60000);
+    window.addEventListener('DOMContentLoaded', updateTable);
+
+    function openCompose() {
+      document.getElementById('compose-modal').style.display = 'flex';
+      document.getElementById('compose-status').textContent = '';
+    }
+    function closeCompose() {
+      document.getElementById('compose-modal').style.display = 'none';
+    }
+    async function regenerateBody() {
+      const body = document.getElementById('compose-body').value.trim();
+      const prompt = document.getElementById('compose-prompt').value.trim();
+      const template = document.getElementById('compose-template').value;
+      const statusEl = document.getElementById('compose-status');
+
+      if (!body && !template) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = 'Provide a body or select a template first.';
+        return;
+      }
+
+      statusEl.style.color = '#6b7280';
+      statusEl.textContent = 'Generating...';
+      try {
+        const resp = await fetch('/api/compose-email/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ body, prompt, template })
+        });
+        const data = await resp.json();
+        if (data.ok) {
+          document.getElementById('compose-body').value = data.generated_body || body;
+          statusEl.style.color = '#10b981';
+          statusEl.textContent = 'Body updated.';
+        } else {
+          statusEl.style.color = '#dc2626';
+          statusEl.textContent = data.detail || data.error || 'Generation failed.';
+        }
+      } catch (err) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = 'Generation failed.';
+      }
+    }
+    async function sendCompose() {
+      const to = document.getElementById('compose-to').value.trim();
+      const subject = document.getElementById('compose-subject').value.trim();
+      const body = document.getElementById('compose-body').value.trim();
+      const attachmentsRaw = document.getElementById('compose-attachments').value.trim();
+      let attachments = [];
+      if (attachmentsRaw) {
+        try { attachments = JSON.parse(attachmentsRaw); } catch { attachments = []; }
+      }
+      if (!to || !subject || !body) {
+        document.getElementById('compose-status').style.color = '#dc2626';
+        document.getElementById('compose-status').textContent = 'To, subject, and body are required.';
+        return;
+      }
+      document.getElementById('compose-status').style.color = '#6b7280';
+      document.getElementById('compose-status').textContent = 'Sending...';
+      const resp = await fetch('/api/compose-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to, subject, body, attachments })
+      });
+      const data = await resp.json();
+      if (data.ok) {
+        document.getElementById('compose-status').style.color = '#10b981';
+        document.getElementById('compose-status').textContent = 'Sent successfully.';
+        setTimeout(closeCompose, 1200);
+      } else {
+        document.getElementById('compose-status').style.color = '#dc2626';
+        document.getElementById('compose-status').textContent = data.error || 'Failed to send.';
+      }
+    }
+  </script>
+</body>
+</html>

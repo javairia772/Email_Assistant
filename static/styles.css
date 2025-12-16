@@ -1,0 +1,26 @@
+/* Base layout */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 24px; color: #1f2937; background: #ffffff; }
+h1 { margin-bottom: 16px; font-size: 22px; }
+
+/* Toolbar */
+.toolbar { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; }
+.btn { background: #2563eb; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; transition: background .15s ease; }
+.btn:hover { background: #1d4ed8; }
+.btn:disabled { background: #9ca3af; cursor: not-allowed; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+th { background: #f9fafb; font-weight: 600; position: sticky; top: 0; z-index: 1; }
+tbody tr:hover { background: #f9fafb; }
+
+/* Tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid transparent; }
+.tag-student { background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe; }
+.tag-faculty { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+.tag-vendor { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.tag-default { background: #e5e7eb; color: #374151; border-color: #d1d5db; }
+
+/* Cells */
+.summary { color: #374151; max-width: 800px; }
+
