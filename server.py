@@ -2,6 +2,7 @@
 import os
 import traceback
 from dotenv import load_dotenv
+import re
 
 # Load environment variables from .env file
 load_dotenv('.envSecrets')
@@ -447,24 +448,16 @@ def agent_aggregate_contacts(max_threads: int = 50, include_outlook: bool = True
 # MCP Email Sending for Assignment Emails
 # --------------------
 
+EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
+
+def validate_email(email: str) -> bool:
+    """Simple email format validation"""
+    return bool(email and EMAIL_REGEX.fullmatch(email.strip()))
+
 def sendReplyFromMCP(mcp_data: dict):
     """
     Process MCP data and send an assignment email to a student.
-    This function extracts MCP data, builds email body from template,
-    and sends using the existing email sending infrastructure.
-    
-    Args:
-        mcp_data: Dictionary with keys:
-            - Student_Email: string
-            - Student_Name: string
-            - TaskDescription: string
-            - Supervisor_Name: string
-            - Supervisor_Email: string
-            - Document: string | null
-            - Deadline: string | null
-    
-    Returns:
-        dict: {"ok": True/False, "error": string (if failed)}
+    Includes validations for required fields and email formats.
     """
     try:
         # Extract MCP data with defaults
@@ -473,106 +466,113 @@ def sendReplyFromMCP(mcp_data: dict):
         task_description = mcp_data.get("TaskDescription", "").strip()
         supervisor_name = mcp_data.get("Supervisor_Name", "").strip()
         supervisor_email = mcp_data.get("Supervisor_Email", "").strip()
-        document = mcp_data.get("Document", "").strip() if mcp_data.get("Document") else None
-        deadline = mcp_data.get("Deadline", "").strip() if mcp_data.get("Deadline") else None
-        
+        researcher_name = mcp_data.get("Researcher_Name", "").strip()
+        researcher_email = mcp_data.get("Researcher_Email", "").strip()
+
         # Validate required fields
         if not student_email:
             return {"ok": False, "error": "Student_Email is required"}
+        if not validate_email(student_email):
+            return {"ok": False, "error": "Student_Email is invalid"}
+
         if not task_description:
             return {"ok": False, "error": "TaskDescription is required"}
-        
+        if not isinstance(task_description, str):
+            return {"ok": False, "error": "TaskDescription must be a string"}
+
+        if supervisor_email and not validate_email(supervisor_email):
+            return {"ok": False, "error": "Supervisor_Email is invalid"}
+
+        if researcher_email and not validate_email(researcher_email):
+            return {"ok": False, "error": "Researcher_Email is invalid"}
+
+        if student_name and not isinstance(student_name, str):
+            return {"ok": False, "error": "Student_Name must be a string"}
+        if supervisor_name and not isinstance(supervisor_name, str):
+            return {"ok": False, "error": "Supervisor_Name must be a string"}
+        if researcher_name and not isinstance(researcher_name, str):
+            return {"ok": False, "error": "Researcher_Name must be a string"}
+
         # Build email subject
         subject = f"Assignment: {task_description[:50]}{'...' if len(task_description) > 50 else ''}"
-        
-        # Build email body using template with placeholders
-        body = f"""Dear {student_name if student_name else 'Student'},
 
-I hope this email finds you well. I am writing to assign you the following task:
+        # Build email body
+        body_lines = [
+            f"Dear {student_name if student_name else 'Student'},",
+            "",
+            "I hope this email finds you well. You have been assigned the following task:",
+            "",
+            f"Task Description:\n{task_description}",
+            ""
+        ]
 
-Task Description:
-{task_description}
+        # Add researcher info
+        if researcher_name or researcher_email:
+            body_lines.append("For guidance or questions, you may contact the researcher:")
+            if researcher_name:
+                body_lines.append(f"Researcher Name: {researcher_name}")
+            if researcher_email:
+                body_lines.append(f"Researcher Email: {researcher_email}")
+            body_lines.append("")
 
-"""
-        
-        # Add deadline if provided
-        if deadline:
-            body += f"""Deadline: {deadline}
-
-"""
-        
-        # Add document reference if provided
-        if document:
-            body += f"""Please refer to the following document for more details:
-{document}
-
-"""
-        
-        # Add supervisor information
+        # Add supervisor info
         if supervisor_name or supervisor_email:
-            body += "For any questions or clarifications, please contact:\n"
+            body_lines.append("For any additional questions or clarifications, please contact the supervisor:")
             if supervisor_name:
-                body += f"Supervisor: {supervisor_name}\n"
+                body_lines.append(f"Supervisor Name: {supervisor_name}")
             if supervisor_email:
-                body += f"Email: {supervisor_email}\n"
-            body += "\n"
-        
-        # Closing
-        body += """Please acknowledge receipt of this assignment and confirm your understanding.
+                body_lines.append(f"Supervisor Email: {supervisor_email}")
+            body_lines.append("")
 
-Best regards,"""
-        
-        # Send email using existing infrastructure (default to Gmail)
-        # Use the same approach as compose_email endpoint
+        # Closing
+        body_lines.append("Please acknowledge receipt of this assignment and confirm your understanding.")
+        body_lines.append("")
+        body_lines.append("Best regards,")
+
+        body = "\n".join(body_lines)
+
+        # Send email using existing infrastructure (Gmail first, Outlook fallback)
         try:
             gmail.send_email(student_email, subject, body, attachments=None)
             sent_store.record(student_email, subject, body, source="gmail")
             return {"ok": True, "to": student_email, "subject": subject}
         except Exception as email_error:
-            # Try Outlook as fallback
             try:
                 outlook.send_email(student_email, subject, body, attachments=None)
                 sent_store.record(student_email, subject, body, source="outlook")
                 return {"ok": True, "to": student_email, "subject": subject}
             except Exception:
                 return {"ok": False, "error": f"Failed to send email: {str(email_error)}"}
-    
+
     except Exception as e:
         return {"ok": False, "error": f"Error processing MCP data: {str(e)}"}
 
 
 @mcp.tool("SendEmailJSON")
-def m_send_email_json(payload: dict):
+def m_send_email_json(
+    student_email: str,
+    student_name: str,
+    task_description: str,
+    supervisor_name: str = "",
+    supervisor_email: str = "",
+    researcher_name: str = "",
+    researcher_email: str = ""
+) -> dict:
     """
-    MCP tool that accepts email data as JSON and sends an assignment email.
+    Send an assignment email to a student with task details.
+    Validates required fields and email formats.
     """
-
     mcp_data = {
-        "Student_Email": payload.get("student_email", "").strip(),
-        "Student_Name": payload.get("student_name", "").strip(),
-        "TaskDescription": payload.get("task_description", "").strip(),
-        "Supervisor_Name": payload.get("supervisor_name", "").strip(),
-        "Supervisor_Email": payload.get("supervisor_email", "").strip(),
-        "Document": payload.get("document"),
-        "Deadline": payload.get("deadline"),
+        "Student_Email": student_email.strip(),
+        "Student_Name": student_name.strip(),
+        "TaskDescription": task_description.strip(),
+        "Supervisor_Name": supervisor_name.strip(),
+        "Supervisor_Email": supervisor_email.strip(),
+        "Researcher_Name": researcher_name.strip(),
+        "Researcher_Email": researcher_email.strip(),
     }
 
     return sendReplyFromMCP(mcp_data)
-
-
-
-@mcp.tool
-def add(a: int, b: int) -> int:
-    """Add two numbers"""
-    return a + b
-
-# @app.post("/sendemail")
-# async def api_send_email(data: dict):
-#     """
-#     HTTP endpoint to send assignment email.
-#     Accepts JSON dict with the same keys as MCP tool.
-#     """
-#     return sendReplyFromMCP(data)
 
 
 # --------------------
