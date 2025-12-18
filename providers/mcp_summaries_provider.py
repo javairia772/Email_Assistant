@@ -10,6 +10,7 @@ from classifier.email_classifier import classify_email
 from bs4 import BeautifulSoup
 from providers.reply_queue import ReplyQueue
 
+
 DEFAULT_REPLY_PROMPT = (
     "You are an executive email assistant for a busy lab director. "
     "Given the summary of the email thread and the metadata provided, draft a concise, polite reply "

@@ -1,9 +1,17 @@
 # auto_summarizer_loop.py
+import json
 import os
 import time
-import json
-from datetime import datetime, timezone
+import re
+from datetime import datetime, timezone, timedelta
 from collections import defaultdict, Counter
+
+class SetEncoder(json.JSONEncoder):
+    """Custom JSON encoder that handles sets by converting them to lists."""
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+        return super().default(obj)
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
 from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
@@ -11,11 +19,38 @@ from server import mcp
 from integrations.cache_to_sheets import push_cached_summaries_to_sheets
 from classifier.email_classifier import classify_email
 from providers.mcp_summaries_provider import McpSummariesProvider
+from integrations.google_calendar import GoogleCalendar
+from dateutil import parser
+from typing import Optional, Dict, Any
 
 # -----------------------------
 # Cache file
 # -----------------------------
 SUMMARY_CACHE = "Summaries/summaries_cache.json"
+
+def load_cache():
+    """Load the cache from disk, initializing it if it doesn't exist."""
+    if os.path.exists(SUMMARY_CACHE):
+        try:
+            with open(SUMMARY_CACHE, 'r') as f:
+                cache = json.load(f)
+                # Convert any lists back to sets for processed_emails
+                if 'processed_emails' in cache and isinstance(cache['processed_emails'], list):
+                    cache['processed_emails'] = set(cache['processed_emails'])
+                # Ensure calendar_events exists
+                if 'calendar_events' not in cache:
+                    cache['calendar_events'] = {}
+                return cache
+        except Exception as e:
+            print(f"⚠️ Error loading cache: {e}")
+    
+    # Return default cache structure if file doesn't exist or there was an error
+    return {
+        'summaries': {},
+        'seen': {'gmail': [], 'outlook': []},
+        'processed_emails': set(),
+        'calendar_events': {}
+    }
 
 # -----------------------------
 # Date parsing helper
@@ -141,184 +176,155 @@ def safe_summarize_thread(source, contact_email, thread_id, thread_obj=None, max
     return {"error": f"Max retries exceeded for {thread_id}"}
 
 
-# -----------------------------
-# Summarize a batch of threads/emails
-# -----------------------------
-def summarize_platform(source, connector, cache, list_fn, fetch_fn, id_key="id"):
-    print(f"\n🔍 Checking {source.title()} for new emails...")
-
-    # Ensure seen is a set
-    if isinstance(cache["seen"].get(source), list):
-        cache["seen"][source] = set(cache["seen"][source])
-    seen = cache["seen"][source]
-
-    summaries = cache["summaries"]
-    new_count = 0
-
-    try:
-        threads = list_fn()
-        contact_threads = defaultdict(list)
-
-        # Group messages by sender/contact
-        for item in threads:
-            email_id = item.get(id_key) or item.get("threadId") or item.get("conversationId")
-            if not email_id or email_id in seen:
-                continue
-
-            sender = (
-                item.get("sender")
-                or (item.get("messages", [{}])[0].get("sender") if item.get("messages") else None)
-                or "unknown"
-            )
-
-            contact_threads[sender].append(item)
-            seen.add(email_id)
-            new_count += 1
-
-        if not contact_threads:
-            print(f"📭 No new {source.title()} emails found.")
-            return 0
-
-        # Summarize per contact
-        for contact_email, messages in contact_threads.items():
-            roles = []
-            importances = []
-            role_confs = []
-            importance_confs = []
-
-            # Track latest date for this contact
-            latest_date = None
-
-            for msg in messages:
-                thread_id = msg.get(id_key) or msg.get("threadId") or msg.get("conversationId")
-                safe_summarize_thread(source, contact_email, thread_id, thread_obj=[msg])
-
-                # Classify role & importance
-                sender = msg.get("sender", contact_email)
-                subject = msg.get("subject", "")
-                body = msg.get("snippet", "") or (msg.get("body", "") if msg.get("body") else "")
-
-                try:
-                    classification = classify_email(sender, subject, body)
-                except Exception as e:
-                    print(f"[Classifier ERROR] Failed to classify email from {sender}: {e}")
-                    classification = {"role": "Unknown", "importance": "Unknown", "role_confidence": 0, "importance_confidence": 0}
-
-                msg["role"] = classification["role"]
-                msg["importance"] = classification["importance"]
-                msg["role_confidence"] = classification.get("role_confidence", 0)
-                msg["importance_confidence"] = classification.get("importance_confidence", 0)
-
-                roles.append(msg["role"])
-                importances.append(msg["importance"])
-                role_confs.append(msg["role_confidence"])
-                importance_confs.append(msg["importance_confidence"])
-
-                # Attempt to parse any date-like fields in the message and update latest_date
-                for key in ["date", "timestamp", "last_modified", "created_at"]:
-                    if key in msg:
-                        dt = _parse_date(msg[key])
-                        if dt and (latest_date is None or dt > latest_date):
-                            latest_date = dt
-
-            # Determine aggregated role & importance for the contact
-            contact_role = Counter(roles).most_common(1)[0][0] if roles else "Unknown"
-            contact_importance = Counter(importances).most_common(1)[0][0] if importances else "Unknown"
-            contact_role_conf = sum(role_confs)/len(role_confs) if role_confs else 0
-            contact_importance_conf = sum(importance_confs)/len(importance_confs) if importance_confs else 0
-
-            # Generate contact summary
-            result = summarize_contact_logic(
-                source,
-                contact_email,
-                fetch_fn=fetch_fn,
-                top=50,
-                force_refresh=True
-            )
-
-            # Build thread_summaries with correct timestamps (use parsed dates when available)
-            thread_summaries = []
-            for msg in messages:
-                thread_id = msg.get(id_key) or msg.get("threadId") or msg.get("conversationId")
-
-                # Prefer any date-like field from the message
-                thread_dt = None
-                for key in ["date", "timestamp", "last_modified", "created_at"]:
-                    if key in msg:
-                        thread_dt = _parse_date(msg[key])
-                        if thread_dt:
-                            break
-
-                # If not found, try in nested message structure (e.g., msg['messages'][0])
-                if thread_dt is None and isinstance(msg.get("messages"), list) and msg["messages"]:
-                    nested = msg["messages"][0]
-                    for key in ["date", "timestamp", "last_modified", "created_at"]:
-                        if key in nested:
-                            thread_dt = _parse_date(nested[key])
-                            if thread_dt:
-                                break
-
-                # Final fallback to current UTC time
-                thread_ts_iso = (thread_dt or datetime.now(timezone.utc)).isoformat()
-
-                thread_summaries.append({
-                    "thread_id": thread_id,
-                    "subject": msg.get("subject", ""),
-                    "body": msg.get("snippet", "") or msg.get("body", ""),
-                    "summary": msg.get("summary", result.get("contact_summary", "")),
-                    "role": msg["role"],
-                    "importance": msg["importance"],
-                    "role_confidence": msg["role_confidence"],
-                    "importance_confidence": msg["importance_confidence"],
-                    "timestamp": thread_ts_iso
-                })
-
-            # If we didn't find a latest_date from per-message parsing, check result or entry-level fields:
-            if latest_date is None:
-                # try to see if contact-level result contains a date field (rare)
-                for key in ["last_summary", "timestamp", "date"]:
-                    val = result.get(key)
-                    if val:
-                        dt = _parse_date(val)
-                        if dt and (latest_date is None or dt > latest_date):
-                            latest_date = dt
-
-            # Final fallback to now if no date info available
-            final_last_summary_iso = (latest_date.isoformat() if latest_date else datetime.now(timezone.utc).isoformat())
-
-            # Update summaries cache for this contact
-            summaries[f"{source}:{contact_email}"] = {
-                "count": len(messages),
-                "threads": thread_summaries,
-                "contact_summary": result.get("contact_summary", ""),
-                "role": contact_role,
-                "importance": contact_importance,
-                "role_confidence": round(contact_role_conf, 3),
-                "importance_confidence": round(contact_importance_conf, 3),
-                "last_summary": final_last_summary_iso,
-            }
-
-            # Update MCP live cache
-            try:
-                mcp.cache_contact_summary = getattr(mcp, "cache_contact_summary", {})
-                mcp.cache_contact_summary[f"{source}:{contact_email}"] = result.get("contact_summary", "")
-            except Exception as e:
-                print(f"[MCP ERROR] Failed to update contact summary for {contact_email}: {e}")
-
-        print(f"✅ Done summarizing {new_count} new {source.title()} emails across {len(contact_threads)} contacts.")
-        return new_count
-
-    except Exception as e:
-        print(f"[ERROR] {source.title()} summarization failed: {e}")
-        return 0
-
 
 # -----------------------------
 # Unified loop (Gmail + Outlook)
 # -----------------------------
+def process_calendar_events(summary: dict, cache: dict) -> None:
+    """Process calendar events from email summary."""
+    try:
+        print("\n🔍 Processing email for calendar events...")
+        
+        # Initialize calendar client
+        calendar = GoogleCalendar()
+        
+        # Get the most recent message in the thread
+        threads = summary.get('threads', [])
+        if not threads:
+            print("  ℹ️ No threads found in summary")
+            return
+            
+        # Get the latest message (assuming threads are sorted by date, newest first)
+        latest_message = threads[0]
+        subject = latest_message.get('subject', '') or latest_message.get('last_subject', '')
+        
+        # Try to get the body from different possible locations
+        body = (
+            latest_message.get('body') or 
+            latest_message.get('last_body') or 
+            latest_message.get('snippet', '')
+        )
+        
+        # If we still don't have a body, check the preview
+        if not body and 'preview' in latest_message:
+            body = latest_message['preview']
+            
+        if not body:
+            print("  ⚠️ No message body found in email")
+            return
+        
+        print(f"  📧 Processing email with subject: {subject[:50]}...")
+        print(f"  📝 Body preview: {body[:100]}...")
+        
+        # Extract meeting info from email body
+        print("  🔍 Looking for date/time information in email...")
+        meeting_info = calendar.extract_meeting_info(body)
+        
+        if not meeting_info:
+            print("  ℹ️ No meeting information found in email")
+            return
+            
+        print(f"  ✅ Found meeting info: {meeting_info}")
+            
+        # Create deduplication key
+        source = summary.get('source', 'unknown')
+        thread_id = summary.get('id')
+        start_time = meeting_info.get('start_time')
+        
+        print(f"  🔑 Deduplication check - Source: {source}, Thread ID: {thread_id}, Start Time: {start_time}")
+        
+        if not all([source, thread_id, start_time]):
+            missing = []
+            if not source: missing.append('source')
+            if not thread_id: missing.append('thread_id')
+            if not start_time: missing.append('start_time')
+            print(f"  ⚠️ Missing required fields: {', '.join(missing)}")
+            return
+            
+        event_key = f"{source}:{thread_id}:{start_time}"
+        
+        # Initialize calendar_events in cache if it doesn't exist
+        if 'calendar_events' not in cache:
+            print("  ℹ️ Initializing new calendar_events cache")
+            cache['calendar_events'] = {}
+            
+        # Check if we've already processed this event
+        if event_key in cache['calendar_events']:
+            print(f"  ℹ️ Calendar event already exists in cache for: {subject}")
+            print(f"  🔑 Cache key: {event_key}")
+            return
+            
+        # Create the calendar event
+        event_data = {
+            'summary': meeting_info.get('summary', subject[:100]),
+            'description': f"Event created from email:\n\n{subject}\n\n{body}",
+            'start_time': start_time,
+            'end_time': meeting_info.get('end_time', (datetime.fromisoformat(start_time) + timedelta(hours=1)).isoformat())
+        }
+        
+        print(f"\n📅 Creating calendar event with data:")
+        print(f"  📌 Title: {event_data['summary']}")
+        print(f"  ⏰ Start: {event_data['start_time']}")
+        print(f"  ⏱️  End: {event_data['end_time']}")
+        
+        result = calendar.create_event(event_data)
+        
+        if result.get('success'):
+            print(f"\n✅ Successfully created calendar event: {subject}")
+            if 'html_link' in result:
+                print(f"   🔗 {result['html_link']}")
+            
+            # Ensure calendar_events exists in cache
+            if 'calendar_events' not in cache:
+                cache['calendar_events'] = {}
+                
+            # Store the event key to prevent duplicates
+            cache['calendar_events'][event_key] = {
+                'created_at': datetime.now(timezone.utc).isoformat(),
+                'subject': subject,
+                'start_time': start_time,
+                'email_thread_id': thread_id,
+                'email_subject': subject,
+                'processed_at': datetime.now(timezone.utc).isoformat()
+            }
+            
+            # Save the cache to disk using our custom encoder
+            with open(SUMMARY_CACHE, 'w') as f:
+                json.dump(cache, f, indent=2, cls=SetEncoder)
+                
+            print(f"  💾 Saved event to cache with key: {event_key}")
+            print(f"  📝 Updated {SUMMARY_CACHE} with new calendar event")
+        else:
+            print(f"\n❌ Failed to create calendar event. Error: {result.get('error', 'Unknown error')}")
+            if 'details' in result:
+                print(f"  Details: {result['details']}")
+            
+    except Exception as e:
+        print(f"⚠️ Error processing calendar event: {e}")
+        import traceback
+        traceback.print_exc()
+
 def run_unified_agent():
     provider = McpSummariesProvider()
     cache = load_cache()  # load existing cache first
+    
+    # Initialize cache structures if they don't exist
+    if 'calendar_events' not in cache:
+        print("ℹ️ Initializing calendar_events in cache")
+        cache['calendar_events'] = {}
+        
+    if 'processed_emails' not in cache:
+        print("ℹ️ Initializing processed_emails in cache")
+        cache['processed_emails'] = set()
+    
+    # Ensure processed_emails is a set for efficient lookups
+    if isinstance(cache['processed_emails'], list):
+        cache['processed_emails'] = set(cache['processed_emails'])
+    elif not isinstance(cache['processed_emails'], set):
+        cache['processed_emails'] = set()
+        
+    print(f"ℹ️ Loaded {len(cache['processed_emails'])} processed emails from cache")
+    print(f"ℹ️ Loaded {len(cache.get('calendar_events', {}))} calendar events from cache")
 
     while True:
         print("\n============================")
@@ -329,6 +335,49 @@ def run_unified_agent():
         try:
             # Pass existing cache to provider so it can skip already-summarized emails
             new_summaries = provider.get_summaries(limit=20, existing_cache=cache)
+            
+            if not new_summaries:
+                print("ℹ️ No new emails to process")
+                time.sleep(10)
+                continue
+                
+            print(f"\n📨 Found {len(new_summaries)} new email(s) to process")
+            
+            # Process calendar events for new summaries
+            for summary in new_summaries:
+                thread_id = summary.get('id')
+                if not thread_id:
+                    print("⚠️ Skipping email with no thread ID")
+                    continue
+                    
+                # Check if we've already processed this email
+                if thread_id in cache.get('processed_emails', set()):
+                    print(f"ℹ️ Skipping already processed email (Thread ID: {thread_id})")
+                    continue
+                    
+                subject = summary.get('subject', 'No subject')
+                print(f"\n📧 Processing new email: {subject}")
+                
+                try:
+                    process_calendar_events(summary, cache)
+                    
+                    # Mark as processed after successful processing
+                    cache['processed_emails'].add(thread_id)
+                    
+                    # Save the updated cache to disk using our custom encoder
+                    with open(SUMMARY_CACHE, 'w') as f:
+                        json.dump(cache, f, indent=2, cls=SetEncoder)
+                        
+                    print(f"✅ Marked email as processed (Thread ID: {thread_id})")
+                    
+                except Exception as e:
+                    print(f"⚠️ Error processing calendar events for email: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    
+                    # Don't mark as processed if there was an error
+                    print(f"⚠️ Email will be retried in the next cycle (Thread ID: {thread_id})")
+                    
         except Exception as e:
             print(f"[ERROR] Failed to fetch summaries: {e}")
             time.sleep(10)
@@ -347,7 +396,7 @@ def run_unified_agent():
 
         cache["last_updated"] = datetime.now(timezone.utc).isoformat()
 
-        # Save local cache
+        # Save local cache with any new calendar events
         save_cache(cache)
 
         # Push to Google Sheets

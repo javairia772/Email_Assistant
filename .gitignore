@@ -55,5 +55,5 @@ local_settings.py
 
 # Project specific
 .summaries/
-Summaries/summaries_cache.json
+
 providers/Summaries/summaries_cache.json

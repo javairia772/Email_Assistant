@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import re
 
 # Load environment variables from .env file
-load_dotenv('.envSecrets')
+load_dotenv('.env')
 
 from fastmcp import FastMCP
 from fastapi import FastAPI
@@ -25,9 +25,13 @@ from Summarizer.groq_summarizer import GroqSummarizer
 from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
 from classifier.email_classifier import classify_email
 from integrations.google_sheets import upsert_summaries
+from integrations.google_calendar import GoogleCalendar
 from providers.sent_store import SentStore
 from datetime import datetime
+import logging
 
+# Initialize logger
+logger = logging.getLogger(__name__)
 
 # Initialize MCP and connectors
 gmail = GmailConnector()
@@ -36,6 +40,14 @@ summarizer = GroqSummarizer()  # this uses the cache built into the class
 agent = EmailAgent()
 agent_tools = AgentTools()
 sent_store = SentStore()
+
+# Initialize Google Calendar integration
+try:
+    calendar = GoogleCalendar(credentials_path='credentials.json')
+    logger.info("Google Calendar integration initialized successfully")
+except Exception as e:
+    logger.error(f"Failed to initialize Google Calendar: {str(e)}")
+    calendar = None
 
 # --------------------
 # Utilities
@@ -94,6 +106,16 @@ def _build_agent_email_payload(source: str, thread_id: str):
                 f"From: {msg.get('sender','Unknown')}\nSubject: {msg.get('subject','')}\n\n{msg.get('body','')}"
                 for msg in thread_messages
             )
+            
+            # Check for meeting information and schedule if found
+            if calendar and latest.get('body'):
+                result = calendar.process_email_for_meetings(
+                    email_body=latest['body'],
+                    email_subject=latest.get('subject', '')
+                )
+                if result.get('success'):
+                    logger.info(f"Scheduled meeting: {result.get('html_link')}")
+                
             sender = latest.get("sender", "unknown")
             subject = latest.get("subject", "(no subject)")
             classification = classify_email(
@@ -142,161 +164,6 @@ def m_agent_process_email(source: str, thread_id: str):
 
     result = agent.process_email(payload, agent_tools.get_all_tools())
     return {"ok": True, "result": result}
-
-
-
-# --------------------
-# Summarization helpers (TTL + per-contact caching)
-# --------------------
-# def summarize_thread_logic(source: str, contact_email: str, thread_id: str, thread_obj=None, force=False):
-#     """
-#     Summarizes a single thread automatically.
-#     - Per-contact caching namespace
-#     - TTL-aware caching
-#     - force=True clears all cached threads for this contact
-#     """
-#     try:
-#         if force:
-#             summarizer._clear_contact_cache(source, contact_email)
-
-#         cached_summary = summarizer._get_from_cache(source, contact_email, thread_id)
-#         if cached_summary:
-#             print(f"⚡ Using cached summary for {contact_email}:{thread_id}")
-#             return {
-#                 "thread_id": thread_id,
-#                 "summary": cached_summary,
-#                 "used_cache": True
-#             }
-
-#         # Normalize thread_obj
-#         if thread_obj is None:
-#             if source.lower() == "gmail":
-#                 thread_obj = gmail.get_thread_text(thread_id)
-#             elif source.lower() == "outlook":
-#                 thread_obj = outlook.get_thread_text(thread_id)
-#             else:
-#                 raise ValueError(f"Unknown source: {source}")
-
-#         if isinstance(thread_obj, str):
-#             thread_obj = [{"sender": "Unknown", "subject": "No Subject", "body": thread_obj}]
-#         elif not isinstance(thread_obj, list):
-#             thread_obj = [thread_obj]
-
-
-#         # Combine messages
-#         combined = "\n\n---\n\n".join(
-#             f"From: {m.get('sender','Unknown')}\nSubject: {m.get('subject','No Subject')}\n\n{m.get('body','')}"
-#             for m in thread_obj
-#         )
-
-#         # Generate summary
-#         summary = summarizer.summarize_text(combined)
-
-#         # Save in cache
-#         summarizer._set_cache(source, contact_email, thread_id, summary)
-
-#         return {
-#             "thread_id": thread_id,
-#             "summary": summary,
-#             "used_cache": False
-#         }
-
-#     except Exception as e:
-#         return {"error": str(e), "traceback": traceback.format_exc()}
-
-
-# def summarize_contact_logic(source: str, contact_email: str, top: int = 50, force_refresh: bool = False):
-#     """
-#     Summarizes all threads for a contact.
-#     - TTL-aware per-thread caching
-#     - force_refresh clears the contact's cache if True
-#     """
-#     try:
-#         # Fetch threads
-#         if source.lower() == "outlook":
-#             fetch_res = outlook.fetch_threads(contact_email, top)
-#         else:
-#             fetch_res = gmail.fetch_threads(contact_email, top)
-
-#         if isinstance(fetch_res, dict) and fetch_res.get("error"):
-#             return {"error": fetch_res}
-
-#         threads = fetch_res or []
-#         thread_summaries = []
-
-#         for i, thread in enumerate(threads, start=1):
-#             thread_id = thread[0].get("conversationId") or thread[0].get("threadId") or f"{source}_thread_{i}"
-
-#             s = summarize_thread_logic(source, contact_email, thread_id, thread_obj=thread, force=force_refresh)
-#             if s.get("error"):
-#                 thread_summaries.append({"thread_id": thread_id, "error": s["error"]})
-#             else:
-#                 thread_summaries.append({
-#                     "thread_id": thread_id,
-#                     "summary": s["summary"],
-#                     "used_cache": s.get("used_cache", False)
-#                 })
-
-#         summaries_texts = [t["summary"] for t in thread_summaries if "summary" in t]
-#         contact_summary = summarizer.summarize_contact_threads(
-#             summaries_texts, source=source, contact_email=contact_email, force=force_refresh
-#         ) if summaries_texts else ""
-
-#         return {    
-#             "contact_email": contact_email,
-#             "source": source,
-#             "thread_count": len(threads),
-#             "thread_summaries": thread_summaries,
-#             "contact_summary": contact_summary,
-#             "display_summary": contact_summary
-#         }
-
-#     except Exception as e:
-#         return {"error": str(e), "traceback": traceback.format_exc()}
-
-
-# --------------------
-# Summarization tools (MCP registered)
-# --------------------
-# @mcp.tool("summarize_thread")
-# def m_summarize_thread(source: str, thread_index_or_id, force: bool = False):
-#     """
-#     MCP tool that automatically fetches and summarizes an email thread.
-#     """
-#     try:
-#         source = source.lower()
-
-#         # ✅ Auto-fetch structured thread data properly
-#         if source == "gmail":
-#             fetch_fn = getattr(gmail, "fetch_threads_by_id", gmail.get_thread_text)
-#         elif source == "outlook":
-#             fetch_fn = getattr(outlook, "fetch_threads_by_conversation", outlook.get_thread_text)
-#         else:
-#             raise ValueError("Unknown source. Use 'gmail' or 'outlook'.")
-
-#         thread_obj = fetch_fn(thread_index_or_id)
-
-
-#         # ✅ Normalize structure to always be a list of dicts
-#         if isinstance(thread_obj, str):
-#             thread_obj = [{"sender": "Unknown", "subject": "No Subject", "body": thread_obj}]
-#         elif not isinstance(thread_obj, list):
-#             thread_obj = [thread_obj]
-
-#         return summarize_thread_logic(source, thread_index_or_id, thread_obj=thread_obj, force=force)
-
-#     except Exception as e:
-#         return {"error": str(e), "traceback": traceback.format_exc()}
-
-
-
-
-# @mcp.tool("summarize_thread")
-# def m_summarize_thread(source: str, contact_email: str, thread_id: str, force: bool = False):
-#     """
-#     Summarizes a single thread for a contact.
-#     """
-#     return summarize_thread_logic(source, contact_email, thread_id, force=force)
 
 
 @mcp.tool("summarize_contact")
@@ -561,6 +428,14 @@ def m_send_email_json(
     """
     Send an assignment email to a student with task details.
     Validates required fields and email formats.
+      Args:
+        student_email: Email address of the student
+        student_name: Name of the student
+        task_description: Description of the assignment task
+        supervisor_name: Name of the supervisor
+        supervisor_email: Email of the supervisor
+        document: Optional document attachment
+        deadline: Optional deadline for the task
     """
     mcp_data = {
         "Student_Email": student_email.strip(),

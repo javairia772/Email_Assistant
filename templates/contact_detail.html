@@ -134,11 +134,14 @@
         {% for thread in threads %}
           <article class="thread-card">
             <div class="thread-header">
-              <p class="thread-subject">{{ thread.subject }}</p>
+              <p class="thread-subject">{{ thread.subject or "(No subject)" }}</p>
               <div class="thread-meta">
                 {{ thread.timestamp_display or "—" }}
                 {% if thread.importance %}
                   • {{ thread.importance }}
+                {% endif %}
+                {% if thread.sender != contact.email %}
+                  <div class="thread-recipient">To: {{ thread.recipient or 'Unknown' }}</div>
                 {% endif %}
               </div>
             </div>

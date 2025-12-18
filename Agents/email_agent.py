@@ -22,7 +22,13 @@ class EmailAgent:
     """
     
     def __init__(self, memory_path: str = "Agents/agent_memory.json"):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        self.api_keys = [
+            os.getenv("GROQ_API_KEY"),
+            os.getenv("GROQ_API_KEY_2"),
+            os.getenv("GROQ_API_KEY_3"),
+            os.getenv("GROQ_API_KEY_4")
+        ]
+        self.client = self._initialize_client()
         self.model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
         self.memory_path = memory_path
         self.memory = self._load_memory()
@@ -83,20 +89,48 @@ class EmailAgent:
             }
         }
     
+    def _initialize_client(self, key_index: int = 0):
+        """Initialize Groq client with the specified API key"""
+        if key_index >= len(self.api_keys) or not self.api_keys[key_index]:
+            raise ValueError("No valid API key available")
+        
+        try:
+            return Groq(api_key=self.api_keys[key_index])
+        except Exception as e:
+            print(f"Error initializing client with key {key_index + 1}: {str(e)}")
+            return self._initialize_client(key_index + 1)  # Try next key
+    
+    def _call_llm_with_retry(self, messages: list, max_retries: int = 3, key_index: int = 0):
+        """Call Groq LLM with retry mechanism and key rotation"""
+        if key_index >= len(self.api_keys) or not self.api_keys[key_index]:
+            raise ValueError("No valid API key available")
+        
+        try:
+            client = Groq(api_key=self.api_keys[key_index])
+            response = client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.7
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            print(f"Error with key {key_index + 1}: {str(e)}")
+            if max_retries > 0:
+                return self._call_llm_with_retry(messages, max_retries - 1, key_index)
+            elif key_index + 1 < len(self.api_keys) and self.api_keys[key_index + 1]:
+                print(f"Trying next API key...")
+                return self._call_llm_with_retry(messages, 3, key_index + 1)
+            raise
+    
     def _call_llm(self, prompt: str, system_prompt: str = None) -> str:
-        """Call Groq LLM with prompt"""
+        """Call Groq LLM with prompt and handle API key rotation"""
         messages = []
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
         messages.append({"role": "user", "content": prompt})
         
         try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=messages,
-                temperature=0.7
-            )
-            return response.choices[0].message.content.strip()
+            return self._call_llm_with_retry(messages)
         except Exception as e:
             return f"Error: {str(e)}"
     
@@ -180,9 +214,23 @@ class EmailAgent:
             "available_tools": list(self.tools.keys())
         }
         
+        # Track actions we've already taken to prevent duplicates
+        email_id = email_data.get('id', 'unknown')
+        if 'processed_emails' not in self.memory:
+            self.memory['processed_emails'] = {}
+        
+        # Check if we've already processed this email
+        if email_id in self.memory['processed_emails']:
+            return {
+                "email_id": email_id,
+                "status": "already_processed",
+                "message": f"Email {email_id} was already processed"
+            }
+        
         # Agent reasoning loop (ReAct pattern)
         iterations = 0
         action_history = []
+        draft_created = False
         
         while iterations < self.max_iterations:
             iterations += 1
@@ -195,6 +243,13 @@ class EmailAgent:
 
 Available tools:
 """ + "\n".join([f"- {name}: {info['description']}" for name, info in self.tools.items()])
+
+            # Add guidance to avoid duplicate drafts
+            if draft_created:
+                system_prompt += """
+
+IMPORTANT: You have already created a draft for this email. Do not create another draft.
+If you need to make changes, use the 'edit_draft' tool instead."""
 
             user_prompt = f"""Analyze this email and decide what to do:
 
@@ -213,11 +268,16 @@ ACTION: [tool_name or "none" if no action needed]
 PARAMS: [JSON object with parameters for the action, or {{}}]
 ANSWER: [Final summary of what you decided and why]
 
-If you need more information, use a tool. If you're done, set ACTION to "none"."""
+IMPORTANT: Only create one draft per email thread. If you've already created a draft, use 'edit_draft' instead of 'create_draft'."""
             
             # Get agent's response
             response = self._call_llm(user_prompt, system_prompt)
             parsed = self._parse_agent_response(response)
+            
+            # Skip if we've already created a draft and the agent is trying to create another one
+            if draft_created and parsed["action"] == "create_draft":
+                parsed["action"] = "none"
+                parsed["thought"] = "Skipping duplicate draft creation"
             
             action_history.append({
                 "iteration": iterations,
@@ -231,12 +291,23 @@ If you need more information, use a tool. If you're done, set ACTION to "none"."
                 action_result = self._execute_action(parsed["action"], parsed["params"], context)
                 action_history[-1]["result"] = action_result
                 
+                # Track if we've created a draft
+                if parsed["action"] == "create_draft" and action_result.get("status") == "success":
+                    draft_created = True
+                
                 # If action was successful and agent says it's done, break
                 if action_result.get("status") == "success" and "done" in parsed["answer"].lower():
                     break
             else:
                 # No action needed, agent is done
                 break
+                
+        # Mark this email as processed
+        self.memory['processed_emails'][email_id] = {
+            'timestamp': datetime.now(timezone.utc).isoformat(),
+            'actions_taken': [a.get('action') for a in action_history if a.get('action') != 'none']
+        }
+        self._save_memory()  # Save memory after processing
         
         # Update memory
         self._update_memory(email_data, action_history)

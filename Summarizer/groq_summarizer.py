@@ -53,7 +53,13 @@ class GroqSummarizer:
         if self.provider == "groq":
             if not Groq:
                 raise ImportError("groq package not installed. Run: pip install groq")
-            self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+            self.api_keys = [
+                os.getenv("GROQ_API_KEY"),
+                os.getenv("GROQ_API_KEY_2"),
+                os.getenv("GROQ_API_KEY_3"),
+                os.getenv("GROQ_API_KEY_4")
+            ]
+            self.client = self._initialize_groq_client()
             self.model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
         else:
@@ -130,22 +136,53 @@ class GroqSummarizer:
 
 
     # --------------------------------------------------------------------
-    # 🧩 Universal Model Runner
+    # Universal Model Runner
     # --------------------------------------------------------------------
+    def _initialize_groq_client(self, key_index: int = 0):
+        """Initialize Groq client with the specified API key"""
+        if key_index >= len(self.api_keys) or not self.api_keys[key_index]:
+            raise ValueError("No valid API key available")
+        
+        try:
+            return Groq(api_key=self.api_keys[key_index])
+        except Exception as e:
+            print(f"Error initializing Groq client with key {key_index + 1}: {str(e)}")
+            return self._initialize_groq_client(key_index + 1)  # Try next key
+
+    def _call_groq_api_with_retry(self, prompt: str, max_retries: int = 3, key_index: int = 0) -> str:
+        """Call Groq API with retry mechanism and key rotation"""
+        if key_index >= len(self.api_keys) or not self.api_keys[key_index]:
+            return "Error: No valid API key available"
+        
+        try:
+            client = Groq(api_key=self.api_keys[key_index])
+            response = client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            print(f"Error with key {key_index + 1}: {str(e)}")
+            if max_retries > 0:
+                return self._call_groq_api_with_retry(prompt, max_retries - 1, key_index)
+            elif key_index + 1 < len(self.api_keys) and self.api_keys[key_index + 1]:
+                print(f"Trying next API key...")
+                return self._call_groq_api_with_retry(prompt, 3, key_index + 1)
+            return f"Error calling Groq API: {str(e)}"
+
+    def _call_groq_api(self, prompt: str) -> str:
+        """Call Groq API with the given prompt and return the response."""
+        return self._call_groq_api_with_retry(prompt)
+
     def _run_groq_model(self, prompt):
         """
         Unified model handler — works with Groq, OpenAI.
         """
         try:
             if self.provider == "groq":
-                response = self.client.chat.completions.create(
-                    model=self.model,
-                    messages=[{"role": "user", "content": prompt}],
-                )
-                return response.choices[0].message.content.strip()
-
+                return self._call_groq_api(prompt)
         except Exception as e:
-            print(f"❌ Summarization failed ({self.provider}): {e}")
+            print(f" Summarization failed ({self.provider}): {e}")
             return "Summary unavailable due to model error."
 
 
