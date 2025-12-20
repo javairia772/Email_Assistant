@@ -58,3 +58,4 @@ local_settings.py
 
 providers/Summaries/summaries_cache.json
 *.pickle
+*.pickle
