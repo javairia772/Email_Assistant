@@ -174,7 +174,6 @@ def classify_role(email_text, sender_email):
             best_role = p
             break
 
-    # 5️⃣ Confidence logic (no fake 1.0)
     confidence = min(best_score / 8, 0.95)
 
     return best_role, round(confidence, 3)

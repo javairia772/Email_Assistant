@@ -4,14 +4,13 @@ import os
 import time
 import re
 from datetime import datetime, timezone, timedelta
-from collections import defaultdict, Counter
+from collections import defaultdict , Counter
 from Gmail.gmail_connector import GmailConnector
 from Outlook.outlook_connector import OutlookConnector
-from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
-from server import mcp
+from Summarizer.summarize_helper import summarize_thread_logic , summarize_contact_logic
 from integrations.cache_to_sheets import push_cached_summaries_to_sheets
 from classifier.email_classifier import classify_email
-from providers.mcp_summaries_provider import McpSummariesProvider
+from providers.summaries_provider import SummariesProvider
 from integrations.google_calendar import GoogleCalendar
 from dateutil import parser
 from typing import Optional, Dict, Any
@@ -290,7 +289,7 @@ def process_calendar_events(summary: dict, cache: dict) -> None:
 # -----------------------------
 
 def run_unified_agent():
-    provider = McpSummariesProvider()
+    provider = SummariesProvider()
     cache = load_cache()  # load existing cache first
 
     # Ensure cache structures exist

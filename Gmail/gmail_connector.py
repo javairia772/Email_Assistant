@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from datetime import datetime, timezone
 # Import summarization logic (Groq + caching)
-from Summarizer.summarize_helper import summarize_thread_logic, summarize_contact_logic
+from Summarizer.summarize_helper import summarize_thread_logic , summarize_contact_logic
 
 
 class GmailConnector:
@@ -18,7 +18,7 @@ class GmailConnector:
         self.service = self.auth.authenticate()
 
     # ------------------------------------------------------
-    # List threads (already fine)
+    # List threads
     # ------------------------------------------------------
     def list_threads(self, max_results=5):
         """List recent Gmail threads with sender & subject metadata."""
@@ -234,7 +234,7 @@ class GmailConnector:
             return {"error": f"Gmail API error: {e}"}
 
 
-       # ------------------------------------------------------
+    # ------------------------------------------------------
     # SEND REPLY
     # ------------------------------------------------------
     def send_reply(self, thread_id, to_email, subject, reply_body, in_reply_to=None, references=None):
@@ -285,32 +285,3 @@ class GmailConnector:
         raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
         body = {"raw": raw}
         self.service.users().messages().send(userId="me", body=body).execute()
-
-    # ------------------------------------------------------
-    # Optional: plain text joiner for summarization
-    # ------------------------------------------------------
-    def get_thread_text(self, thread_id):
-        """Return a thread’s combined text for summarization."""
-        messages = self.get_message(thread_id)
-        if isinstance(messages, dict) and "error" in messages:
-            return messages["error"]
-
-        combined = []
-        for msg in messages:
-            combined.append(
-                f"From: {msg['sender']}\nSubject: {msg['subject']}\n\n{msg['body']}\n"
-            )
-        return "\n---\n".join(combined)
-
-    def get_latest_message_id(thread_id: str) -> str:
-        """Return the ID of the latest message in a Gmail thread."""
-        try:
-            thread = gmail_client.service.users().threads().get(userId="me", id=thread_id).execute()
-            if thread and 'messages' in thread and thread['messages']:
-                # Messages are usually ordered oldest → newest
-                return thread['messages'][-1]['id']
-            else:
-                raise Exception(f"No messages found in thread {thread_id}")
-        except Exception as e:
-            print(f"[ERROR] Failed to fetch latest message ID for thread {thread_id}: {str(e)}")
-            raise

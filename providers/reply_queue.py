@@ -159,10 +159,4 @@ class ReplyQueue:
             self._save(queue)
         return updated
 
-    def remove_draft(self, draft_id: str):
-        queue = self._load()
-        original_len = len(queue.get("drafts", []))
-        queue["drafts"] = [d for d in queue.get("drafts", []) if d.get("id") != draft_id]
-        if len(queue["drafts"]) != original_len:
-            self._save(queue)
-
+ 

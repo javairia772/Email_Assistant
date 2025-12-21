@@ -4,6 +4,8 @@ import time
 from dotenv import load_dotenv
 import sys
 import io
+from classifier.email_classifier import classify_email, classify_role
+from collections import Counter
 from datetime import datetime
 try:
     from groq import Groq
@@ -313,9 +315,6 @@ class GroqSummarizer:
         - Role is determined ONCE at the contact level (same for all threads from this email)
         - Importance is determined PER THREAD (can vary between threads)
         """
-        from classifier.email_classifier import classify_email, classify_role
-        from datetime import datetime
-        from collections import Counter
 
         # Force clear cache if requested
         if force and source and contact_email:

@@ -125,5 +125,3 @@ def push_cached_summaries_to_sheets(summaries_dict=None):
         traceback.print_exc()
 
 
-if __name__ == "__main__":
-    push_cached_summaries_to_sheets()

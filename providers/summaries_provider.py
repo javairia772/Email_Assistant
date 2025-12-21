@@ -1,6 +1,6 @@
 from typing import List, Dict
 from datetime import datetime, timezone
-import json, os, re, time
+import json, re, time
 from pathlib import Path
 from email.utils import parsedate_to_datetime
 from Summarizer.groq_summarizer import GroqSummarizer
@@ -30,7 +30,7 @@ def _parse_iso(s: str) -> datetime:
         return datetime.min.replace(tzinfo=timezone.utc)
 
 
-class McpSummariesProvider:
+class SummariesProvider:
     def __init__(self):
         self.summarizer = GroqSummarizer()
         project_root = Path(__file__).resolve().parents[1]
@@ -209,7 +209,7 @@ Write the reply in first person plural ("we") unless the context clearly require
                     try:
                         full_thread = self.outlook.fetch_thread_by_id(contact_email, tid, top=100)
                     except Exception as exc:
-                        print(f"[MCP] Failed to fetch Outlook thread {tid} for {contact_email}: {exc}")
+                        print(f"[SummariesProvider] Failed to fetch Outlook thread {tid} for {contact_email}: {exc}")
                         continue
 
                     normalized_messages = []
@@ -248,7 +248,7 @@ Write the reply in first person plural ("we") unless the context clearly require
             return list(contacts_by_email.values())
 
         except Exception as e:
-            print(f"[MCP] Outlook error: {e}")
+            print(f"[SummariesProvider] Outlook error: {e}")
             return []
 
 
@@ -319,7 +319,7 @@ Write the reply in first person plural ("we") unless the context clearly require
             return list(contacts_by_email.values())
 
         except Exception as e:
-            print(f"[MCP] Gmail error: {e}")
+            print(f"[SummariesProvider] Gmail error: {e}")
             return []
 
     # -----------------------------------------------------------------
