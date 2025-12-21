@@ -38,9 +38,11 @@ groq_client = GroqSummarizer()
 ROLE_TO_CLASS = {
     "Student": "tag-student",
     "Faculty": "tag-faculty",
-    "Vendor": "tag-vendor",
-    "Researcher": "tag-researcher",
     "Admin": "tag-admin",
+    "External Academic": "tag-external-academic",
+    "Industry": "tag-industry",
+    "Government": "tag-government",
+    "General External": "tag-general-external",
     "Uncategorized": "tag-default",
 }
 
