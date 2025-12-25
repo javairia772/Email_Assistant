@@ -29,39 +29,71 @@ class GoogleCalendar:
         self.service = self._get_calendar_service()
 
     def _get_calendar_service(self):
-        """Get authenticated Google Calendar API service."""
-        # The file token.pickle stores the user's access and refresh tokens
+        """Get authenticated Google Calendar API service (robust & refresh-safe)."""
+        creds = None
+
+        # 1. Load existing token if present
         if os.path.exists(TOKEN_PATH):
-            with open(TOKEN_PATH, 'rb') as token:
-                self.creds = pickle.load(token)
-
-        # If there are no (valid) credentials available, let the user log in
-        if not self.creds or not self.creds.valid:
-            if self.creds and self.creds.expired and self.creds.refresh_token:
+            try:
+                with open(TOKEN_PATH, 'rb') as token:
+                    creds = pickle.load(token)
+                logger.info("Loaded existing token from storage")
+            except Exception as e:
+                logger.warning(f"Failed to load token file, deleting it: {e}")
                 try:
-                    self.creds.refresh(Request())
+                    os.remove(TOKEN_PATH)
                 except Exception as e:
-                    logger.warning(f"Failed to refresh token: {e}")
-                    self.creds = None
-            
-            if not self.creds:
+                    logger.error(f"Failed to delete corrupt token file: {e}")
+                creds = None
+
+        # 2. If creds exist but are expired, try refreshing
+        if creds and creds.expired:
+            if creds.refresh_token:
                 try:
-                    flow = InstalledAppFlow.from_client_secrets_file(
-                        self.credentials_path,
-                        SCOPES,
-                        redirect_uri='http://localhost:8080/'
-                    )
-                    self.creds = flow.run_local_server(port=8080, open_browser=True)
-                    
-                    # Save the credentials for the next run
+                    logger.info("Refreshing expired access token")
+                    creds.refresh(Request())
+                    # Save the refreshed token
                     with open(TOKEN_PATH, 'wb') as token:
-                        pickle.dump(self.creds, token)
-                        
+                        pickle.dump(creds, token)
+                    logger.info("Successfully refreshed access token")
                 except Exception as e:
-                    logger.error(f"Authentication failed: {e}")
-                    raise
+                    logger.warning(f"Token refresh failed, forcing re-auth: {e}")
+                    creds = None
+            else:
+                # Token cannot be refreshed → must re-auth
+                logger.warning("Token has no refresh_token, forcing re-auth")
+                creds = None
 
-        return build('calendar', 'v3', credentials=self.creds)
+        # 3. If no valid creds, run OAuth flow (FORCE refresh token)
+        if not creds:
+            logger.info("No valid credentials found, starting OAuth flow")
+            try:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    self.credentials_path,
+                    SCOPES
+                )
+
+                # Force offline access and consent to get refresh token
+                creds = flow.run_local_server(
+                    port=8080,
+                    open_browser=True,
+                    access_type='offline',
+                    prompt='consent'  # Force consent to get refresh token
+                )
+
+                # Save the credentials for the next run
+                with open(TOKEN_PATH, 'wb') as token:
+                    pickle.dump(creds, token)
+                
+                logger.info("Successfully obtained new credentials with refresh token")
+                logger.info(f"Has refresh token: {bool(creds.refresh_token)}")
+                
+            except Exception as e:
+                logger.error(f"Authentication failed: {e}")
+                raise
+
+        self.creds = creds
+        return build('calendar', 'v3', credentials=creds)
 
     def _parse_date_time(self, date_str: str, time_str: str = None) -> tuple:
         """Parse date and time strings into datetime objects."""
@@ -161,28 +193,32 @@ class GoogleCalendar:
                 time_match = time_matches[0]  # Take the first time found near the date
                 break
         
-        # Parse the date and time
-        event_time = self._parse_date_time(
-            date_str=date_match.group().strip(),
-            time_str=time_match.group().strip() if time_match else None
-        )
-        
-        if not event_time:
-            return None
+        try:
+            # Parse the date and time
+            event_time = self._parse_date_time(
+                date_str=date_match.group().strip(),
+                time_str=time_match.group().strip() if time_match else None
+            )
             
-        # Default to 1-hour duration
-        end_time = event_time + timedelta(hours=1)
-        
-        # Create event details
-        return {
-            'date': date_match.group().strip(),
-            'time': time_match.group().strip() if time_match else 'All Day',
-            'summary': 'Meeting from Email',
-            'description': 'Automatically created from email content\n\n---\n' + 
-                         f'Extracted from email on {datetime.now().strftime("%Y-%m-%d %H:%M")}',
-            'start_time': event_time.isoformat(),
-            'end_time': end_time.isoformat()
-        }
+            if not event_time:
+                logger.warning("Failed to parse date/time from email")
+                return None
+                
+            # Default to 1-hour duration
+            end_time = event_time + timedelta(hours=1)
+            
+            # Create event details
+            return {
+                'date': date_match.group().strip(),
+                'time': time_match.group().strip() if time_match else 'All Day',
+                'summary': 'Meeting from Email',
+                'start_time': event_time.isoformat(),
+                'end_time': end_time.isoformat()
+            }
+            
+        except Exception as e:
+            logger.error(f"Error processing meeting time: {str(e)}")
+            return None
 
     def create_event(self, event_details: Dict[str, Any], calendar_id: str = 'primary') -> Dict:
         """Create a calendar event.
@@ -195,17 +231,20 @@ class GoogleCalendar:
             Created event details or error message
         """
         try:
+            # Create event with timezone from the ISO string
             event = {
                 'summary': event_details.get('summary', 'New Event'),
-                'description': event_details.get('description', 'Created by Email Assistant'),
+                'description': event_details.get('description', 'Created by Email Assistant\n\n---\n' +
+                              f'Extracted from email on {datetime.now().strftime("%Y-%m-%d %H:%M")}'),
                 'start': {
-                    'dateTime': event_details['start_time'],
-                    'timeZone': 'UTC',
+                    'dateTime': event_details['start_time']
                 },
                 'end': {
-                    'dateTime': event_details['end_time'],
-                    'timeZone': 'UTC',
+                    'dateTime': event_details['end_time']
                 },
+                'reminders': {
+                    'useDefault': True
+                }
             }
             
             created_event = self.service.events().insert(

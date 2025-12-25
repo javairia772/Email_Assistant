@@ -119,50 +119,6 @@ def _parse_date(date_str):
     return None
 
 # -----------------------------
-# Cache helpers
-# -----------------------------
-# def load_cache():
-#     """Load cache safely and ensure 'seen' entries are sets."""
-#     os.makedirs(os.path.dirname(SUMMARY_CACHE), exist_ok=True)
-#     if not os.path.exists(SUMMARY_CACHE):
-#         print("[WARN] No cache file found; starting fresh.")
-#         return {"seen": {"gmail": set(), "outlook": set()}, "summaries": {}}
-
-#     try:
-#         with open(SUMMARY_CACHE, "r", encoding="utf-8") as f:
-#             data = json.load(f)
-
-#         # Ensure 'seen' exists and convert lists to sets
-#         seen = data.get("seen", {})
-#         seen_gmail = set(seen.get("gmail", []))
-#         seen_outlook = set(seen.get("outlook", []))
-
-#         # Handle summaries
-#         summaries = data.get("summaries", {})
-#         if isinstance(summaries, list):
-#             new_summaries = {}
-#             for entry in summaries:
-#                 key = f"{entry.get('source')}:{entry.get('email')}"
-#                 new_summaries[key] = entry
-#             summaries = new_summaries
-
-#         return {
-#             "seen": {
-#                 "gmail": seen_gmail,
-#                 "outlook": seen_outlook
-#             },
-#             "summaries": summaries
-#         }
-
-#     except Exception as e:
-#         print(f"[ERROR] Could not load cache: {e}")
-#         os.rename(SUMMARY_CACHE, SUMMARY_CACHE + ".corrupt")
-#         return {"seen": {"gmail": set(), "outlook": set()}, "summaries": {}}
-
-
-
-
-# -----------------------------
 # Helper: exponential backoff for rate-limited Groq calls
 # -----------------------------
 def safe_summarize_thread(source, contact_email, thread_id, thread_obj=None, max_retries=5):
