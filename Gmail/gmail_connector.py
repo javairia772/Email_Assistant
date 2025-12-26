@@ -184,6 +184,7 @@ class GmailConnector:
             sender = headers.get("From", "")
             subject = headers.get("Subject", "")
             date = headers.get("Date", "")
+            message_id = msg.get("id", "")  # Get the message ID from the Gmail API response
 
             body = self._extract_body(msg["payload"])  # ✅ use recursive extractor
 
@@ -191,7 +192,8 @@ class GmailConnector:
                 "sender": sender,
                 "subject": subject,
                 "body": body.strip(),
-                "date": date
+                "date": date,
+                "message_id": message_id  # Include message_id in the parsed output
             })
         return parsed
 

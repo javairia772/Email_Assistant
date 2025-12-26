@@ -283,26 +283,34 @@ def run_unified_agent():
                     print("⚠️ Skipping email with no thread ID")
                     continue
 
-                if thread_id in cache.get('processed_emails', set()):
-                    print(f"ℹ️ Skipping already processed email (Thread ID: {thread_id})")
+                # Get the latest message ID from the thread
+                latest_message = summary.get('threads', [{}])[0] if summary.get('threads') else {}
+                message_id = latest_message.get('message_id') or latest_message.get('id')
+                
+                if not message_id:
+                    print(f"⚠️ Skipping email with no message ID (Thread ID: {thread_id})")
+                    continue
+
+                if message_id in cache.get('processed_emails', set()):
+                    print(f"ℹ️ Skipping already processed email (Message ID: {message_id})")
                     continue
 
                 subject = summary.get('subject', 'No subject')
-                print(f"\n📧 Processing new email: {subject}")
+                print(f"\n📧 Processing new email: {subject} (Message ID: {message_id})")
 
                 try:
                     process_calendar_events(summary, cache)
 
-                    # Mark as processed and save immediately
-                    cache['processed_emails'].add(thread_id)
+                    # Mark this specific message as processed using message_id
+                    cache['processed_emails'].add(message_id)
                     save_cache(cache)
-                    print(f"✅ Marked email as processed (Thread ID: {thread_id})")
+                    print(f"✅ Marked email as processed (Message ID: {message_id})")
 
                 except Exception as e:
                     print(f"⚠️ Error processing calendar events for email: {e}")
                     import traceback
                     traceback.print_exc()
-                    print(f"⚠️ Email will be retried in the next cycle (Thread ID: {thread_id})")
+                    print(f"⚠️ Email will be retried in the next cycle (Message ID: {message_id})")
 
         except Exception as e:
             print(f"[ERROR] Failed to fetch summaries: {e}")
